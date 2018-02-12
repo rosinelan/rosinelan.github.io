@@ -5,13 +5,13 @@
   
   <title>WINDOWS 下 XSHELL 密钥登录 LINUX 服务器 | 持续不断</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="环境客户端:xshell 5服务器:centos 6.7   目标利用xshell实现windows远程连接linux服务器免密登录 步骤客户端生成密钥对选择工具–&amp;gt;新建用户密钥生成向导，然后选择密钥类型和长度生成密钥对填写密钥信息，注意：此处设置密码，在使用该密钥时也需要输入密码；留空则不需要输入密码，可直接登录公钥信息点击完成，此时显示xshell已有的私钥 服务器端公钥配置上传公钥至l">
+  <meta name="description" content="环境客户端:xshell 5服务器:centos 6.7   目标利用xshell实现windows远程连接linux服务器免密登录步骤    客户端生成密钥对选择工具–&amp;gt;新建用户密钥生成向导，然后选择密钥类型和长度生成密钥对填写密钥信息，注意：此处设置密码，在使用该密钥时也需要输入密码；留空则不需要输入密码，可直接登录公钥信息点击完成，此时显示xshell已有的私钥 服务器端公钥配置上传公">
 <meta name="keywords" content="XSHELL,秘钥,WINDOWS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="WINDOWS 下 XSHELL 密钥登录 LINUX 服务器">
 <meta property="og:url" content="https://rosinelan.github.io/2018/02/12/WINDOWS-下-XSHELL-密钥登录-LINUX-服务器/index.html">
 <meta property="og:site_name" content="持续不断">
-<meta property="og:description" content="环境客户端:xshell 5服务器:centos 6.7   目标利用xshell实现windows远程连接linux服务器免密登录 步骤客户端生成密钥对选择工具–&amp;gt;新建用户密钥生成向导，然后选择密钥类型和长度生成密钥对填写密钥信息，注意：此处设置密码，在使用该密钥时也需要输入密码；留空则不需要输入密码，可直接登录公钥信息点击完成，此时显示xshell已有的私钥 服务器端公钥配置上传公钥至l">
+<meta property="og:description" content="环境客户端:xshell 5服务器:centos 6.7   目标利用xshell实现windows远程连接linux服务器免密登录步骤    客户端生成密钥对选择工具–&amp;gt;新建用户密钥生成向导，然后选择密钥类型和长度生成密钥对填写密钥信息，注意：此处设置密码，在使用该密钥时也需要输入密码；留空则不需要输入密码，可直接登录公钥信息点击完成，此时显示xshell已有的私钥 服务器端公钥配置上传公">
 <meta property="og:image" content="http://cdn.rosinelan.com/blog/system/%E5%AF%86%E9%92%A5%E7%94%9F%E6%88%90%E5%90%91%E5%AF%BC.png">
 <meta property="og:image" content="http://cdn.rosinelan.com//blog/system/%E7%94%9F%E6%88%90%E5%AF%86%E9%92%A5%E5%AF%B9.png">
 <meta property="og:image" content="http://cdn.rosinelan.com//blog/system/%E5%AF%86%E9%92%A5%E4%BF%A1%E6%81%AF.png">
@@ -19,10 +19,10 @@
 <meta property="og:image" content="http://cdn.rosinelan.com//blog/system/%E7%A7%81%E9%92%A5%E4%BF%A1%E6%81%AF.png">
 <meta property="og:image" content="http://cdn.rosinelan.com//blog/system/%E5%85%AC%E9%92%A5%E9%85%8D%E7%BD%AE.png">
 <meta property="og:image" content="http://cdn.rosinelan.com//blog/system/xshell%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%85%8D%E7%BD%AE.png">
-<meta property="og:updated_time" content="2018-02-12T14:22:57.843Z">
+<meta property="og:updated_time" content="2018-02-12T15:00:24.901Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WINDOWS 下 XSHELL 密钥登录 LINUX 服务器">
-<meta name="twitter:description" content="环境客户端:xshell 5服务器:centos 6.7   目标利用xshell实现windows远程连接linux服务器免密登录 步骤客户端生成密钥对选择工具–&amp;gt;新建用户密钥生成向导，然后选择密钥类型和长度生成密钥对填写密钥信息，注意：此处设置密码，在使用该密钥时也需要输入密码；留空则不需要输入密码，可直接登录公钥信息点击完成，此时显示xshell已有的私钥 服务器端公钥配置上传公钥至l">
+<meta name="twitter:description" content="环境客户端:xshell 5服务器:centos 6.7   目标利用xshell实现windows远程连接linux服务器免密登录步骤    客户端生成密钥对选择工具–&amp;gt;新建用户密钥生成向导，然后选择密钥类型和长度生成密钥对填写密钥信息，注意：此处设置密码，在使用该密钥时也需要输入密码；留空则不需要输入密码，可直接登录公钥信息点击完成，此时显示xshell已有的私钥 服务器端公钥配置上传公">
 <meta name="twitter:image" content="http://cdn.rosinelan.com/blog/system/%E5%AF%86%E9%92%A5%E7%94%9F%E6%88%90%E5%90%91%E5%AF%BC.png">
   
     <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
@@ -72,6 +72,10 @@
         <a href="/" id="logo">持续不断</a>
       </h1>
       
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">要松懈的时候再坚持一下</a>
+        </h2>
+      
     </div>
   </div>
 </header>
@@ -104,21 +108,21 @@
       
         <!-- Table of Contents -->
         
-        <h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>客户端:xshell 5<br>服务器:centos 6.7  </p>
-<h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><p>利用xshell实现windows远程连接linux服务器免密登录</p>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="客户端生成密钥对"><a href="#客户端生成密钥对" class="headerlink" title="客户端生成密钥对"></a>客户端生成密钥对</h3><p>选择工具–&gt;新建用户密钥生成向导，然后选择密钥类型和长度<br><img src="http://cdn.rosinelan.com/blog/system/%E5%AF%86%E9%92%A5%E7%94%9F%E6%88%90%E5%90%91%E5%AF%BC.png" alt="向导" title="向导"><br>生成密钥对<br><img src="http://cdn.rosinelan.com//blog/system/%E7%94%9F%E6%88%90%E5%AF%86%E9%92%A5%E5%AF%B9.png" alt="生成" title="生成"><br>填写密钥信息，注意：此处设置密码，在使用该密钥时也需要输入密码；留空则不需要输入密码，可直接登录<br><img src="http://cdn.rosinelan.com//blog/system/%E5%AF%86%E9%92%A5%E4%BF%A1%E6%81%AF.png" alt="填写密码" title="填写密码"><br>公钥信息<br><img src="http://cdn.rosinelan.com//blog/system/%E5%85%AC%E9%92%A5%E6%B3%A8%E5%86%8C.png" alt="公钥" title="公钥"><br>点击完成，此时显示xshell已有的私钥<br><img src="http://cdn.rosinelan.com//blog/system/%E7%A7%81%E9%92%A5%E4%BF%A1%E6%81%AF.png" alt="私钥" title="私钥"></p>
-<h3 id="服务器端公钥配置"><a href="#服务器端公钥配置" class="headerlink" title="服务器端公钥配置"></a>服务器端公钥配置</h3><p>上传公钥至linux服务器/root/.ssh目录，重命名为authorized_keys<br>修改件夹.ssh权限为700,修改文件authorized_keys权限为600<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mv id_rsa_2048.pub /root/.ssh/authorized_keys   </span><br><span class="line">chmod 700 /root/.ssh    </span><br><span class="line">chmod 600 authorized_keys</span><br></pre></td></tr></table></figure></p>
+        <h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><p>客户端:xshell 5<br>服务器:centos 6.7  </p>
+<h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><p>利用xshell实现windows远程连接linux服务器免密登录<br>步骤   </p>
+<h1 id="客户端生成密钥对"><a href="#客户端生成密钥对" class="headerlink" title="客户端生成密钥对"></a>客户端生成密钥对</h1><p>选择工具–&gt;新建用户密钥生成向导，然后选择密钥类型和长度<br><img src="http://cdn.rosinelan.com/blog/system/%E5%AF%86%E9%92%A5%E7%94%9F%E6%88%90%E5%90%91%E5%AF%BC.png" alt="向导" title="向导"><br>生成密钥对<br><img src="http://cdn.rosinelan.com//blog/system/%E7%94%9F%E6%88%90%E5%AF%86%E9%92%A5%E5%AF%B9.png" alt="生成" title="生成"><br>填写密钥信息，注意：此处设置密码，在使用该密钥时也需要输入密码；留空则不需要输入密码，可直接登录<br><img src="http://cdn.rosinelan.com//blog/system/%E5%AF%86%E9%92%A5%E4%BF%A1%E6%81%AF.png" alt="填写密码" title="填写密码"><br>公钥信息<br><img src="http://cdn.rosinelan.com//blog/system/%E5%85%AC%E9%92%A5%E6%B3%A8%E5%86%8C.png" alt="公钥" title="公钥"><br>点击完成，此时显示xshell已有的私钥<br><img src="http://cdn.rosinelan.com//blog/system/%E7%A7%81%E9%92%A5%E4%BF%A1%E6%81%AF.png" alt="私钥" title="私钥"></p>
+<h1 id="服务器端公钥配置"><a href="#服务器端公钥配置" class="headerlink" title="服务器端公钥配置"></a>服务器端公钥配置</h1><p>上传公钥至linux服务器/root/.ssh目录，重命名为authorized_keys<br>修改件夹.ssh权限为700,修改文件authorized_keys权限为600<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mv id_rsa_2048.pub /root/.ssh/authorized_keys   </span><br><span class="line">chmod 700 /root/.ssh    </span><br><span class="line">chmod 600 authorized_keys</span><br></pre></td></tr></table></figure></p>
 <p>注意:     </p>
 <ol>
 <li>此处示例用户为root，其他用户对应公钥存放位置在/home/username/.ssh     </li>
 <li>.ssh文件夹为隐藏文件夹，需要使用ls -la查看   </li>
-<li>若用户家目录无.ssh文件夹，自己创建即可<br><img src="http://cdn.rosinelan.com//blog/system/%E5%85%AC%E9%92%A5%E9%85%8D%E7%BD%AE.png" alt="公钥配置" title="公钥配置"><h3 id="xshell配置"><a href="#xshell配置" class="headerlink" title="xshell配置"></a>xshell配置</h3>window客户端使用xshell连接，在用户身份验证中<br>方法:选择Public Key<br>用户名:root(根据实际情况填写)<br>用户密钥:选择公钥对应的用户密钥<br><img src="http://cdn.rosinelan.com//blog/system/xshell%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%85%8D%E7%BD%AE.png" alt="客户端配置" title="客户端配置"><br>完成上述步骤即可连接  <h3 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h3>密钥类型选择RSA，密钥长度选择2048，生成的密钥对可正常连接<br>密钥类型选择DSA，密钥长度选择1024，生成的密钥对可正常连接<br>密钥类型选择DSA，密钥长度选择2048，生成的密钥对无法正常连接，提示 SSH 服务器拒绝了用户密钥<br>详细的报错信息如下<br>error: ssh_dss_verify: cannot handle type \220\005\203^l\263\250\375\266W\240\316\230s%\01<br>具体原因可能与openssh版本有关系，在选择密钥类型时注意即可  </li>
+<li>若用户家目录无.ssh文件夹，自己创建即可<br><img src="http://cdn.rosinelan.com//blog/system/%E5%85%AC%E9%92%A5%E9%85%8D%E7%BD%AE.png" alt="公钥配置" title="公钥配置"><h1 id="xshell配置"><a href="#xshell配置" class="headerlink" title="xshell配置"></a>xshell配置</h1>window客户端使用xshell连接，在用户身份验证中<br>方法:选择Public Key<br>用户名:root(根据实际情况填写)<br>用户密钥:选择公钥对应的用户密钥<br><img src="http://cdn.rosinelan.com//blog/system/xshell%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%85%8D%E7%BD%AE.png" alt="客户端配置" title="客户端配置"><br>完成上述步骤即可连接  <h1 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h1>密钥类型选择RSA，密钥长度选择2048，生成的密钥对可正常连接<br>密钥类型选择DSA，密钥长度选择1024，生成的密钥对可正常连接<br>密钥类型选择DSA，密钥长度选择2048，生成的密钥对无法正常连接，提示 SSH 服务器拒绝了用户密钥<br>详细的报错信息如下<br>error: ssh_dss_verify: cannot handle type \220\005\203^l\263\250\375\266W\240\316\230s%\01<br>具体原因可能与openssh版本有关系，在选择密钥类型时注意即可  </li>
 </ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/02/12/WINDOWS-下-XSHELL-密钥登录-LINUX-服务器/" data-id="cjdkb6ltx0000tcq6wfcq226x" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/02/12/WINDOWS-下-XSHELL-密钥登录-LINUX-服务器/" data-id="cjdkcim6600007cq6rhqxg0cb" class="article-share-link">分享</a>
       
       
       
@@ -206,7 +210,7 @@
       
         <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#环境"><span class="toc-number">1.</span> <span class="toc-text">环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#目标"><span class="toc-number">2.</span> <span class="toc-text">目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#步骤"><span class="toc-number">3.</span> <span class="toc-text">步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#客户端生成密钥对"><span class="toc-number">3.1.</span> <span class="toc-text">客户端生成密钥对</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#服务器端公钥配置"><span class="toc-number">3.2.</span> <span class="toc-text">服务器端公钥配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#xshell配置"><span class="toc-number">3.3.</span> <span class="toc-text">xshell配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#备注"><span class="toc-number">3.4.</span> <span class="toc-text">备注</span></a></li></ol></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#环境"><span class="toc-number">1.</span> <span class="toc-text">环境</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#目标"><span class="toc-number">2.</span> <span class="toc-text">目标</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#客户端生成密钥对"><span class="toc-number">3.</span> <span class="toc-text">客户端生成密钥对</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#服务器端公钥配置"><span class="toc-number">4.</span> <span class="toc-text">服务器端公钥配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#xshell配置"><span class="toc-number">5.</span> <span class="toc-text">xshell配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#备注"><span class="toc-number">6.</span> <span class="toc-text">备注</span></a></li></ol>
           </div>
       </div>
     </div>
@@ -214,6 +218,8 @@
   
     
 
+  
+    
   
     
   
