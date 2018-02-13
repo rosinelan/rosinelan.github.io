@@ -5,13 +5,13 @@
   
   <title>WINDOWS 下 XSHELL 密钥登录 LINUX 服务器 | 持续不断</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="环境客户端:xshell 5服务器:centos 6.7   目标利用xshell实现windows远程连接linux服务器免密登录 步骤客户端生成密钥对选择工具–&amp;gt;新建用户密钥生成向导，然后选择密钥类型和长度">
-<meta name="keywords" content="XSHELL,秘钥,WINDOWS">
+  <meta name="description" content="环境客户端:xshell 5服务器:centos 6.7   目标利用xshell实现windows远程连接linux服务器免密登录 步骤">
+<meta name="keywords" content="密钥,XSHELL,WINDOWS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="WINDOWS 下 XSHELL 密钥登录 LINUX 服务器">
-<meta property="og:url" content="https://rosinelan.github.io/2018/02/12/WINDOWS-下-XSHELL-密钥登录-LINUX-服务器/index.html">
+<meta property="og:url" content="https://rosinelan.github.io/2018/02/12/WINDOWS下XSHELL密钥登录LINUX服务器/index.html">
 <meta property="og:site_name" content="持续不断">
-<meta property="og:description" content="环境客户端:xshell 5服务器:centos 6.7   目标利用xshell实现windows远程连接linux服务器免密登录 步骤客户端生成密钥对选择工具–&amp;gt;新建用户密钥生成向导，然后选择密钥类型和长度">
+<meta property="og:description" content="环境客户端:xshell 5服务器:centos 6.7   目标利用xshell实现windows远程连接linux服务器免密登录 步骤">
 <meta property="og:image" content="http://cdn.rosinelan.com/blog/system/%E5%AF%86%E9%92%A5%E7%94%9F%E6%88%90%E5%90%91%E5%AF%BC.png">
 <meta property="og:image" content="http://cdn.rosinelan.com//blog/system/%E7%94%9F%E6%88%90%E5%AF%86%E9%92%A5%E5%AF%B9.png">
 <meta property="og:image" content="http://cdn.rosinelan.com//blog/system/%E5%AF%86%E9%92%A5%E4%BF%A1%E6%81%AF.png">
@@ -19,10 +19,10 @@
 <meta property="og:image" content="http://cdn.rosinelan.com//blog/system/%E7%A7%81%E9%92%A5%E4%BF%A1%E6%81%AF.png">
 <meta property="og:image" content="http://cdn.rosinelan.com//blog/system/%E5%85%AC%E9%92%A5%E9%85%8D%E7%BD%AE.png">
 <meta property="og:image" content="http://cdn.rosinelan.com//blog/system/xshell%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%85%8D%E7%BD%AE.png">
-<meta property="og:updated_time" content="2018-02-12T15:34:20.621Z">
+<meta property="og:updated_time" content="2018-02-13T12:44:44.945Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WINDOWS 下 XSHELL 密钥登录 LINUX 服务器">
-<meta name="twitter:description" content="环境客户端:xshell 5服务器:centos 6.7   目标利用xshell实现windows远程连接linux服务器免密登录 步骤客户端生成密钥对选择工具–&amp;gt;新建用户密钥生成向导，然后选择密钥类型和长度">
+<meta name="twitter:description" content="环境客户端:xshell 5服务器:centos 6.7   目标利用xshell实现windows远程连接linux服务器免密登录 步骤">
 <meta name="twitter:image" content="http://cdn.rosinelan.com/blog/system/%E5%AF%86%E9%92%A5%E7%94%9F%E6%88%90%E5%90%91%E5%AF%BC.png">
   
     <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
@@ -50,7 +50,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -80,9 +80,9 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-WINDOWS-下-XSHELL-密钥登录-LINUX-服务器" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-WINDOWS下XSHELL密钥登录LINUX服务器" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/02/12/WINDOWS-下-XSHELL-密钥登录-LINUX-服务器/" class="article-date">
+    <a href="/2018/02/12/WINDOWS下XSHELL密钥登录LINUX服务器/" class="article-date">
   <time datetime="2018-02-12T12:22:31.000Z" itemprop="datePublished">2018-02-12</time>
 </a>
     
@@ -110,7 +110,8 @@
         
         <h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>客户端:xshell 5<br>服务器:centos 6.7  </p>
 <h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><p>利用xshell实现windows远程连接linux服务器免密登录</p>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="客户端生成密钥对"><a href="#客户端生成密钥对" class="headerlink" title="客户端生成密钥对"></a>客户端生成密钥对</h3><p>选择工具–&gt;新建用户密钥生成向导，然后选择密钥类型和长度<br><a id="more"></a><br><img src="http://cdn.rosinelan.com/blog/system/%E5%AF%86%E9%92%A5%E7%94%9F%E6%88%90%E5%90%91%E5%AF%BC.png" alt="向导" title="向导"><br>生成密钥对<br><img src="http://cdn.rosinelan.com//blog/system/%E7%94%9F%E6%88%90%E5%AF%86%E9%92%A5%E5%AF%B9.png" alt="生成" title="生成"><br>填写密钥信息，注意：此处设置密码，在使用该密钥时也需要输入密码；留空则不需要输入密码，可直接登录<br><img src="http://cdn.rosinelan.com//blog/system/%E5%AF%86%E9%92%A5%E4%BF%A1%E6%81%AF.png" alt="填写密码" title="填写密码"><br>公钥信息<br><img src="http://cdn.rosinelan.com//blog/system/%E5%85%AC%E9%92%A5%E6%B3%A8%E5%86%8C.png" alt="公钥" title="公钥"><br>点击完成，此时显示xshell已有的私钥<br><img src="http://cdn.rosinelan.com//blog/system/%E7%A7%81%E9%92%A5%E4%BF%A1%E6%81%AF.png" alt="私钥" title="私钥"></p>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><a id="more"></a>   
+<h3 id="客户端生成密钥对"><a href="#客户端生成密钥对" class="headerlink" title="客户端生成密钥对"></a>客户端生成密钥对</h3><p>选择工具–&gt;新建用户密钥生成向导，然后选择密钥类型和长度<br><img src="http://cdn.rosinelan.com/blog/system/%E5%AF%86%E9%92%A5%E7%94%9F%E6%88%90%E5%90%91%E5%AF%BC.png" alt="向导" title="向导"><br>生成密钥对<br><img src="http://cdn.rosinelan.com//blog/system/%E7%94%9F%E6%88%90%E5%AF%86%E9%92%A5%E5%AF%B9.png" alt="生成" title="生成"><br>填写密钥信息，注意：此处设置密码，在使用该密钥时也需要输入密码；留空则不需要输入密码，可直接登录<br><img src="http://cdn.rosinelan.com//blog/system/%E5%AF%86%E9%92%A5%E4%BF%A1%E6%81%AF.png" alt="填写密码" title="填写密码"><br>公钥信息<br><img src="http://cdn.rosinelan.com//blog/system/%E5%85%AC%E9%92%A5%E6%B3%A8%E5%86%8C.png" alt="公钥" title="公钥"><br>点击完成，此时显示xshell已有的私钥<br><img src="http://cdn.rosinelan.com//blog/system/%E7%A7%81%E9%92%A5%E4%BF%A1%E6%81%AF.png" alt="私钥" title="私钥"></p>
 <h3 id="服务器端公钥配置"><a href="#服务器端公钥配置" class="headerlink" title="服务器端公钥配置"></a>服务器端公钥配置</h3><p>上传公钥至linux服务器/root/.ssh目录，重命名为authorized_keys<br>修改件夹.ssh权限为700,修改文件authorized_keys权限为600<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mv id_rsa_2048.pub /root/.ssh/authorized_keys   </span><br><span class="line">chmod 700 /root/.ssh    </span><br><span class="line">chmod 600 authorized_keys</span><br></pre></td></tr></table></figure></p>
 <p>注意:     </p>
 <ol>
@@ -122,11 +123,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/02/12/WINDOWS-下-XSHELL-密钥登录-LINUX-服务器/" data-id="cjdlmxcw4000hfwq6s43d04ba" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/02/12/WINDOWS下XSHELL密钥登录LINUX服务器/" data-id="cjdln3z5t0000bwq656utr5av" class="article-share-link">Share</a>
       
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WINDOWS/">WINDOWS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XSHELL/">XSHELL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/秘钥/">秘钥</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WINDOWS/">WINDOWS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XSHELL/">XSHELL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/密钥/">密钥</a></li></ul>
 
     </footer>
   </div>
@@ -134,7 +135,7 @@
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>推荐文章</h2>
+    <h2>Recommended Posts</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =4
@@ -177,7 +178,7 @@
 <nav id="article-nav">
   
     <a href="/2018/02/13/LINUX下密钥认证免密-SSH-登录服务器/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
+      <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
           LINUX下密钥认证免密 SSH 登录服务器
@@ -187,7 +188,7 @@
   
   
     <a href="/2018/02/11/您好，Hexo/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">您好，Hexo</div>
     </a>
   
@@ -217,7 +218,7 @@
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">文章目录</strong>
+        <strong class="toc-title">Content</strong>
         <div class="toc-widget-list">
               <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#环境"><span class="toc-number">1.</span> <span class="toc-text">环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#目标"><span class="toc-number">2.</span> <span class="toc-text">目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#步骤"><span class="toc-number">3.</span> <span class="toc-text">步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#客户端生成密钥对"><span class="toc-number">3.1.</span> <span class="toc-text">客户端生成密钥对</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#服务器端公钥配置"><span class="toc-number">3.2.</span> <span class="toc-text">服务器端公钥配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#xshell配置"><span class="toc-number">3.3.</span> <span class="toc-text">xshell配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#备注"><span class="toc-number">3.4.</span> <span class="toc-text">备注</span></a></li></ol></li></ol>
           </div>
@@ -245,10 +246,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-      联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
+      Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>
