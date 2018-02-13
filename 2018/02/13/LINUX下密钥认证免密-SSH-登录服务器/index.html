@@ -16,7 +16,7 @@
 <meta property="og:image" content="http://cdn.rosinelan.com/blog/system/ssh-copy-id.png">
 <meta property="og:image" content="http://cdn.rosinelan.com/blog/system/%E6%B5%8B%E8%AF%95ssh.png">
 <meta property="og:image" content="http://cdn.rosinelan.com/blog/system/%E5%A4%9A%E4%B8%AA%E5%AF%86%E9%92%A5%E6%A0%BC%E5%BC%8F.png">
-<meta property="og:updated_time" content="2018-02-13T12:38:18.752Z">
+<meta property="og:updated_time" content="2018-02-13T12:40:53.780Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LINUX下密钥认证免密 SSH 登录服务器">
 <meta name="twitter:description" content="windows下使用xshell通过密钥认证方式免密码登录，配置方式参考WINDOWS 下 XSHELL 密钥登录 LINUX 服务器。本文是linux服务器之间通过密钥认证方式实现免密码登录。     实现目标linux服务器2台，分别为 11.0.1.166(B)/11.0.1.167(C)，要求 C 可以免密码直接使用 ssh username@IP 方式登录到其他2台服务器。     配置">
@@ -47,7 +47,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -107,7 +107,8 @@
         
         <p>windows下使用xshell通过密钥认证方式免密码登录，配置方式参考<a href="https://rosinelan.github.io/2018/02/12/WINDOWS-%E4%B8%8B-XSHELL-%E5%AF%86%E9%92%A5%E7%99%BB%E5%BD%95-LINUX-%E6%9C%8D%E5%8A%A1%E5%99%A8/">WINDOWS 下 XSHELL 密钥登录 LINUX 服务器</a>。<br>本文是linux服务器之间通过密钥认证方式实现免密码登录。    </p>
 <h2 id="实现目标"><a href="#实现目标" class="headerlink" title="实现目标"></a>实现目标</h2><p>linux服务器2台，分别为 11.0.1.166(B)/11.0.1.167(C)，要求 C 可以免密码直接使用 ssh username@IP 方式登录到其他2台服务器。    </p>
-<h2 id="配置过程"><a href="#配置过程" class="headerlink" title="配置过程"></a>配置过程</h2><h3 id="在C服务器生成密钥对"><a href="#在C服务器生成密钥对" class="headerlink" title="在C服务器生成密钥对"></a>在C服务器生成密钥对</h3><p><code>ssh-keygen</code><br><img src="http://cdn.rosinelan.com/blog/system/%E7%94%9F%E6%88%90%E5%AF%86%E9%92%A5%E5%AF%B9-linux.png" alt="生成密钥对" title="生成密钥对">  </p>
+<h2 id="配置过程"><a href="#配置过程" class="headerlink" title="配置过程"></a>配置过程</h2><a id="more"></a>
+<h3 id="在C服务器生成密钥对"><a href="#在C服务器生成密钥对" class="headerlink" title="在C服务器生成密钥对"></a>在C服务器生成密钥对</h3><p><code>ssh-keygen</code><br><img src="http://cdn.rosinelan.com/blog/system/%E7%94%9F%E6%88%90%E5%AF%86%E9%92%A5%E5%AF%B9-linux.png" alt="生成密钥对" title="生成密钥对">  </p>
 <h3 id="公钥复制至服务器B"><a href="#公钥复制至服务器B" class="headerlink" title="公钥复制至服务器B"></a>公钥复制至服务器B</h3><p>将公钥复制至服务器B的 /root/.ssh/authorized_keys  </p>
 <h4 id="复制方式1"><a href="#复制方式1" class="headerlink" title="复制方式1"></a>复制方式1</h4><p>使用ssh-copy-id方法复制，直接将公钥内容添加至authorized_keys文件<br><code>ssh-copy-id -i /root/.ssh/id_rsa.pub root@11.0.1.166</code><br><img src="http://cdn.rosinelan.com/blog/system/ssh-copy-id.png" alt="ssh-copy-id" title="ssh-copy-id">  </p>
 <h4 id="复制方式2"><a href="#复制方式2" class="headerlink" title="复制方式2"></a>复制方式2</h4><p>scp复制公钥文件至服务器B并重命名为authorized_keys<br><code>scp /root/.ssh/id_rsa.pub root@11.0.1.166://root/.ssh/authorized_keys</code>     </p>
@@ -126,7 +127,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/02/13/LINUX下密钥认证免密-SSH-登录服务器/" data-id="cjdlmxcvb0000fwq6jhi0ajb3" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/02/13/LINUX下密钥认证免密-SSH-登录服务器/" data-id="cjdlmxcvb0000fwq6jhi0ajb3" class="article-share-link">Share</a>
       
       
       
@@ -138,7 +139,7 @@
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>推荐文章</h2>
+    <h2>Recommended Posts</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =4
@@ -182,7 +183,7 @@
   
   
     <a href="/2018/02/12/WINDOWS-下-XSHELL-密钥登录-LINUX-服务器/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">WINDOWS 下 XSHELL 密钥登录 LINUX 服务器</div>
     </a>
   
@@ -212,7 +213,7 @@
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">文章目录</strong>
+        <strong class="toc-title">Content</strong>
         <div class="toc-widget-list">
               <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#实现目标"><span class="toc-number">1.</span> <span class="toc-text">实现目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置过程"><span class="toc-number">2.</span> <span class="toc-text">配置过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#在C服务器生成密钥对"><span class="toc-number">2.1.</span> <span class="toc-text">在C服务器生成密钥对</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#公钥复制至服务器B"><span class="toc-number">2.2.</span> <span class="toc-text">公钥复制至服务器B</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#复制方式1"><span class="toc-number">2.2.1.</span> <span class="toc-text">复制方式1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#复制方式2"><span class="toc-number">2.2.2.</span> <span class="toc-text">复制方式2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#说明"><span class="toc-number">2.2.3.</span> <span class="toc-text">说明</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#测试连接"><span class="toc-number">3.</span> <span class="toc-text">测试连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#错误排查"><span class="toc-number">4.</span> <span class="toc-text">错误排查</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多个公钥处理方式"><span class="toc-number">5.</span> <span class="toc-text">多个公钥处理方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文章"><span class="toc-number">6.</span> <span class="toc-text">参考文章</span></a></li></ol>
           </div>
@@ -240,10 +241,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-      联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
+      Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>
