@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rosinelan.github.io/"/>
-  <updated>2018-02-13T12:42:23.222Z</updated>
+  <updated>2018-02-14T02:01:43.246Z</updated>
   <id>https://rosinelan.github.io/</id>
   
   <author>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>LINUX下密钥认证免密 SSH 登录服务器</title>
-    <link href="https://rosinelan.github.io/2018/02/13/LINUX%E4%B8%8B%E5%AF%86%E9%92%A5%E8%AE%A4%E8%AF%81%E5%85%8D%E5%AF%86-SSH-%E7%99%BB%E5%BD%95%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    <id>https://rosinelan.github.io/2018/02/13/LINUX下密钥认证免密-SSH-登录服务器/</id>
+    <link href="https://rosinelan.github.io/2018/02/13/LINUX%E4%B8%8B%E5%AF%86%E9%92%A5%E8%AE%A4%E8%AF%81%E5%85%8D%E5%AF%86SSH%E7%99%BB%E5%BD%95%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    <id>https://rosinelan.github.io/2018/02/13/LINUX下密钥认证免密SSH登录服务器/</id>
     <published>2018-02-13T11:22:03.000Z</published>
-    <updated>2018-02-13T12:42:23.222Z</updated>
+    <updated>2018-02-14T02:01:43.246Z</updated>
     
     <content type="html"><![CDATA[<p>windows下使用xshell通过密钥认证方式免密码登录，配置方式参考<a href="https://rosinelan.github.io/2018/02/12/WINDOWS-%E4%B8%8B-XSHELL-%E5%AF%86%E9%92%A5%E7%99%BB%E5%BD%95-LINUX-%E6%9C%8D%E5%8A%A1%E5%99%A8/">WINDOWS 下 XSHELL 密钥登录 LINUX 服务器</a>。<br>本文是linux服务器之间通过密钥认证方式实现免密码登录。    </p><h2 id="实现目标"><a href="#实现目标" class="headerlink" title="实现目标"></a>实现目标</h2><p>linux服务器2台，分别为 11.0.1.166(B)/11.0.1.167(C)，要求 C 可以免密码直接使用 ssh username@IP 方式登录到其他2台服务器。    </p><h2 id="配置过程"><a href="#配置过程" class="headerlink" title="配置过程"></a>配置过程</h2><a id="more"></a><h3 id="在C服务器生成密钥对"><a href="#在C服务器生成密钥对" class="headerlink" title="在C服务器生成密钥对"></a>在C服务器生成密钥对</h3><p><code>ssh-keygen</code><br><img src="http://cdn.rosinelan.com/blog/system/%E7%94%9F%E6%88%90%E5%AF%86%E9%92%A5%E5%AF%B9-linux.png" alt="生成密钥对" title="生成密钥对">  </p><h3 id="公钥复制至服务器B"><a href="#公钥复制至服务器B" class="headerlink" title="公钥复制至服务器B"></a>公钥复制至服务器B</h3><p>将公钥复制至服务器B的 /root/.ssh/authorized_keys  </p><h4 id="复制方式1"><a href="#复制方式1" class="headerlink" title="复制方式1"></a>复制方式1</h4><p>使用ssh-copy-id方法复制，直接将公钥内容添加至authorized_keys文件<br><code>ssh-copy-id -i /root/.ssh/id_rsa.pub root@11.0.1.166</code><br><img src="http://cdn.rosinelan.com/blog/system/ssh-copy-id.png" alt="ssh-copy-id" title="ssh-copy-id">  </p><h4 id="复制方式2"><a href="#复制方式2" class="headerlink" title="复制方式2"></a>复制方式2</h4><p>scp复制公钥文件至服务器B并重命名为authorized_keys<br><code>scp /root/.ssh/id_rsa.pub root@11.0.1.166://root/.ssh/authorized_keys</code>     </p><h4 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h4><ol><li>.ssh等不存在的目录可自己创建。    </li><li>确认.ssh文件夹权限为700，若不是，请<code>chmod 700 /home/username/.ssh</code>修改。   </li><li>确认authorized_keys文件权限为600，若不是，请<code>chmod 600 /home/username/.ssh/authorized_keys</code>修改。    </li><li>确认iptables及selinux状态，建议均关闭。  <h2 id="测试连接"><a href="#测试连接" class="headerlink" title="测试连接"></a>测试连接</h2><code>ssh root@11.0.1.166</code><br><img src="http://cdn.rosinelan.com/blog/system/%E6%B5%8B%E8%AF%95ssh.png" alt="测试ssh" title="测试ssh">  <h2 id="错误排查"><a href="#错误排查" class="headerlink" title="错误排查"></a>错误排查</h2>使用ssh密钥认证方式访问失败，可以通过查看连接过程或日志的方式排查。 </li><li><code>ssh -v root@11.0.1.166</code><br>该方式会打印出连接的详细过程。  </li><li><code>cat /var/log/secure</code><br>在centos 6 中查看该日志文件可以看到连接的错误信息。 <h2 id="多个公钥处理方式"><a href="#多个公钥处理方式" class="headerlink" title="多个公钥处理方式"></a>多个公钥处理方式</h2>有时候会出现同一台服务器同一个用户同时保存多个公钥的情况，此时公钥文件可以都保存在authorized_keys，但是需要添加换行符，格式如下<br><img src="http://cdn.rosinelan.com/blog/system/%E5%A4%9A%E4%B8%AA%E5%AF%86%E9%92%A5%E6%A0%BC%E5%BC%8F.png" alt="多个公钥格式" title="多个公钥格式"><br>使用 cat id_rsa.pub &gt; authorized_keys 或者 ssh-copy-id 方式均为直接追加至末尾，不可用。     <h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2></li><li><a href="https://www.ibm.com/developerworks/cn/linux/security/openssh/part1/" target="_blank" rel="noopener">OpenSSH 密钥管理之理解RSA/DSA认证</a>  </li><li><a href="http://www.jinbuguo.com/openssh/ssh-keygen.html" target="_blank" rel="noopener">ssh-keygen 中文手册</a>   </li><li><a href="http://www.361way.com/ssh-public-key/3662.html" target="_blank" rel="noopener">linux配置ssh公钥认证</a></li></ol>]]></content>
     
@@ -34,6 +34,8 @@
     </summary>
     
       <category term="系统管理" scheme="https://rosinelan.github.io/categories/system/"/>
+    
+      <category term="LINUX" scheme="https://rosinelan.github.io/categories/system/LINUX/"/>
     
     
       <category term="LINUX" scheme="https://rosinelan.github.io/tags/LINUX/"/>
@@ -55,7 +57,7 @@
     <link href="https://rosinelan.github.io/2018/02/12/WINDOWS%E4%B8%8BXSHELL%E5%AF%86%E9%92%A5%E7%99%BB%E5%BD%95LINUX%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     <id>https://rosinelan.github.io/2018/02/12/WINDOWS下XSHELL密钥登录LINUX服务器/</id>
     <published>2018-02-12T12:22:31.000Z</published>
-    <updated>2018-02-13T12:44:44.945Z</updated>
+    <updated>2018-02-14T02:01:51.593Z</updated>
     
     <content type="html"><![CDATA[<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>客户端:xshell 5<br>服务器:centos 6.7  </p><h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><p>利用xshell实现windows远程连接linux服务器免密登录</p><h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><a id="more"></a>   <h3 id="客户端生成密钥对"><a href="#客户端生成密钥对" class="headerlink" title="客户端生成密钥对"></a>客户端生成密钥对</h3><p>选择工具–&gt;新建用户密钥生成向导，然后选择密钥类型和长度<br><img src="http://cdn.rosinelan.com/blog/system/%E5%AF%86%E9%92%A5%E7%94%9F%E6%88%90%E5%90%91%E5%AF%BC.png" alt="向导" title="向导"><br>生成密钥对<br><img src="http://cdn.rosinelan.com//blog/system/%E7%94%9F%E6%88%90%E5%AF%86%E9%92%A5%E5%AF%B9.png" alt="生成" title="生成"><br>填写密钥信息，注意：此处设置密码，在使用该密钥时也需要输入密码；留空则不需要输入密码，可直接登录<br><img src="http://cdn.rosinelan.com//blog/system/%E5%AF%86%E9%92%A5%E4%BF%A1%E6%81%AF.png" alt="填写密码" title="填写密码"><br>公钥信息<br><img src="http://cdn.rosinelan.com//blog/system/%E5%85%AC%E9%92%A5%E6%B3%A8%E5%86%8C.png" alt="公钥" title="公钥"><br>点击完成，此时显示xshell已有的私钥<br><img src="http://cdn.rosinelan.com//blog/system/%E7%A7%81%E9%92%A5%E4%BF%A1%E6%81%AF.png" alt="私钥" title="私钥"></p><h3 id="服务器端公钥配置"><a href="#服务器端公钥配置" class="headerlink" title="服务器端公钥配置"></a>服务器端公钥配置</h3><p>上传公钥至linux服务器/root/.ssh目录，重命名为authorized_keys<br>修改件夹.ssh权限为700,修改文件authorized_keys权限为600<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mv id_rsa_2048.pub /root/.ssh/authorized_keys   </span><br><span class="line">chmod 700 /root/.ssh    </span><br><span class="line">chmod 600 authorized_keys</span><br></pre></td></tr></table></figure></p><p>注意:     </p><ol><li>此处示例用户为root，其他用户对应公钥存放位置在/home/username/.ssh     </li><li>.ssh文件夹为隐藏文件夹，需要使用ls -la查看   </li><li>若用户家目录无.ssh文件夹，自己创建即可<br><img src="http://cdn.rosinelan.com//blog/system/%E5%85%AC%E9%92%A5%E9%85%8D%E7%BD%AE.png" alt="公钥配置" title="公钥配置"><h3 id="xshell配置"><a href="#xshell配置" class="headerlink" title="xshell配置"></a>xshell配置</h3>window客户端使用xshell连接，在用户身份验证中<br>方法:选择Public Key<br>用户名:root(根据实际情况填写)<br>用户密钥:选择公钥对应的用户密钥<br><img src="http://cdn.rosinelan.com//blog/system/xshell%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%85%8D%E7%BD%AE.png" alt="客户端配置" title="客户端配置"><br>完成上述步骤即可连接  <h3 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h3>密钥类型选择RSA，密钥长度选择2048，生成的密钥对可正常连接<br>密钥类型选择DSA，密钥长度选择1024，生成的密钥对可正常连接<br>密钥类型选择DSA，密钥长度选择2048，生成的密钥对无法正常连接，提示 SSH 服务器拒绝了用户密钥<br>详细的报错信息如下<br>error: ssh_dss_verify: cannot handle type \220\005\203^l\263\250\375\266W\240\316\230s%\01<br>具体原因可能与openssh版本有关系，在选择密钥类型时注意即可  </li></ol>]]></content>
     
@@ -68,6 +70,8 @@
     </summary>
     
       <category term="系统管理" scheme="https://rosinelan.github.io/categories/system/"/>
+    
+      <category term="LINUX" scheme="https://rosinelan.github.io/categories/system/LINUX/"/>
     
     
       <category term="密钥" scheme="https://rosinelan.github.io/tags/%E5%AF%86%E9%92%A5/"/>
