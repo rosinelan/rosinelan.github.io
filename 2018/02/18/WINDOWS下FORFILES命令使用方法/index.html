@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>WINDOWS下FORFILES命令使用方法 | 持续不断</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="命令格式FORFILES [/P pathname] [/M searchmask] [/S] [/C command] [/D [+ | -] {yyyy/MM/dd | dd}]  描述选择一个文件(或一组文件)并在那个文件上执行一个命令，有助于批处理作业。     参数列表/P    pathname      表示开始搜索的路径。默认文件夹是当前工作的 目录 (.)。 /M    sear">
+<meta name="keywords" content="WINDOWS,FORFILES">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WINDOWS下FORFILES命令使用方法">
+<meta property="og:url" content="https://rosinelan.github.io/2018/02/18/WINDOWS下FORFILES命令使用方法/index.html">
+<meta property="og:site_name" content="持续不断">
+<meta property="og:description" content="命令格式FORFILES [/P pathname] [/M searchmask] [/S] [/C command] [/D [+ | -] {yyyy/MM/dd | dd}]  描述选择一个文件(或一组文件)并在那个文件上执行一个命令，有助于批处理作业。     参数列表/P    pathname      表示开始搜索的路径。默认文件夹是当前工作的 目录 (.)。 /M    sear">
+<meta property="og:updated_time" content="2018-02-18T13:24:16.920Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WINDOWS下FORFILES命令使用方法">
+<meta name="twitter:description" content="命令格式FORFILES [/P pathname] [/M searchmask] [/S] [/C command] [/D [+ | -] {yyyy/MM/dd | dd}]  描述选择一个文件(或一组文件)并在那个文件上执行一个命令，有助于批处理作业。     参数列表/P    pathname      表示开始搜索的路径。默认文件夹是当前工作的 目录 (.)。 /M    sear">
+  
+    <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">持续不断</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">要松懈的时候再坚持一下</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-WINDOWS下FORFILES命令使用方法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/18/WINDOWS下FORFILES命令使用方法/" class="article-date">
+  <time datetime="2018-02-18T11:43:12.000Z" itemprop="datePublished">2018-02-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/system/">系统管理</a>►<a class="article-category-link" href="/categories/system/WINDOWS/">WINDOWS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      WINDOWS下FORFILES命令使用方法
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p>FORFILES [/P pathname] [/M searchmask] [/S] [/C command] [/D [+ | -] {yyyy/MM/dd | dd}] </p>
+<h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>选择一个文件(或一组文件)并在那个文件上执行一个命令，有助于批处理作业。    </p>
+<h2 id="参数列表"><a href="#参数列表" class="headerlink" title="参数列表"></a>参数列表</h2><pre><code>/P    pathname      表示开始搜索的路径。默认文件夹是当前工作的 目录 (.)。
+/M    searchmask    根据搜索掩码搜索文件。默认搜索掩码是 &apos;*&apos;。
+/S                  指导 forfiles 递归到子目录。像 &quot;DIR /S&quot;。
+/C    command       表示为每个文件执行的命令。命令字符串应该用双引号括起来。
+    默认命令是 &quot;cmd /c echo @file&quot;。
+    下列变量可以用在命令字符串中:
+    @file    – 返回文件名。
+    @fname   – 返回不带扩展名的文件名。
+    @ext     – 只返回文件的扩展名。
+    @path    – 返回文件的完整路径。
+    @relpath – 返回文件的相对路径。
+    @isdir   – 如果文件类型是目录，返回 &quot;TRUE&quot;；如果是文件，返回 &quot;FALSE&quot;。
+    @fsize   – 以字节为单位返回文件大小。
+    @fdate   – 返回文件上一次修改的日期。
+    @ftime   – 返回文件上一次修改的时间。
+    要在命令行包括特殊字符，字符请以 0xHH 形式使用十六进制代码(例如，0x09 为 tab)。 内部 CMD.exe 命令前面应以 &quot;cmd /c&quot; 开始。
+/D    date          选择文件，其上一次修改日期大于或等于 (+)，或者小于或等于 (-) 用 &quot;yyyy/MM/dd&quot; 格式指定的日期;或选择文件，其上一次修改日期大于或等于 (+)当前日期加 &quot;dd&quot; 天，或者小于或等于 (-) 当前日期减 &quot;dd&quot; 天。有效的 &quot;dd&quot; 天数可以是 0 – 32768 范围内的任何数字。如果没有指定， &quot;+&quot; 被当作默认符号。
+/?                  显示此帮助消息。    
+</code></pre><h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><h3 id="实例1"><a href="#实例1" class="headerlink" title="实例1"></a>实例1</h3><p>删除指定目录60天以前文件<br><code>forfiles /p &quot;D:\Dns\DNSTEST\logs&quot; /m * /d -60 /c &quot;cmd /c del @path&quot;</code>   </p>
+<h3 id="实例2"><a href="#实例2" class="headerlink" title="实例2"></a>实例2</h3><p>输出指定目录60天以前文件<br><code>forfiles /p &quot;D:\Dns\DNSTEST\logs&quot; /m * /d -60 /c &quot;cmd /c echo @file&quot;</code></p>
+<h3 id="实例3"><a href="#实例3" class="headerlink" title="实例3"></a>实例3</h3><p>删除指定目录60天以前文件，并记录删除日志，删除日志格式为”删除时间 删除文件名”<br><code>forfiles /p &quot;D:\Dns\DNSTEST\logs&quot; /m * /d -60 /c &quot;cmd /c echo %date:~0,10% @file &gt;&gt;D:\Dns\DNSTEST\logs\del.txt&quot;</code>   </p>
+<h2 id="应用场景说明"><a href="#应用场景说明" class="headerlink" title="应用场景说明"></a>应用场景说明</h2><p>实例中可用于批处理，对日志或者备份等文件通过批处理结合任务计划进行定期删除，避免硬盘空间被撑爆的情况。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/02/18/WINDOWS下FORFILES命令使用方法/" data-id="cjdstq0to00003oq6aodasmih" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FORFILES/">FORFILES</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WINDOWS/">WINDOWS</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/02/13/LINUX下密钥认证免密SSH登录服务器/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">LINUX下密钥认证免密 SSH 登录服务器</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#命令格式"><span class="toc-number">1.</span> <span class="toc-text">命令格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#描述"><span class="toc-number">2.</span> <span class="toc-text">描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参数列表"><span class="toc-number">3.</span> <span class="toc-text">参数列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实例"><span class="toc-number">4.</span> <span class="toc-text">实例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#实例1"><span class="toc-number">4.1.</span> <span class="toc-text">实例1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例2"><span class="toc-number">4.2.</span> <span class="toc-text">实例2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例3"><span class="toc-number">4.3.</span> <span class="toc-text">实例3</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#应用场景说明"><span class="toc-number">5.</span> <span class="toc-text">应用场景说明</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+      联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>

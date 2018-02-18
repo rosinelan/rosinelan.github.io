@@ -72,6 +72,76 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-WINDOWS下FORFILES命令使用方法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/18/WINDOWS下FORFILES命令使用方法/" class="article-date">
+  <time datetime="2018-02-18T11:43:12.000Z" itemprop="datePublished">2018-02-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/system/">系统管理</a>►<a class="article-category-link" href="/categories/system/WINDOWS/">WINDOWS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/18/WINDOWS下FORFILES命令使用方法/">WINDOWS下FORFILES命令使用方法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p>FORFILES [/P pathname] [/M searchmask] [/S] [/C command] [/D [+ | -] {yyyy/MM/dd | dd}] </p>
+<h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>选择一个文件(或一组文件)并在那个文件上执行一个命令，有助于批处理作业。    </p>
+<h2 id="参数列表"><a href="#参数列表" class="headerlink" title="参数列表"></a>参数列表</h2><pre><code>/P    pathname      表示开始搜索的路径。默认文件夹是当前工作的 目录 (.)。
+/M    searchmask    根据搜索掩码搜索文件。默认搜索掩码是 &apos;*&apos;。
+/S                  指导 forfiles 递归到子目录。像 &quot;DIR /S&quot;。
+/C    command       表示为每个文件执行的命令。命令字符串应该用双引号括起来。
+    默认命令是 &quot;cmd /c echo @file&quot;。
+    下列变量可以用在命令字符串中:
+    @file    – 返回文件名。
+    @fname   – 返回不带扩展名的文件名。
+    @ext     – 只返回文件的扩展名。
+    @path    – 返回文件的完整路径。
+    @relpath – 返回文件的相对路径。
+    @isdir   – 如果文件类型是目录，返回 &quot;TRUE&quot;；如果是文件，返回 &quot;FALSE&quot;。
+    @fsize   – 以字节为单位返回文件大小。
+    @fdate   – 返回文件上一次修改的日期。
+    @ftime   – 返回文件上一次修改的时间。
+    要在命令行包括特殊字符，字符请以 0xHH 形式使用十六进制代码(例如，0x09 为 tab)。 内部 CMD.exe 命令前面应以 &quot;cmd /c&quot; 开始。
+/D    date          选择文件，其上一次修改日期大于或等于 (+)，或者小于或等于 (-) 用 &quot;yyyy/MM/dd&quot; 格式指定的日期;或选择文件，其上一次修改日期大于或等于 (+)当前日期加 &quot;dd&quot; 天，或者小于或等于 (-) 当前日期减 &quot;dd&quot; 天。有效的 &quot;dd&quot; 天数可以是 0 – 32768 范围内的任何数字。如果没有指定， &quot;+&quot; 被当作默认符号。
+/?                  显示此帮助消息。    
+</code></pre><h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><h3 id="实例1"><a href="#实例1" class="headerlink" title="实例1"></a>实例1</h3><p>删除指定目录60天以前文件<br><code>forfiles /p &quot;D:\Dns\DNSTEST\logs&quot; /m * /d -60 /c &quot;cmd /c del @path&quot;</code>   </p>
+<h3 id="实例2"><a href="#实例2" class="headerlink" title="实例2"></a>实例2</h3><p>输出指定目录60天以前文件<br><code>forfiles /p &quot;D:\Dns\DNSTEST\logs&quot; /m * /d -60 /c &quot;cmd /c echo @file&quot;</code></p>
+<h3 id="实例3"><a href="#实例3" class="headerlink" title="实例3"></a>实例3</h3><p>删除指定目录60天以前文件，并记录删除日志，删除日志格式为”删除时间 删除文件名”<br><code>forfiles /p &quot;D:\Dns\DNSTEST\logs&quot; /m * /d -60 /c &quot;cmd /c echo %date:~0,10% @file &gt;&gt;D:\Dns\DNSTEST\logs\del.txt&quot;</code>   </p>
+<h2 id="应用场景说明"><a href="#应用场景说明" class="headerlink" title="应用场景说明"></a>应用场景说明</h2><p>实例中可用于批处理，对日志或者备份等文件通过批处理结合任务计划进行定期删除，避免硬盘空间被撑爆的情况。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/02/18/WINDOWS下FORFILES命令使用方法/" data-id="cjdstq0to00003oq6aodasmih" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FORFILES/">FORFILES</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WINDOWS/">WINDOWS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
     <article id="post-LINUX下密钥认证免密SSH登录服务器" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/02/13/LINUX下密钥认证免密SSH登录服务器/" class="article-date">
@@ -274,7 +344,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title categories">分类</h3>
     <div class="widget" id="categories">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/system/">系统管理</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/system/LINUX/">LINUX</a><span class="category-list-count">2</span></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/system/">系统管理</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/system/LINUX/">LINUX</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/system/WINDOWS/">WINDOWS</a><span class="category-list-count">1</span></li></ul></li></ul>
     </div>
   </div>
 
@@ -284,7 +354,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title tagcloud">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/LINUX/" style="font-size: 14px;">LINUX</a> <a href="/tags/SSH/" style="font-size: 14px;">SSH</a> <a href="/tags/WINDOWS/" style="font-size: 14px;">WINDOWS</a> <a href="/tags/XSHELL/" style="font-size: 14px;">XSHELL</a> <a href="/tags/ssh-copy-id/" style="font-size: 14px;">ssh-copy-id</a> <a href="/tags/ssh-keygen/" style="font-size: 14px;">ssh-keygen</a> <a href="/tags/多个公钥/" style="font-size: 14px;">多个公钥</a> <a href="/tags/密钥/" style="font-size: 25px;">密钥</a>
+      <a href="/tags/FORFILES/" style="font-size: 14px;">FORFILES</a> <a href="/tags/LINUX/" style="font-size: 14px;">LINUX</a> <a href="/tags/SSH/" style="font-size: 14px;">SSH</a> <a href="/tags/WINDOWS/" style="font-size: 25px;">WINDOWS</a> <a href="/tags/XSHELL/" style="font-size: 14px;">XSHELL</a> <a href="/tags/ssh-copy-id/" style="font-size: 14px;">ssh-copy-id</a> <a href="/tags/ssh-keygen/" style="font-size: 14px;">ssh-keygen</a> <a href="/tags/多个公钥/" style="font-size: 14px;">多个公钥</a> <a href="/tags/密钥/" style="font-size: 25px;">密钥</a>
     </div>
   </div>
 
@@ -294,6 +364,10 @@
     <h3 class="widget-title recent-posts">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/02/18/WINDOWS下FORFILES命令使用方法/">WINDOWS下FORFILES命令使用方法</a>
+          </li>
         
           <li>
             <a href="/2018/02/13/LINUX下密钥认证免密SSH登录服务器/">LINUX下密钥认证免密 SSH 登录服务器</a>
@@ -320,7 +394,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title archive">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">5</span></li></ul>
     </div>
   </div>
 
