@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rosinelan.github.io/"/>
-  <updated>2018-02-18T13:25:58.544Z</updated>
+  <updated>2018-02-18T14:18:52.956Z</updated>
   <id>https://rosinelan.github.io/</id>
   
   <author>
@@ -15,6 +15,98 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>REDHAT 6.5双网卡绑定步骤</title>
+    <link href="https://rosinelan.github.io/2018/02/18/REDHAT-6-5%E5%8F%8C%E7%BD%91%E5%8D%A1%E7%BB%91%E5%AE%9A%E6%AD%A5%E9%AA%A4/"/>
+    <id>https://rosinelan.github.io/2018/02/18/REDHAT-6-5双网卡绑定步骤/</id>
+    <published>2018-02-18T14:04:46.000Z</published>
+    <updated>2018-02-18T14:18:52.956Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h2><p>由于工作需要，搭建4节点oracle rac，为降低网络单点故障影响，数据库服务器生产流量和内部心跳均采用双上连，自然要进行双网卡绑定。绑定采用的是bonding。<br>对具体的操作过程进行记录。</p><h2 id="确认操作系统版本"><a href="#确认操作系统版本" class="headerlink" title="确认操作系统版本"></a>确认操作系统版本</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/issue</span><br><span class="line">lsb_release -a</span><br><span class="line">cat /etc/redhat-release</span><br><span class="line">rpm -q redhat-release</span><br></pre></td></tr></table></figure><h2 id="检查系统配置是否支持bonding"><a href="#检查系统配置是否支持bonding" class="headerlink" title="检查系统配置是否支持bonding"></a>检查系统配置是否支持bonding</h2><a id="more"></a><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /boot/config-XXXX | grep -i bonding</span><br></pre></td></tr></table></figure><p>只要返回任何匹配记录，说明系统配置支持bonding。     </p><h2 id="备份网卡配置文件"><a href="#备份网卡配置文件" class="headerlink" title="备份网卡配置文件"></a>备份网卡配置文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/sysconfig/network-scripts</span><br><span class="line">cp ifcfg-eth4 /home/ifcfg-eth4.bak</span><br><span class="line">cp ifcfg-eth5 /home/ifcfg-eth5.bak</span><br></pre></td></tr></table></figure><h2 id="新建ifcfg-bond0文件，配置bond0相关参数"><a href="#新建ifcfg-bond0文件，配置bond0相关参数" class="headerlink" title="新建ifcfg-bond0文件，配置bond0相关参数"></a>新建ifcfg-bond0文件，配置bond0相关参数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysconfig/network-scripts/ifcfg-bond0</span><br><span class="line">DEVICE=bond0</span><br><span class="line">TYPE=Ethernet</span><br><span class="line">ONBOOT=yes</span><br><span class="line">NM_CONTROLLED=no</span><br><span class="line">BOOTPROTO=static</span><br><span class="line">IPADDR=192.168.0.6</span><br><span class="line">NETMASK=255.255.255.0</span><br><span class="line">GATEWAY=192.168.0.1</span><br><span class="line">USERCTL=no</span><br><span class="line">BONDING_OPTS=”mode=1 miimon=100 primary=eth4″</span><br></pre></td></tr></table></figure><h3 id="BONDING-OPTS说明"><a href="#BONDING-OPTS说明" class="headerlink" title="BONDING_OPTS说明"></a>BONDING_OPTS说明</h3><p>mode表示网卡工作状态，其中0表示负载均衡，即双网卡同时处于激活状态；<br>1表示主备模式，即根据primary的设置，该网卡为主网卡，另外一个为备份网卡。<br>miimon=100表示系统每100ms监测一次链路状态。   </p><h2 id="修改ifcfg-eth4参数配置"><a href="#修改ifcfg-eth4参数配置" class="headerlink" title="修改ifcfg-eth4参数配置"></a>修改ifcfg-eth4参数配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysconfig/network-scripts/ifcfg-eth4</span><br><span class="line">DEVICE=eth4</span><br><span class="line">#HWADDR=90:E2:BA:9F:62:54</span><br><span class="line">TYPE=Ethernet</span><br><span class="line">#UUID=bc956186-832b-44a4-927c-8340eeb52eac</span><br><span class="line">ONBOOT=yes</span><br><span class="line">NM_CONTROLLED=no</span><br><span class="line">BOOTPROTO=none</span><br><span class="line">USECTL=no</span><br><span class="line">MASTER=bond0</span><br><span class="line">SLAVE=yes</span><br></pre></td></tr></table></figure><h2 id="修改ifcfg-eth5参数配置"><a href="#修改ifcfg-eth5参数配置" class="headerlink" title="修改ifcfg-eth5参数配置"></a>修改ifcfg-eth5参数配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysconfig/network-scripts/ifcfg-eth5</span><br><span class="line">DEVICE=eth4</span><br><span class="line">#HWADDR=90:E2:BA:9F:62:54</span><br><span class="line">TYPE=Ethernet</span><br><span class="line">#UUID=bc956186-832b-44a4-927c-8340eeb52eac</span><br><span class="line">ONBOOT=yes</span><br><span class="line">NM_CONTROLLED=no</span><br><span class="line">BOOTPROTO=none</span><br><span class="line">USECTL=no</span><br><span class="line">MASTER=bond0</span><br><span class="line">SLAVE=yes</span><br></pre></td></tr></table></figure><h2 id="修改-etc-modprobe-d-dist-conf文件，配置绑定模型"><a href="#修改-etc-modprobe-d-dist-conf文件，配置绑定模型" class="headerlink" title="修改/etc/modprobe.d/dist.conf文件，配置绑定模型"></a>修改/etc/modprobe.d/dist.conf文件，配置绑定模型</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/modprobe.d/dist.conf</span><br><span class="line">alias bond0 bonding options bond0 miimon=100 mode=1</span><br></pre></td></tr></table></figure><h2 id="关闭NetworkManagaer服务"><a href="#关闭NetworkManagaer服务" class="headerlink" title="关闭NetworkManagaer服务"></a>关闭NetworkManagaer服务</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chkconfig NetworkManagaer off</span><br><span class="line">service NetworkManagaer stop</span><br></pre></td></tr></table></figure><h2 id="重启网络服务"><a href="#重启网络服务" class="headerlink" title="重启网络服务"></a>重启网络服务</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service network restart</span><br></pre></td></tr></table></figure><h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><p>查看物理网卡的MAC地址是否与bond0一致(正常情况应该3网卡MAC地址一致)<br><code>ifconfig</code><br>查看bond0运行状态<br><code>cat /proc/net/bonding/bond0</code></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;背景介绍&quot;&gt;&lt;a href=&quot;#背景介绍&quot; class=&quot;headerlink&quot; title=&quot;背景介绍&quot;&gt;&lt;/a&gt;背景介绍&lt;/h2&gt;&lt;p&gt;由于工作需要，搭建4节点oracle rac，为降低网络单点故障影响，数据库服务器生产流量和内部心跳均采用双上连，自然要进行双网卡绑定。绑定采用的是bonding。&lt;br&gt;对具体的操作过程进行记录。&lt;/p&gt;
+&lt;h2 id=&quot;确认操作系统版本&quot;&gt;&lt;a href=&quot;#确认操作系统版本&quot; class=&quot;headerlink&quot; title=&quot;确认操作系统版本&quot;&gt;&lt;/a&gt;确认操作系统版本&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;cat /etc/issue&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;lsb_release -a&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cat /etc/redhat-release&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;rpm -q redhat-release&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;检查系统配置是否支持bonding&quot;&gt;&lt;a href=&quot;#检查系统配置是否支持bonding&quot; class=&quot;headerlink&quot; title=&quot;检查系统配置是否支持bonding&quot;&gt;&lt;/a&gt;检查系统配置是否支持bonding&lt;/h2&gt;
+    
+    </summary>
+    
+      <category term="系统管理" scheme="https://rosinelan.github.io/categories/system/"/>
+    
+      <category term="LINUX" scheme="https://rosinelan.github.io/categories/system/LINUX/"/>
+    
+    
+      <category term="LINUX" scheme="https://rosinelan.github.io/tags/LINUX/"/>
+    
+      <category term="双网卡" scheme="https://rosinelan.github.io/tags/%E5%8F%8C%E7%BD%91%E5%8D%A1/"/>
+    
+      <category term="bonding" scheme="https://rosinelan.github.io/tags/bonding/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>USR/BIN/XTERM:NO SUCH FILE OR DIRECTORY错误解决一例</title>
+    <link href="https://rosinelan.github.io/2018/02/18/USR-BIN-XTERM-NO-SUCH-FILE-OR-DIRECTORY%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3%E4%B8%80%E4%BE%8B/"/>
+    <id>https://rosinelan.github.io/2018/02/18/USR-BIN-XTERM-NO-SUCH-FILE-OR-DIRECTORY错误解决一例/</id>
+    <published>2018-02-18T13:52:35.000Z</published>
+    <updated>2018-02-18T13:58:46.632Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p>远程SSH连接LINUX服务器，通过图形化界面安装oracle数据库。<br>使用xstart连接redhat v6.5，执行命令选项使用/usr/bin/xterm -ls -display $DISPLAY。</p><h3 id="错误信息"><a href="#错误信息" class="headerlink" title="错误信息"></a>错误信息</h3><p>-bash:usr/bin/xterm: no such file or directory</p><h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><a id="more"></a> <p>在对应的目录查看确实不存在，缺少对应的packages,安装需要的packages<br>libXpm-3.5.10-2.el6.x86_64.rpm<br>libXaw-1.0.11-2.el6.x86_64.rpm<br>xterm-253-1.el6.x86_64.rpm<br>安装之后即可正常连接。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;使用场景&quot;&gt;&lt;a href=&quot;#使用场景&quot; class=&quot;headerlink&quot; title=&quot;使用场景&quot;&gt;&lt;/a&gt;使用场景&lt;/h3&gt;&lt;p&gt;远程SSH连接LINUX服务器，通过图形化界面安装oracle数据库。&lt;br&gt;使用xstart连接redhat v6.5，执行命令选项使用/usr/bin/xterm -ls -display $DISPLAY。&lt;/p&gt;
+&lt;h3 id=&quot;错误信息&quot;&gt;&lt;a href=&quot;#错误信息&quot; class=&quot;headerlink&quot; title=&quot;错误信息&quot;&gt;&lt;/a&gt;错误信息&lt;/h3&gt;&lt;p&gt;-bash:usr/bin/xterm: no such file or directory&lt;/p&gt;
+&lt;h3 id=&quot;解决方法&quot;&gt;&lt;a href=&quot;#解决方法&quot; class=&quot;headerlink&quot; title=&quot;解决方法&quot;&gt;&lt;/a&gt;解决方法&lt;/h3&gt;
+    
+    </summary>
+    
+      <category term="系统管理" scheme="https://rosinelan.github.io/categories/system/"/>
+    
+      <category term="LINUX" scheme="https://rosinelan.github.io/categories/system/LINUX/"/>
+    
+    
+      <category term="LINUX" scheme="https://rosinelan.github.io/tags/LINUX/"/>
+    
+      <category term="XTERM" scheme="https://rosinelan.github.io/tags/XTERM/"/>
+    
+      <category term="libXpm" scheme="https://rosinelan.github.io/tags/libXpm/"/>
+    
+      <category term="libXaw" scheme="https://rosinelan.github.io/tags/libXaw/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>UBUNTU网络配置</title>
+    <link href="https://rosinelan.github.io/2018/02/18/UBUNTU%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/"/>
+    <id>https://rosinelan.github.io/2018/02/18/UBUNTU网络配置/</id>
+    <published>2018-02-18T13:35:45.000Z</published>
+    <updated>2018-02-18T13:44:31.833Z</updated>
+    
+    <content type="html"><![CDATA[<p>前两天需要装个Ubuntu，发现网络配置文件和centos不太一样，在此记录。     </p><h2 id="修改配置文件-etc-network-interfaces"><a href="#修改配置文件-etc-network-interfaces" class="headerlink" title="修改配置文件/etc/network/interfaces"></a>修改配置文件/etc/network/interfaces</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/network/interfaces</span><br><span class="line">auto eth0</span><br><span class="line">iface eth0 inet static</span><br><span class="line">address 192.168.0.1</span><br><span class="line">netmask 255.255.255.0</span><br><span class="line">gateway 192.168.0.1</span><br></pre></td></tr></table></figure><h2 id="添加DNS"><a href="#添加DNS" class="headerlink" title="添加DNS"></a>添加DNS</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/resolv.conf</span><br><span class="line">nameserver 202.99.166.4</span><br></pre></td></tr></table></figure><h2 id="重启网络"><a href="#重启网络" class="headerlink" title="重启网络"></a>重启网络</h2><h3 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h3><p>重启网络服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/networking restart</span><br></pre></td></tr></table></figure></p><h3 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h3><p>重启指定网卡，不影响其他网卡正常提供服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ifdown eth0</span><br><span class="line">$ifup eth0</span><br></pre></td></tr></table></figure></p><h2 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vi /home/username/.bash_profile</span><br><span class="line">export http_proxy =</span><br><span class="line">export https_poxy =</span><br><span class="line">export ftp_proxy =</span><br><span class="line">export no_proxy =</span><br></pre></td></tr></table></figure><p>使profile中的新增变量生效<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source .bash_profile</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;前两天需要装个Ubuntu，发现网络配置文件和centos不太一样，在此记录。     &lt;/p&gt;
+&lt;h2 id=&quot;修改配置文件-etc-network-interfaces&quot;&gt;&lt;a href=&quot;#修改配置文件-etc-network-interfaces&quot; class=&quot;h
+      
+    
+    </summary>
+    
+      <category term="系统管理" scheme="https://rosinelan.github.io/categories/system/"/>
+    
+      <category term="LINUX" scheme="https://rosinelan.github.io/categories/system/LINUX/"/>
+    
+    
+      <category term="UBUNTU" scheme="https://rosinelan.github.io/tags/UBUNTU/"/>
+    
+      <category term="网络" scheme="https://rosinelan.github.io/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
   
   <entry>
     <title>WINDOWS下FORFILES命令使用方法</title>
@@ -104,9 +196,9 @@
     
       <category term="密钥" scheme="https://rosinelan.github.io/tags/%E5%AF%86%E9%92%A5/"/>
     
-      <category term="XSHELL" scheme="https://rosinelan.github.io/tags/XSHELL/"/>
-    
       <category term="WINDOWS" scheme="https://rosinelan.github.io/tags/WINDOWS/"/>
+    
+      <category term="XSHELL" scheme="https://rosinelan.github.io/tags/XSHELL/"/>
     
   </entry>
   

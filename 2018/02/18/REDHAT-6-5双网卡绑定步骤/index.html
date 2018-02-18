@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>REDHAT 6.5双网卡绑定步骤 | 持续不断</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="背景介绍由于工作需要，搭建4节点oracle rac，为降低网络单点故障影响，数据库服务器生产流量和内部心跳均采用双上连，自然要进行双网卡绑定。绑定采用的是bonding。对具体的操作过程进行记录。 确认操作系统版本1234cat /etc/issuelsb_release -acat /etc/redhat-releaserpm -q redhat-release 检查系统配置是否支持bondi">
+<meta name="keywords" content="LINUX,双网卡,bonding">
+<meta property="og:type" content="article">
+<meta property="og:title" content="REDHAT 6.5双网卡绑定步骤">
+<meta property="og:url" content="https://rosinelan.github.io/2018/02/18/REDHAT-6-5双网卡绑定步骤/index.html">
+<meta property="og:site_name" content="持续不断">
+<meta property="og:description" content="背景介绍由于工作需要，搭建4节点oracle rac，为降低网络单点故障影响，数据库服务器生产流量和内部心跳均采用双上连，自然要进行双网卡绑定。绑定采用的是bonding。对具体的操作过程进行记录。 确认操作系统版本1234cat /etc/issuelsb_release -acat /etc/redhat-releaserpm -q redhat-release 检查系统配置是否支持bondi">
+<meta property="og:updated_time" content="2018-02-18T14:18:52.956Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="REDHAT 6.5双网卡绑定步骤">
+<meta name="twitter:description" content="背景介绍由于工作需要，搭建4节点oracle rac，为降低网络单点故障影响，数据库服务器生产流量和内部心跳均采用双上连，自然要进行双网卡绑定。绑定采用的是bonding。对具体的操作过程进行记录。 确认操作系统版本1234cat /etc/issuelsb_release -acat /etc/redhat-releaserpm -q redhat-release 检查系统配置是否支持bondi">
+  
+    <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">持续不断</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">要松懈的时候再坚持一下</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-REDHAT-6-5双网卡绑定步骤" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/18/REDHAT-6-5双网卡绑定步骤/" class="article-date">
+  <time datetime="2018-02-18T14:04:46.000Z" itemprop="datePublished">2018-02-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/system/">系统管理</a>►<a class="article-category-link" href="/categories/system/LINUX/">LINUX</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      REDHAT 6.5双网卡绑定步骤
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h2><p>由于工作需要，搭建4节点oracle rac，为降低网络单点故障影响，数据库服务器生产流量和内部心跳均采用双上连，自然要进行双网卡绑定。绑定采用的是bonding。<br>对具体的操作过程进行记录。</p>
+<h2 id="确认操作系统版本"><a href="#确认操作系统版本" class="headerlink" title="确认操作系统版本"></a>确认操作系统版本</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/issue</span><br><span class="line">lsb_release -a</span><br><span class="line">cat /etc/redhat-release</span><br><span class="line">rpm -q redhat-release</span><br></pre></td></tr></table></figure>
+<h2 id="检查系统配置是否支持bonding"><a href="#检查系统配置是否支持bonding" class="headerlink" title="检查系统配置是否支持bonding"></a>检查系统配置是否支持bonding</h2><a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /boot/config-XXXX | grep -i bonding</span><br></pre></td></tr></table></figure>
+<p>只要返回任何匹配记录，说明系统配置支持bonding。     </p>
+<h2 id="备份网卡配置文件"><a href="#备份网卡配置文件" class="headerlink" title="备份网卡配置文件"></a>备份网卡配置文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/sysconfig/network-scripts</span><br><span class="line">cp ifcfg-eth4 /home/ifcfg-eth4.bak</span><br><span class="line">cp ifcfg-eth5 /home/ifcfg-eth5.bak</span><br></pre></td></tr></table></figure>
+<h2 id="新建ifcfg-bond0文件，配置bond0相关参数"><a href="#新建ifcfg-bond0文件，配置bond0相关参数" class="headerlink" title="新建ifcfg-bond0文件，配置bond0相关参数"></a>新建ifcfg-bond0文件，配置bond0相关参数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysconfig/network-scripts/ifcfg-bond0</span><br><span class="line">DEVICE=bond0</span><br><span class="line">TYPE=Ethernet</span><br><span class="line">ONBOOT=yes</span><br><span class="line">NM_CONTROLLED=no</span><br><span class="line">BOOTPROTO=static</span><br><span class="line">IPADDR=192.168.0.6</span><br><span class="line">NETMASK=255.255.255.0</span><br><span class="line">GATEWAY=192.168.0.1</span><br><span class="line">USERCTL=no</span><br><span class="line">BONDING_OPTS=”mode=1 miimon=100 primary=eth4″</span><br></pre></td></tr></table></figure>
+<h3 id="BONDING-OPTS说明"><a href="#BONDING-OPTS说明" class="headerlink" title="BONDING_OPTS说明"></a>BONDING_OPTS说明</h3><p>mode表示网卡工作状态，其中0表示负载均衡，即双网卡同时处于激活状态；<br>1表示主备模式，即根据primary的设置，该网卡为主网卡，另外一个为备份网卡。<br>miimon=100表示系统每100ms监测一次链路状态。   </p>
+<h2 id="修改ifcfg-eth4参数配置"><a href="#修改ifcfg-eth4参数配置" class="headerlink" title="修改ifcfg-eth4参数配置"></a>修改ifcfg-eth4参数配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysconfig/network-scripts/ifcfg-eth4</span><br><span class="line">DEVICE=eth4</span><br><span class="line">#HWADDR=90:E2:BA:9F:62:54</span><br><span class="line">TYPE=Ethernet</span><br><span class="line">#UUID=bc956186-832b-44a4-927c-8340eeb52eac</span><br><span class="line">ONBOOT=yes</span><br><span class="line">NM_CONTROLLED=no</span><br><span class="line">BOOTPROTO=none</span><br><span class="line">USECTL=no</span><br><span class="line">MASTER=bond0</span><br><span class="line">SLAVE=yes</span><br></pre></td></tr></table></figure>
+<h2 id="修改ifcfg-eth5参数配置"><a href="#修改ifcfg-eth5参数配置" class="headerlink" title="修改ifcfg-eth5参数配置"></a>修改ifcfg-eth5参数配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysconfig/network-scripts/ifcfg-eth5</span><br><span class="line">DEVICE=eth4</span><br><span class="line">#HWADDR=90:E2:BA:9F:62:54</span><br><span class="line">TYPE=Ethernet</span><br><span class="line">#UUID=bc956186-832b-44a4-927c-8340eeb52eac</span><br><span class="line">ONBOOT=yes</span><br><span class="line">NM_CONTROLLED=no</span><br><span class="line">BOOTPROTO=none</span><br><span class="line">USECTL=no</span><br><span class="line">MASTER=bond0</span><br><span class="line">SLAVE=yes</span><br></pre></td></tr></table></figure>
+<h2 id="修改-etc-modprobe-d-dist-conf文件，配置绑定模型"><a href="#修改-etc-modprobe-d-dist-conf文件，配置绑定模型" class="headerlink" title="修改/etc/modprobe.d/dist.conf文件，配置绑定模型"></a>修改/etc/modprobe.d/dist.conf文件，配置绑定模型</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/modprobe.d/dist.conf</span><br><span class="line">alias bond0 bonding options bond0 miimon=100 mode=1</span><br></pre></td></tr></table></figure>
+<h2 id="关闭NetworkManagaer服务"><a href="#关闭NetworkManagaer服务" class="headerlink" title="关闭NetworkManagaer服务"></a>关闭NetworkManagaer服务</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chkconfig NetworkManagaer off</span><br><span class="line">service NetworkManagaer stop</span><br></pre></td></tr></table></figure>
+<h2 id="重启网络服务"><a href="#重启网络服务" class="headerlink" title="重启网络服务"></a>重启网络服务</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service network restart</span><br></pre></td></tr></table></figure>
+<h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><p>查看物理网卡的MAC地址是否与bond0一致(正常情况应该3网卡MAC地址一致)<br><code>ifconfig</code><br>查看bond0运行状态<br><code>cat /proc/net/bonding/bond0</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/02/18/REDHAT-6-5双网卡绑定步骤/" data-id="cjdsvodft0005iwq6v4o57xt8" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LINUX/">LINUX</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bonding/">bonding</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/双网卡/">双网卡</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/02/18/USR-BIN-XTERM-NO-SUCH-FILE-OR-DIRECTORY错误解决一例/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">USR/BIN/XTERM:NO SUCH FILE OR DIRECTORY错误解决一例</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#背景介绍"><span class="toc-number">1.</span> <span class="toc-text">背景介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#确认操作系统版本"><span class="toc-number">2.</span> <span class="toc-text">确认操作系统版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#检查系统配置是否支持bonding"><span class="toc-number">3.</span> <span class="toc-text">检查系统配置是否支持bonding</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#备份网卡配置文件"><span class="toc-number">4.</span> <span class="toc-text">备份网卡配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#新建ifcfg-bond0文件，配置bond0相关参数"><span class="toc-number">5.</span> <span class="toc-text">新建ifcfg-bond0文件，配置bond0相关参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BONDING-OPTS说明"><span class="toc-number">5.1.</span> <span class="toc-text">BONDING_OPTS说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改ifcfg-eth4参数配置"><span class="toc-number">6.</span> <span class="toc-text">修改ifcfg-eth4参数配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改ifcfg-eth5参数配置"><span class="toc-number">7.</span> <span class="toc-text">修改ifcfg-eth5参数配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改-etc-modprobe-d-dist-conf文件，配置绑定模型"><span class="toc-number">8.</span> <span class="toc-text">修改/etc/modprobe.d/dist.conf文件，配置绑定模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关闭NetworkManagaer服务"><span class="toc-number">9.</span> <span class="toc-text">关闭NetworkManagaer服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#重启网络服务"><span class="toc-number">10.</span> <span class="toc-text">重启网络服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证"><span class="toc-number">11.</span> <span class="toc-text">验证</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+      联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>
