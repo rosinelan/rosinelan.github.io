@@ -5,17 +5,17 @@
   
   <title>WINDOWS下FORFILES命令使用方法 | 持续不断</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="命令格式FORFILES [/P pathname] [/M searchmask] [/S] [/C command] [/D [+ | -] {yyyy/MM/dd | dd}]  描述选择一个文件(或一组文件)并在那个文件上执行一个命令，有助于批处理作业。     参数列表/P    pathname      表示开始搜索的路径。默认文件夹是当前工作的 目录 (.)。 /M    sear">
+  <meta name="description" content="命令格式FORFILES [/P pathname] [/M searchmask] [/S] [/C command] [/D [+ | -] {yyyy/MM/dd | dd}]  描述选择一个文件(或一组文件)并在那个文件上执行一个命令，有助于批处理作业。     参数列表">
 <meta name="keywords" content="WINDOWS,FORFILES">
 <meta property="og:type" content="article">
 <meta property="og:title" content="WINDOWS下FORFILES命令使用方法">
 <meta property="og:url" content="https://rosinelan.github.io/2018/02/18/WINDOWS下FORFILES命令使用方法/index.html">
 <meta property="og:site_name" content="持续不断">
-<meta property="og:description" content="命令格式FORFILES [/P pathname] [/M searchmask] [/S] [/C command] [/D [+ | -] {yyyy/MM/dd | dd}]  描述选择一个文件(或一组文件)并在那个文件上执行一个命令，有助于批处理作业。     参数列表/P    pathname      表示开始搜索的路径。默认文件夹是当前工作的 目录 (.)。 /M    sear">
-<meta property="og:updated_time" content="2018-02-18T13:24:16.920Z">
+<meta property="og:description" content="命令格式FORFILES [/P pathname] [/M searchmask] [/S] [/C command] [/D [+ | -] {yyyy/MM/dd | dd}]  描述选择一个文件(或一组文件)并在那个文件上执行一个命令，有助于批处理作业。     参数列表">
+<meta property="og:updated_time" content="2018-02-18T13:25:58.544Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WINDOWS下FORFILES命令使用方法">
-<meta name="twitter:description" content="命令格式FORFILES [/P pathname] [/M searchmask] [/S] [/C command] [/D [+ | -] {yyyy/MM/dd | dd}]  描述选择一个文件(或一组文件)并在那个文件上执行一个命令，有助于批处理作业。     参数列表/P    pathname      表示开始搜索的路径。默认文件夹是当前工作的 目录 (.)。 /M    sear">
+<meta name="twitter:description" content="命令格式FORFILES [/P pathname] [/M searchmask] [/S] [/C command] [/D [+ | -] {yyyy/MM/dd | dd}]  描述选择一个文件(或一组文件)并在那个文件上执行一个命令，有助于批处理作业。     参数列表">
   
     <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
   
@@ -102,7 +102,8 @@
         
         <h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p>FORFILES [/P pathname] [/M searchmask] [/S] [/C command] [/D [+ | -] {yyyy/MM/dd | dd}] </p>
 <h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>选择一个文件(或一组文件)并在那个文件上执行一个命令，有助于批处理作业。    </p>
-<h2 id="参数列表"><a href="#参数列表" class="headerlink" title="参数列表"></a>参数列表</h2><pre><code>/P    pathname      表示开始搜索的路径。默认文件夹是当前工作的 目录 (.)。
+<h2 id="参数列表"><a href="#参数列表" class="headerlink" title="参数列表"></a>参数列表</h2><a id="more"></a> 
+<pre><code>/P    pathname      表示开始搜索的路径。默认文件夹是当前工作的 目录 (.)。
 /M    searchmask    根据搜索掩码搜索文件。默认搜索掩码是 &apos;*&apos;。
 /S                  指导 forfiles 递归到子目录。像 &quot;DIR /S&quot;。
 /C    command       表示为每个文件执行的命令。命令字符串应该用双引号括起来。
