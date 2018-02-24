@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>USR/BIN/XTERM:NO SUCH FILE OR DIRECTORY错误解决一例 | 持续不断</title>
+  <title>CENTOS7.2双网卡绑定脚本.md | 持续不断</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="使用场景远程SSH连接LINUX服务器，通过图形化界面安装oracle数据库。使用xstart连接redhat v6.5，执行命令选项使用/usr/bin/xterm -ls -display $DISPLAY。 错误信息-bash:usr/bin/xterm: no such file or directory 解决方法">
-<meta name="keywords" content="LINUX,XTERM,libXpm,libXaw">
+  <meta name="description" content="CENTOS 7.2(1511)用于双网卡绑定配置，使用说明1.网卡名称ens1f0和ens1f1根据实际情况修改(全局替换即可)。2.bond0配置IP地址根据实际情况修改。脚本如下 ‘’’cd /etc/sysconfig/network-scripts/mv ifcfg-ens1f0 ifcfg-ens1f0.bakmv ifcfg-ens1f1 ifcfg-ens1f1.bak #配置en">
+<meta name="keywords" content="LINUX,BONDING,CENTOS7">
 <meta property="og:type" content="article">
-<meta property="og:title" content="USR&#x2F;BIN&#x2F;XTERM:NO SUCH FILE OR DIRECTORY错误解决一例">
-<meta property="og:url" content="https://rosinelan.github.io/2018/02/18/USR-BIN-XTERM-NO-SUCH-FILE-OR-DIRECTORY错误解决一例/index.html">
+<meta property="og:title" content="CENTOS7.2双网卡绑定脚本.md">
+<meta property="og:url" content="https://rosinelan.github.io/2018/02/24/CENTOS7-2双网卡绑定脚本/index.html">
 <meta property="og:site_name" content="持续不断">
-<meta property="og:description" content="使用场景远程SSH连接LINUX服务器，通过图形化界面安装oracle数据库。使用xstart连接redhat v6.5，执行命令选项使用/usr/bin/xterm -ls -display $DISPLAY。 错误信息-bash:usr/bin/xterm: no such file or directory 解决方法">
-<meta property="og:updated_time" content="2018-02-18T13:58:46.632Z">
+<meta property="og:description" content="CENTOS 7.2(1511)用于双网卡绑定配置，使用说明1.网卡名称ens1f0和ens1f1根据实际情况修改(全局替换即可)。2.bond0配置IP地址根据实际情况修改。脚本如下 ‘’’cd /etc/sysconfig/network-scripts/mv ifcfg-ens1f0 ifcfg-ens1f0.bakmv ifcfg-ens1f1 ifcfg-ens1f1.bak #配置en">
+<meta property="og:updated_time" content="2018-02-24T07:11:27.427Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="USR&#x2F;BIN&#x2F;XTERM:NO SUCH FILE OR DIRECTORY错误解决一例">
-<meta name="twitter:description" content="使用场景远程SSH连接LINUX服务器，通过图形化界面安装oracle数据库。使用xstart连接redhat v6.5，执行命令选项使用/usr/bin/xterm -ls -display $DISPLAY。 错误信息-bash:usr/bin/xterm: no such file or directory 解决方法">
+<meta name="twitter:title" content="CENTOS7.2双网卡绑定脚本.md">
+<meta name="twitter:description" content="CENTOS 7.2(1511)用于双网卡绑定配置，使用说明1.网卡名称ens1f0和ens1f1根据实际情况修改(全局替换即可)。2.bond0配置IP地址根据实际情况修改。脚本如下 ‘’’cd /etc/sysconfig/network-scripts/mv ifcfg-ens1f0 ifcfg-ens1f0.bakmv ifcfg-ens1f1 ifcfg-ens1f1.bak #配置en">
   
     <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
   
@@ -72,10 +72,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-USR-BIN-XTERM-NO-SUCH-FILE-OR-DIRECTORY错误解决一例" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-CENTOS7-2双网卡绑定脚本" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/02/18/USR-BIN-XTERM-NO-SUCH-FILE-OR-DIRECTORY错误解决一例/" class="article-date">
-  <time datetime="2018-02-18T13:52:35.000Z" itemprop="datePublished">2018-02-18</time>
+    <a href="/2018/02/24/CENTOS7-2双网卡绑定脚本/" class="article-date">
+  <time datetime="2018-02-24T07:04:35.000Z" itemprop="datePublished">2018-02-24</time>
 </a>
     
   <div class="article-category">
@@ -90,7 +90,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      USR/BIN/XTERM:NO SUCH FILE OR DIRECTORY错误解决一例
+      CENTOS7.2双网卡绑定脚本.md
     </h1>
   
 
@@ -100,19 +100,24 @@
       
         <!-- Table of Contents -->
         
-        <h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p>远程SSH连接LINUX服务器，通过图形化界面安装oracle数据库。<br>使用xstart连接redhat v6.5，执行命令选项使用/usr/bin/xterm -ls -display $DISPLAY。</p>
-<h3 id="错误信息"><a href="#错误信息" class="headerlink" title="错误信息"></a>错误信息</h3><p>-bash:usr/bin/xterm: no such file or directory</p>
-<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><a id="more"></a> 
-<p>在对应的目录查看确实不存在，缺少对应的packages,安装需要的packages<br>libXpm-3.5.10-2.el6.x86_64.rpm<br>libXaw-1.0.11-2.el6.x86_64.rpm<br>xterm-253-1.el6.x86_64.rpm<br>安装之后即可正常连接。</p>
+        <p>CENTOS 7.2(1511)用于双网卡绑定配置，使用说明<br>1.网卡名称ens1f0和ens1f1根据实际情况修改(全局替换即可)。<br>2.bond0配置IP地址根据实际情况修改。<br>脚本如下</p>
+<p>‘’’<br>cd /etc/sysconfig/network-scripts/<br>mv ifcfg-ens1f0 ifcfg-ens1f0.bak<br>mv ifcfg-ens1f1 ifcfg-ens1f1.bak</p>
+<p>#配置ens1f0<br>echo “# slave for bond0” &gt;&gt; ifcfg-ens1f0<br>sed -i ‘$a TYPE=Ethernet’ ifcfg-ens1f0<br>sed -i ‘$a BOOTPROTO=none’ ifcfg-ens1f0<br>sed -i ‘$a NAME=ens1f0’ ifcfg-ens1f0<br>sed -i ‘$a DEVICE=ens1f0’ ifcfg-ens1f0<br>sed -i ‘$a ONBOOT=yes’ ifcfg-ens1f0<br>sed -i ‘$a MASTER=bond0’ ifcfg-ens1f0<br>sed -i ‘$a SLAVE=yes’ ifcfg-ens1f0<br>sed -i ‘$a NM_CONTROLLED=no’ ifcfg-ens1f0<br>sed -i ‘$a USERCTL=no’ ifcfg-ens1f0</p>
+<p>#配置ens1f1<br>echo “# slave for bond0” &gt;&gt; ifcfg-ens1f1<br>sed -i ‘$a TYPE=Ethernet’ ifcfg-ens1f1<br>sed -i ‘$a BOOTPROTO=none’ ifcfg-ens1f1<br>sed -i ‘$a NAME=ens1f1’ ifcfg-ens1f1<br>sed -i ‘$a DEVICE=ens1f1’ ifcfg-ens1f1<br>sed -i ‘$a ONBOOT=yes’ ifcfg-ens1f1<br>sed -i ‘$a MASTER=bond0’ ifcfg-ens1f1<br>sed -i ‘$a SLAVE=yes’ ifcfg-ens1f1<br>sed -i ‘$a NM_CONTROLLED=no’ ifcfg-ens1f1<br>sed -i ‘$a USERCTL=no’ ifcfg-ens1f1</p>
+<p>#配置bond0<br>echo “# bonding for bond0” &gt;&gt; ifcfg-bond0<br>sed -i ‘$a DEVICE=bond0’ ifcfg-bond0<br>sed -i ‘$a TYPE=Ethernet’ ifcfg-bond0<br>sed -i ‘$a ONBOOT=yes’ ifcfg-bond0<br>sed -i ‘$a NM_CONTROLLED=no’ ifcfg-bond0<br>sed -i ‘$a BOOTPROTO=static’ ifcfg-bond0<br>sed -i ‘$a IPADDR=192.168.198.139’ ifcfg-bond0<br>sed -i ‘$a NETMASK=255.255.255.192’ ifcfg-bond0<br>sed -i ‘$a GATEWAY=192.168.198.129’ ifcfg-bond0<br>sed -i ‘$a USERCTL=no’ ifcfg-bond0<br>sed -i ‘$a BONDING_OPTS=”mode=1 miimon=100 primary=ens1f0”‘ ifcfg-bond0</p>
+<p>cd /etc/modprobe.d/<br>touch dist.conf<br>echo “alias bond0 bonding options bond0 miimon=100 mode=1” &gt;&gt; dist.conf</p>
+<p>chkconfig NetworkManager off<br>service NetworkManager stop<br>systemctl restart network</p>
+<p>#查看当前网络配置<br>ip a</p>
+<p>#查看bond0运行状态<br>cat /proc/net/bonding/bond0<br>‘’’</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/02/18/USR-BIN-XTERM-NO-SUCH-FILE-OR-DIRECTORY错误解决一例/" data-id="cje111qjk000fh4q6oz0r0vl0" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/02/24/CENTOS7-2双网卡绑定脚本/" data-id="cje111qi50000h4q6e0le8tyh" class="article-share-link">分享</a>
       
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LINUX/">LINUX</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XTERM/">XTERM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/libXaw/">libXaw</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/libXpm/">libXpm</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BONDING/">BONDING</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CENTOS7/">CENTOS7</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LINUX/">LINUX</a></li></ul>
 
     </footer>
   </div>
@@ -162,19 +167,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/02/18/REDHAT-6-5双网卡绑定步骤/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">
-        
-          REDHAT 6.5双网卡绑定步骤
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/02/18/UBUNTU网络配置/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/02/18/REDHAT-6-5双网卡绑定步骤/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">UBUNTU网络配置</div>
+      <div class="article-nav-title">REDHAT 6.5双网卡绑定步骤</div>
     </a>
   
 </nav>
@@ -199,24 +195,42 @@
     <aside id="sidebar">
   
     
-    <div class="widget-wrap">
+  
     
-      <div class="widget" id="toc-widget-fixed">
-      
-        <strong class="toc-title">文章目录</strong>
-        <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用场景"><span class="toc-number">1.</span> <span class="toc-text">使用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#错误信息"><span class="toc-number">2.</span> <span class="toc-text">错误信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决方法"><span class="toc-number">3.</span> <span class="toc-text">解决方法</span></a></li></ol>
-          </div>
-      </div>
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title recent-posts">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/02/24/CENTOS7-2双网卡绑定脚本/">CENTOS7.2双网卡绑定脚本.md</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/18/REDHAT-6-5双网卡绑定步骤/">REDHAT 6.5双网卡绑定步骤</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/18/USR-BIN-XTERM-NO-SUCH-FILE-OR-DIRECTORY错误解决一例/">USR/BIN/XTERM:NO SUCH FILE OR DIRECTORY错误解决一例</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/18/UBUNTU网络配置/">UBUNTU网络配置</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/18/WINDOWS下FORFILES命令使用方法/">WINDOWS下FORFILES命令使用方法</a>
+          </li>
+        
+      </ul>
     </div>
+  </div>
 
-  
-    
-
-  
-    
-  
-    
   
     
 
