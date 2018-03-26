@@ -18,7 +18,7 @@
 <meta property="og:image" content="http://cdn.rosinelan.com/blog/system/mklink-file-h.png">
 <meta property="og:image" content="http://cdn.rosinelan.com/blog/system/mklink-relative-d.png">
 <meta property="og:image" content="http://cdn.rosinelan.com/blog/system/mklink-relative-j.png">
-<meta property="og:updated_time" content="2018-03-26T08:46:58.711Z">
+<meta property="og:updated_time" content="2018-03-26T08:48:11.737Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WINDOWS下的MKLINK和JUNCTION">
 <meta name="twitter:description" content="有台windows服务器C盘空间不足，占磁盘空间较大的文件要挪到其他磁盘又会涉及到应用程序的修改等问题，怎么破？LINUX下使用’ln -s’创建软链接是再寻常不过的操作，那么windows下是否也可以进行相应的操作呢？答案是肯定的。可以实现相关功能的工具有2个，分别是mklink和function，均只能用于windwos server 2008+，其中mklink为系统自带，junction需">
@@ -49,7 +49,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -107,7 +107,7 @@
       
         <!-- Table of Contents -->
         
-        <p>有台windows服务器C盘空间不足，占磁盘空间较大的文件要挪到其他磁盘又会涉及到应用程序的修改等问题，怎么破？<br>LINUX下使用’ln -s’创建软链接是再寻常不过的操作，那么windows下是否也可以进行相应的操作呢？<br>答案是肯定的。<br>可以实现相关功能的工具有2个，分别是mklink和function，均只能用于windwos server 2008+，其中mklink为系统自带，junction需自行下载。      </p>
+        <p>有台windows服务器C盘空间不足，占磁盘空间较大的文件要挪到其他磁盘又会涉及到应用程序的修改等问题，怎么破？<br>LINUX下使用’ln -s’创建软链接是再寻常不过的操作，那么windows下是否也可以进行相应的操作呢？<br>答案是肯定的。<br>可以实现相关功能的工具有2个，分别是mklink和function，均只能用于windwos server 2008+，其中mklink为系统自带，junction需自行下载。<br><a id="more"></a></p>
 <h3 id="mklink"><a href="#mklink" class="headerlink" title="mklink"></a>mklink</h3><h4 id="基本语法格式"><a href="#基本语法格式" class="headerlink" title="基本语法格式"></a>基本语法格式</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">MKLINK [[/D] | [/H] | [/J]] Link Target</span><br><span class="line"></span><br><span class="line">        /D      创建目录符号链接。默认为文件</span><br><span class="line">                符号链接。</span><br><span class="line">        /H      创建硬链接而非符号链接。</span><br><span class="line">        /J      创建目录联接。</span><br><span class="line">        Link    指定新的符号链接名称。</span><br><span class="line">        Target  指定新链接引用的路径</span><br><span class="line">                (相对或绝对)。</span><br></pre></td></tr></table></figure>
 <h4 id="参数解释"><a href="#参数解释" class="headerlink" title="参数解释"></a>参数解释</h4><p>/D是符号链接，/J是目录联接。<br>创建的链接名称都是类似快捷方式的文件夹；都不会占用空间；访问该名称相当于访问指定的目标文件。<br>区别在于符号链接的Target只能使用绝对路径，目录联接的Target可以使用相对路径。<br>/H是硬链接，需要占用空间；删除原文件或新建文件中的一个不会影响文件。<br>针对文件创建符号链接，不添加任何参数。<br>/H创建硬链接只能针对文件，不能对文件夹。<br>/D和/J创建符号链接或目录链接只能针对文件夹，不能对文件。   </p>
 <h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><ol>
@@ -126,7 +126,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/03/23/WINDOWS下的MKLINK和JUNCTION/" data-id="cjf7zoihy0007qwq6wuas2cs2" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/03/23/WINDOWS下的MKLINK和JUNCTION/" data-id="cjf7zoihy0007qwq6wuas2cs2" class="article-share-link">分享</a>
       
       
       
@@ -138,7 +138,7 @@
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =4
@@ -182,7 +182,7 @@
   
   
     <a href="/2018/02/24/CENTOS7-2双网卡绑定脚本/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">CENTOS7.2双网卡绑定脚本.md</div>
     </a>
   
@@ -212,7 +212,7 @@
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
               <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#mklink"><span class="toc-number">1.</span> <span class="toc-text">mklink</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本语法格式"><span class="toc-number">1.1.</span> <span class="toc-text">基本语法格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#参数解释"><span class="toc-number">1.2.</span> <span class="toc-text">参数解释</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例"><span class="toc-number">1.3.</span> <span class="toc-text">示例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#junction"><span class="toc-number">2.</span> <span class="toc-text">junction</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#使用方法"><span class="toc-number">2.1.</span> <span class="toc-text">使用方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#语法格式"><span class="toc-number">2.2.</span> <span class="toc-text">语法格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例-1"><span class="toc-number">2.3.</span> <span class="toc-text">示例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#下载地址及官方文档"><span class="toc-number">2.4.</span> <span class="toc-text">下载地址及官方文档</span></a></li></ol></li></ol>
           </div>
@@ -240,10 +240,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-      Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
+      联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>
