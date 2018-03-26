@@ -5,17 +5,17 @@
   
   <title>UBUNTU网络配置 | 持续不断</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前两天需要装个Ubuntu，发现网络配置文件和centos不太一样，在此记录。      修改配置文件/etc/network/interfaces123456vi /etc/network/interfacesauto eth0iface eth0 inet staticaddress 192.168.0.1netmask 255.255.255.0gateway 192.168.0.1 添加D">
+  <meta name="description" content="前两天需要装个Ubuntu，发现网络配置文件和centos不太一样，在此记录。      修改配置文件/etc/network/interfaces123456vi /etc/network/interfacesauto eth0iface eth0 inet staticaddress 192.168.0.1netmask 255.255.255.0gateway 192.168.0.1">
 <meta name="keywords" content="UBUNTU,网络">
 <meta property="og:type" content="article">
 <meta property="og:title" content="UBUNTU网络配置">
 <meta property="og:url" content="https://rosinelan.github.io/2018/02/18/UBUNTU网络配置/index.html">
 <meta property="og:site_name" content="持续不断">
-<meta property="og:description" content="前两天需要装个Ubuntu，发现网络配置文件和centos不太一样，在此记录。      修改配置文件/etc/network/interfaces123456vi /etc/network/interfacesauto eth0iface eth0 inet staticaddress 192.168.0.1netmask 255.255.255.0gateway 192.168.0.1 添加D">
-<meta property="og:updated_time" content="2018-02-18T13:44:31.833Z">
+<meta property="og:description" content="前两天需要装个Ubuntu，发现网络配置文件和centos不太一样，在此记录。      修改配置文件/etc/network/interfaces123456vi /etc/network/interfacesauto eth0iface eth0 inet staticaddress 192.168.0.1netmask 255.255.255.0gateway 192.168.0.1">
+<meta property="og:updated_time" content="2018-03-23T00:52:43.808Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UBUNTU网络配置">
-<meta name="twitter:description" content="前两天需要装个Ubuntu，发现网络配置文件和centos不太一样，在此记录。      修改配置文件/etc/network/interfaces123456vi /etc/network/interfacesauto eth0iface eth0 inet staticaddress 192.168.0.1netmask 255.255.255.0gateway 192.168.0.1 添加D">
+<meta name="twitter:description" content="前两天需要装个Ubuntu，发现网络配置文件和centos不太一样，在此记录。      修改配置文件/etc/network/interfaces123456vi /etc/network/interfacesauto eth0iface eth0 inet staticaddress 192.168.0.1netmask 255.255.255.0gateway 192.168.0.1">
   
     <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
   
@@ -42,7 +42,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -102,6 +102,7 @@
         
         <p>前两天需要装个Ubuntu，发现网络配置文件和centos不太一样，在此记录。     </p>
 <h2 id="修改配置文件-etc-network-interfaces"><a href="#修改配置文件-etc-network-interfaces" class="headerlink" title="修改配置文件/etc/network/interfaces"></a>修改配置文件/etc/network/interfaces</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/network/interfaces</span><br><span class="line">auto eth0</span><br><span class="line">iface eth0 inet static</span><br><span class="line">address 192.168.0.1</span><br><span class="line">netmask 255.255.255.0</span><br><span class="line">gateway 192.168.0.1</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h2 id="添加DNS"><a href="#添加DNS" class="headerlink" title="添加DNS"></a>添加DNS</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/resolv.conf</span><br><span class="line">nameserver 202.99.166.4</span><br></pre></td></tr></table></figure>
 <h2 id="重启网络"><a href="#重启网络" class="headerlink" title="重启网络"></a>重启网络</h2><h3 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h3><p>重启网络服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/networking restart</span><br></pre></td></tr></table></figure></p>
 <h3 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h3><p>重启指定网卡，不影响其他网卡正常提供服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ifdown eth0</span><br><span class="line">$ifup eth0</span><br></pre></td></tr></table></figure></p>
@@ -111,7 +112,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/02/18/UBUNTU网络配置/" data-id="cje111qjm000gh4q6sfpiys34" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/02/18/UBUNTU网络配置/" data-id="cjf7zoijk0026qwq6owa5wjrn" class="article-share-link">Share</a>
       
       
       
@@ -123,7 +124,7 @@
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>推荐文章</h2>
+    <h2>Recommended Posts</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =4
@@ -166,7 +167,7 @@
 <nav id="article-nav">
   
     <a href="/2018/02/18/USR-BIN-XTERM-NO-SUCH-FILE-OR-DIRECTORY错误解决一例/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
+      <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
           USR/BIN/XTERM:NO SUCH FILE OR DIRECTORY错误解决一例
@@ -176,7 +177,7 @@
   
   
     <a href="/2018/02/18/WINDOWS下FORFILES命令使用方法/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">WINDOWS下FORFILES命令使用方法</div>
     </a>
   
@@ -206,7 +207,7 @@
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">文章目录</strong>
+        <strong class="toc-title">Content</strong>
         <div class="toc-widget-list">
               <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#修改配置文件-etc-network-interfaces"><span class="toc-number">1.</span> <span class="toc-text">修改配置文件/etc/network/interfaces</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加DNS"><span class="toc-number">2.</span> <span class="toc-text">添加DNS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#重启网络"><span class="toc-number">3.</span> <span class="toc-text">重启网络</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#方法1"><span class="toc-number">3.1.</span> <span class="toc-text">方法1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法2"><span class="toc-number">3.2.</span> <span class="toc-text">方法2</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置代理"><span class="toc-number">4.</span> <span class="toc-text">设置代理</span></a></li></ol>
           </div>
@@ -234,10 +235,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-      联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
+      Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>

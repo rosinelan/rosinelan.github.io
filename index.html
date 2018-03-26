@@ -40,7 +40,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -71,6 +71,67 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-WINDOWS下的MKLINK和JUNCTION" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/23/WINDOWS下的MKLINK和JUNCTION/" class="article-date">
+  <time datetime="2018-03-23T01:01:25.000Z" itemprop="datePublished">2018-03-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/system/">系统管理</a>►<a class="article-category-link" href="/categories/system/WINDOWS/">WINDOWS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/23/WINDOWS下的MKLINK和JUNCTION/">WINDOWS下的MKLINK和JUNCTION</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <p>有台windows服务器C盘空间不足，占磁盘空间较大的文件要挪到其他磁盘又会涉及到应用程序的修改等问题，怎么破？<br>LINUX下使用’ln -s’创建软链接是再寻常不过的操作，那么windows下是否也可以进行相应的操作呢？<br>答案是肯定的。<br>可以实现相关功能的工具有2个，分别是mklink和function，均只能用于windwos server 2008+，其中mklink为系统自带，junction需自行下载。      </p>
+<h3 id="mklink"><a href="#mklink" class="headerlink" title="mklink"></a>mklink</h3><h4 id="基本语法格式"><a href="#基本语法格式" class="headerlink" title="基本语法格式"></a>基本语法格式</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">MKLINK [[/D] | [/H] | [/J]] Link Target</span><br><span class="line"></span><br><span class="line">        /D      创建目录符号链接。默认为文件</span><br><span class="line">                符号链接。</span><br><span class="line">        /H      创建硬链接而非符号链接。</span><br><span class="line">        /J      创建目录联接。</span><br><span class="line">        Link    指定新的符号链接名称。</span><br><span class="line">        Target  指定新链接引用的路径</span><br><span class="line">                (相对或绝对)。</span><br></pre></td></tr></table></figure>
+<h4 id="参数解释"><a href="#参数解释" class="headerlink" title="参数解释"></a>参数解释</h4><p>/D是符号链接，/J是目录联接。<br>创建的链接名称都是类似快捷方式的文件夹；都不会占用空间；访问该名称相当于访问指定的目标文件。<br>区别在于符号链接的Target只能使用绝对路径，目录联接的Target可以使用相对路径。<br>/H是硬链接，需要占用空间；删除原文件或新建文件中的一个不会影响文件。<br>针对文件创建符号链接，不添加任何参数。<br>/H创建硬链接只能针对文件，不能对文件夹。<br>/D和/J创建符号链接或目录链接只能针对文件夹，不能对文件。   </p>
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><ol>
+<li>为C:\tlab\test\111.txt文件创建符号链接<br><code>mklink C:\tlab\111.txt C:\tlab\test\111.txt</code><br><img src="http://cdn.rosinelan.com/blog/system/mklink-file-symlink.png" alt="文件创建符号链接" title="文件创建符号链接">   </li>
+<li>为C:\tlab\test目录创建符号链接<br><code>mklink /d D:\test C:\tlab\test</code><br><img src="http://cdn.rosinelan.com/blog/system/mklink-folder-symlink.png" alt="目录创建符号链接" title="目录创建符号链接">   </li>
+<li>为C:\tlab\test目录创建目录链接<br><code>mklink /j D:\test C:\tlab\test</code><br><img src="http://cdn.rosinelan.com/blog/system/mklink-folder-j.png" alt="目录创建目录链接" title="目录创建目录链接"></li>
+<li>为D:\Dns\DNSTEST\openFtp.txt文件创建硬链接<br><code>mklink /h D:\Dns\1.txt D:\Dns\DNSTEST\openFtp.txt</code><br><img src="http://cdn.rosinelan.com/blog/system/mklink-file-h.png" alt="文件创建硬链接" title="文件创建硬链接"></li>
+<li>相对路径创建<br>命令行切换至C:\talb，该文件夹下有test文件夹，分别利用相对路径进行下面操作<br><code>mklink /d C:\Users\xiaohuihui\test test</code><br>提示为创建成功，当点击创建的符号链接访问时出现错误提示<br><img src="http://cdn.rosinelan.com/blog/system/mklink-relative-d.png" alt="相对路径创建符号链接" title="相对路径创建符号链接"><br><code>mklink /j C:\Users\xiaohuihui\test test</code><br>提示创建成功，当点击创建的目录链接访问时正常<br><img src="http://cdn.rosinelan.com/blog/system/mklink-relative-j.png" alt="相对路径创建目录链接" title="相对路径创建目录链接">   <h3 id="junction"><a href="#junction" class="headerlink" title="junction"></a>junction</h3>Junction用于NTFS文件系统，其作用类似mklink /j参数。<br>junction连接创建只能针对文件夹，不能针对文件   <h4 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h4>下载junction文件后放到C:\WINDOWS目录下，直接在命令行使用。   <h4 id="语法格式"><a href="#语法格式" class="headerlink" title="语法格式"></a>语法格式</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">The first usage is for displaying reparse point information, the</span><br><span class="line">second usage is for creating a junction point, and the last for</span><br><span class="line">deleting a junction point:</span><br><span class="line">usage: junction64 [-s] [-q] &lt;file or directory&gt;</span><br><span class="line">       -q     Don&apos;t print error messages (quiet)</span><br><span class="line">       -s     Recurse subdirectories</span><br><span class="line"></span><br><span class="line">usage: junction64 &lt;junction directory&gt; &lt;junction target&gt;</span><br><span class="line">       example: junction d:\link c:\windows</span><br><span class="line"></span><br><span class="line">usage: junction64 -d &lt;junction directory&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h4><ol>
+<li>创建junction连接，将C:\tlab\test目录连接至D:\test<br><code>junction64 D:\test C:\tlab\test</code></li>
+<li>删除D:\test的junction连接<br><code>junction64 -d D:\test</code><h4 id="下载地址及官方文档"><a href="#下载地址及官方文档" class="headerlink" title="下载地址及官方文档"></a>下载地址及官方文档</h4><a href="https://docs.microsoft.com/zh-cn/sysinternals/downloads/junction" target="_blank" rel="noopener">Junction v1.07</a></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/03/23/WINDOWS下的MKLINK和JUNCTION/" data-id="cjf7zoihy0007qwq6wuas2cs2" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JUNCTION/">JUNCTION</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MKLINK/">MKLINK</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WINODWS/">WINODWS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
   
     <article id="post-CENTOS7-2双网卡绑定脚本" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -107,7 +168,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/02/24/CENTOS7-2双网卡绑定脚本/" data-id="cje111qi50000h4q6e0le8tyh" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/02/24/CENTOS7-2双网卡绑定脚本/" data-id="cjf7zoihx0006qwq6g7ymy0hw" class="article-share-link">Share</a>
       
       
       
@@ -158,7 +219,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/02/18/REDHAT-6-5双网卡绑定步骤/" data-id="cje111qje000bh4q6lo6wiee1" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/02/18/REDHAT-6-5双网卡绑定步骤/" data-id="cjf7zoig90000qwq68dbqiv03" class="article-share-link">Share</a>
       
       
       
@@ -209,7 +270,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/02/18/USR-BIN-XTERM-NO-SUCH-FILE-OR-DIRECTORY错误解决一例/" data-id="cje111qjk000fh4q6oz0r0vl0" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/02/18/USR-BIN-XTERM-NO-SUCH-FILE-OR-DIRECTORY错误解决一例/" data-id="cjf7zoihv0005qwq68lvtcod5" class="article-share-link">Share</a>
       
       
       
@@ -249,20 +310,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- Table of Contents -->
-        
         <p>前两天需要装个Ubuntu，发现网络配置文件和centos不太一样，在此记录。     </p>
 <h2 id="修改配置文件-etc-network-interfaces"><a href="#修改配置文件-etc-network-interfaces" class="headerlink" title="修改配置文件/etc/network/interfaces"></a>修改配置文件/etc/network/interfaces</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/network/interfaces</span><br><span class="line">auto eth0</span><br><span class="line">iface eth0 inet static</span><br><span class="line">address 192.168.0.1</span><br><span class="line">netmask 255.255.255.0</span><br><span class="line">gateway 192.168.0.1</span><br></pre></td></tr></table></figure>
-<h2 id="添加DNS"><a href="#添加DNS" class="headerlink" title="添加DNS"></a>添加DNS</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/resolv.conf</span><br><span class="line">nameserver 202.99.166.4</span><br></pre></td></tr></table></figure>
-<h2 id="重启网络"><a href="#重启网络" class="headerlink" title="重启网络"></a>重启网络</h2><h3 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h3><p>重启网络服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/networking restart</span><br></pre></td></tr></table></figure></p>
-<h3 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h3><p>重启指定网卡，不影响其他网卡正常提供服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ifdown eth0</span><br><span class="line">$ifup eth0</span><br></pre></td></tr></table></figure></p>
-<h2 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vi /home/username/.bash_profile</span><br><span class="line">export http_proxy =</span><br><span class="line">export https_poxy =</span><br><span class="line">export ftp_proxy =</span><br><span class="line">export no_proxy =</span><br></pre></td></tr></table></figure>
-<p>使profile中的新增变量生效<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source .bash_profile</span><br></pre></td></tr></table></figure></p>
-
+        
+          <p class="article-more-link">
+            <a href="/2018/02/18/UBUNTU网络配置/#more">继续阅读全文 »</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/02/18/UBUNTU网络配置/" data-id="cje111qjm000gh4q6sfpiys34" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/02/18/UBUNTU网络配置/" data-id="cjf7zoijk0026qwq6owa5wjrn" class="article-share-link">Share</a>
       
       
       
@@ -313,7 +371,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/02/18/WINDOWS下FORFILES命令使用方法/" data-id="cje111qjo000ih4q6oql5n2a8" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/02/18/WINDOWS下FORFILES命令使用方法/" data-id="cjf7zoiiy001rqwq6ggs5iuw8" class="article-share-link">Share</a>
       
       
       
@@ -364,7 +422,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/02/13/LINUX下密钥认证免密SSH登录服务器/" data-id="cje111qjh000dh4q6fjamhfqn" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/02/13/LINUX下密钥认证免密SSH登录服务器/" data-id="cjf7zoihq0002qwq6ajnlgi7f" class="article-share-link">Share</a>
       
       
       
@@ -415,7 +473,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/02/12/WINDOWS下XSHELL密钥登录LINUX服务器/" data-id="cje111qju000rh4q61zpbdi74" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/02/12/WINDOWS下XSHELL密钥登录LINUX服务器/" data-id="cjf7zoij1001sqwq666306i7r" class="article-share-link">Share</a>
       
       
       
@@ -457,7 +515,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/02/11/您好，Hexo/" data-id="cje111qjs000nh4q6d8jba7ks" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/02/11/您好，Hexo/" data-id="cjf7zoii2000aqwq68pk5tufy" class="article-share-link">Share</a>
       
       
       
@@ -506,7 +564,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/02/11/hello-world/" data-id="cje111qjq000lh4q6cm1eoaby" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/02/11/hello-world/" data-id="cjf7zoii3000bqwq6m5fg15p0" class="article-share-link">Share</a>
       
       
       
@@ -527,9 +585,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title categories">分类</h3>
+    <h3 class="widget-title categories">Categories</h3>
     <div class="widget" id="categories">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/system/">系统管理</a><span class="category-list-count">7</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/system/LINUX/">LINUX</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/system/WINDOWS/">WINDOWS</a><span class="category-list-count">1</span></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/system/">系统管理</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/system/LINUX/">LINUX</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/system/WINDOWS/">WINDOWS</a><span class="category-list-count">2</span></li></ul></li></ul>
     </div>
   </div>
 
@@ -537,18 +595,22 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title tagcloud">标签云</h3>
+    <h3 class="widget-title tagcloud">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/BONDING/" style="font-size: 14px;">BONDING</a> <a href="/tags/CENTOS7/" style="font-size: 14px;">CENTOS7</a> <a href="/tags/FORFILES/" style="font-size: 14px;">FORFILES</a> <a href="/tags/LINUX/" style="font-size: 25px;">LINUX</a> <a href="/tags/SSH/" style="font-size: 14px;">SSH</a> <a href="/tags/UBUNTU/" style="font-size: 14px;">UBUNTU</a> <a href="/tags/WINDOWS/" style="font-size: 19.5px;">WINDOWS</a> <a href="/tags/XSHELL/" style="font-size: 14px;">XSHELL</a> <a href="/tags/XTERM/" style="font-size: 14px;">XTERM</a> <a href="/tags/bonding/" style="font-size: 14px;">bonding</a> <a href="/tags/libXaw/" style="font-size: 14px;">libXaw</a> <a href="/tags/libXpm/" style="font-size: 14px;">libXpm</a> <a href="/tags/ssh-copy-id/" style="font-size: 14px;">ssh-copy-id</a> <a href="/tags/ssh-keygen/" style="font-size: 14px;">ssh-keygen</a> <a href="/tags/双网卡/" style="font-size: 14px;">双网卡</a> <a href="/tags/多个公钥/" style="font-size: 14px;">多个公钥</a> <a href="/tags/密钥/" style="font-size: 19.5px;">密钥</a> <a href="/tags/网络/" style="font-size: 14px;">网络</a>
+      <a href="/tags/BONDING/" style="font-size: 14px;">BONDING</a> <a href="/tags/CENTOS7/" style="font-size: 14px;">CENTOS7</a> <a href="/tags/FORFILES/" style="font-size: 14px;">FORFILES</a> <a href="/tags/JUNCTION/" style="font-size: 14px;">JUNCTION</a> <a href="/tags/LINUX/" style="font-size: 25px;">LINUX</a> <a href="/tags/MKLINK/" style="font-size: 14px;">MKLINK</a> <a href="/tags/SSH/" style="font-size: 14px;">SSH</a> <a href="/tags/UBUNTU/" style="font-size: 14px;">UBUNTU</a> <a href="/tags/WINDOWS/" style="font-size: 19.5px;">WINDOWS</a> <a href="/tags/WINODWS/" style="font-size: 14px;">WINODWS</a> <a href="/tags/XSHELL/" style="font-size: 14px;">XSHELL</a> <a href="/tags/XTERM/" style="font-size: 14px;">XTERM</a> <a href="/tags/bonding/" style="font-size: 14px;">bonding</a> <a href="/tags/libXaw/" style="font-size: 14px;">libXaw</a> <a href="/tags/libXpm/" style="font-size: 14px;">libXpm</a> <a href="/tags/ssh-copy-id/" style="font-size: 14px;">ssh-copy-id</a> <a href="/tags/ssh-keygen/" style="font-size: 14px;">ssh-keygen</a> <a href="/tags/双网卡/" style="font-size: 14px;">双网卡</a> <a href="/tags/多个公钥/" style="font-size: 14px;">多个公钥</a> <a href="/tags/密钥/" style="font-size: 19.5px;">密钥</a> <a href="/tags/网络/" style="font-size: 14px;">网络</a>
     </div>
   </div>
 
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title recent-posts">最新文章</h3>
+    <h3 class="widget-title recent-posts">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/03/23/WINDOWS下的MKLINK和JUNCTION/">WINDOWS下的MKLINK和JUNCTION</a>
+          </li>
         
           <li>
             <a href="/2018/02/24/CENTOS7-2双网卡绑定脚本/">CENTOS7.2双网卡绑定脚本.md</a>
@@ -566,10 +628,6 @@
             <a href="/2018/02/18/UBUNTU网络配置/">UBUNTU网络配置</a>
           </li>
         
-          <li>
-            <a href="/2018/02/18/WINDOWS下FORFILES命令使用方法/">WINDOWS下FORFILES命令使用方法</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -577,9 +635,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title archive">归档</h3>
+    <h3 class="widget-title archive">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 
@@ -608,10 +666,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-      联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
+      Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>
