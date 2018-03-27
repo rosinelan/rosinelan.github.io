@@ -5,22 +5,22 @@
   
   <title>HBA卡WWN号查看方法 | 持续不断</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="HP-UNIX系统查询HBA卡名称ioscan -fnC fc根据查询结果，该机器有2块HBA卡，设备名称分别为/dev/td1,/dev/td2。 根据HBA卡名称查询WWW号fcmsutil /dev/XX上图分别为/dev/td1和/dev/td2设备的WWN号，注意：WWN号为标红的“N_Port Port World Wide Name”。    LINUX 系统下面是针对centos的">
+  <meta name="description" content="HP-UNIX系统查询HBA卡名称ioscan -fnC fc">
 <meta name="keywords" content="HBA,WWW,HP-UNIX,LINUX,WINDOWS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HBA卡WWN号查看方法">
 <meta property="og:url" content="https://rosinelan.github.io/2018/03/27/HBA卡WWN号查看方法/index.html">
 <meta property="og:site_name" content="持续不断">
-<meta property="og:description" content="HP-UNIX系统查询HBA卡名称ioscan -fnC fc根据查询结果，该机器有2块HBA卡，设备名称分别为/dev/td1,/dev/td2。 根据HBA卡名称查询WWW号fcmsutil /dev/XX上图分别为/dev/td1和/dev/td2设备的WWN号，注意：WWN号为标红的“N_Port Port World Wide Name”。    LINUX 系统下面是针对centos的">
+<meta property="og:description" content="HP-UNIX系统查询HBA卡名称ioscan -fnC fc">
 <meta property="og:image" content="http://cdn.rosinelan.com/blog/system/hp-fc-name.png">
 <meta property="og:image" content="http://cdn.rosinelan.com/blog/system/hp-fc-www1.png">
 <meta property="og:image" content="http://cdn.rosinelan.com/blog/system/hp-fc-www2.png">
 <meta property="og:image" content="http://cdn.rosinelan.com/blog/system/windows-fcinfo.png">
 <meta property="og:image" content="http://cdn.rosinelan.com/blog/system/windows-www.png">
-<meta property="og:updated_time" content="2018-03-27T03:34:33.171Z">
+<meta property="og:updated_time" content="2018-03-27T03:37:12.078Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HBA卡WWN号查看方法">
-<meta name="twitter:description" content="HP-UNIX系统查询HBA卡名称ioscan -fnC fc根据查询结果，该机器有2块HBA卡，设备名称分别为/dev/td1,/dev/td2。 根据HBA卡名称查询WWW号fcmsutil /dev/XX上图分别为/dev/td1和/dev/td2设备的WWN号，注意：WWN号为标红的“N_Port Port World Wide Name”。    LINUX 系统下面是针对centos的">
+<meta name="twitter:description" content="HP-UNIX系统查询HBA卡名称ioscan -fnC fc">
 <meta name="twitter:image" content="http://cdn.rosinelan.com/blog/system/hp-fc-name.png">
   
     <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
@@ -106,7 +106,7 @@
       
         <!-- Table of Contents -->
         
-        <h2 id="HP-UNIX系统"><a href="#HP-UNIX系统" class="headerlink" title="HP-UNIX系统"></a>HP-UNIX系统</h2><h3 id="查询HBA卡名称"><a href="#查询HBA卡名称" class="headerlink" title="查询HBA卡名称"></a>查询HBA卡名称</h3><p><code>ioscan -fnC fc</code><br><img src="http://cdn.rosinelan.com/blog/system/hp-fc-name.png" alt="hp-fc-name" title="hp-fc-name"><br>根据查询结果，该机器有2块HBA卡，设备名称分别为/dev/td1,/dev/td2。</p>
+        <h2 id="HP-UNIX系统"><a href="#HP-UNIX系统" class="headerlink" title="HP-UNIX系统"></a>HP-UNIX系统</h2><h3 id="查询HBA卡名称"><a href="#查询HBA卡名称" class="headerlink" title="查询HBA卡名称"></a>查询HBA卡名称</h3><p><code>ioscan -fnC fc</code><br><img src="http://cdn.rosinelan.com/blog/system/hp-fc-name.png" alt="hp-fc-name" title="hp-fc-name"><br><a id="more"></a><br>根据查询结果，该机器有2块HBA卡，设备名称分别为/dev/td1,/dev/td2。</p>
 <h3 id="根据HBA卡名称查询WWW号"><a href="#根据HBA卡名称查询WWW号" class="headerlink" title="根据HBA卡名称查询WWW号"></a>根据HBA卡名称查询WWW号</h3><p><code>fcmsutil /dev/XX</code><br><img src="http://cdn.rosinelan.com/blog/system/hp-fc-www1.png" alt="hp-fc-www1" title="hp-fc-www1"><br><img src="http://cdn.rosinelan.com/blog/system/hp-fc-www2.png" alt="hp-fc-www2" title="hp-fc-www2"><br>上图分别为/dev/td1和/dev/td2设备的WWN号，注意：WWN号为标红的“N_Port Port World Wide Name”。   </p>
 <h2 id="LINUX-系统"><a href="#LINUX-系统" class="headerlink" title="LINUX 系统"></a>LINUX 系统</h2><p>下面是针对centos的查询方法。<br><code>cat /sys/class/fc_host/host1/port_name</code><br>其中host1为HBA卡的端口号，若1台机器有多张HBA卡，需要修改对应的端口号查看<br><code>cat /sys/class/fc_host/host[1-4]/port_name</code></p>
 <h2 id="windows系统"><a href="#windows系统" class="headerlink" title="windows系统"></a>windows系统</h2><p>windows下HBA卡WWW号查询介绍2种，分别为fcinfo和脚本。<br>fcinfo查询方式适用于windows server 2003及以上版本；脚本查询仅适用于windwos server 2008及以上版本。   </p>
@@ -117,7 +117,7 @@
 <h4 id="执行脚本"><a href="#执行脚本" class="headerlink" title="执行脚本"></a>执行脚本</h4><p>切换至脚本所在目录，然后执行命令    </p>
 <pre><code>Import-Module .\Get-HBAWin.ps1
 
-Get-HBAWin -ComputerName 11.10.98.197
+Get-HBAWin -ComputerName 192.168.10.6
 </code></pre><p><img src="http://cdn.rosinelan.com/blog/system/windows-www.png" alt="windows-fc-www" title="windows-fc-www"></p>
 
       
