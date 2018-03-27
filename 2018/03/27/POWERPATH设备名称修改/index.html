@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>POWERPATH设备名称修改 | 持续不断</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="需求oracle rac集群搭建，存储使用EMC VMAX，数据库服务器为IBM X3850 X6。存储和服务器之间为4条路径，存储共划分13个LUN，需在数据库服务器安装powerpath实现多路径的聚合。备注：centos自带多路径软件multipath也可实现相同功能。    安装powerpath根据操作系统版本选择合适的powerpath版本上传至服务器；安装">
+<meta name="keywords" content="LINUX,POWERPATH,EMC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="POWERPATH设备名称修改">
+<meta property="og:url" content="https://rosinelan.github.io/2018/03/27/POWERPATH设备名称修改/index.html">
+<meta property="og:site_name" content="持续不断">
+<meta property="og:description" content="需求oracle rac集群搭建，存储使用EMC VMAX，数据库服务器为IBM X3850 X6。存储和服务器之间为4条路径，存储共划分13个LUN，需在数据库服务器安装powerpath实现多路径的聚合。备注：centos自带多路径软件multipath也可实现相同功能。    安装powerpath根据操作系统版本选择合适的powerpath版本上传至服务器；安装">
+<meta property="og:image" content="https://rosinelan.github.io/2018/03/27/POWERPATH设备名称修改/%22powermt-lun%22">
+<meta property="og:updated_time" content="2018-03-27T02:31:27.357Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="POWERPATH设备名称修改">
+<meta name="twitter:description" content="需求oracle rac集群搭建，存储使用EMC VMAX，数据库服务器为IBM X3850 X6。存储和服务器之间为4条路径，存储共划分13个LUN，需在数据库服务器安装powerpath实现多路径的聚合。备注：centos自带多路径软件multipath也可实现相同功能。    安装powerpath根据操作系统版本选择合适的powerpath版本上传至服务器；安装">
+<meta name="twitter:image" content="https://rosinelan.github.io/2018/03/27/POWERPATH设备名称修改/%22powermt-lun%22">
+  
+    <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">持续不断</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">要松懈的时候再坚持一下</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-POWERPATH设备名称修改" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/27/POWERPATH设备名称修改/" class="article-date">
+  <time datetime="2018-03-27T01:48:39.000Z" itemprop="datePublished">2018-03-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/system/">系统管理</a>►<a class="article-category-link" href="/categories/system/LINUX/">LINUX</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      POWERPATH设备名称修改
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>oracle rac集群搭建，存储使用EMC VMAX，数据库服务器为IBM X3850 X6。存储和服务器之间为4条路径，存储共划分13个LUN，需在数据库服务器安装powerpath实现多路径的聚合。<br>备注：centos自带多路径软件multipath也可实现相同功能。   </p>
+<h3 id="安装powerpath"><a href="#安装powerpath" class="headerlink" title="安装powerpath"></a>安装powerpath</h3><p>根据操作系统版本选择合适的powerpath版本上传至服务器；<br>安装<br><a id="more"></a><br><code>rpm -ivh EMCPower.LINUX-XXX.rpm</code><br>输入license激活<br><code>emcpreg -install XXXX</code>   </p>
+<h3 id="重启服务器"><a href="#重启服务器" class="headerlink" title="重启服务器"></a>重启服务器</h3><p><code>reboot</code>   </p>
+<h3 id="查看磁盘"><a href="#查看磁盘" class="headerlink" title="查看磁盘"></a>查看磁盘</h3><p><code>fdisk -l</code><br>可以看到原有磁盘之外，出现类似 Dsik /dev/emcpowerd命名的磁盘，此为聚合之后的磁盘。<br>查看LUN和设备名的对应关系<br><code>powermt display dev=all</code><br><img src="&quot;powermt-lun&quot;" alt="powermt-lun"><br>设备名emcpowera对应的lun编号为Logical device ID=0341<br>查询之后发现13个LUN同时共享给4台服务器，同一个LUN在不同服务器的设备名称不一样，和安装oracle rac集群要求不一致，需更改。   </p>
+<h3 id="修改方案"><a href="#修改方案" class="headerlink" title="修改方案"></a>修改方案</h3><ol>
+<li>统计各服务器设备名和对应的LUN ID，以其中一台服务器为基准，修改其余服务器的设备名。<br>命令示例如下<br><code>emcpadm renamepseudo -s /dev/emcpowerb -t /dev/emcpowerz</code>   </li>
+<li>以其中一台服务器为基准，导出设备名和LUN ID对应关系，然后将该文件分发至其余服务器，导入设备名和LUN ID关系文件并保存。<br>导出命令<br><code>emcpadm export_mappings -f /u01/emcpower.lun</code><br>导入命令<br><code>emcpadm import_mappings -v -f /u01/emcpower.lun</code><br>保存命令<br><code>powermt save</code>   <h3 id="修改实例"><a href="#修改实例" class="headerlink" title="修改实例"></a>修改实例</h3>由于服务器LUN划分较多，采用方案2进行修改。   </li>
+<li>以第一台服务器为基准，导出对应的文件<br><code>emcpadm export_mappings -f /u01/emcpower.lun</code>  </li>
+<li>将该文件复制至其它服务器<br><code>scp /u01/emcpower.lun root@192.168.1.6://u01/emcpower.lun</code>   </li>
+<li>登录其它服务器，导入对应文件<br><code>emcpadm import_mappings -v -f /u01/emcpower.lun</code>   </li>
+<li>保存此次更改<br><code>powermt save</code>   </li>
+<li>重启服务器，确认更改是否生效<br><code>reboot</code><br>至此修改完成。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/03/27/POWERPATH设备名称修改/" data-id="cjf91plc800011sq6tm0j3xz2" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/EMC/">EMC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LINUX/">LINUX</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/POWERPATH/">POWERPATH</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>Recommended Posts</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/03/23/WINDOWS下的MKLINK和JUNCTION/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">WINDOWS下的MKLINK和JUNCTION</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">Content</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#需求"><span class="toc-number">1.</span> <span class="toc-text">需求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装powerpath"><span class="toc-number">2.</span> <span class="toc-text">安装powerpath</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重启服务器"><span class="toc-number">3.</span> <span class="toc-text">重启服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看磁盘"><span class="toc-number">4.</span> <span class="toc-text">查看磁盘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改方案"><span class="toc-number">5.</span> <span class="toc-text">修改方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改实例"><span class="toc-number">6.</span> <span class="toc-text">修改实例</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+      Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>
