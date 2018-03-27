@@ -40,7 +40,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -71,6 +71,65 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-HBA卡WWN号查看方法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/27/HBA卡WWN号查看方法/" class="article-date">
+  <time datetime="2018-03-27T03:07:43.000Z" itemprop="datePublished">2018-03-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/system/">系统管理</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/27/HBA卡WWN号查看方法/">HBA卡WWN号查看方法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="HP-UNIX系统"><a href="#HP-UNIX系统" class="headerlink" title="HP-UNIX系统"></a>HP-UNIX系统</h2><h3 id="查询HBA卡名称"><a href="#查询HBA卡名称" class="headerlink" title="查询HBA卡名称"></a>查询HBA卡名称</h3><p><code>ioscan -fnC fc</code><br><img src="http://cdn.rosinelan.com/blog/system/hp-fc-name.png" alt="hp-fc-name" title="hp-fc-name"><br>根据查询结果，该机器有2块HBA卡，设备名称分别为/dev/td1,/dev/td2。</p>
+<h3 id="根据HBA卡名称查询WWW号"><a href="#根据HBA卡名称查询WWW号" class="headerlink" title="根据HBA卡名称查询WWW号"></a>根据HBA卡名称查询WWW号</h3><p><code>fcmsutil /dev/XX</code><br><img src="http://cdn.rosinelan.com/blog/system/hp-fc-www1.png" alt="hp-fc-www1" title="hp-fc-www1"><br><img src="http://cdn.rosinelan.com/blog/system/hp-fc-www2.png" alt="hp-fc-www2" title="hp-fc-www2"><br>上图分别为/dev/td1和/dev/td2设备的WWN号，注意：WWN号为标红的“N_Port Port World Wide Name”。   </p>
+<h2 id="LINUX-系统"><a href="#LINUX-系统" class="headerlink" title="LINUX 系统"></a>LINUX 系统</h2><p>下面是针对centos的查询方法。<br><code>cat /sys/class/fc_host/host1/port_name</code><br>其中host1为HBA卡的端口号，若1台机器有多张HBA卡，需要修改对应的端口号查看<br><code>cat /sys/class/fc_host/host[1-4]/port_name</code></p>
+<h2 id="windows系统"><a href="#windows系统" class="headerlink" title="windows系统"></a>windows系统</h2><p>windows下HBA卡WWW号查询介绍2种，分别为fcinfo和脚本。<br>fcinfo查询方式适用于windows server 2003及以上版本；脚本查询仅适用于windwos server 2008及以上版本。   </p>
+<h3 id="fcinfo查询"><a href="#fcinfo查询" class="headerlink" title="fcinfo查询"></a>fcinfo查询</h3><h4 id="下载fcinfo工具"><a href="#下载fcinfo工具" class="headerlink" title="下载fcinfo工具"></a>下载fcinfo工具</h4><p>根据操作系统版本选择对应版本的工具下载并安装。<br><a href="https://www.microsoft.com/en-us/download/details.aspx?id=17530" target="_blank" rel="noopener">fcinfo下载</a></p>
+<h4 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h4><p>进入命令行，然后切换至c:\windows\syswow64，输入<code>fcinfo</code>查询。<br><img src="http://cdn.rosinelan.com/blog/system/windows-fcinfo.png" alt="windows-fcinfo" title="windows-fcinfo"></p>
+<h3 id="脚本查询"><a href="#脚本查询" class="headerlink" title="脚本查询"></a>脚本查询</h3><h4 id="下载脚本"><a href="#下载脚本" class="headerlink" title="下载脚本"></a>下载脚本</h4><p>微软TechNet脚本中心提供一个powershell查询脚本，<a href="https://gallery.technet.microsoft.com/scriptcenter/Find-HBA-and-WWPN-53121140" target="_blank" rel="noopener">点击下载</a>。<br>下载之后复制脚本至c:\windows\temp(可自己决定目录)。<br>注意：之后所有操作均在windows powershell中执行。   </p>
+<h4 id="修改powershell设置"><a href="#修改powershell设置" class="headerlink" title="修改powershell设置"></a>修改powershell设置</h4><p>windowpowershell默认执行策略(ExecutionPolicy)为Restricted，为顺利执行脚本，此处修改为RemoteSigned，否则执行脚本会出现“无法加载文件XXXX，因为在此系统中禁止执行脚本”的报错。<br>获取当前默认执行策略<br><code>get-ExecutionPolicy</code><br>设置执行策略为RemoteSigned<br><code>set-ExecutionPolicy RemoteSigned</code>   </p>
+<h4 id="执行脚本"><a href="#执行脚本" class="headerlink" title="执行脚本"></a>执行脚本</h4><p>切换至脚本所在目录，然后执行命令    </p>
+<pre><code>Import-Module .\Get-HBAWin.ps1
+
+Get-HBAWin -ComputerName 11.10.98.197
+</code></pre><p><img src="http://cdn.rosinelan.com/blog/system/windows-www.png" alt="windows-fc-www" title="windows-fc-www"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/03/27/HBA卡WWN号查看方法/" data-id="cjf93y6m3000028q6bnta7pe7" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HBA/">HBA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HP-UNIX/">HP-UNIX</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LINUX/">LINUX</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WINDOWS/">WINDOWS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WWW/">WWW</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
   
     <article id="post-POWERPATH设备名称修改" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -108,7 +167,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/03/27/POWERPATH设备名称修改/" data-id="cjf91plc800011sq6tm0j3xz2" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/03/27/POWERPATH设备名称修改/" data-id="cjf93y6mc000128q6zka8k7hx" class="article-share-link">Share</a>
       
       
       
@@ -157,7 +216,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/03/23/WINDOWS下的MKLINK和JUNCTION/" data-id="cjf91plcp000d1sq6zg9emy40" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/03/23/WINDOWS下的MKLINK和JUNCTION/" data-id="cjf93y6mt000a28q61okijnzh" class="article-share-link">Share</a>
       
       
       
@@ -206,7 +265,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/02/24/CENTOS7-2双网卡绑定脚本/" data-id="cjf91plc200001sq6jhlzz2un" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/02/24/CENTOS7-2双网卡绑定脚本/" data-id="cjf93y6mk000528q62itmq8pg" class="article-share-link">Share</a>
       
       
       
@@ -257,7 +316,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/02/18/REDHAT-6-5双网卡绑定步骤/" data-id="cjf91plcg00061sq6zlfr1ifn" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/02/18/REDHAT-6-5双网卡绑定步骤/" data-id="cjf93y6mm000628q6013kgixr" class="article-share-link">Share</a>
       
       
       
@@ -308,7 +367,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/02/18/USR-BIN-XTERM-NO-SUCH-FILE-OR-DIRECTORY错误解决一例/" data-id="cjf91plcl00091sq6v5cpru31" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/02/18/USR-BIN-XTERM-NO-SUCH-FILE-OR-DIRECTORY错误解决一例/" data-id="cjf93y6mi000428q6ioo4v4g8" class="article-share-link">Share</a>
       
       
       
@@ -358,7 +417,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/02/18/UBUNTU网络配置/" data-id="cjf91plce00051sq6vf2wcgd9" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/02/18/UBUNTU网络配置/" data-id="cjf93y6mr000928q6fj9pth3y" class="article-share-link">Share</a>
       
       
       
@@ -409,7 +468,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/02/18/WINDOWS下FORFILES命令使用方法/" data-id="cjf91pldw002f1sq6c0m4z72b" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/02/18/WINDOWS下FORFILES命令使用方法/" data-id="cjf93y6mx000e28q6908br5yb" class="article-share-link">Share</a>
       
       
       
@@ -460,7 +519,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/02/13/LINUX下密钥认证免密SSH登录服务器/" data-id="cjf91plcd00041sq69hnccfr1" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/02/13/LINUX下密钥认证免密SSH登录服务器/" data-id="cjf93y6n2000f28q60gxhr107" class="article-share-link">Share</a>
       
       
       
@@ -511,7 +570,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/02/12/WINDOWS下XSHELL密钥登录LINUX服务器/" data-id="cjf91plcm000a1sq6h6cuujcy" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/02/12/WINDOWS下XSHELL密钥登录LINUX服务器/" data-id="cjf93y6n6000i28q6mfkxpg2l" class="article-share-link">Share</a>
       
       
       
@@ -525,50 +584,10 @@
 
 
   
-    <article id="post-您好，Hexo" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/02/11/您好，Hexo/" class="article-date">
-  <time datetime="2018-02-11T08:16:28.000Z" itemprop="datePublished">2018-02-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/11/您好，Hexo/">您好，Hexo</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/02/11/您好，Hexo/" data-id="cjf91pldy002h1sq64kjm88dv" class="article-share-link">分享</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
 
 
   <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页&raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next&raquo;</a>
   </nav>
 </section>
            
@@ -578,9 +597,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title categories">分类</h3>
+    <h3 class="widget-title categories">Categories</h3>
     <div class="widget" id="categories">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/system/">系统管理</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/system/LINUX/">LINUX</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/system/WINDOWS/">WINDOWS</a><span class="category-list-count">2</span></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/system/">系统管理</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/system/LINUX/">LINUX</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/system/WINDOWS/">WINDOWS</a><span class="category-list-count">2</span></li></ul></li></ul>
     </div>
   </div>
 
@@ -588,18 +607,22 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title tagcloud">标签云</h3>
+    <h3 class="widget-title tagcloud">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/BONDING/" style="font-size: 14px;">BONDING</a> <a href="/tags/CENTOS7/" style="font-size: 14px;">CENTOS7</a> <a href="/tags/EMC/" style="font-size: 14px;">EMC</a> <a href="/tags/FORFILES/" style="font-size: 14px;">FORFILES</a> <a href="/tags/JUNCTION/" style="font-size: 14px;">JUNCTION</a> <a href="/tags/LINUX/" style="font-size: 25px;">LINUX</a> <a href="/tags/MKLINK/" style="font-size: 14px;">MKLINK</a> <a href="/tags/POWERPATH/" style="font-size: 14px;">POWERPATH</a> <a href="/tags/SSH/" style="font-size: 14px;">SSH</a> <a href="/tags/UBUNTU/" style="font-size: 14px;">UBUNTU</a> <a href="/tags/WINDOWS/" style="font-size: 19.5px;">WINDOWS</a> <a href="/tags/WINODWS/" style="font-size: 14px;">WINODWS</a> <a href="/tags/XSHELL/" style="font-size: 14px;">XSHELL</a> <a href="/tags/XTERM/" style="font-size: 14px;">XTERM</a> <a href="/tags/bonding/" style="font-size: 14px;">bonding</a> <a href="/tags/libXaw/" style="font-size: 14px;">libXaw</a> <a href="/tags/libXpm/" style="font-size: 14px;">libXpm</a> <a href="/tags/ssh-copy-id/" style="font-size: 14px;">ssh-copy-id</a> <a href="/tags/ssh-keygen/" style="font-size: 14px;">ssh-keygen</a> <a href="/tags/双网卡/" style="font-size: 14px;">双网卡</a> <a href="/tags/多个公钥/" style="font-size: 14px;">多个公钥</a> <a href="/tags/密钥/" style="font-size: 19.5px;">密钥</a> <a href="/tags/网络/" style="font-size: 14px;">网络</a>
+      <a href="/tags/BONDING/" style="font-size: 14px;">BONDING</a> <a href="/tags/CENTOS7/" style="font-size: 14px;">CENTOS7</a> <a href="/tags/EMC/" style="font-size: 14px;">EMC</a> <a href="/tags/FORFILES/" style="font-size: 14px;">FORFILES</a> <a href="/tags/HBA/" style="font-size: 14px;">HBA</a> <a href="/tags/HP-UNIX/" style="font-size: 14px;">HP-UNIX</a> <a href="/tags/JUNCTION/" style="font-size: 14px;">JUNCTION</a> <a href="/tags/LINUX/" style="font-size: 25px;">LINUX</a> <a href="/tags/MKLINK/" style="font-size: 14px;">MKLINK</a> <a href="/tags/POWERPATH/" style="font-size: 14px;">POWERPATH</a> <a href="/tags/SSH/" style="font-size: 14px;">SSH</a> <a href="/tags/UBUNTU/" style="font-size: 14px;">UBUNTU</a> <a href="/tags/WINDOWS/" style="font-size: 21.33px;">WINDOWS</a> <a href="/tags/WINODWS/" style="font-size: 14px;">WINODWS</a> <a href="/tags/WWW/" style="font-size: 14px;">WWW</a> <a href="/tags/XSHELL/" style="font-size: 14px;">XSHELL</a> <a href="/tags/XTERM/" style="font-size: 14px;">XTERM</a> <a href="/tags/bonding/" style="font-size: 14px;">bonding</a> <a href="/tags/libXaw/" style="font-size: 14px;">libXaw</a> <a href="/tags/libXpm/" style="font-size: 14px;">libXpm</a> <a href="/tags/ssh-copy-id/" style="font-size: 14px;">ssh-copy-id</a> <a href="/tags/ssh-keygen/" style="font-size: 14px;">ssh-keygen</a> <a href="/tags/双网卡/" style="font-size: 14px;">双网卡</a> <a href="/tags/多个公钥/" style="font-size: 14px;">多个公钥</a> <a href="/tags/密钥/" style="font-size: 17.67px;">密钥</a> <a href="/tags/网络/" style="font-size: 14px;">网络</a>
     </div>
   </div>
 
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title recent-posts">最新文章</h3>
+    <h3 class="widget-title recent-posts">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/03/27/HBA卡WWN号查看方法/">HBA卡WWN号查看方法</a>
+          </li>
         
           <li>
             <a href="/2018/03/27/POWERPATH设备名称修改/">POWERPATH设备名称修改</a>
@@ -617,10 +640,6 @@
             <a href="/2018/02/18/REDHAT-6-5双网卡绑定步骤/">REDHAT 6.5双网卡绑定步骤</a>
           </li>
         
-          <li>
-            <a href="/2018/02/18/USR-BIN-XTERM-NO-SUCH-FILE-OR-DIRECTORY错误解决一例/">USR/BIN/XTERM:NO SUCH FILE OR DIRECTORY错误解决一例</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -628,9 +647,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title archive">归档</h3>
+    <h3 class="widget-title archive">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 
@@ -659,10 +678,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-      联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
+      Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>

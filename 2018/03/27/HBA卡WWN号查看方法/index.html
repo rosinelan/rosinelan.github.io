@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>HBA卡WWN号查看方法 | 持续不断</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="HP-UNIX系统查询HBA卡名称ioscan -fnC fc根据查询结果，该机器有2块HBA卡，设备名称分别为/dev/td1,/dev/td2。 根据HBA卡名称查询WWW号fcmsutil /dev/XX上图分别为/dev/td1和/dev/td2设备的WWN号，注意：WWN号为标红的“N_Port Port World Wide Name”。    LINUX 系统下面是针对centos的">
+<meta name="keywords" content="HBA,WWW,HP-UNIX,LINUX,WINDOWS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HBA卡WWN号查看方法">
+<meta property="og:url" content="https://rosinelan.github.io/2018/03/27/HBA卡WWN号查看方法/index.html">
+<meta property="og:site_name" content="持续不断">
+<meta property="og:description" content="HP-UNIX系统查询HBA卡名称ioscan -fnC fc根据查询结果，该机器有2块HBA卡，设备名称分别为/dev/td1,/dev/td2。 根据HBA卡名称查询WWW号fcmsutil /dev/XX上图分别为/dev/td1和/dev/td2设备的WWN号，注意：WWN号为标红的“N_Port Port World Wide Name”。    LINUX 系统下面是针对centos的">
+<meta property="og:image" content="http://cdn.rosinelan.com/blog/system/hp-fc-name.png">
+<meta property="og:image" content="http://cdn.rosinelan.com/blog/system/hp-fc-www1.png">
+<meta property="og:image" content="http://cdn.rosinelan.com/blog/system/hp-fc-www2.png">
+<meta property="og:image" content="http://cdn.rosinelan.com/blog/system/windows-fcinfo.png">
+<meta property="og:image" content="http://cdn.rosinelan.com/blog/system/windows-www.png">
+<meta property="og:updated_time" content="2018-03-27T03:34:33.171Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HBA卡WWN号查看方法">
+<meta name="twitter:description" content="HP-UNIX系统查询HBA卡名称ioscan -fnC fc根据查询结果，该机器有2块HBA卡，设备名称分别为/dev/td1,/dev/td2。 根据HBA卡名称查询WWW号fcmsutil /dev/XX上图分别为/dev/td1和/dev/td2设备的WWN号，注意：WWN号为标红的“N_Port Port World Wide Name”。    LINUX 系统下面是针对centos的">
+<meta name="twitter:image" content="http://cdn.rosinelan.com/blog/system/hp-fc-name.png">
+  
+    <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">持续不断</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">要松懈的时候再坚持一下</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-HBA卡WWN号查看方法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/27/HBA卡WWN号查看方法/" class="article-date">
+  <time datetime="2018-03-27T03:07:43.000Z" itemprop="datePublished">2018-03-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/system/">系统管理</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      HBA卡WWN号查看方法
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="HP-UNIX系统"><a href="#HP-UNIX系统" class="headerlink" title="HP-UNIX系统"></a>HP-UNIX系统</h2><h3 id="查询HBA卡名称"><a href="#查询HBA卡名称" class="headerlink" title="查询HBA卡名称"></a>查询HBA卡名称</h3><p><code>ioscan -fnC fc</code><br><img src="http://cdn.rosinelan.com/blog/system/hp-fc-name.png" alt="hp-fc-name" title="hp-fc-name"><br>根据查询结果，该机器有2块HBA卡，设备名称分别为/dev/td1,/dev/td2。</p>
+<h3 id="根据HBA卡名称查询WWW号"><a href="#根据HBA卡名称查询WWW号" class="headerlink" title="根据HBA卡名称查询WWW号"></a>根据HBA卡名称查询WWW号</h3><p><code>fcmsutil /dev/XX</code><br><img src="http://cdn.rosinelan.com/blog/system/hp-fc-www1.png" alt="hp-fc-www1" title="hp-fc-www1"><br><img src="http://cdn.rosinelan.com/blog/system/hp-fc-www2.png" alt="hp-fc-www2" title="hp-fc-www2"><br>上图分别为/dev/td1和/dev/td2设备的WWN号，注意：WWN号为标红的“N_Port Port World Wide Name”。   </p>
+<h2 id="LINUX-系统"><a href="#LINUX-系统" class="headerlink" title="LINUX 系统"></a>LINUX 系统</h2><p>下面是针对centos的查询方法。<br><code>cat /sys/class/fc_host/host1/port_name</code><br>其中host1为HBA卡的端口号，若1台机器有多张HBA卡，需要修改对应的端口号查看<br><code>cat /sys/class/fc_host/host[1-4]/port_name</code></p>
+<h2 id="windows系统"><a href="#windows系统" class="headerlink" title="windows系统"></a>windows系统</h2><p>windows下HBA卡WWW号查询介绍2种，分别为fcinfo和脚本。<br>fcinfo查询方式适用于windows server 2003及以上版本；脚本查询仅适用于windwos server 2008及以上版本。   </p>
+<h3 id="fcinfo查询"><a href="#fcinfo查询" class="headerlink" title="fcinfo查询"></a>fcinfo查询</h3><h4 id="下载fcinfo工具"><a href="#下载fcinfo工具" class="headerlink" title="下载fcinfo工具"></a>下载fcinfo工具</h4><p>根据操作系统版本选择对应版本的工具下载并安装。<br><a href="https://www.microsoft.com/en-us/download/details.aspx?id=17530" target="_blank" rel="noopener">fcinfo下载</a></p>
+<h4 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h4><p>进入命令行，然后切换至c:\windows\syswow64，输入<code>fcinfo</code>查询。<br><img src="http://cdn.rosinelan.com/blog/system/windows-fcinfo.png" alt="windows-fcinfo" title="windows-fcinfo"></p>
+<h3 id="脚本查询"><a href="#脚本查询" class="headerlink" title="脚本查询"></a>脚本查询</h3><h4 id="下载脚本"><a href="#下载脚本" class="headerlink" title="下载脚本"></a>下载脚本</h4><p>微软TechNet脚本中心提供一个powershell查询脚本，<a href="https://gallery.technet.microsoft.com/scriptcenter/Find-HBA-and-WWPN-53121140" target="_blank" rel="noopener">点击下载</a>。<br>下载之后复制脚本至c:\windows\temp(可自己决定目录)。<br>注意：之后所有操作均在windows powershell中执行。   </p>
+<h4 id="修改powershell设置"><a href="#修改powershell设置" class="headerlink" title="修改powershell设置"></a>修改powershell设置</h4><p>windowpowershell默认执行策略(ExecutionPolicy)为Restricted，为顺利执行脚本，此处修改为RemoteSigned，否则执行脚本会出现“无法加载文件XXXX，因为在此系统中禁止执行脚本”的报错。<br>获取当前默认执行策略<br><code>get-ExecutionPolicy</code><br>设置执行策略为RemoteSigned<br><code>set-ExecutionPolicy RemoteSigned</code>   </p>
+<h4 id="执行脚本"><a href="#执行脚本" class="headerlink" title="执行脚本"></a>执行脚本</h4><p>切换至脚本所在目录，然后执行命令    </p>
+<pre><code>Import-Module .\Get-HBAWin.ps1
+
+Get-HBAWin -ComputerName 11.10.98.197
+</code></pre><p><img src="http://cdn.rosinelan.com/blog/system/windows-www.png" alt="windows-fc-www" title="windows-fc-www"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/03/27/HBA卡WWN号查看方法/" data-id="cjf93y6m3000028q6bnta7pe7" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HBA/">HBA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HP-UNIX/">HP-UNIX</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LINUX/">LINUX</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WINDOWS/">WINDOWS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WWW/">WWW</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>Recommended Posts</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/03/27/POWERPATH设备名称修改/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">POWERPATH设备名称修改</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">Content</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HP-UNIX系统"><span class="toc-number">1.</span> <span class="toc-text">HP-UNIX系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#查询HBA卡名称"><span class="toc-number">1.1.</span> <span class="toc-text">查询HBA卡名称</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#根据HBA卡名称查询WWW号"><span class="toc-number">1.2.</span> <span class="toc-text">根据HBA卡名称查询WWW号</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LINUX-系统"><span class="toc-number">2.</span> <span class="toc-text">LINUX 系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#windows系统"><span class="toc-number">3.</span> <span class="toc-text">windows系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#fcinfo查询"><span class="toc-number">3.1.</span> <span class="toc-text">fcinfo查询</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#下载fcinfo工具"><span class="toc-number">3.1.1.</span> <span class="toc-text">下载fcinfo工具</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查询"><span class="toc-number">3.1.2.</span> <span class="toc-text">查询</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#脚本查询"><span class="toc-number">3.2.</span> <span class="toc-text">脚本查询</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#下载脚本"><span class="toc-number">3.2.1.</span> <span class="toc-text">下载脚本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改powershell设置"><span class="toc-number">3.2.2.</span> <span class="toc-text">修改powershell设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#执行脚本"><span class="toc-number">3.2.3.</span> <span class="toc-text">执行脚本</span></a></li></ol></li></ol></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+      Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>
