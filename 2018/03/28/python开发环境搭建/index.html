@@ -35,7 +35,7 @@
 <meta property="og:image" content="http://cdn.rosinelan.com/blog/program/pycharm-debug-F7.gif">
 <meta property="og:image" content="http://cdn.rosinelan.com/blog/program/pycharm-debug-F8.gif">
 <meta property="og:image" content="http://cdn.rosinelan.com/blog/program/pycharm-debug-F9.gif">
-<meta property="og:updated_time" content="2018-03-28T16:06:06.992Z">
+<meta property="og:updated_time" content="2018-03-28T16:09:37.795Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python开发环境搭建">
 <meta name="twitter:description" content="python介绍python是荷兰人Guidovan Rossum于1989年发明的，第一个公开发行版本发行于1991年。python的设计哲学是”优雅”、”明确”、”简单”，也因此python得以迅速的发展起来，得到大量用户的欢迎。除了大家熟知的“脚本语言”作用之外，python还提供了很多与网络、GUI、图片、文件等相关的基础代码库和第三方库，这样很多功能可以不用从零开始，非常便捷。根据TIO">
@@ -66,7 +66,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -148,10 +148,7 @@
 <p>此时发现/usr/bin/python依然是原来的老版本,需要修改/usr/bin/python对应的链接。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv /usr/bin/python /usr/bin/python_27</span><br><span class="line">ln -s /usr/local/python364/bin/python /usr/bin/python</span><br></pre></td></tr></table></figure></p>
 <p>此时通过<code>python -v</code>命令可以看到版本为v3.6.4.<br>注意：采用此方法安装后会发现yum不可用，原因是yum使用依赖老版本python，此时需要修改<code>/usr/bin/yum</code>第一行为<code>#!/usr/bin/python_27</code>就可以了。</p>
 <h3 id="在windows上安装python"><a href="#在windows上安装python" class="headerlink" title="在windows上安装python"></a>在windows上安装python</h3><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>双击<code>python-3.6.4-amd64.exe</code>开始安装<br><img src="http://cdn.rosinelan.com/blog/program/python-win-install.png" alt="python-win-install" title="python-win-install"><br>注意要勾选<code>Add Python 3.6 tp PATH</code>,然后点<code>Install Now</code>即可完成安装。</p>
-<h4 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h4><p>通过<code>win+R</code>打开运行，输入<code>cmd</code>，在弹出的windows命令提示符输入<code>python</code>。<br>若提示信息如下，说明python安装正确。<br><img src="http://cdn.rosinelan.com/blog/program/python-win-test.png" alt="python-win-test" title="python-win-test"><br>若得到如下错误信息，说明安装的时候未勾选<code>Add Python 3.6 tp PATH</code><br><img src="http://cdn.rosinelan.com/blog/program/python-win-wrong.png" alt="python-win-wrong" title="python-win-wrong"><br>此时需要修改环境变量使计算机能找到python所在位置。<br>通过<code>我的电脑--&gt;右键--&gt;属性--&gt;高级系统设置--&gt;环境变量</code>，在弹出的对话框中找到用户变量/系统变量中的<code>Path</code>变量，根据python安装位置添加路径。<br><img src="http://cdn.rosinelan.com/blog/program/python-win-path.png" alt="python-win-path" title="python-win-path"><br><img src="http://cdn.rosinelan.com/blog/program/python-win-add.png" alt="python-win-add" title="python-win-add"><br>win10系统默认安装路径如下   </p>
-<blockquote>
-<p>C:\Users\username\AppData\Local\Programs\Python\Python36\Scripts\<br>C:\Users\username\AppData\Local\Programs\Python\Python36\   </p>
-</blockquote>
+<h4 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h4><p>通过<code>win+R</code>打开运行，输入<code>cmd</code>，在弹出的windows命令提示符输入<code>python</code>。<br>若提示信息如下，说明python安装正确。<br><img src="http://cdn.rosinelan.com/blog/program/python-win-test.png" alt="python-win-test" title="python-win-test"><br>若得到如下错误信息，说明安装的时候未勾选<code>Add Python 3.6 tp PATH</code><br><img src="http://cdn.rosinelan.com/blog/program/python-win-wrong.png" alt="python-win-wrong" title="python-win-wrong"><br>此时需要修改环境变量使计算机能找到python所在位置。<br>通过<code>我的电脑--&gt;右键--&gt;属性--&gt;高级系统设置--&gt;环境变量</code>，在弹出的对话框中找到用户变量/系统变量中的<code>Path</code>变量，根据python安装位置添加路径。<br><img src="http://cdn.rosinelan.com/blog/program/python-win-path.png" alt="python-win-path" title="python-win-path"><br><img src="http://cdn.rosinelan.com/blog/program/python-win-add.png" alt="python-win-add" title="python-win-add"><br>win10系统默认安装路径如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\username\AppData\Local\Programs\Python\Python36\Scripts\   </span><br><span class="line">C:\Users\username\AppData\Local\Programs\Python\Python36\</span><br></pre></td></tr></table></figure></p>
 <p>此处建议添加到系统变量中的Path变量中，系统变量是全局变量，无论什么用户登录均可生效；用户变量只针对当前用户生效，若更换其他用户登录则不会生效。<br>若认为添加环境变量操作太复杂，建议直接重装python，记得勾选<code>Add Python 3.6 tp PATH</code>。    </p>
 <h2 id="python开发工具"><a href="#python开发工具" class="headerlink" title="python开发工具"></a>python开发工具</h2><h3 id="python开发工具介绍"><a href="#python开发工具介绍" class="headerlink" title="python开发工具介绍"></a>python开发工具介绍</h3><p>安装好python环境之后，简单的使用直接使用文本编辑器即可，比较常用的有Sublime Text、Notepad++等。<br>大型项目建议使用比较专业的集成开发环境，有利于提高效率，推荐PyCharm。<br><a href="https://www.jetbrains.com/pycharm/" target="_blank" rel="noopener">点击访问官方地址</a><br>PyCharm是Python IDE for Professional Developers。高大上的开发工具，工欲善其事必先利其器嘛。专业版为收费工具，请支持正版。<br>windows版本pycharm v2017.3.4<br><a href="https://download.jetbrains.8686c.com/python/pycharm-professional-2017.3.4.exe" target="_blank" rel="noopener">点击下载</a></p>
 <h3 id="PyCharm使用"><a href="#PyCharm使用" class="headerlink" title="PyCharm使用"></a>PyCharm使用</h3><h4 id="设置项目使用python版本"><a href="#设置项目使用python版本" class="headerlink" title="设置项目使用python版本"></a>设置项目使用python版本</h4><p>通过File–&gt;Setting–&gt;Project:XXXX–&gt;Project Interpreter下拉框选择相应版本的python。<br><img src="http://cdn.rosinelan.com/blog/program/pycharm-set-version.png" alt="pycharm-set-version" title="pycharm-set-version"><br>注意：当前选择的python版本用于当前Project，这样对于同时维护或开发不同版本的python非常便捷。   </p>
@@ -172,7 +169,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/03/28/python开发环境搭建/" data-id="cjfb8sgt2000bf0q6kj7xgrg8" class="article-share-link">Delen</a>
+      <a data-url="https://rosinelan.github.io/2018/03/28/python开发环境搭建/" data-id="cjfb8sgt2000bf0q6kj7xgrg8" class="article-share-link">Share</a>
       
       
       
@@ -228,7 +225,7 @@
   
   
     <a href="/2018/03/27/HBA卡WWN号查看方法/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Ouder</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">HBA卡WWN号查看方法</div>
     </a>
   
