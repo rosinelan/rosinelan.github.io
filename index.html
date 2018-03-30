@@ -40,7 +40,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -133,11 +133,22 @@
 <h4 id="format"><a href="#format" class="headerlink" title="format()"></a>format()</h4><p>字符串格式化方法，使用传入的参数依次替换字符串中的{0}、{1}、{2}、{3}……、{n}。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">"这是一只&#123;0&#125;,&#123;1&#125;个月大，重&#123;2&#125;千克."</span>.format(<span class="string">"猫"</span>,<span class="number">5</span>,<span class="number">2</span>)</span><br><span class="line"><span class="string">'这是一只猫,5个月大，重2千克.'</span></span><br></pre></td></tr></table></figure></p>
 <h4 id="startswith"><a href="#startswith" class="headerlink" title="startswith()"></a>startswith()</h4><p>检查字符串是否以指定的子字符串开头，如果是则返回True，否则返回False。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>str = <span class="string">"I'm a superman!"</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(str.startswith(<span class="string">"I'm"</span>))</span><br><span class="line"><span class="keyword">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(str.startswith(<span class="string">"you're"</span>))</span><br><span class="line"><span class="keyword">False</span></span><br></pre></td></tr></table></figure></p>
 <h4 id="endswith"><a href="#endswith" class="headerlink" title="endswith()"></a>endswith()</h4><p>检查字符串是否以指定的子字符串结尾，如果是则返回True，否则返回False。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>str = <span class="string">"I'm a superman!"</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(str.endswith(<span class="string">"!"</span>))</span><br><span class="line"><span class="keyword">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(str.endswith(<span class="string">"man!"</span>))</span><br><span class="line"><span class="keyword">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(str.endswith(<span class="string">"man"</span>))</span><br><span class="line"><span class="keyword">False</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="列表-list"><a href="#列表-list" class="headerlink" title="列表 list"></a>列表 list</h3><p>列表是一种有序的集合；可以把字符串、数字、字典等任何东西添加到序列，其中的元素无任何关系；列表中可以随时添加和删除元素；列表自带索引，默认从0开始。<br>列表的创建是将用<code>,</code>(逗号)分隔的不同项使用<code>[]</code>(方括号)括起来。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>list = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list1 = [<span class="string">"I'm"</span>,<span class="string">"a"</span>,<span class="string">"superman"</span>,<span class="string">"!"</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list2 = [<span class="string">"I'm"</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="string">"wu"</span>]</span><br></pre></td></tr></table></figure></p>
+<p>要访问列表中的元素，使用索引即可(索引从0开始)。  当索引超出范围时会报错。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>list = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list[<span class="number">0</span>]</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list[<span class="number">4</span>]</span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list[<span class="number">5</span>]</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">IndexError: list index out of range</span><br></pre></td></tr></table></figure></p>
+<p>访问列表中的最后一个元素可以使用<code>-1</code>，倒数第二个则是<code>-2</code>，以此类推。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>list = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list[<span class="number">-1</span>]</span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list[<span class="number">-2</span>]</span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list[<span class="number">-5</span>]</span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<p>下面介绍列表的常用方法  </p>
+<h4 id="index"><a href="#index" class="headerlink" title="index()"></a>index()</h4><p>列表中查找指定值第一个匹配的索引位置，若找到则返回查找对象的索引，否则抛出异常。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>list = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list.index(<span class="number">3</span>)</span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list.index(<span class="number">6</span>)</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">ValueError: <span class="number">6</span> <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">in</span> list</span><br></pre></td></tr></table></figure></p>
+<h4 id="append"><a href="#append" class="headerlink" title="append()"></a>append()</h4><p>添加元素至列表末尾。无返回值，但会修改列表。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>list = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list.append(<span class="number">6</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br></pre></td></tr></table></figure></p>
+<h4 id="pop"><a href="#pop" class="headerlink" title="pop()"></a>pop()</h4><p>删除列表中指定位置的元素，默认为末尾。返回删除的元素。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>list = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]    <span class="comment">#默认删除末尾元素</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list.pop()</span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list.pop(<span class="number">1</span>)    <span class="comment">#删除指定位置的元素，该位置为索引位置</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list</span><br><span class="line">[<span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br></pre></td></tr></table></figure></p>
+<h4 id="insert"><a href="#insert" class="headerlink" title="insert()"></a>insert()</h4><p>将指定的对象插入至列表指定的位置。无返回值，但会修改列表。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>list = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list.insert(<span class="number">1</span>,<span class="number">8</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list</span><br><span class="line">[<span class="number">1</span>, <span class="number">8</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list.insert(<span class="number">5</span>,<span class="number">10</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list</span><br><span class="line">[<span class="number">1</span>, <span class="number">8</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">10</span>, <span class="number">5</span>]</span><br></pre></td></tr></table></figure></p>
+<h4 id="remove"><a href="#remove" class="headerlink" title="remove()"></a>remove()</h4><p>移除列表中指定值的第一个匹配项。无返回值，但会修改列表。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>list = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list.remove(<span class="number">3</span>)    </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list1 = [<span class="string">"I'm"</span>, <span class="string">'a'</span>, <span class="string">'superman'</span>, <span class="string">'!'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list1.remove(<span class="string">"a"</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list1</span><br><span class="line">[<span class="string">"I'm"</span>, <span class="string">'superman'</span>, <span class="string">'!'</span>]</span><br></pre></td></tr></table></figure></p>
+<h4 id="reverse"><a href="#reverse" class="headerlink" title="reverse()"></a>reverse()</h4><p>反向列表中的序列。无返回值，但会修改列表。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>list = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list.reverse()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list</span><br><span class="line">[<span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>]</span><br></pre></td></tr></table></figure></p>
+<h4 id="sort"><a href="#sort" class="headerlink" title="sort()"></a>sort()</h4><p>对列表进行排序。无返回值，但会修改列表。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>list = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list.sort()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list1 = [<span class="string">"I'm"</span>,<span class="string">"a"</span>,<span class="string">"superman"</span>,<span class="string">"!"</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list1.sort()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list1</span><br><span class="line">[<span class="string">'!'</span>, <span class="string">"I'm"</span>, <span class="string">'a'</span>, <span class="string">'superman'</span>]</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/03/30/python数据类型/" data-id="cjfe4l886002hckq6285tfkk4" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/03/30/python数据类型/" data-id="cjfe4l886002hckq6285tfkk4" class="article-share-link">分享</a>
       
       
       
@@ -186,7 +197,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/03/28/python开发环境搭建/" data-id="cjfe4l88l002qckq6mj4tf562" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/03/28/python开发环境搭建/" data-id="cjfe4l88l002qckq6mj4tf562" class="article-share-link">分享</a>
       
       
       
@@ -235,7 +246,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/03/27/HBA卡WWN号查看方法/" data-id="cjfe4l84m0000ckq6qo1eevmf" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/03/27/HBA卡WWN号查看方法/" data-id="cjfe4l84m0000ckq6qo1eevmf" class="article-share-link">分享</a>
       
       
       
@@ -285,7 +296,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/03/27/POWERPATH设备名称修改/" data-id="cjfe4l85b0009ckq6yvj2nqe3" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/03/27/POWERPATH设备名称修改/" data-id="cjfe4l85b0009ckq6yvj2nqe3" class="article-share-link">分享</a>
       
       
       
@@ -334,7 +345,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/03/23/WINDOWS下的MKLINK和JUNCTION/" data-id="cjfe4l889002jckq6xxz6qs77" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/03/23/WINDOWS下的MKLINK和JUNCTION/" data-id="cjfe4l889002jckq6xxz6qs77" class="article-share-link">分享</a>
       
       
       
@@ -383,7 +394,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/02/24/CENTOS7-2双网卡绑定脚本/" data-id="cjfe4l8500004ckq6pyj9e4jg" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/02/24/CENTOS7-2双网卡绑定脚本/" data-id="cjfe4l8500004ckq6pyj9e4jg" class="article-share-link">分享</a>
       
       
       
@@ -434,7 +445,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/02/18/REDHAT-6-5双网卡绑定步骤/" data-id="cjfe4l8540006ckq69kgsxp88" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/02/18/REDHAT-6-5双网卡绑定步骤/" data-id="cjfe4l8540006ckq69kgsxp88" class="article-share-link">分享</a>
       
       
       
@@ -485,7 +496,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/02/18/USR-BIN-XTERM-NO-SUCH-FILE-OR-DIRECTORY错误解决一例/" data-id="cjfe4l881002fckq6an66duqc" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/02/18/USR-BIN-XTERM-NO-SUCH-FILE-OR-DIRECTORY错误解决一例/" data-id="cjfe4l881002fckq6an66duqc" class="article-share-link">分享</a>
       
       
       
@@ -535,7 +546,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/02/18/UBUNTU网络配置/" data-id="cjfe4l8530005ckq69n73tzjy" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/02/18/UBUNTU网络配置/" data-id="cjfe4l8530005ckq69n73tzjy" class="article-share-link">分享</a>
       
       
       
@@ -586,7 +597,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/02/18/WINDOWS下FORFILES命令使用方法/" data-id="cjfe4l85c000ackq68lgwhatd" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/02/18/WINDOWS下FORFILES命令使用方法/" data-id="cjfe4l85c000ackq68lgwhatd" class="article-share-link">分享</a>
       
       
       
@@ -603,7 +614,7 @@
 
 
   <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next&raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页&raquo;</a>
   </nav>
 </section>
            
@@ -613,7 +624,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title categories">Categories</h3>
+    <h3 class="widget-title categories">分类</h3>
     <div class="widget" id="categories">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/system/">系统管理</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/system/LINUX/">LINUX</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/system/WINDOWS/">WINDOWS</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/program/">编程</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/program/python/">python</a><span class="category-list-count">2</span></li></ul></li></ul>
     </div>
@@ -623,7 +634,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title tagcloud">Tag Cloud</h3>
+    <h3 class="widget-title tagcloud">标签云</h3>
     <div class="widget tagcloud">
       <a href="/tags/BONDING/" style="font-size: 14px;">BONDING</a> <a href="/tags/CENTOS7/" style="font-size: 14px;">CENTOS7</a> <a href="/tags/EMC/" style="font-size: 14px;">EMC</a> <a href="/tags/FORFILES/" style="font-size: 14px;">FORFILES</a> <a href="/tags/HBA/" style="font-size: 14px;">HBA</a> <a href="/tags/HP-UNIX/" style="font-size: 14px;">HP-UNIX</a> <a href="/tags/JUNCTION/" style="font-size: 14px;">JUNCTION</a> <a href="/tags/LINUX/" style="font-size: 25px;">LINUX</a> <a href="/tags/MKLINK/" style="font-size: 14px;">MKLINK</a> <a href="/tags/POWERPATH/" style="font-size: 14px;">POWERPATH</a> <a href="/tags/SSH/" style="font-size: 14px;">SSH</a> <a href="/tags/UBUNTU/" style="font-size: 14px;">UBUNTU</a> <a href="/tags/WINDOWS/" style="font-size: 21.33px;">WINDOWS</a> <a href="/tags/WINODWS/" style="font-size: 14px;">WINODWS</a> <a href="/tags/WWW/" style="font-size: 14px;">WWW</a> <a href="/tags/XSHELL/" style="font-size: 14px;">XSHELL</a> <a href="/tags/XTERM/" style="font-size: 14px;">XTERM</a> <a href="/tags/bonding/" style="font-size: 14px;">bonding</a> <a href="/tags/libXaw/" style="font-size: 14px;">libXaw</a> <a href="/tags/libXpm/" style="font-size: 14px;">libXpm</a> <a href="/tags/pycharm/" style="font-size: 14px;">pycharm</a> <a href="/tags/python/" style="font-size: 17.67px;">python</a> <a href="/tags/ssh-copy-id/" style="font-size: 14px;">ssh-copy-id</a> <a href="/tags/ssh-keygen/" style="font-size: 14px;">ssh-keygen</a> <a href="/tags/元组/" style="font-size: 14px;">元组</a> <a href="/tags/列表/" style="font-size: 14px;">列表</a> <a href="/tags/双网卡/" style="font-size: 14px;">双网卡</a> <a href="/tags/多个公钥/" style="font-size: 14px;">多个公钥</a> <a href="/tags/字符串/" style="font-size: 14px;">字符串</a> <a href="/tags/密钥/" style="font-size: 17.67px;">密钥</a> <a href="/tags/数据类型/" style="font-size: 14px;">数据类型</a> <a href="/tags/网络/" style="font-size: 14px;">网络</a>
     </div>
@@ -632,7 +643,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title recent-posts">Recent Posts</h3>
+    <h3 class="widget-title recent-posts">最新文章</h3>
     <div class="widget">
       <ul>
         
@@ -663,7 +674,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title archive">Archives</h3>
+    <h3 class="widget-title archive">归档</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">9</span></li></ul>
     </div>
@@ -694,10 +705,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
+     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>
