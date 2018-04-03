@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rosinelan.github.io/"/>
-  <updated>2018-04-03T03:26:03.111Z</updated>
+  <updated>2018-04-03T03:31:53.003Z</updated>
   <id>https://rosinelan.github.io/</id>
   
   <author>
@@ -21,16 +21,13 @@
     <link href="https://rosinelan.github.io/2018/04/03/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E5%AF%BC%E8%87%B4%E7%9A%84%E8%A7%86%E5%9B%BE%E7%8A%B6%E6%80%81%E6%B6%88%E6%81%AF%E9%AA%8C%E8%AF%81%E4%BB%A3%E7%A0%81%E9%94%99%E8%AF%AF/"/>
     <id>https://rosinelan.github.io/2018/04/03/负载均衡导致的视图状态消息验证代码错误/</id>
     <published>2018-04-03T02:59:58.000Z</published>
-    <updated>2018-04-03T03:26:03.111Z</updated>
+    <updated>2018-04-03T03:31:53.003Z</updated>
     
-    <content type="html"><![CDATA[<p>windows下<code>.NET V4.0</code>应用程序通过<code>IIS8.0</code>对外提供服务，最近迁移采用<code>F5</code>做<code>负载均衡</code>，通过集群VIP访问出现<code>视图状态 MAC 的验证失败</code>错误提示，详细报错<br><img src="http://cdn.rosinelan.com/blog/system/windows-mac-error.png" alt="windows-mac-error" title="windows-mac-error"><br>根据错误提示信息可以很容易看到错误原因及如何解决，更详细的解决方案可参考官方的<a href="https://support.microsoft.com/zh-cn/help/2915218/resolving-view-state-message-authentication-code-mac-errors" target="_blank" rel="noopener">解决视图状态消息验证代码 (MAC) 错误</a><br>注意：针对不同版本的.net和IIS解决方法可能不尽相同。  </p><h3 id="错误原因"><a href="#错误原因" class="headerlink" title="错误原因"></a>错误原因</h3><p>当不在config文件中指定<code>machineKey</code>元素，ASP.NET将为应用程序使用自动生成的密钥，但自动生成的密钥是服务器本地密钥，且集群中每台服务器都会自己生成密钥，且在负载均衡层面并未对此进行处理，这样当一个服务器生成的_VIEWSTATE负载被其他服务器使用就会遇到MAC验证失败问题。<br>当采用负载均衡集群提供服务时，ASP.NET要求所有服务器都必须具有相同的<code>machineKey</code>。</p><h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>在其中一台服务器为应用程序生成machineKey,拷贝至其他服务器。<br>选择集群中的一台服务器<br>IIS管理器&gt;服务器&gt;网站&gt;Default Web Site ，选择需要添加的应用程序，在右面的功能试图中双击“计算机密钥”，进入下面界面。<br><img src="http://cdn.rosinelan.com/blog/system/windows-gen-key.png" alt="windows-gen-key" title="windows-gen-key"><br>选择验证方法和加密方法;<br>验证密钥和解密密钥2个复选框均取消;<br>点击右侧的生成密钥，可以看到验证密钥和解密密钥对应的文本框中生成一串字母+数字的组合，然后点击应用。<br>以该服务器生成的密钥为基准，在其它服务器计算机密钥中选择相同的验证方法和加密方法，同时将验证密钥和解密密钥复制至其它服务器。  </p>]]></content>
+    <content type="html"><![CDATA[<p>windows下<code>.NET V4.0</code>应用程序通过<code>IIS8.0</code>对外提供服务，最近迁移采用<code>F5</code>做<code>负载均衡</code>，通过集群VIP访问出现<code>视图状态 MAC 的验证失败</code>错误提示，详细报错<br><a id="more"></a><br><img src="http://cdn.rosinelan.com/blog/system/windows-mac-error.png" alt="windows-mac-error" title="windows-mac-error"><br>根据错误提示信息可以很容易看到错误原因及如何解决，更详细的解决方案可参考官方的<a href="https://support.microsoft.com/zh-cn/help/2915218/resolving-view-state-message-authentication-code-mac-errors" target="_blank" rel="noopener">解决视图状态消息验证代码 (MAC) 错误</a><br>注意：针对不同版本的.net和IIS解决方法可能不尽相同。  </p><h3 id="错误原因"><a href="#错误原因" class="headerlink" title="错误原因"></a>错误原因</h3><p>当不在config文件中指定<code>machineKey</code>元素，ASP.NET将为应用程序使用自动生成的密钥，但自动生成的密钥是服务器本地密钥，且集群中每台服务器都会自己生成密钥，且在负载均衡层面并未对此进行处理，这样当一个服务器生成的_VIEWSTATE负载被其他服务器使用就会遇到MAC验证失败问题。<br>当采用负载均衡集群提供服务时，ASP.NET要求所有服务器都必须具有相同的<code>machineKey</code>。</p><h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>在其中一台服务器为应用程序生成machineKey,拷贝至其他服务器。<br>选择集群中的一台服务器<br>IIS管理器&gt;服务器&gt;网站&gt;Default Web Site ，选择需要添加的应用程序，在右面的功能试图中双击“计算机密钥”，进入下面界面。<br><img src="http://cdn.rosinelan.com/blog/system/windows-gen-key.png" alt="windows-gen-key" title="windows-gen-key"><br>选择验证方法和加密方法;<br>验证密钥和解密密钥2个复选框均取消;<br>点击右侧的生成密钥，可以看到验证密钥和解密密钥对应的文本框中生成一串字母+数字的组合，然后点击应用。<br>以该服务器生成的密钥为基准，在其它服务器计算机密钥中选择相同的验证方法和加密方法，同时将验证密钥和解密密钥复制至其它服务器。  </p>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;p&gt;windows下&lt;code&gt;.NET V4.0&lt;/code&gt;应用程序通过&lt;code&gt;IIS8.0&lt;/code&gt;对外提供服务，最近迁移采用&lt;code&gt;F5&lt;/code&gt;做&lt;code&gt;负载均衡&lt;/code&gt;，通过集群VIP访问出现&lt;code&gt;视图状态 MAC 的验证失败&lt;/co
-      
+      &lt;p&gt;windows下&lt;code&gt;.NET V4.0&lt;/code&gt;应用程序通过&lt;code&gt;IIS8.0&lt;/code&gt;对外提供服务，最近迁移采用&lt;code&gt;F5&lt;/code&gt;做&lt;code&gt;负载均衡&lt;/code&gt;，通过集群VIP访问出现&lt;code&gt;视图状态 MAC 的验证失败&lt;/code&gt;错误提示，详细报错&lt;br&gt;
     
     </summary>
     

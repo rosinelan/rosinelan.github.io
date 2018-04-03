@@ -5,19 +5,19 @@
   
   <title>负载均衡导致的视图状态消息验证代码错误 | 持续不断</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="windows下.NET V4.0应用程序通过IIS8.0对外提供服务，最近迁移采用F5做负载均衡，通过集群VIP访问出现视图状态 MAC 的验证失败错误提示，详细报错根据错误提示信息可以很容易看到错误原因及如何解决，更详细的解决方案可参考官方的解决视图状态消息验证代码 (MAC) 错误注意：针对不同版本的.net和IIS解决方法可能不尽相同。   错误原因当不在config文件中指定machin">
+  <meta name="description" content="windows下.NET V4.0应用程序通过IIS8.0对外提供服务，最近迁移采用F5做负载均衡，通过集群VIP访问出现视图状态 MAC 的验证失败错误提示，详细报错">
 <meta name="keywords" content="windows,负载均衡,MAC,machinekey,视图状态">
 <meta property="og:type" content="article">
 <meta property="og:title" content="负载均衡导致的视图状态消息验证代码错误">
 <meta property="og:url" content="https://rosinelan.github.io/2018/04/03/负载均衡导致的视图状态消息验证代码错误/index.html">
 <meta property="og:site_name" content="持续不断">
-<meta property="og:description" content="windows下.NET V4.0应用程序通过IIS8.0对外提供服务，最近迁移采用F5做负载均衡，通过集群VIP访问出现视图状态 MAC 的验证失败错误提示，详细报错根据错误提示信息可以很容易看到错误原因及如何解决，更详细的解决方案可参考官方的解决视图状态消息验证代码 (MAC) 错误注意：针对不同版本的.net和IIS解决方法可能不尽相同。   错误原因当不在config文件中指定machin">
+<meta property="og:description" content="windows下.NET V4.0应用程序通过IIS8.0对外提供服务，最近迁移采用F5做负载均衡，通过集群VIP访问出现视图状态 MAC 的验证失败错误提示，详细报错">
 <meta property="og:image" content="http://cdn.rosinelan.com/blog/system/windows-mac-error.png">
 <meta property="og:image" content="http://cdn.rosinelan.com/blog/system/windows-gen-key.png">
-<meta property="og:updated_time" content="2018-04-03T03:26:03.111Z">
+<meta property="og:updated_time" content="2018-04-03T03:31:53.003Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="负载均衡导致的视图状态消息验证代码错误">
-<meta name="twitter:description" content="windows下.NET V4.0应用程序通过IIS8.0对外提供服务，最近迁移采用F5做负载均衡，通过集群VIP访问出现视图状态 MAC 的验证失败错误提示，详细报错根据错误提示信息可以很容易看到错误原因及如何解决，更详细的解决方案可参考官方的解决视图状态消息验证代码 (MAC) 错误注意：针对不同版本的.net和IIS解决方法可能不尽相同。   错误原因当不在config文件中指定machin">
+<meta name="twitter:description" content="windows下.NET V4.0应用程序通过IIS8.0对外提供服务，最近迁移采用F5做负载均衡，通过集群VIP访问出现视图状态 MAC 的验证失败错误提示，详细报错">
 <meta name="twitter:image" content="http://cdn.rosinelan.com/blog/system/windows-mac-error.png">
   
     <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
@@ -45,7 +45,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -103,14 +103,14 @@
       
         <!-- Table of Contents -->
         
-        <p>windows下<code>.NET V4.0</code>应用程序通过<code>IIS8.0</code>对外提供服务，最近迁移采用<code>F5</code>做<code>负载均衡</code>，通过集群VIP访问出现<code>视图状态 MAC 的验证失败</code>错误提示，详细报错<br><img src="http://cdn.rosinelan.com/blog/system/windows-mac-error.png" alt="windows-mac-error" title="windows-mac-error"><br>根据错误提示信息可以很容易看到错误原因及如何解决，更详细的解决方案可参考官方的<a href="https://support.microsoft.com/zh-cn/help/2915218/resolving-view-state-message-authentication-code-mac-errors" target="_blank" rel="noopener">解决视图状态消息验证代码 (MAC) 错误</a><br>注意：针对不同版本的.net和IIS解决方法可能不尽相同。  </p>
+        <p>windows下<code>.NET V4.0</code>应用程序通过<code>IIS8.0</code>对外提供服务，最近迁移采用<code>F5</code>做<code>负载均衡</code>，通过集群VIP访问出现<code>视图状态 MAC 的验证失败</code>错误提示，详细报错<br><a id="more"></a><br><img src="http://cdn.rosinelan.com/blog/system/windows-mac-error.png" alt="windows-mac-error" title="windows-mac-error"><br>根据错误提示信息可以很容易看到错误原因及如何解决，更详细的解决方案可参考官方的<a href="https://support.microsoft.com/zh-cn/help/2915218/resolving-view-state-message-authentication-code-mac-errors" target="_blank" rel="noopener">解决视图状态消息验证代码 (MAC) 错误</a><br>注意：针对不同版本的.net和IIS解决方法可能不尽相同。  </p>
 <h3 id="错误原因"><a href="#错误原因" class="headerlink" title="错误原因"></a>错误原因</h3><p>当不在config文件中指定<code>machineKey</code>元素，ASP.NET将为应用程序使用自动生成的密钥，但自动生成的密钥是服务器本地密钥，且集群中每台服务器都会自己生成密钥，且在负载均衡层面并未对此进行处理，这样当一个服务器生成的_VIEWSTATE负载被其他服务器使用就会遇到MAC验证失败问题。<br>当采用负载均衡集群提供服务时，ASP.NET要求所有服务器都必须具有相同的<code>machineKey</code>。</p>
 <h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>在其中一台服务器为应用程序生成machineKey,拷贝至其他服务器。<br>选择集群中的一台服务器<br>IIS管理器&gt;服务器&gt;网站&gt;Default Web Site ，选择需要添加的应用程序，在右面的功能试图中双击“计算机密钥”，进入下面界面。<br><img src="http://cdn.rosinelan.com/blog/system/windows-gen-key.png" alt="windows-gen-key" title="windows-gen-key"><br>选择验证方法和加密方法;<br>验证密钥和解密密钥2个复选框均取消;<br>点击右侧的生成密钥，可以看到验证密钥和解密密钥对应的文本框中生成一串字母+数字的组合，然后点击应用。<br>以该服务器生成的密钥为基准，在其它服务器计算机密钥中选择相同的验证方法和加密方法，同时将验证密钥和解密密钥复制至其它服务器。  </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/03/负载均衡导致的视图状态消息验证代码错误/" data-id="cjfj3vkrx000um4q6lptcdb22" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/04/03/负载均衡导致的视图状态消息验证代码错误/" data-id="cjfj3vkrx000um4q6lptcdb22" class="article-share-link">Share</a>
       
       
       
@@ -122,7 +122,7 @@
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>推荐文章</h2>
+    <h2>Recommended Posts</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =4
@@ -166,7 +166,7 @@
   
   
     <a href="/2018/04/01/python数据类型-二/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">python数据类型(二)</div>
     </a>
   
@@ -196,7 +196,7 @@
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">文章目录</strong>
+        <strong class="toc-title">Content</strong>
         <div class="toc-widget-list">
               <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#错误原因"><span class="toc-number">1.</span> <span class="toc-text">错误原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决方案"><span class="toc-number">2.</span> <span class="toc-text">解决方案</span></a></li></ol>
           </div>
@@ -224,10 +224,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
+     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>
