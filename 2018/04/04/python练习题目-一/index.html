@@ -5,20 +5,20 @@
   
   <title>python练习题目(一) | 持续不断</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="题目11输入一行字符，分别统计出其中英文字母、空格、数字和其它字符的个数。 程序分析 利用while语句,条件为输入的字符不为’\n’。   用isdigit函数判断是否数字。   用isalpha判断是否字母。   代码实现1234567891011121314151617s = input(&quot;Please input a string:&quot;)digit = 0alpha = 0space = 0">
+  <meta name="description" content="题目11输入一行字符，分别统计出其中英文字母、空格、数字和其它字符的个数。 程序分析 利用while语句,条件为输入的字符不为’\n’。">
 <meta name="keywords" content="python,阶乘,字符,数字">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python练习题目(一)">
 <meta property="og:url" content="https://rosinelan.github.io/2018/04/04/python练习题目-一/index.html">
 <meta property="og:site_name" content="持续不断">
-<meta property="og:description" content="题目11输入一行字符，分别统计出其中英文字母、空格、数字和其它字符的个数。 程序分析 利用while语句,条件为输入的字符不为’\n’。   用isdigit函数判断是否数字。   用isalpha判断是否字母。   代码实现1234567891011121314151617s = input(&quot;Please input a string:&quot;)digit = 0alpha = 0space = 0">
+<meta property="og:description" content="题目11输入一行字符，分别统计出其中英文字母、空格、数字和其它字符的个数。 程序分析 利用while语句,条件为输入的字符不为’\n’。">
 <meta property="og:image" content="http://cdn.rosinelan.com/blog/program/python-for-excrise1.png">
 <meta property="og:image" content="http://cdn.rosinelan.com/blog/program/python-for-excrise11.png">
 <meta property="og:image" content="http://cdn.rosinelan.com/blog/program/python-for-excrise12.png">
-<meta property="og:updated_time" content="2018-04-04T14:11:40.075Z">
+<meta property="og:updated_time" content="2018-04-04T14:12:59.369Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python练习题目(一)">
-<meta name="twitter:description" content="题目11输入一行字符，分别统计出其中英文字母、空格、数字和其它字符的个数。 程序分析 利用while语句,条件为输入的字符不为’\n’。   用isdigit函数判断是否数字。   用isalpha判断是否字母。   代码实现1234567891011121314151617s = input(&quot;Please input a string:&quot;)digit = 0alpha = 0space = 0">
+<meta name="twitter:description" content="题目11输入一行字符，分别统计出其中英文字母、空格、数字和其它字符的个数。 程序分析 利用while语句,条件为输入的字符不为’\n’。">
 <meta name="twitter:image" content="http://cdn.rosinelan.com/blog/program/python-for-excrise1.png">
   
     <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
@@ -106,7 +106,7 @@
         
         <h2 id="题目1"><a href="#题目1" class="headerlink" title="题目1"></a>题目1</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">输入一行字符，分别统计出其中英文字母、空格、数字和其它字符的个数。</span><br></pre></td></tr></table></figure>
 <h3 id="程序分析"><a href="#程序分析" class="headerlink" title="程序分析"></a>程序分析</h3><ul>
-<li>利用while语句,条件为输入的字符不为’\n’。  </li>
+<li>利用while语句,条件为输入的字符不为’\n’。  <a id="more"></a></li>
 <li>用isdigit函数判断是否数字。  </li>
 <li>用isalpha判断是否字母。   <h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">s = input(<span class="string">"Please input a string:"</span>)</span><br><span class="line">digit = <span class="number">0</span></span><br><span class="line">alpha = <span class="number">0</span></span><br><span class="line">space = <span class="number">0</span></span><br><span class="line">other = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> s != <span class="string">'\\n'</span>:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> s:</span><br><span class="line">        <span class="keyword">if</span> i.isdigit():</span><br><span class="line">            digit += <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> i.isalpha():</span><br><span class="line">            alpha += <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> i.isspace():</span><br><span class="line">            space += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            other += <span class="number">1</span></span><br><span class="line">    print(<span class="string">"数字个数:&#123;0&#125;;字母个数:&#123;1&#125;;空格个数:&#123;2&#125;;其他字符个数:&#123;3&#125;"</span>.format(digit, alpha, space, other))</span><br><span class="line">    <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
 </li>
