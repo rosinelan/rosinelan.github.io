@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>python条件判断和循环 | 持续不断</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="条件判断if条件判断使用if，语法格式12345678if &amp;lt;条件判断1&amp;gt;:    &amp;lt;执行1&amp;gt;elif &amp;lt;条件判断2&amp;gt;:    &amp;lt;执行2&amp;gt;elif &amp;lt;条件判断3&amp;gt;:    &amp;lt;执行3&amp;gt;else:    &amp;lt;执行4&amp;gt; 其中elif和else均为可选。下面以实例进行说明。123age = 20if age &amp;gt;= 18">
+<meta name="keywords" content="python,if,for,while,条件判断,循环">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python条件判断和循环">
+<meta property="og:url" content="https://rosinelan.github.io/2018/04/04/python条件判断和循环/index.html">
+<meta property="og:site_name" content="持续不断">
+<meta property="og:description" content="条件判断if条件判断使用if，语法格式12345678if &amp;lt;条件判断1&amp;gt;:    &amp;lt;执行1&amp;gt;elif &amp;lt;条件判断2&amp;gt;:    &amp;lt;执行2&amp;gt;elif &amp;lt;条件判断3&amp;gt;:    &amp;lt;执行3&amp;gt;else:    &amp;lt;执行4&amp;gt; 其中elif和else均为可选。下面以实例进行说明。123age = 20if age &amp;gt;= 18">
+<meta property="og:image" content="http://cdn.rosinelan.com/blog/program/python-for-multi.png">
+<meta property="og:updated_time" content="2018-04-04T13:42:16.295Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python条件判断和循环">
+<meta name="twitter:description" content="条件判断if条件判断使用if，语法格式12345678if &amp;lt;条件判断1&amp;gt;:    &amp;lt;执行1&amp;gt;elif &amp;lt;条件判断2&amp;gt;:    &amp;lt;执行2&amp;gt;elif &amp;lt;条件判断3&amp;gt;:    &amp;lt;执行3&amp;gt;else:    &amp;lt;执行4&amp;gt; 其中elif和else均为可选。下面以实例进行说明。123age = 20if age &amp;gt;= 18">
+<meta name="twitter:image" content="http://cdn.rosinelan.com/blog/program/python-for-multi.png">
+  
+    <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">持续不断</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">要松懈的时候再坚持一下</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-python条件判断和循环" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/04/python条件判断和循环/" class="article-date">
+  <time datetime="2018-04-04T11:08:55.000Z" itemprop="datePublished">2018-04-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/program/">编程</a>►<a class="article-category-link" href="/categories/program/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      python条件判断和循环
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="条件判断"><a href="#条件判断" class="headerlink" title="条件判断"></a>条件判断</h2><h3 id="if"><a href="#if" class="headerlink" title="if"></a>if</h3><p>条件判断使用<code>if</code>，语法格式<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> &lt;条件判断<span class="number">1</span>&gt;:</span><br><span class="line">    &lt;执行<span class="number">1</span>&gt;</span><br><span class="line"><span class="keyword">elif</span> &lt;条件判断<span class="number">2</span>&gt;:</span><br><span class="line">    &lt;执行<span class="number">2</span>&gt;</span><br><span class="line"><span class="keyword">elif</span> &lt;条件判断<span class="number">3</span>&gt;:</span><br><span class="line">    &lt;执行<span class="number">3</span>&gt;</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    &lt;执行<span class="number">4</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<p>其中<code>elif</code>和<code>else</code>均为可选。<br>下面以实例进行说明。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">age = <span class="number">20</span></span><br><span class="line"><span class="keyword">if</span> age &gt;= <span class="number">18</span>:</span><br><span class="line">    print(<span class="string">"你已经是成年人了。"</span>)</span><br></pre></td></tr></table></figure></p>
+<p>python中条件判断主要根据缩进和冒号进行判断，假如if中的条件为True，则执行if下一行缩进的print语句，否则什么也不做。<br>下面的语句则添加了<code>else</code>条件，当<code>if</code>条件为True时执行后面缩进的print语句，否则执行<code>else</code>后面缩进的语句。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">age = <span class="number">12</span></span><br><span class="line"><span class="keyword">if</span> age &gt;= <span class="number">18</span>:</span><br><span class="line">    print(<span class="string">"你已经是成年人了。"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"你还是个小孩子。"</span>)</span><br></pre></td></tr></table></figure></p>
+<p>下面的语句中添加了<code>elif</code>和<code>else</code>条件。<br>当<code>if</code>条件为True时执行后面缩进的print语句，剩余的<code>elif</code>和<code>else</code>均不执行。<br>当<code>if</code>条件为False时执行<code>elif</code>语句，当<code>elif</code>条件为True时，执行其后面缩进的print语句，剩下的<code>else</code>不执行。<br>当<code>if</code>和<code>elif</code>条件均为False时，执行<code>else</code>后面缩进的print语句。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">age = <span class="number">4</span></span><br><span class="line"><span class="keyword">if</span> age &gt;= <span class="number">18</span>:</span><br><span class="line">    print(<span class="string">"你已经是成年人了。"</span>)</span><br><span class="line"><span class="keyword">elif</span> age &gt; <span class="number">6</span>:</span><br><span class="line">    print(<span class="string">"你已经是个少年了。"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"你还是个小孩子。"</span>)</span><br></pre></td></tr></table></figure></p>
+<p>由此可见<code>if</code>条件判断是从上向下执行，当有条件成立时执行对应的缩进语句，剩余的条件将忽略。<br>判断字符串<code>str</code>是否为空的条件<code>if str.strip():</code><br>判断对象<code>d1</code>是否为字典的条件<code>if isinstance(d1,dict):</code><br>根据键盘输入判断数字是正数、负数还是零。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">number = input(<span class="string">"Please input a number:"</span>)</span><br><span class="line"><span class="keyword">if</span> int(number) &gt; <span class="number">0</span>:</span><br><span class="line">    print(<span class="string">"输入的&#123;0&#125;是正数"</span>.format(number))</span><br><span class="line"><span class="keyword">elif</span> int(number) == <span class="number">0</span>:</span><br><span class="line">    print(<span class="string">"输入的&#123;0&#125;是零"</span>.format(number))</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"输入的&#123;0&#125;是负数"</span>.format(number))</span><br></pre></td></tr></table></figure></p>
+<p>python中通过input接受的均为字符串，所以使用强制转换将类型转换为整型<code>int(number)</code>。  </p>
+<h2 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h2><p>循环主要是解决重复性的问题，例如类似计算1到1000的和这类问题。<br>python中循环主要有<code>for .. in ..</code>和<code>while</code>循环。   </p>
+<h3 id="for"><a href="#for" class="headerlink" title="for"></a>for</h3><p>for循环的语法格式<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> sequence:</span><br><span class="line">    执行语句</span><br></pre></td></tr></table></figure></p>
+<p><code>for i in ..</code>循环是将每个元素代入<code>i</code>中然后执行缩进的语句<br>计算1-10的和<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sum = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]:</span><br><span class="line">    sum += i</span><br><span class="line">print(sum)</span><br></pre></td></tr></table></figure></p>
+<p>当我们要计算<code>1-100</code>甚至<code>1-10000</code>的和时候难道要从1写道10000嘛？<br>使用<code>range()</code>函数可以生成整数序列。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">5</span>):</span><br><span class="line"><span class="meta">... </span>    print(i)</span><br><span class="line">...</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure></p>
+<p>根据上面输出可以看到<code>range()</code>函数输出的序列包含左面数字，不包含右面数字。<br>根据<code>for</code>循环和<code>range</code>函数实现乘法口诀。<br>代码思路<br>根据乘法口诀的特点，<code>a</code>表示乘号前的数字，<code>b</code>表示乘号后的数字。<br><code>b</code>总是和它所在的行数相等。<br><code>a</code>是变化的，但变化范围总是从<code>1至b</code>。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> b <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">10</span>):</span><br><span class="line">    <span class="keyword">for</span> a <span class="keyword">in</span> range(<span class="number">1</span>, b+<span class="number">1</span>):</span><br><span class="line">        print(<span class="string">"&#123;0&#125; x &#123;1&#125; = &#123;2&#125;\t"</span>.format(a, b, a*b), end=<span class="string">""</span>)</span><br><span class="line">    print()</span><br></pre></td></tr></table></figure></p>
+<p>输出结果<br><img src="http://cdn.rosinelan.com/blog/program/python-for-multi.png" alt="python-for-multi" title="python-for-multi"><br>为使输出美观，使用了<code>print()</code>中的<code>end=&quot;&quot;</code>参数，默认情况下print()输出结束之后是换行符，可以自定义。<br>此处内层for循环的缩进语句中print()不换行；使用<code>\t</code>制表符进行对齐。<br>外层循环时换行(即乘法表每一行结束时换行)。   </p>
+<h3 id="while"><a href="#while" class="headerlink" title="while"></a>while</h3><p>while循环语法格式<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> 判断条件：</span><br><span class="line">    执行语句</span><br></pre></td></tr></table></figure></p>
+<p>while循环，只要条件满足就不断循环，直到条件不满足时才退出循环。<br>下面是1-100求和<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sum = <span class="number">0</span></span><br><span class="line">n = <span class="number">100</span></span><br><span class="line"><span class="keyword">while</span> n &gt; <span class="number">0</span>:</span><br><span class="line">    sum += n    <span class="comment">#等价于sum = sum + n</span></span><br><span class="line">    n -= <span class="number">1</span>    <span class="comment">#等价于n = n -1</span></span><br><span class="line">print(sum)</span><br></pre></td></tr></table></figure></p>
+<p>针对前面从键盘输入，再判断是正数、负数还是零的代码进行修改<br>增加判断键盘输入是否为数字，若不是数字则要求重新输入，直到输入数字，能够正确判断。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">    number = input(<span class="string">"Please input a number:"</span>)</span><br><span class="line">    <span class="keyword">if</span> number.strip():</span><br><span class="line">        <span class="keyword">if</span> number.isdigit():</span><br><span class="line">            <span class="keyword">if</span> int(number) &gt; <span class="number">0</span>:</span><br><span class="line">                print(<span class="string">"输入的&#123;0&#125;是正数。"</span>.format(number))</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">elif</span> int(number) == <span class="number">0</span>:</span><br><span class="line">                print(<span class="string">"输入的&#123;0&#125;是零。"</span>.format(number))</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                print(<span class="string">"输入的&#123;0&#125;是负数。"</span>.format(number))</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">"输入的不是数字，请重新输入。"</span>)</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">"输入的是空格，请重新输入。"</span>)</span><br><span class="line">        <span class="keyword">continue</span></span><br></pre></td></tr></table></figure></p>
+<p>其中<code>while 1</code>表示死循环，即除非主动跳出循环，否则将永远循环下去。<br>主动跳出循环使用<code>break</code>实现。<br>当输入的不是数字或者是空格时要求继续输入，该功能实现则是使用<code>continue</code>实现。  </p>
+<h3 id="break"><a href="#break" class="headerlink" title="break"></a>break</h3><p>break语句可以在循环过程中直接跳出本层循环。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]:</span><br><span class="line">    i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> i &gt; <span class="number">5</span>:    <span class="comment">#在i大于5的时候执行break语句结束循环</span></span><br><span class="line">        <span class="keyword">break</span>    <span class="comment">#执行break之后大于5的数字将全部无法输出</span></span><br><span class="line">    print(i)</span><br></pre></td></tr></table></figure></p>
+<h3 id="continue"><a href="#continue" class="headerlink" title="continue"></a>continue</h3><p>continue语句可以提前结束本轮循环，直接开始下一轮循环。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]:</span><br><span class="line">    i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> i % <span class="number">2</span> == <span class="number">0</span>:    <span class="comment">#如果i是偶数则执行continue</span></span><br><span class="line">        <span class="keyword">continue</span>    <span class="comment">#执行continue则直接重新开始循环，不输出本次的i</span></span><br><span class="line">    print(i)</span><br></pre></td></tr></table></figure></p>
+<p>需要注意，<code>break</code>和<code>continue</code>语句不可滥用，通常都是配合<code>if</code>语句使用。<br>在大多数情况下可以通过逻辑判断等其它方式实现对应功能，而使用<code>break</code>或<code>continue</code>语句容易造成代码逻辑分叉多，容易出错。  </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/04/04/python条件判断和循环/" data-id="cjfl56nu1000v4oq6pu637if5" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/for/">for</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/if/">if</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/while/">while</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/循环/">循环</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/条件判断/">条件判断</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/04/04/ubuntu编译安装openssh/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">ubuntu编译安装openssh</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#条件判断"><span class="toc-number">1.</span> <span class="toc-text">条件判断</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#if"><span class="toc-number">1.1.</span> <span class="toc-text">if</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#循环"><span class="toc-number">2.</span> <span class="toc-text">循环</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#for"><span class="toc-number">2.1.</span> <span class="toc-text">for</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#while"><span class="toc-number">2.2.</span> <span class="toc-text">while</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#break"><span class="toc-number">2.3.</span> <span class="toc-text">break</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#continue"><span class="toc-number">2.4.</span> <span class="toc-text">continue</span></a></li></ol></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>

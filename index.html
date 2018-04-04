@@ -40,7 +40,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -71,6 +71,71 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-python条件判断和循环" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/04/python条件判断和循环/" class="article-date">
+  <time datetime="2018-04-04T11:08:55.000Z" itemprop="datePublished">2018-04-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/program/">编程</a>►<a class="article-category-link" href="/categories/program/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/04/python条件判断和循环/">python条件判断和循环</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="条件判断"><a href="#条件判断" class="headerlink" title="条件判断"></a>条件判断</h2><h3 id="if"><a href="#if" class="headerlink" title="if"></a>if</h3><p>条件判断使用<code>if</code>，语法格式<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> &lt;条件判断<span class="number">1</span>&gt;:</span><br><span class="line">    &lt;执行<span class="number">1</span>&gt;</span><br><span class="line"><span class="keyword">elif</span> &lt;条件判断<span class="number">2</span>&gt;:</span><br><span class="line">    &lt;执行<span class="number">2</span>&gt;</span><br><span class="line"><span class="keyword">elif</span> &lt;条件判断<span class="number">3</span>&gt;:</span><br><span class="line">    &lt;执行<span class="number">3</span>&gt;</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    &lt;执行<span class="number">4</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<p>其中<code>elif</code>和<code>else</code>均为可选。<br>下面以实例进行说明。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">age = <span class="number">20</span></span><br><span class="line"><span class="keyword">if</span> age &gt;= <span class="number">18</span>:</span><br><span class="line">    print(<span class="string">"你已经是成年人了。"</span>)</span><br></pre></td></tr></table></figure></p>
+<p>python中条件判断主要根据缩进和冒号进行判断，假如if中的条件为True，则执行if下一行缩进的print语句，否则什么也不做。<br>下面的语句则添加了<code>else</code>条件，当<code>if</code>条件为True时执行后面缩进的print语句，否则执行<code>else</code>后面缩进的语句。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">age = <span class="number">12</span></span><br><span class="line"><span class="keyword">if</span> age &gt;= <span class="number">18</span>:</span><br><span class="line">    print(<span class="string">"你已经是成年人了。"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"你还是个小孩子。"</span>)</span><br></pre></td></tr></table></figure></p>
+<p>下面的语句中添加了<code>elif</code>和<code>else</code>条件。<br>当<code>if</code>条件为True时执行后面缩进的print语句，剩余的<code>elif</code>和<code>else</code>均不执行。<br>当<code>if</code>条件为False时执行<code>elif</code>语句，当<code>elif</code>条件为True时，执行其后面缩进的print语句，剩下的<code>else</code>不执行。<br>当<code>if</code>和<code>elif</code>条件均为False时，执行<code>else</code>后面缩进的print语句。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">age = <span class="number">4</span></span><br><span class="line"><span class="keyword">if</span> age &gt;= <span class="number">18</span>:</span><br><span class="line">    print(<span class="string">"你已经是成年人了。"</span>)</span><br><span class="line"><span class="keyword">elif</span> age &gt; <span class="number">6</span>:</span><br><span class="line">    print(<span class="string">"你已经是个少年了。"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"你还是个小孩子。"</span>)</span><br></pre></td></tr></table></figure></p>
+<p>由此可见<code>if</code>条件判断是从上向下执行，当有条件成立时执行对应的缩进语句，剩余的条件将忽略。<br>判断字符串<code>str</code>是否为空的条件<code>if str.strip():</code><br>判断对象<code>d1</code>是否为字典的条件<code>if isinstance(d1,dict):</code><br>根据键盘输入判断数字是正数、负数还是零。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">number = input(<span class="string">"Please input a number:"</span>)</span><br><span class="line"><span class="keyword">if</span> int(number) &gt; <span class="number">0</span>:</span><br><span class="line">    print(<span class="string">"输入的&#123;0&#125;是正数"</span>.format(number))</span><br><span class="line"><span class="keyword">elif</span> int(number) == <span class="number">0</span>:</span><br><span class="line">    print(<span class="string">"输入的&#123;0&#125;是零"</span>.format(number))</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"输入的&#123;0&#125;是负数"</span>.format(number))</span><br></pre></td></tr></table></figure></p>
+<p>python中通过input接受的均为字符串，所以使用强制转换将类型转换为整型<code>int(number)</code>。  </p>
+<h2 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h2><p>循环主要是解决重复性的问题，例如类似计算1到1000的和这类问题。<br>python中循环主要有<code>for .. in ..</code>和<code>while</code>循环。   </p>
+<h3 id="for"><a href="#for" class="headerlink" title="for"></a>for</h3><p>for循环的语法格式<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> sequence:</span><br><span class="line">    执行语句</span><br></pre></td></tr></table></figure></p>
+<p><code>for i in ..</code>循环是将每个元素代入<code>i</code>中然后执行缩进的语句<br>计算1-10的和<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sum = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]:</span><br><span class="line">    sum += i</span><br><span class="line">print(sum)</span><br></pre></td></tr></table></figure></p>
+<p>当我们要计算<code>1-100</code>甚至<code>1-10000</code>的和时候难道要从1写道10000嘛？<br>使用<code>range()</code>函数可以生成整数序列。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">5</span>):</span><br><span class="line"><span class="meta">... </span>    print(i)</span><br><span class="line">...</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure></p>
+<p>根据上面输出可以看到<code>range()</code>函数输出的序列包含左面数字，不包含右面数字。<br>根据<code>for</code>循环和<code>range</code>函数实现乘法口诀。<br>代码思路<br>根据乘法口诀的特点，<code>a</code>表示乘号前的数字，<code>b</code>表示乘号后的数字。<br><code>b</code>总是和它所在的行数相等。<br><code>a</code>是变化的，但变化范围总是从<code>1至b</code>。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> b <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">10</span>):</span><br><span class="line">    <span class="keyword">for</span> a <span class="keyword">in</span> range(<span class="number">1</span>, b+<span class="number">1</span>):</span><br><span class="line">        print(<span class="string">"&#123;0&#125; x &#123;1&#125; = &#123;2&#125;\t"</span>.format(a, b, a*b), end=<span class="string">""</span>)</span><br><span class="line">    print()</span><br></pre></td></tr></table></figure></p>
+<p>输出结果<br><img src="http://cdn.rosinelan.com/blog/program/python-for-multi.png" alt="python-for-multi" title="python-for-multi"><br>为使输出美观，使用了<code>print()</code>中的<code>end=&quot;&quot;</code>参数，默认情况下print()输出结束之后是换行符，可以自定义。<br>此处内层for循环的缩进语句中print()不换行；使用<code>\t</code>制表符进行对齐。<br>外层循环时换行(即乘法表每一行结束时换行)。   </p>
+<h3 id="while"><a href="#while" class="headerlink" title="while"></a>while</h3><p>while循环语法格式<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> 判断条件：</span><br><span class="line">    执行语句</span><br></pre></td></tr></table></figure></p>
+<p>while循环，只要条件满足就不断循环，直到条件不满足时才退出循环。<br>下面是1-100求和<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sum = <span class="number">0</span></span><br><span class="line">n = <span class="number">100</span></span><br><span class="line"><span class="keyword">while</span> n &gt; <span class="number">0</span>:</span><br><span class="line">    sum += n    <span class="comment">#等价于sum = sum + n</span></span><br><span class="line">    n -= <span class="number">1</span>    <span class="comment">#等价于n = n -1</span></span><br><span class="line">print(sum)</span><br></pre></td></tr></table></figure></p>
+<p>针对前面从键盘输入，再判断是正数、负数还是零的代码进行修改<br>增加判断键盘输入是否为数字，若不是数字则要求重新输入，直到输入数字，能够正确判断。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">    number = input(<span class="string">"Please input a number:"</span>)</span><br><span class="line">    <span class="keyword">if</span> number.strip():</span><br><span class="line">        <span class="keyword">if</span> number.isdigit():</span><br><span class="line">            <span class="keyword">if</span> int(number) &gt; <span class="number">0</span>:</span><br><span class="line">                print(<span class="string">"输入的&#123;0&#125;是正数。"</span>.format(number))</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">elif</span> int(number) == <span class="number">0</span>:</span><br><span class="line">                print(<span class="string">"输入的&#123;0&#125;是零。"</span>.format(number))</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                print(<span class="string">"输入的&#123;0&#125;是负数。"</span>.format(number))</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">"输入的不是数字，请重新输入。"</span>)</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">"输入的是空格，请重新输入。"</span>)</span><br><span class="line">        <span class="keyword">continue</span></span><br></pre></td></tr></table></figure></p>
+<p>其中<code>while 1</code>表示死循环，即除非主动跳出循环，否则将永远循环下去。<br>主动跳出循环使用<code>break</code>实现。<br>当输入的不是数字或者是空格时要求继续输入，该功能实现则是使用<code>continue</code>实现。  </p>
+<h3 id="break"><a href="#break" class="headerlink" title="break"></a>break</h3><p>break语句可以在循环过程中直接跳出本层循环。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]:</span><br><span class="line">    i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> i &gt; <span class="number">5</span>:    <span class="comment">#在i大于5的时候执行break语句结束循环</span></span><br><span class="line">        <span class="keyword">break</span>    <span class="comment">#执行break之后大于5的数字将全部无法输出</span></span><br><span class="line">    print(i)</span><br></pre></td></tr></table></figure></p>
+<h3 id="continue"><a href="#continue" class="headerlink" title="continue"></a>continue</h3><p>continue语句可以提前结束本轮循环，直接开始下一轮循环。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]:</span><br><span class="line">    i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> i % <span class="number">2</span> == <span class="number">0</span>:    <span class="comment">#如果i是偶数则执行continue</span></span><br><span class="line">        <span class="keyword">continue</span>    <span class="comment">#执行continue则直接重新开始循环，不输出本次的i</span></span><br><span class="line">    print(i)</span><br></pre></td></tr></table></figure></p>
+<p>需要注意，<code>break</code>和<code>continue</code>语句不可滥用，通常都是配合<code>if</code>语句使用。<br>在大多数情况下可以通过逻辑判断等其它方式实现对应功能，而使用<code>break</code>或<code>continue</code>语句容易造成代码逻辑分叉多，容易出错。  </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/04/04/python条件判断和循环/" data-id="cjfl56nu1000v4oq6pu637if5" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/for/">for</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/if/">if</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/while/">while</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/循环/">循环</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/条件判断/">条件判断</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
   
     <article id="post-ubuntu编译安装openssh" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -108,7 +173,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/04/ubuntu编译安装openssh/" data-id="cjfkzapb1000jhwq6a43mrkpy" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/04/04/ubuntu编译安装openssh/" data-id="cjfl56nu600104oq68591dqvv" class="article-share-link">分享</a>
       
       
       
@@ -157,7 +222,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/03/负载均衡导致的视图状态消息验证代码错误/" data-id="cjfkzapcv0047hwq6k6b4gml4" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/04/03/负载均衡导致的视图状态消息验证代码错误/" data-id="cjfl56nub00164oq6c433mycn" class="article-share-link">分享</a>
       
       
       
@@ -207,7 +272,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/01/python数据类型-二/" data-id="cjfkzapb2000khwq62xwosyi5" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/04/01/python数据类型-二/" data-id="cjfl56ntv000p4oq6mkd358n0" class="article-share-link">分享</a>
       
       
       
@@ -260,7 +325,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/03/30/python数据类型/" data-id="cjfkzapb7000rhwq6ib4n8uxn" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/03/30/python数据类型/" data-id="cjfl56nu4000x4oq6esq2s5sd" class="article-share-link">分享</a>
       
       
       
@@ -309,7 +374,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/03/28/python开发环境搭建/" data-id="cjfkzapau000fhwq6qyxivtln" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/03/28/python开发环境搭建/" data-id="cjfl56nty000r4oq694xa8cx5" class="article-share-link">分享</a>
       
       
       
@@ -358,7 +423,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/03/27/HBA卡WWN号查看方法/" data-id="cjfkzapal0006hwq62cbx62pl" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/03/27/HBA卡WWN号查看方法/" data-id="cjfl56nt500054oq6f4yjvdzz" class="article-share-link">分享</a>
       
       
       
@@ -408,7 +473,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/03/27/POWERPATH设备名称修改/" data-id="cjfkzapax000ghwq6e03r2m00" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/03/27/POWERPATH设备名称修改/" data-id="cjfl56nt800064oq68eus24um" class="article-share-link">分享</a>
       
       
       
@@ -457,7 +522,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/03/23/WINDOWS下的MKLINK和JUNCTION/" data-id="cjfkzapap000ahwq60qqsxx49" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/03/23/WINDOWS下的MKLINK和JUNCTION/" data-id="cjfl56ntq000i4oq6r2jiutpr" class="article-share-link">分享</a>
       
       
       
@@ -506,7 +571,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/02/24/CENTOS7-2双网卡绑定脚本/" data-id="cjfkzapak0005hwq6kmvqigxd" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/02/24/CENTOS7-2双网卡绑定脚本/" data-id="cjfl56nsq00004oq6zjqmubkf" class="article-share-link">分享</a>
       
       
       
@@ -520,61 +585,10 @@
 
 
   
-    <article id="post-REDHAT-6-5双网卡绑定步骤" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/02/18/REDHAT-6-5双网卡绑定步骤/" class="article-date">
-  <time datetime="2018-02-18T14:04:46.000Z" itemprop="datePublished">2018-02-18</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/system/">系统管理</a>►<a class="article-category-link" href="/categories/system/LINUX/">LINUX</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/18/REDHAT-6-5双网卡绑定步骤/">REDHAT 6.5双网卡绑定步骤</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h2><p>由于工作需要，搭建4节点oracle rac，为降低网络单点故障影响，数据库服务器生产流量和内部心跳均采用双上连，自然要进行双网卡绑定。绑定采用的是bonding。<br>对具体的操作过程进行记录。</p>
-<h2 id="确认操作系统版本"><a href="#确认操作系统版本" class="headerlink" title="确认操作系统版本"></a>确认操作系统版本</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/issue</span><br><span class="line">lsb_release -a</span><br><span class="line">cat /etc/redhat-release</span><br><span class="line">rpm -q redhat-release</span><br></pre></td></tr></table></figure>
-<h2 id="检查系统配置是否支持bonding"><a href="#检查系统配置是否支持bonding" class="headerlink" title="检查系统配置是否支持bonding"></a>检查系统配置是否支持bonding</h2>
-        
-          <p class="article-more-link">
-            <a href="/2018/02/18/REDHAT-6-5双网卡绑定步骤/#more">继续阅读全文 »</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/02/18/REDHAT-6-5双网卡绑定步骤/" data-id="cjfkzapae0002hwq6yo431ui6" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LINUX/">LINUX</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bonding/">bonding</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/双网卡/">双网卡</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
 
 
   <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next&raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页&raquo;</a>
   </nav>
 </section>
            
@@ -584,9 +598,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title categories">Categories</h3>
+    <h3 class="widget-title categories">分类</h3>
     <div class="widget" id="categories">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/system/">系统管理</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/system/LINUX/">LINUX</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/system/WINDOWS/">WINDOWS</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/program/">编程</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/program/python/">python</a><span class="category-list-count">3</span></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/system/">系统管理</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/system/LINUX/">LINUX</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/system/WINDOWS/">WINDOWS</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/program/">编程</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/program/python/">python</a><span class="category-list-count">4</span></li></ul></li></ul>
     </div>
   </div>
 
@@ -594,18 +608,22 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title tagcloud">Tag Cloud</h3>
+    <h3 class="widget-title tagcloud">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/BONDING/" style="font-size: 14px;">BONDING</a> <a href="/tags/CENTOS7/" style="font-size: 14px;">CENTOS7</a> <a href="/tags/EMC/" style="font-size: 14px;">EMC</a> <a href="/tags/FORFILES/" style="font-size: 14px;">FORFILES</a> <a href="/tags/HBA/" style="font-size: 14px;">HBA</a> <a href="/tags/HP-UNIX/" style="font-size: 14px;">HP-UNIX</a> <a href="/tags/JUNCTION/" style="font-size: 14px;">JUNCTION</a> <a href="/tags/LINUX/" style="font-size: 25px;">LINUX</a> <a href="/tags/MAC/" style="font-size: 14px;">MAC</a> <a href="/tags/MKLINK/" style="font-size: 14px;">MKLINK</a> <a href="/tags/OPENSSH/" style="font-size: 14px;">OPENSSH</a> <a href="/tags/OPENSSL/" style="font-size: 14px;">OPENSSL</a> <a href="/tags/POWERPATH/" style="font-size: 14px;">POWERPATH</a> <a href="/tags/SSH/" style="font-size: 14px;">SSH</a> <a href="/tags/UBUNTU/" style="font-size: 17.67px;">UBUNTU</a> <a href="/tags/WINDOWS/" style="font-size: 21.33px;">WINDOWS</a> <a href="/tags/WINODWS/" style="font-size: 14px;">WINODWS</a> <a href="/tags/WWW/" style="font-size: 14px;">WWW</a> <a href="/tags/XSHELL/" style="font-size: 14px;">XSHELL</a> <a href="/tags/XTERM/" style="font-size: 14px;">XTERM</a> <a href="/tags/ZLIB/" style="font-size: 14px;">ZLIB</a> <a href="/tags/bonding/" style="font-size: 14px;">bonding</a> <a href="/tags/libXaw/" style="font-size: 14px;">libXaw</a> <a href="/tags/libXpm/" style="font-size: 14px;">libXpm</a> <a href="/tags/machinekey/" style="font-size: 14px;">machinekey</a> <a href="/tags/pycharm/" style="font-size: 14px;">pycharm</a> <a href="/tags/python/" style="font-size: 21.33px;">python</a> <a href="/tags/ssh-copy-id/" style="font-size: 14px;">ssh-copy-id</a> <a href="/tags/ssh-keygen/" style="font-size: 14px;">ssh-keygen</a> <a href="/tags/windows/" style="font-size: 14px;">windows</a> <a href="/tags/元组/" style="font-size: 14px;">元组</a> <a href="/tags/列表/" style="font-size: 14px;">列表</a> <a href="/tags/双网卡/" style="font-size: 14px;">双网卡</a> <a href="/tags/多个公钥/" style="font-size: 14px;">多个公钥</a> <a href="/tags/字典/" style="font-size: 14px;">字典</a> <a href="/tags/字符串/" style="font-size: 14px;">字符串</a> <a href="/tags/密钥/" style="font-size: 17.67px;">密钥</a> <a href="/tags/数据类型/" style="font-size: 17.67px;">数据类型</a> <a href="/tags/网络/" style="font-size: 14px;">网络</a> <a href="/tags/视图状态/" style="font-size: 14px;">视图状态</a> <a href="/tags/负载均衡/" style="font-size: 14px;">负载均衡</a>
+      <a href="/tags/BONDING/" style="font-size: 14px;">BONDING</a> <a href="/tags/CENTOS7/" style="font-size: 14px;">CENTOS7</a> <a href="/tags/EMC/" style="font-size: 14px;">EMC</a> <a href="/tags/FORFILES/" style="font-size: 14px;">FORFILES</a> <a href="/tags/HBA/" style="font-size: 14px;">HBA</a> <a href="/tags/HP-UNIX/" style="font-size: 14px;">HP-UNIX</a> <a href="/tags/JUNCTION/" style="font-size: 14px;">JUNCTION</a> <a href="/tags/LINUX/" style="font-size: 25px;">LINUX</a> <a href="/tags/MAC/" style="font-size: 14px;">MAC</a> <a href="/tags/MKLINK/" style="font-size: 14px;">MKLINK</a> <a href="/tags/OPENSSH/" style="font-size: 14px;">OPENSSH</a> <a href="/tags/OPENSSL/" style="font-size: 14px;">OPENSSL</a> <a href="/tags/POWERPATH/" style="font-size: 14px;">POWERPATH</a> <a href="/tags/SSH/" style="font-size: 14px;">SSH</a> <a href="/tags/UBUNTU/" style="font-size: 16.75px;">UBUNTU</a> <a href="/tags/WINDOWS/" style="font-size: 19.5px;">WINDOWS</a> <a href="/tags/WINODWS/" style="font-size: 14px;">WINODWS</a> <a href="/tags/WWW/" style="font-size: 14px;">WWW</a> <a href="/tags/XSHELL/" style="font-size: 14px;">XSHELL</a> <a href="/tags/XTERM/" style="font-size: 14px;">XTERM</a> <a href="/tags/ZLIB/" style="font-size: 14px;">ZLIB</a> <a href="/tags/bonding/" style="font-size: 14px;">bonding</a> <a href="/tags/for/" style="font-size: 14px;">for</a> <a href="/tags/if/" style="font-size: 14px;">if</a> <a href="/tags/libXaw/" style="font-size: 14px;">libXaw</a> <a href="/tags/libXpm/" style="font-size: 14px;">libXpm</a> <a href="/tags/machinekey/" style="font-size: 14px;">machinekey</a> <a href="/tags/pycharm/" style="font-size: 14px;">pycharm</a> <a href="/tags/python/" style="font-size: 22.25px;">python</a> <a href="/tags/ssh-copy-id/" style="font-size: 14px;">ssh-copy-id</a> <a href="/tags/ssh-keygen/" style="font-size: 14px;">ssh-keygen</a> <a href="/tags/while/" style="font-size: 14px;">while</a> <a href="/tags/windows/" style="font-size: 14px;">windows</a> <a href="/tags/元组/" style="font-size: 14px;">元组</a> <a href="/tags/列表/" style="font-size: 14px;">列表</a> <a href="/tags/双网卡/" style="font-size: 14px;">双网卡</a> <a href="/tags/多个公钥/" style="font-size: 14px;">多个公钥</a> <a href="/tags/字典/" style="font-size: 14px;">字典</a> <a href="/tags/字符串/" style="font-size: 14px;">字符串</a> <a href="/tags/密钥/" style="font-size: 16.75px;">密钥</a> <a href="/tags/循环/" style="font-size: 14px;">循环</a> <a href="/tags/数据类型/" style="font-size: 16.75px;">数据类型</a> <a href="/tags/条件判断/" style="font-size: 14px;">条件判断</a> <a href="/tags/网络/" style="font-size: 14px;">网络</a> <a href="/tags/视图状态/" style="font-size: 14px;">视图状态</a> <a href="/tags/负载均衡/" style="font-size: 14px;">负载均衡</a>
     </div>
   </div>
 
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title recent-posts">Recent Posts</h3>
+    <h3 class="widget-title recent-posts">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/04/04/python条件判断和循环/">python条件判断和循环</a>
+          </li>
         
           <li>
             <a href="/2018/04/04/ubuntu编译安装openssh/">ubuntu编译安装openssh</a>
@@ -623,10 +641,6 @@
             <a href="/2018/03/30/python数据类型/">python数据类型</a>
           </li>
         
-          <li>
-            <a href="/2018/03/28/python开发环境搭建/">python开发环境搭建</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -634,9 +648,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title archive">Archives</h3>
+    <h3 class="widget-title archive">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 
@@ -665,10 +679,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
+     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>
