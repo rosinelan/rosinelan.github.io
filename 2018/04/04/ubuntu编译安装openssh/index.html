@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>ubuntu编译安装openssh | 持续不断</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="背景新装的UBUNTU 14.04.5 LTS i686版本，可VNC连接。已安装openssl 1.0.1f版本，未安装zlib和openssl。现需要安装openssh用于远程连接，停用vnc。    注意事项安装openssh主要依赖zlib和openssl，出于安全考虑，建议均安装官方发布的最新稳定版本。">
+<meta name="keywords" content="UBUNTU,OPENSSL,OPENSSH,ZLIB">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ubuntu编译安装openssh">
+<meta property="og:url" content="https://rosinelan.github.io/2018/04/04/ubuntu编译安装openssh/index.html">
+<meta property="og:site_name" content="持续不断">
+<meta property="og:description" content="背景新装的UBUNTU 14.04.5 LTS i686版本，可VNC连接。已安装openssl 1.0.1f版本，未安装zlib和openssl。现需要安装openssh用于远程连接，停用vnc。    注意事项安装openssh主要依赖zlib和openssl，出于安全考虑，建议均安装官方发布的最新稳定版本。">
+<meta property="og:updated_time" content="2018-04-04T10:57:30.700Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ubuntu编译安装openssh">
+<meta name="twitter:description" content="背景新装的UBUNTU 14.04.5 LTS i686版本，可VNC连接。已安装openssl 1.0.1f版本，未安装zlib和openssl。现需要安装openssh用于远程连接，停用vnc。    注意事项安装openssh主要依赖zlib和openssl，出于安全考虑，建议均安装官方发布的最新稳定版本。">
+  
+    <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">持续不断</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">要松懈的时候再坚持一下</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ubuntu编译安装openssh" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/04/ubuntu编译安装openssh/" class="article-date">
+  <time datetime="2018-04-04T09:45:59.000Z" itemprop="datePublished">2018-04-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/system/">系统管理</a>►<a class="article-category-link" href="/categories/system/LINUX/">LINUX</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ubuntu编译安装openssh
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>新装的<code>UBUNTU 14.04.5 LTS i686</code>版本，可<code>VNC</code>连接。<br>已安装<code>openssl 1.0.1f</code>版本，未安装zlib和openssl。<br>现需要安装openssh用于远程连接，停用vnc。   </p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>安装openssh主要依赖zlib和openssl，出于安全考虑，建议均安装官方发布的最新稳定版本。<br><a id="more"></a><br>openssh 7.5p1要求openssl版本小于1.1.0。<br>下载均建议从官方网站下载，不建议从第三方渠道下载。<br>zlib官方地址<a href="http://www.zlib.net/" target="_blank" rel="noopener">点击访问</a><br>openssl官方地址<a href="https://www.openssl.org/" target="_blank" rel="noopener">点击访问</a><br>openssh官方地址<a href="http://www.openssh.com/" target="_blank" rel="noopener">点击访问</a><br>均选择源码的tar.gz包下载。  </p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>首先安装zlib和openssl，最后安装openssh。</p>
+<h3 id="安装zlib"><a href="#安装zlib" class="headerlink" title="安装zlib"></a>安装zlib</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf zlib-1.2.11.tar.gz</span><br><span class="line">cd zlib-1.2.11</span><br><span class="line">./configure</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<h3 id="安装openssl"><a href="#安装openssl" class="headerlink" title="安装openssl"></a>安装openssl</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf openssl-1.0.2n.tar.gz</span><br><span class="line">cd openssl-1.0.2n</span><br><span class="line">./config</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<p>由于系统原来存在openssl其他版本，备份原版本。<br><code>mv /usr/bin/openssl /usr/bin/openssl.old</code><br>新建软链接(路径根据<code>make install</code>结果可以看到，根据实际情况创建即可)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ln -s /usr/local/bin/openssl /usr/bin/openssl</span><br><span class="line">ln -s /usr/local/ssl/bin/openssl /usr/local/bin/openssl</span><br><span class="line">ln -s /usr/local/ssl/bin/openssl /usr/bin/openssl</span><br></pre></td></tr></table></figure></p>
+<p>同时需要更新openssl动态库目录(此处目录路径需根据实际情况调整)<br><code>echo &quot;/usr/local/ssl/lib&quot; &gt;&gt; /etc/ld.so.conf</code><br>更新库目录缓存<br><code>ldconfig -v</code><br>确认openssl版本<br><code>openssl version</code> </p>
+<h3 id="安装openssh"><a href="#安装openssh" class="headerlink" title="安装openssh"></a>安装openssh</h3><p>configure时候需要指定openssl安装目录，防止openssh无法找到。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf openssh-7.7p1.tar.gz</span><br><span class="line">cd openssh-7.7p1</span><br><span class="line">./configure --with-ssl-dir=/usr/local/ssl</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure></p>
+<p>若<code>make install</code>时出现下面错误信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Privilege separation user sshd does not exist</span><br><span class="line">make: [check-config] Error 255 (ignored)</span><br></pre></td></tr></table></figure></p>
+<p>需要在<code>/etc/passwd</code>中添加<code>sshd</code>用户。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/passwd</span><br><span class="line">sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin</span><br></pre></td></tr></table></figure></p>
+<p>然后重新<code>make install</code>即可。<br>此处报错是<code>Privilege separation</code>(特权分离)，是openssh的一种安全机制。  </p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="sshd服务启动"><a href="#sshd服务启动" class="headerlink" title="sshd服务启动"></a>sshd服务启动</h3><p><code>/usr/local/sbin/sshd</code></p>
+<h3 id="开机自启动"><a href="#开机自启动" class="headerlink" title="开机自启动"></a>开机自启动</h3><p>由于编译安装，ssh未添加至系统服务，故为防止重启之后无法连接，添加开机自启动。<br><code>sed -i &#39;$i\/usr/local/sbin/sshd&#39; /etc/rc.local</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/04/04/ubuntu编译安装openssh/" data-id="cjfkzapb1000jhwq6a43mrkpy" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OPENSSH/">OPENSSH</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OPENSSL/">OPENSSL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UBUNTU/">UBUNTU</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ZLIB/">ZLIB</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>Recommended Posts</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/04/03/负载均衡导致的视图状态消息验证代码错误/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">负载均衡导致的视图状态消息验证代码错误</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">Content</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意事项"><span class="toc-number">2.</span> <span class="toc-text">注意事项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">3.</span> <span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装zlib"><span class="toc-number">3.1.</span> <span class="toc-text">安装zlib</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装openssl"><span class="toc-number">3.2.</span> <span class="toc-text">安装openssl</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装openssh"><span class="toc-number">3.3.</span> <span class="toc-text">安装openssh</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置"><span class="toc-number">4.</span> <span class="toc-text">配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sshd服务启动"><span class="toc-number">4.1.</span> <span class="toc-text">sshd服务启动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开机自启动"><span class="toc-number">4.2.</span> <span class="toc-text">开机自启动</span></a></li></ol></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>
