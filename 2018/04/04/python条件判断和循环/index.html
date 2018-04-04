@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="持续不断">
 <meta property="og:description" content="条件判断if条件判断使用if，语法格式12345678if &amp;lt;条件判断1&amp;gt;:    &amp;lt;执行1&amp;gt;elif &amp;lt;条件判断2&amp;gt;:    &amp;lt;执行2&amp;gt;elif &amp;lt;条件判断3&amp;gt;:    &amp;lt;执行3&amp;gt;else:    &amp;lt;执行4&amp;gt;">
 <meta property="og:image" content="http://cdn.rosinelan.com/blog/program/python-for-multi.png">
-<meta property="og:updated_time" content="2018-04-04T13:43:36.070Z">
+<meta property="og:updated_time" content="2018-04-04T13:46:42.250Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python条件判断和循环">
 <meta name="twitter:description" content="条件判断if条件判断使用if，语法格式12345678if &amp;lt;条件判断1&amp;gt;:    &amp;lt;执行1&amp;gt;elif &amp;lt;条件判断2&amp;gt;:    &amp;lt;执行2&amp;gt;elif &amp;lt;条件判断3&amp;gt;:    &amp;lt;执行3&amp;gt;else:    &amp;lt;执行4&amp;gt;">
@@ -44,7 +44,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -119,14 +119,14 @@
 <p>while循环，只要条件满足就不断循环，直到条件不满足时才退出循环。<br>下面是1-100求和<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sum = <span class="number">0</span></span><br><span class="line">n = <span class="number">100</span></span><br><span class="line"><span class="keyword">while</span> n &gt; <span class="number">0</span>:</span><br><span class="line">    sum += n    <span class="comment">#等价于sum = sum + n</span></span><br><span class="line">    n -= <span class="number">1</span>    <span class="comment">#等价于n = n -1</span></span><br><span class="line">print(sum)</span><br></pre></td></tr></table></figure></p>
 <p>针对前面从键盘输入，再判断是正数、负数还是零的代码进行修改<br>增加判断键盘输入是否为数字，若不是数字则要求重新输入，直到输入数字，能够正确判断。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">    number = input(<span class="string">"Please input a number:"</span>)</span><br><span class="line">    <span class="keyword">if</span> number.strip():</span><br><span class="line">        <span class="keyword">if</span> number.isdigit():</span><br><span class="line">            <span class="keyword">if</span> int(number) &gt; <span class="number">0</span>:</span><br><span class="line">                print(<span class="string">"输入的&#123;0&#125;是正数。"</span>.format(number))</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">elif</span> int(number) == <span class="number">0</span>:</span><br><span class="line">                print(<span class="string">"输入的&#123;0&#125;是零。"</span>.format(number))</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                print(<span class="string">"输入的&#123;0&#125;是负数。"</span>.format(number))</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">"输入的不是数字，请重新输入。"</span>)</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">"输入的是空格，请重新输入。"</span>)</span><br><span class="line">        <span class="keyword">continue</span></span><br></pre></td></tr></table></figure></p>
 <p>其中<code>while 1</code>表示死循环，即除非主动跳出循环，否则将永远循环下去。<br>主动跳出循环使用<code>break</code>实现。<br>当输入的不是数字或者是空格时要求继续输入，该功能实现则是使用<code>continue</code>实现。  </p>
-<h3 id="break"><a href="#break" class="headerlink" title="break"></a>break</h3><p>break语句可以在循环过程中直接跳出本层循环。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]:</span><br><span class="line">    i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> i &gt; <span class="number">5</span>:    <span class="comment">#在i大于5的时候执行break语句结束循环</span></span><br><span class="line">        <span class="keyword">break</span>    <span class="comment">#执行break之后大于5的数字将全部无法输出</span></span><br><span class="line">    print(i)</span><br></pre></td></tr></table></figure></p>
-<h3 id="continue"><a href="#continue" class="headerlink" title="continue"></a>continue</h3><p>continue语句可以提前结束本轮循环，直接开始下一轮循环。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]:</span><br><span class="line">    i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> i % <span class="number">2</span> == <span class="number">0</span>:    <span class="comment">#如果i是偶数则执行continue</span></span><br><span class="line">        <span class="keyword">continue</span>    <span class="comment">#执行continue则直接重新开始循环，不输出本次的i</span></span><br><span class="line">    print(i)</span><br></pre></td></tr></table></figure></p>
+<h2 id="break"><a href="#break" class="headerlink" title="break"></a>break</h2><p>break语句可以在循环过程中直接跳出本层循环。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]:</span><br><span class="line">    i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> i &gt; <span class="number">5</span>:    <span class="comment">#在i大于5的时候执行break语句结束循环</span></span><br><span class="line">        <span class="keyword">break</span>    <span class="comment">#执行break之后大于5的数字将全部无法输出</span></span><br><span class="line">    print(i)</span><br></pre></td></tr></table></figure></p>
+<h2 id="continue"><a href="#continue" class="headerlink" title="continue"></a>continue</h2><p>continue语句可以提前结束本轮循环，直接开始下一轮循环。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]:</span><br><span class="line">    i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> i % <span class="number">2</span> == <span class="number">0</span>:    <span class="comment">#如果i是偶数则执行continue</span></span><br><span class="line">        <span class="keyword">continue</span>    <span class="comment">#执行continue则直接重新开始循环，不输出本次的i</span></span><br><span class="line">    print(i)</span><br></pre></td></tr></table></figure></p>
 <p>需要注意，<code>break</code>和<code>continue</code>语句不可滥用，通常都是配合<code>if</code>语句使用。<br>在大多数情况下可以通过逻辑判断等其它方式实现对应功能，而使用<code>break</code>或<code>continue</code>语句容易造成代码逻辑分叉多，容易出错。  </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/04/python条件判断和循环/" data-id="cjfl56nu1000v4oq6pu637if5" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/04/04/python条件判断和循环/" data-id="cjfl56nu1000v4oq6pu637if5" class="article-share-link">Delen</a>
       
       
       
@@ -138,7 +138,7 @@
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>推荐文章</h2>
+    <h2>Recommended Posts</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =4
@@ -182,7 +182,7 @@
   
   
     <a href="/2018/04/04/ubuntu编译安装openssh/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
+      <strong class="article-nav-caption">Ouder</strong>
       <div class="article-nav-title">ubuntu编译安装openssh</div>
     </a>
   
@@ -212,9 +212,9 @@
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">文章目录</strong>
+        <strong class="toc-title">Content</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#条件判断"><span class="toc-number">1.</span> <span class="toc-text">条件判断</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#if"><span class="toc-number">1.1.</span> <span class="toc-text">if</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#循环"><span class="toc-number">2.</span> <span class="toc-text">循环</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#for"><span class="toc-number">2.1.</span> <span class="toc-text">for</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#while"><span class="toc-number">2.2.</span> <span class="toc-text">while</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#break"><span class="toc-number">2.3.</span> <span class="toc-text">break</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#continue"><span class="toc-number">2.4.</span> <span class="toc-text">continue</span></a></li></ol></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#条件判断"><span class="toc-number">1.</span> <span class="toc-text">条件判断</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#if"><span class="toc-number">1.1.</span> <span class="toc-text">if</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#循环"><span class="toc-number">2.</span> <span class="toc-text">循环</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#for"><span class="toc-number">2.1.</span> <span class="toc-text">for</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#while"><span class="toc-number">2.2.</span> <span class="toc-text">while</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#break"><span class="toc-number">3.</span> <span class="toc-text">break</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#continue"><span class="toc-number">4.</span> <span class="toc-text">continue</span></a></li></ol>
           </div>
       </div>
     </div>
@@ -240,10 +240,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
+     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>
