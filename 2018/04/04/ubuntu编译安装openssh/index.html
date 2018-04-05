@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://rosinelan.github.io/2018/04/04/ubuntu编译安装openssh/index.html">
 <meta property="og:site_name" content="持续不断">
 <meta property="og:description" content="背景新装的UBUNTU 14.04.5 LTS i686版本，可VNC连接。已安装openssl 1.0.1f版本，未安装zlib和openssl。现需要安装openssh用于远程连接，停用vnc。    注意事项安装openssh主要依赖zlib和openssl，出于安全考虑，建议均安装官方发布的最新稳定版本。">
-<meta property="og:updated_time" content="2018-04-04T10:57:30.700Z">
+<meta property="og:updated_time" content="2018-04-05T01:35:12.069Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ubuntu编译安装openssh">
 <meta name="twitter:description" content="背景新装的UBUNTU 14.04.5 LTS i686版本，可VNC连接。已安装openssl 1.0.1f版本，未安装zlib和openssl。现需要安装openssh用于远程连接，停用vnc。    注意事项安装openssh主要依赖zlib和openssl，出于安全考虑，建议均安装官方发布的最新稳定版本。">
@@ -101,7 +101,7 @@
         <!-- Table of Contents -->
         
         <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>新装的<code>UBUNTU 14.04.5 LTS i686</code>版本，可<code>VNC</code>连接。<br>已安装<code>openssl 1.0.1f</code>版本，未安装zlib和openssl。<br>现需要安装openssh用于远程连接，停用vnc。   </p>
-<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>安装openssh主要依赖zlib和openssl，出于安全考虑，建议均安装官方发布的最新稳定版本。<br><a id="more"></a><br>openssh 7.5p1要求openssl版本小于1.1.0。<br>下载均建议从官方网站下载，不建议从第三方渠道下载。<br>zlib官方地址<a href="http://www.zlib.net/" target="_blank" rel="noopener">点击访问</a><br>openssl官方地址<a href="https://www.openssl.org/" target="_blank" rel="noopener">点击访问</a><br>openssh官方地址<a href="http://www.openssh.com/" target="_blank" rel="noopener">点击访问</a><br>均选择源码的tar.gz包下载。  </p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>安装openssh主要依赖zlib和openssl，出于安全考虑，建议均安装官方发布的最新稳定版本。<br><a id="more"></a><br>openssh 7.7p1要求openssl版本小于1.1.0。<br>下载均建议从官方网站下载，不建议从第三方渠道下载。<br>zlib官方地址<a href="http://www.zlib.net/" target="_blank" rel="noopener">点击访问</a><br>openssl官方地址<a href="https://www.openssl.org/" target="_blank" rel="noopener">点击访问</a><br>openssh官方地址<a href="http://www.openssh.com/" target="_blank" rel="noopener">点击访问</a><br>均选择源码的tar.gz包下载。  </p>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>首先安装zlib和openssl，最后安装openssh。</p>
 <h3 id="安装zlib"><a href="#安装zlib" class="headerlink" title="安装zlib"></a>安装zlib</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf zlib-1.2.11.tar.gz</span><br><span class="line">cd zlib-1.2.11</span><br><span class="line">./configure</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
 <h3 id="安装openssl"><a href="#安装openssl" class="headerlink" title="安装openssl"></a>安装openssl</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf openssl-1.0.2n.tar.gz</span><br><span class="line">cd openssl-1.0.2n</span><br><span class="line">./config</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
