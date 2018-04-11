@@ -40,7 +40,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Søk"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -100,7 +100,14 @@
       
         <!-- Table of Contents -->
         
-        <h2 id="字符编码"><a href="#字符编码" class="headerlink" title="字符编码"></a>字符编码</h2><p>常用字符编码有<code>ASCII</code>,<code>GB2312</code>,<code>Unicode</code>,<code>UTF-8</code>等，为什么需要这么多不同的编码，又是怎么来的呢？<br>计算机能够识别的只有二进制的0和1，要处理字母等类型只能转换为类似<code>01010001</code>的二进制数字才能处理；人要能够正常阅读，也需要计算机将二进制数转换为对应的字母。那么如何转换，转换的规则和标准又是什么？这就是我们常见的编码所定的。<br>计算机使用8个比特(bit)表示一个字节(byte)，那么一个字节可以表示的最大整数就是255(二进制11111111)，两个字节可以表示最大整数是65535(1111111111111111)。<br>计算机是美国人发明的，因此最早只有英语中的127个字符(包括大小写字母、数字、特殊符号等)被编码到计算机里，这个编码表就是<code>ASCII</code>编码。根据前面一个字节(8比特)最多可以表示<code>256</code>个字符，那么对于英文中的100多个字符使用一个字节中的前7位就可以表示。<br>英文是可以被计算机识别了，那么中文怎么破？为了解决汉字问题，中国国家标准总局提出了<code>GB2312</code>编码，收录了6763个汉字，后来又在此基础上创建了<code>GBK</code>编码，收录了27484汉字，同时收录了包括藏文、蒙文等在内的主要少数名族文字。<br>中文使用<code>GBK</code>编码，那么对于其他国家的文字如何处理，各个国家都有建立了自己的标准。为了统一标准，统一联盟国际组织提出了<code>Unicode</code>编码，该编码将所有语言统一到一套编码。<br>Unicode标准也在不断发展，最常见的是两个字节表示一个字符(生僻字符可能需要4个字节)。<br><code>ASCII</code>和<code>Unicode</code>主要区别：ASCII编码使用1个字节，Unicode编码通常是2个字节。<br>字母<code>A</code>用ASCII编码是十进制的<code>65</code>，二进制的<code>01000001</code>;<br>字符<code>0</code>用ASCII编码是十进制的<code>48</code>，二进制的<code>00110000</code>;<br>汉字<code>中</code>已经超出ASCII编码范围，用Unicode编码是十进制的<code>20013</code>，二进制的<code>01001110 00101101</code>;<br>如果把ASCII编码的<code>A</code>用Unicode编码，只要在前面补0就可以，<code>A</code>的Unicode编码是<code>00000000 01000001</code>。<br>从上面可以看出，假如对英文使用Unicode编码要比ASCII编码多一倍的存储空间，在存储和传输上不方便。<br>所以本着节约的精神，又出现了把Unicode编码转换为可变长编码的<code>UTF-8</code>编码。UTF-8编码把一个Unicode字符根据不同数字大小编码成1-6个字节，常用的英文字母编码成1个字节，汉字通常是3个字节。当传输的文本中包含大量的英文字符时，用UTF-8编码可以节省空间。<br>上面内容总结一下就是  </p>
+        <h2 id="字符编码"><a href="#字符编码" class="headerlink" title="字符编码"></a>字符编码</h2><p>常用字符编码有<code>ASCII</code>,<code>GB2312</code>,<code>Unicode</code>,<code>UTF-8</code>等，为什么需要这么多不同的编码，又是怎么来的呢？<br>计算机能够识别的只有二进制的0和1，要处理字母等类型只能转换为类似<code>01010001</code>的二进制数字才能处理；人要能够正常阅读，也需要计算机将二进制数转换为对应的字母。那么如何转换，转换的规则和标准又是什么？这就是我们常见的编码所规定的。  </p>
+<h3 id="ASCII"><a href="#ASCII" class="headerlink" title="ASCII"></a>ASCII</h3><p>计算机是美国人发明的，因此最早只有英语中的127个字符(包括大小写字母、数字、特殊符号等)被编码到计算机里，这个编码表就是<code>ASCII</code>编码。根据前面一个字节(8比特)最多可以表示<code>256</code>个字符，那么对于英文中的100多个字符使用一个字节中的前7位就可以表示。    </p>
+<h3 id="GBK"><a href="#GBK" class="headerlink" title="GBK"></a>GBK</h3><p>英文是可以被计算机识别了，那么中文怎么破？为了解决汉字问题，中国国家标准总局提出了<code>GB2312</code>编码，收录了6763个汉字，后来又在此基础上创建了<code>GBK</code>编码，收录了27484汉字，同时收录了包括藏文、蒙文等在内的主要少数名族文字。  </p>
+<h3 id="Unicode"><a href="#Unicode" class="headerlink" title="Unicode"></a>Unicode</h3><p>中文使用<code>GBK</code>编码，那么对于其他国家的文字如何处理，各个国家都有建立了自己的标准。为了统一标准，统一联盟国际组织提出了<code>Unicode</code>编码，该编码将所有语言统一到一套编码。<br>Unicode标准也在不断发展，最常见的是两个字节表示一个字符(生僻字符可能需要4个字节)。<br><code>ASCII</code>和<code>Unicode</code>主要区别：ASCII编码使用1个字节，Unicode编码通常是2个字节。</p>
+<blockquote>
+<p>字母<code>A</code>用ASCII编码是十进制的<code>65</code>，二进制的<code>01000001</code>;<br>字符<code>0</code>用ASCII编码是十进制的<code>48</code>，二进制的<code>00110000</code>;<br>汉字<code>中</code>已经超出ASCII编码范围，用Unicode编码是十进制的<code>20013</code>，二进制的<code>01001110 00101101</code>;<br>ASCII编码的<code>A</code>用Unicode编码，只要在前面补0就可以，<code>A</code>的Unicode编码是<code>00000000 01000001</code>。  </p>
+</blockquote>
+<p>从上面可以看出，假如对英文使用Unicode编码要比ASCII编码多一倍的存储空间，在存储和传输上不方便。<br>所以本着节约的精神，又出现了把Unicode编码转换为可变长编码的<code>UTF-8</code>编码。UTF-8编码把一个Unicode字符根据不同数字大小编码成1-6个字节，常用的英文字母编码成1个字节，汉字通常是3个字节。当传输的文本中包含大量的英文字符时，用UTF-8编码可以节省空间。<br>上面内容总结一下就是  </p>
 <ul>
 <li>为处理英文字符，出现了<code>ASCII</code>码。  </li>
 <li>为处理中文字符，出现了<code>GB2312</code>和<code>GBK</code>。  </li>
@@ -130,7 +137,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/11/python编码/" data-id="cjfv4dqjp0012pkq6dcitlv0j" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/04/11/python编码/" data-id="cjfv4dqjp0012pkq6dcitlv0j" class="article-share-link">分享</a>
       
       
       
@@ -185,7 +192,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/11/python练习题目-二/" data-id="cjfv4dqjr0015pkq65tek25s9" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/04/11/python练习题目-二/" data-id="cjfv4dqjr0015pkq65tek25s9" class="article-share-link">分享</a>
       
       
       
@@ -238,7 +245,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/04/python练习题目-一/" data-id="cjfv4dqjn000zpkq6e9kyfj7s" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/04/04/python练习题目-一/" data-id="cjfv4dqjn000zpkq6e9kyfj7s" class="article-share-link">分享</a>
       
       
       
@@ -287,7 +294,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/04/python条件判断和循环/" data-id="cjfv4dqjl000wpkq6k3mumkom" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/04/04/python条件判断和循环/" data-id="cjfv4dqjl000wpkq6k3mumkom" class="article-share-link">分享</a>
       
       
       
@@ -337,7 +344,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/04/ubuntu编译安装openssh/" data-id="cjfv4dqjv0018pkq69jrwwrjq" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/04/04/ubuntu编译安装openssh/" data-id="cjfv4dqjv0018pkq69jrwwrjq" class="article-share-link">分享</a>
       
       
       
@@ -386,7 +393,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/03/负载均衡导致的视图状态消息验证代码错误/" data-id="cjfv4dqjz001epkq6o78fhkct" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/04/03/负载均衡导致的视图状态消息验证代码错误/" data-id="cjfv4dqjz001epkq6o78fhkct" class="article-share-link">分享</a>
       
       
       
@@ -436,7 +443,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/01/python数据类型-二/" data-id="cjfv4dqjg000opkq6g11ih4l9" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/04/01/python数据类型-二/" data-id="cjfv4dqjg000opkq6g11ih4l9" class="article-share-link">分享</a>
       
       
       
@@ -489,7 +496,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/03/30/python数据类型/" data-id="cjfv4dqjj000tpkq6a1b09o3d" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/03/30/python数据类型/" data-id="cjfv4dqjj000tpkq6a1b09o3d" class="article-share-link">分享</a>
       
       
       
@@ -538,7 +545,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/03/28/python开发环境搭建/" data-id="cjfv4dqjh000qpkq6l2xgzk53" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/03/28/python开发环境搭建/" data-id="cjfv4dqjh000qpkq6l2xgzk53" class="article-share-link">分享</a>
       
       
       
@@ -587,7 +594,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/03/27/HBA卡WWN号查看方法/" data-id="cjfv4dqin0001pkq66hrek9c8" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/03/27/HBA卡WWN号查看方法/" data-id="cjfv4dqin0001pkq66hrek9c8" class="article-share-link">分享</a>
       
       
       
@@ -604,7 +611,7 @@
 
 
   <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Neste&raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">下一页&raquo;</a>
   </nav>
 </section>
            
@@ -614,7 +621,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title categories">Kategorier</h3>
+    <h3 class="widget-title categories">分类</h3>
     <div class="widget" id="categories">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/system/">系统管理</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/system/LINUX/">LINUX</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/system/WINDOWS/">WINDOWS</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/program/">编程</a><span class="category-list-count">7</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/program/python/">python</a><span class="category-list-count">7</span></li></ul></li></ul>
     </div>
@@ -624,7 +631,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title tagcloud">Tag Cloud</h3>
+    <h3 class="widget-title tagcloud">标签云</h3>
     <div class="widget tagcloud">
       <a href="/tags/BONDING/" style="font-size: 14px;">BONDING</a> <a href="/tags/CENTOS7/" style="font-size: 14px;">CENTOS7</a> <a href="/tags/EMC/" style="font-size: 14px;">EMC</a> <a href="/tags/FORFILES/" style="font-size: 14px;">FORFILES</a> <a href="/tags/HBA/" style="font-size: 14px;">HBA</a> <a href="/tags/HP-UNIX/" style="font-size: 14px;">HP-UNIX</a> <a href="/tags/JUNCTION/" style="font-size: 14px;">JUNCTION</a> <a href="/tags/LINUX/" style="font-size: 22.25px;">LINUX</a> <a href="/tags/MAC/" style="font-size: 14px;">MAC</a> <a href="/tags/MKLINK/" style="font-size: 14px;">MKLINK</a> <a href="/tags/OPENSSH/" style="font-size: 14px;">OPENSSH</a> <a href="/tags/OPENSSL/" style="font-size: 14px;">OPENSSL</a> <a href="/tags/POWERPATH/" style="font-size: 14px;">POWERPATH</a> <a href="/tags/SSH/" style="font-size: 14px;">SSH</a> <a href="/tags/UBUNTU/" style="font-size: 16.75px;">UBUNTU</a> <a href="/tags/WINDOWS/" style="font-size: 19.5px;">WINDOWS</a> <a href="/tags/WINODWS/" style="font-size: 14px;">WINODWS</a> <a href="/tags/WWW/" style="font-size: 14px;">WWW</a> <a href="/tags/XSHELL/" style="font-size: 14px;">XSHELL</a> <a href="/tags/XTERM/" style="font-size: 14px;">XTERM</a> <a href="/tags/ZLIB/" style="font-size: 14px;">ZLIB</a> <a href="/tags/bonding/" style="font-size: 14px;">bonding</a> <a href="/tags/decode/" style="font-size: 14px;">decode</a> <a href="/tags/encode/" style="font-size: 14px;">encode</a> <a href="/tags/for/" style="font-size: 14px;">for</a> <a href="/tags/if/" style="font-size: 14px;">if</a> <a href="/tags/libXaw/" style="font-size: 14px;">libXaw</a> <a href="/tags/libXpm/" style="font-size: 14px;">libXpm</a> <a href="/tags/machinekey/" style="font-size: 14px;">machinekey</a> <a href="/tags/pycharm/" style="font-size: 14px;">pycharm</a> <a href="/tags/python/" style="font-size: 25px;">python</a> <a href="/tags/ssh-copy-id/" style="font-size: 14px;">ssh-copy-id</a> <a href="/tags/ssh-keygen/" style="font-size: 14px;">ssh-keygen</a> <a href="/tags/while/" style="font-size: 14px;">while</a> <a href="/tags/windows/" style="font-size: 14px;">windows</a> <a href="/tags/乘法/" style="font-size: 14px;">乘法</a> <a href="/tags/九宫格/" style="font-size: 14px;">九宫格</a> <a href="/tags/元组/" style="font-size: 14px;">元组</a> <a href="/tags/列表/" style="font-size: 14px;">列表</a> <a href="/tags/双网卡/" style="font-size: 14px;">双网卡</a> <a href="/tags/多个公钥/" style="font-size: 14px;">多个公钥</a> <a href="/tags/字典/" style="font-size: 14px;">字典</a> <a href="/tags/字符/" style="font-size: 14px;">字符</a> <a href="/tags/字符串/" style="font-size: 14px;">字符串</a> <a href="/tags/密钥/" style="font-size: 16.75px;">密钥</a> <a href="/tags/循环/" style="font-size: 14px;">循环</a> <a href="/tags/数字/" style="font-size: 16.75px;">数字</a> <a href="/tags/数据类型/" style="font-size: 16.75px;">数据类型</a> <a href="/tags/条件判断/" style="font-size: 14px;">条件判断</a> <a href="/tags/编码/" style="font-size: 14px;">编码</a> <a href="/tags/网络/" style="font-size: 14px;">网络</a> <a href="/tags/视图状态/" style="font-size: 14px;">视图状态</a> <a href="/tags/计算/" style="font-size: 14px;">计算</a> <a href="/tags/负载均衡/" style="font-size: 14px;">负载均衡</a> <a href="/tags/阶乘/" style="font-size: 14px;">阶乘</a>
     </div>
@@ -633,7 +640,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title recent-posts">Siste innlegg</h3>
+    <h3 class="widget-title recent-posts">最新文章</h3>
     <div class="widget">
       <ul>
         
@@ -664,7 +671,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title archive">Arkiv</h3>
+    <h3 class="widget-title archive">归档</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">9</span></li></ul>
     </div>
@@ -674,7 +681,7 @@
   
     
 <div class="widget-wrap">
-    <h3 class="widget-title">友情链接</h3>
+    <h3 class="widget-title">Links</h3>
     <div class="widget">
         <ul>
             
@@ -695,10 +702,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
+     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>
