@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>python练习题目(二) | 持续不断</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="题目一 ABCD乘9=DCBA，A=? B=? C=? D=? 程序分析 A和D肯定不为0，B和C取值范围为0-9 以A开头的四位数乘9得到四位数，由于判断A肯定为1 A为1，那么乘以9得到的四位数，D肯定为9">
+<meta name="keywords" content="python,数字,九宫格,计算,乘法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python练习题目(二)">
+<meta property="og:url" content="https://rosinelan.github.io/2018/04/11/python练习题目-二/index.html">
+<meta property="og:site_name" content="持续不断">
+<meta property="og:description" content="题目一 ABCD乘9=DCBA，A=? B=? C=? D=? 程序分析 A和D肯定不为0，B和C取值范围为0-9 以A开头的四位数乘9得到四位数，由于判断A肯定为1 A为1，那么乘以9得到的四位数，D肯定为9">
+<meta property="og:image" content="http://cdn.rosinelan.com/blog/program/python-cal-result.png">
+<meta property="og:image" content="http://cdn.rosinelan.com/blog/program/python-jiucopy-result.png">
+<meta property="og:image" content="http://cdn.rosinelan.com/blog/program/python-jiulist-result.png">
+<meta property="og:updated_time" content="2018-04-11T06:52:03.840Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python练习题目(二)">
+<meta name="twitter:description" content="题目一 ABCD乘9=DCBA，A=? B=? C=? D=? 程序分析 A和D肯定不为0，B和C取值范围为0-9 以A开头的四位数乘9得到四位数，由于判断A肯定为1 A为1，那么乘以9得到的四位数，D肯定为9">
+<meta name="twitter:image" content="http://cdn.rosinelan.com/blog/program/python-cal-result.png">
+  
+    <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">持续不断</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">要松懈的时候再坚持一下</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-python练习题目-二" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/11/python练习题目-二/" class="article-date">
+  <time datetime="2018-04-11T06:01:01.000Z" itemprop="datePublished">2018-04-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/program/">编程</a>►<a class="article-category-link" href="/categories/program/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      python练习题目(二)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="题目一"><a href="#题目一" class="headerlink" title="题目一"></a>题目一</h2><blockquote>
+<p>ABCD乘9=DCBA，A=? B=? C=? D=?</p>
+<h3 id="程序分析"><a href="#程序分析" class="headerlink" title="程序分析"></a>程序分析</h3><ul>
+<li>A和D肯定不为0，B和C取值范围为0-9</li>
+<li>以A开头的四位数乘9得到四位数，由于判断A肯定为1</li>
+<li>A为1，那么乘以9得到的四位数，D肯定为9<a id="more"></a>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> A <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">2</span>):</span><br><span class="line">    <span class="keyword">for</span> B <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">10</span>):</span><br><span class="line">        <span class="keyword">for</span> C <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">10</span>):</span><br><span class="line">            <span class="keyword">for</span> D <span class="keyword">in</span> range(<span class="number">9</span>, <span class="number">10</span>):</span><br><span class="line">                <span class="keyword">if</span> (<span class="number">1000</span>*A + <span class="number">100</span>*B + <span class="number">10</span>*C + D)*<span class="number">9</span> == (D*<span class="number">1000</span> + C*<span class="number">100</span> + B*<span class="number">10</span> + A):</span><br><span class="line">                    print(<span class="string">"A=&#123;0&#125;,B=&#123;1&#125;,C=&#123;2&#125;,D=&#123;3&#125;"</span>.format(A, B, C, D))</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<h3 id="输出结果"><a href="#输出结果" class="headerlink" title="输出结果"></a>输出结果</h3><p><img src="http://cdn.rosinelan.com/blog/program/python-cal-result.png" alt="python-cal-result" title="python-cal-result">  </p>
+<h2 id="题目二"><a href="#题目二" class="headerlink" title="题目二"></a>题目二</h2><blockquote>
+<p>九宫格<br>A B C<br>D E F<br>G H I<br>A-I代表数字，取值范围为1-9，要求横、竖、对角各方向的3个数字不重复，且3个数字之和相等，均为15</p>
+<h3 id="程序分析-1"><a href="#程序分析-1" class="headerlink" title="程序分析"></a>程序分析</h3><ul>
+<li>数字取值范围为1-9</li>
+<li>A取值范围1-9，那么B取值范围为1-9同时排除A</li>
+<li>C取值范围1-9同时排除A和B，依次类推  <h3 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h3><h4 id="实现方式1"><a href="#实现方式1" class="headerlink" title="实现方式1"></a>实现方式1</h4>使用copy()及remove()方法实现各数字判断  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">start = time.clock()</span><br><span class="line">number = [x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">10</span>)]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> A <span class="keyword">in</span> number:</span><br><span class="line">    a = number.copy()</span><br><span class="line">    a.remove(A)</span><br><span class="line">    <span class="keyword">for</span> B <span class="keyword">in</span> a:</span><br><span class="line">        b = a.copy()</span><br><span class="line">        b.remove(B)</span><br><span class="line">        <span class="keyword">for</span> C <span class="keyword">in</span> b:</span><br><span class="line">            c = b.copy()</span><br><span class="line">            c.remove(C)</span><br><span class="line">            <span class="keyword">for</span> D <span class="keyword">in</span> c:</span><br><span class="line">                d = c.copy()</span><br><span class="line">                d.remove(D)</span><br><span class="line">                <span class="keyword">for</span> E <span class="keyword">in</span> d:</span><br><span class="line">                    e = d.copy()</span><br><span class="line">                    e.remove(E)</span><br><span class="line">                    <span class="keyword">for</span> F <span class="keyword">in</span> e:</span><br><span class="line">                        f = e.copy()</span><br><span class="line">                        f.remove(F)</span><br><span class="line">                        <span class="keyword">for</span> G <span class="keyword">in</span> f:</span><br><span class="line">                            g = f.copy()</span><br><span class="line">                            g.remove(G)</span><br><span class="line">                            <span class="keyword">for</span> H <span class="keyword">in</span> g:</span><br><span class="line">                                h = g.copy()</span><br><span class="line">                                h.remove(H)</span><br><span class="line">                                <span class="keyword">for</span> I <span class="keyword">in</span> h:</span><br><span class="line">                                    <span class="keyword">if</span> A+B+C == D+E+F == G+H+I == A+D+G == B+E+H == C+F+I == A+E+I == C+E+G == <span class="number">15</span>:</span><br><span class="line">                                        print(<span class="string">'''</span></span><br><span class="line"><span class="string">                                        -------------</span></span><br><span class="line"><span class="string">                                        | &#123;0&#125; | &#123;1&#125; | &#123;2&#125; |</span></span><br><span class="line"><span class="string">                                        | &#123;3&#125; | &#123;4&#125; | &#123;5&#125; |</span></span><br><span class="line"><span class="string">                                        | &#123;6&#125; | &#123;7&#125; | &#123;8&#125; |</span></span><br><span class="line"><span class="string">                                        -------------'''</span>.format(A, B, C, D, E, F, G, H, I))</span><br><span class="line"></span><br><span class="line">end = time.clock()</span><br><span class="line">print(<span class="string">'Running time: %s Seconds'</span>%(end-start))</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<h4 id="实现方式2"><a href="#实现方式2" class="headerlink" title="实现方式2"></a>实现方式2</h4><p>使用列表生成实现各数字判断<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">start = time.clock()</span><br><span class="line"><span class="keyword">for</span> A <span class="keyword">in</span> [x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">10</span>)]:</span><br><span class="line">    <span class="keyword">for</span> B <span class="keyword">in</span> [x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">10</span>) <span class="keyword">if</span> x != A]:</span><br><span class="line">        <span class="keyword">for</span> C <span class="keyword">in</span> [x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">10</span>) <span class="keyword">if</span> x != B <span class="keyword">and</span> x != A]:</span><br><span class="line">            <span class="keyword">for</span> D <span class="keyword">in</span> [x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">10</span>) <span class="keyword">if</span> x != C <span class="keyword">and</span> x != B <span class="keyword">and</span> x != A]:</span><br><span class="line">                <span class="keyword">for</span> E <span class="keyword">in</span> [x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">10</span>) <span class="keyword">if</span> x != D <span class="keyword">and</span> x != C <span class="keyword">and</span> x != B <span class="keyword">and</span> x != A]:</span><br><span class="line">                    <span class="keyword">for</span> F <span class="keyword">in</span> [x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">10</span>) <span class="keyword">if</span> x != E <span class="keyword">and</span> x != D <span class="keyword">and</span> x != C <span class="keyword">and</span> x != B <span class="keyword">and</span> x != A]:</span><br><span class="line">                        <span class="keyword">for</span> G <span class="keyword">in</span> [x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">10</span>) <span class="keyword">if</span> x != F <span class="keyword">and</span> x != E <span class="keyword">and</span> x != D <span class="keyword">and</span> x != C <span class="keyword">and</span> x != B <span class="keyword">and</span> x != A]:</span><br><span class="line">                            <span class="keyword">for</span> H <span class="keyword">in</span> [x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">10</span>) <span class="keyword">if</span> x != G <span class="keyword">and</span> x != F <span class="keyword">and</span> x != E <span class="keyword">and</span> x != D <span class="keyword">and</span> x != C <span class="keyword">and</span> x != B <span class="keyword">and</span> x != A]:</span><br><span class="line">                                <span class="keyword">for</span> I <span class="keyword">in</span> [x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">10</span>) <span class="keyword">if</span> x != H <span class="keyword">and</span> x != G <span class="keyword">and</span> x != F <span class="keyword">and</span> x != E <span class="keyword">and</span> x != D <span class="keyword">and</span> x != C <span class="keyword">and</span> x != B <span class="keyword">and</span> x != A]:</span><br><span class="line">                                    <span class="keyword">if</span> A+B+C == D+E+F == G+H+I == A+D+G == B+E+H == C+F+I == A+E+I == C+E+G == <span class="number">15</span>:</span><br><span class="line">                                        print(<span class="string">'''</span></span><br><span class="line"><span class="string">                                        -------------</span></span><br><span class="line"><span class="string">                                        | &#123;0&#125; | &#123;1&#125; | &#123;2&#125; |</span></span><br><span class="line"><span class="string">                                        | &#123;3&#125; | &#123;4&#125; | &#123;5&#125; |</span></span><br><span class="line"><span class="string">                                        | &#123;6&#125; | &#123;7&#125; | &#123;8&#125; |</span></span><br><span class="line"><span class="string">                                        -------------'''</span>.format(A, B, C, D, E, F, G, H, I))</span><br><span class="line">end = time.clock()</span><br><span class="line">print(<span class="string">'Running time: %s Seconds'</span>%(end-start))</span><br></pre></td></tr></table></figure></p>
+<h3 id="输出结果-1"><a href="#输出结果-1" class="headerlink" title="输出结果"></a>输出结果</h3><h4 id="实现方式1输出"><a href="#实现方式1输出" class="headerlink" title="实现方式1输出"></a>实现方式1输出</h4><p><img src="http://cdn.rosinelan.com/blog/program/python-jiucopy-result.png" alt="python-jiucopy-result" title="python-jiucopy-result">  </p>
+<h4 id="实现方式2输出"><a href="#实现方式2输出" class="headerlink" title="实现方式2输出"></a>实现方式2输出</h4><p><img src="http://cdn.rosinelan.com/blog/program/python-jiulist-result.png" alt="python-jiulist-result" title="python-jiulist-result"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/04/11/python练习题目-二/" data-id="cjfuqm2pm000rk0q60tnhnht2" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/乘法/">乘法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/九宫格/">九宫格</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数字/">数字</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算/">计算</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/04/04/python练习题目-一/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">python练习题目(一)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目一"><span class="toc-number">1.</span> <span class="toc-text">题目一</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#程序分析"><span class="toc-number">1.1.</span> <span class="toc-text">程序分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码实现"><span class="toc-number">1.2.</span> <span class="toc-text">代码实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出结果"><span class="toc-number">1.3.</span> <span class="toc-text">输出结果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目二"><span class="toc-number">2.</span> <span class="toc-text">题目二</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#程序分析-1"><span class="toc-number">2.1.</span> <span class="toc-text">程序分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码实现-1"><span class="toc-number">2.2.</span> <span class="toc-text">代码实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#实现方式1"><span class="toc-number">2.2.1.</span> <span class="toc-text">实现方式1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实现方式2"><span class="toc-number">2.2.2.</span> <span class="toc-text">实现方式2</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出结果-1"><span class="toc-number">2.3.</span> <span class="toc-text">输出结果</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#实现方式1输出"><span class="toc-number">2.3.1.</span> <span class="toc-text">实现方式1输出</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实现方式2输出"><span class="toc-number">2.3.2.</span> <span class="toc-text">实现方式2输出</span></a></li></ol></li></ol></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>
