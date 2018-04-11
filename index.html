@@ -40,7 +40,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -98,46 +98,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- Table of Contents -->
+        <h2 id="字符编码"><a href="#字符编码" class="headerlink" title="字符编码"></a>字符编码</h2><p>常用字符编码有<code>ASCII</code>,<code>GB2312</code>,<code>Unicode</code>,<code>UTF-8</code>等，为什么需要这么多不同的编码，又是怎么来的呢？<br>计算机能够识别的只有二进制的0和1，要处理字母等类型只能转换为类似<code>01010001</code>的二进制数字才能处理；人要能够正常阅读，也需要计算机将二进制数转换为对应的字母。那么如何转换，转换的规则和标准又是什么？这就是我们常见的编码所规定的。<br>
         
-        <h2 id="字符编码"><a href="#字符编码" class="headerlink" title="字符编码"></a>字符编码</h2><p>常用字符编码有<code>ASCII</code>,<code>GB2312</code>,<code>Unicode</code>,<code>UTF-8</code>等，为什么需要这么多不同的编码，又是怎么来的呢？<br>计算机能够识别的只有二进制的0和1，要处理字母等类型只能转换为类似<code>01010001</code>的二进制数字才能处理；人要能够正常阅读，也需要计算机将二进制数转换为对应的字母。那么如何转换，转换的规则和标准又是什么？这就是我们常见的编码所规定的。  </p>
-<h3 id="ASCII"><a href="#ASCII" class="headerlink" title="ASCII"></a>ASCII</h3><p>计算机是美国人发明的，因此最早只有英语中的127个字符(包括大小写字母、数字、特殊符号等)被编码到计算机里，这个编码表就是<code>ASCII</code>编码。根据前面一个字节(8比特)最多可以表示<code>256</code>个字符，那么对于英文中的100多个字符使用一个字节中的前7位就可以表示。    </p>
-<h3 id="GBK"><a href="#GBK" class="headerlink" title="GBK"></a>GBK</h3><p>英文是可以被计算机识别了，那么中文怎么破？为了解决汉字问题，中国国家标准总局提出了<code>GB2312</code>编码，收录了6763个汉字，后来又在此基础上创建了<code>GBK</code>编码，收录了27484汉字，同时收录了包括藏文、蒙文等在内的主要少数名族文字。  </p>
-<h3 id="Unicode"><a href="#Unicode" class="headerlink" title="Unicode"></a>Unicode</h3><p>中文使用<code>GBK</code>编码，那么对于其他国家的文字如何处理，各个国家都有建立了自己的标准。为了统一标准，统一联盟国际组织提出了<code>Unicode</code>编码，该编码将所有语言统一到一套编码。<br>Unicode标准也在不断发展，最常见的是两个字节表示一个字符(生僻字符可能需要4个字节)。<br><code>ASCII</code>和<code>Unicode</code>主要区别：ASCII编码使用1个字节，Unicode编码通常是2个字节。</p>
-<blockquote>
-<p>字母<code>A</code>用ASCII编码是十进制的<code>65</code>，二进制的<code>01000001</code>;<br>字符<code>0</code>用ASCII编码是十进制的<code>48</code>，二进制的<code>00110000</code>;<br>汉字<code>中</code>已经超出ASCII编码范围，用Unicode编码是十进制的<code>20013</code>，二进制的<code>01001110 00101101</code>;<br>ASCII编码的<code>A</code>用Unicode编码，只要在前面补0就可以，<code>A</code>的Unicode编码是<code>00000000 01000001</code>。  </p>
-</blockquote>
-<p>从上面可以看出，假如对英文使用Unicode编码要比ASCII编码多一倍的存储空间，在存储和传输上不方便。<br>所以本着节约的精神，又出现了把Unicode编码转换为可变长编码的<code>UTF-8</code>编码。UTF-8编码把一个Unicode字符根据不同数字大小编码成1-6个字节，常用的英文字母编码成1个字节，汉字通常是3个字节。当传输的文本中包含大量的英文字符时，用UTF-8编码可以节省空间。<br>上面内容总结一下就是  </p>
-<ul>
-<li>为处理英文字符，出现了<code>ASCII</code>码。  </li>
-<li>为处理中文字符，出现了<code>GB2312</code>和<code>GBK</code>。  </li>
-<li>为统一处理不同国家不同语言，出现了<code>Unicode</code>编码。  </li>
-<li>为提高Unicode传输和存储的性能，出现了<code>UTF-8</code>,它是Unicode的一种实现方式。  <h2 id="python2的字符编码"><a href="#python2的字符编码" class="headerlink" title="python2的字符编码"></a>python2的字符编码</h2>python2中默认的字符编码是<code>ASCII</code>码，也就是说在处理数据时，若没有指定它的编码类型，默认将会当做ASCII码来处理。当编写的python文件中包含有中文字符时就会报错。  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line">s = <span class="string">"是否乱码"</span></span><br><span class="line">print(s)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>执行结果<br><img src="http://cdn.rosinelan.com/blog/program/python-code-default.png" alt="python-code-default" title="python-code-default"><br>根据上述结果可以看到出错原因是python将整个脚本当做ASCII码处理，但是出现的中文<code>是否乱码</code>ASCII码无法处理。处理方式很简单，在头部添加一行编码声明。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding: UTF-8 -*-</span></span><br><span class="line">s = <span class="string">"是否乱码"</span></span><br><span class="line">print(s)</span><br></pre></td></tr></table></figure></p>
-<p>执行结果<br>pycharm执行<br><img src="http://cdn.rosinelan.com/blog/program/python-code-utf8-pycharm.png" alt="python-code-utf8-pycharm" title="python-code-utf8-pycharm"><br>windows命令行执行<br><img src="http://cdn.rosinelan.com/blog/program/python-code-utf8.png" alt="python-code-utf8-cmd" title="python-code-utf8-cmd"><br>声明编码方式之后发现在pycahrm执行输出正确信息，但是在windows命令行输出乱码。<br>windows命令行默认使用的是<code>GBK</code>编码，但是在python脚本中使用的是<code>UTF-8</code>，两边不一致导致出现乱码，只要修改两者一致即可。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding: GBK -*-</span></span><br><span class="line">s = <span class="string">"是否乱码"</span></span><br><span class="line">print(s)</span><br></pre></td></tr></table></figure></p>
-<p>执行结果<br><img src="http://cdn.rosinelan.com/blog/program/python-code-gbk.png" alt="python-code-gbk" title="python-code-gbk"><br>此时可以看到在命令行执行结果显示正确，但是相应的在pycharm执行就会出现乱码的情况。也进一步说明导致乱码就是编码格式不一致。也就是说，当需要操作系统正确输出一个字符时，除了要知道该字符的字符编码，还需要知道自己使用系统的字符编码，两者一致时就不会出现所谓<code>乱码</code>。  </p>
-<h2 id="decode-和encode"><a href="#decode-和encode" class="headerlink" title="decode()和encode()"></a>decode()和encode()</h2><p>decode()方法将其他编码字符转换成Unicode编码字符。<br>encode()方法将Unicode编码字符转换成其他编码字符。<br><img src="http://cdn.rosinelan.com/blog/program/python-code-encode.png" alt="python-code-encode" title="python-code-encode"><br>上述命令在pycharm自带的终端执行，其默认字符编码为<code>UTF-8</code>。<br>直接输入<code>s</code>出现的<code>&#39;\xe6\x98\xaf\xe5\x90\xa6\xe4\xb9\xb1\xe7\xa0\x81&#39;</code>为对应的UTF-8字符串。<br>使用decode()方法将s转换为unicode编码，此时输入<code>unicode_s</code>出现的<code>u&#39;\u662f\u5426\u4e71\u7801&#39;</code>为unicode字符串。<br>使用encode()方法将unicode_s转换为GB2312编码，此时输入<code>gb2312_s</code>出现的<code>&#39;\xca\xc7\xb7\xf1\xc2\xd2\xc2\xeb&#39;</code>为gb2312字符串。由于终端为UTF-8编码，所以使用<code>print gb2312_s</code>会出现乱码情况。<br>在windows终端可以正常输出gb2312编码的字符串。<br><img src="http://cdn.rosinelan.com/blog/program/python-code-decode.png" alt="python-code-decode" title="python-code-decode"><br>总结  </p>
-<ul>
-<li>python2中可以直接查看unicode字符串。  </li>
-<li>python2中对于字符编码的转换通过unicode作为中间人进行转换。  </li>
-<li>decode()方法与在字符串前加u的方法实现的效果相同。<br><img src="http://cdn.rosinelan.com/blog/program/python-code-u.png" alt="python-code-u" title="python-code-u">  <h2 id="python2中的列表"><a href="#python2中的列表" class="headerlink" title="python2中的列表"></a>python2中的列表</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>list1 = [<span class="string">"哈哈"</span>,<span class="string">"ABC"</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list1</span><br><span class="line">[<span class="string">'\xb9\xfe\xb9\xfe'</span>, <span class="string">'ABC'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">print</span> list1[<span class="number">0</span>]</span><br><span class="line">哈哈</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>当一个中文的字符出现在列表(或元组或字典)中，它不会被显示为中文而是显示为字符串。但是当该字符窜从列表中取出再使用print时就可以正常显示为中文。<br>字符串是所有字符在python2中的本质形态，该字符串是计算机可以理解的，不是通常所说的乱码。在python3中就不存在这种问题了。  </p>
-<h2 id="python3的字符编码"><a href="#python3的字符编码" class="headerlink" title="python3的字符编码"></a>python3的字符编码</h2><p>在python3中默认编码方式为<code>UTF-8</code>，所以coding声明可以不用写，但为了兼容python2建议添加。<br>python3中字符串类型是<code>str</code>，在内存中以Unicode表示，一个字符对应若干个字节。当需要传输或者保存到硬盘时，就需要把<code>str</code>变为以字节为单位的<code>bytes</code>。<br>以Unicode表示的<code>str</code>通过encode()方法可以编码为指定的<code>bytes</code>。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">"ABC"</span>.encode(<span class="string">'ASCII'</span>)</span><br><span class="line"><span class="string">b'ABC'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">"是否乱码"</span>.encode(<span class="string">'UTF-8'</span>)</span><br><span class="line"><span class="string">b'\xe6\x98\xaf\xe5\x90\xa6\xe4\xb9\xb1\xe7\xa0\x81'</span></span><br></pre></td></tr></table></figure></p>
-<ul>
-<li><code>bytes</code>类型的数据用带<code>b</code>前缀的单引号或者双引号表示。  </li>
-<li>在<code>bytes</code>中无法显示为ASCII字符的字节，用<code>\x##</code>表示。<br>相反，要将<code>bytes</code>变为<code>str</code>，就需要使用<code>decode()</code>方法。  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">b'ABC'</span>.decode(<span class="string">'ASCII'</span>)</span><br><span class="line"><span class="string">'ABC'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">b'\xe6\x98\xaf\xe5\x90\xa6\xe4\xb9\xb1\xe7\xa0\x81'</span>.decode(<span class="string">'UTF-8'</span>)</span><br><span class="line"><span class="string">'是否乱码'</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>上面说到的编码问题主要是python2中，请注意区分版本。<br>即使在python3中，涉及到<code>str</code>和<code>bytes</code>转换时，非特殊情况一定要使用<code>UTF-8</code>编码。</p>
-
+          <p class="article-more-link">
+            <a href="/2018/04/11/python编码/#more">继续阅读全文 »</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/11/python编码/" data-id="cjfv4dqjp0012pkq6dcitlv0j" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/04/11/python编码/" data-id="cjfv4dqjp0012pkq6dcitlv0j" class="article-share-link">Share</a>
       
       
       
@@ -192,7 +162,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/11/python练习题目-二/" data-id="cjfv4dqjr0015pkq65tek25s9" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/04/11/python练习题目-二/" data-id="cjfv4dqjr0015pkq65tek25s9" class="article-share-link">Share</a>
       
       
       
@@ -245,7 +215,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/04/python练习题目-一/" data-id="cjfv4dqjn000zpkq6e9kyfj7s" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/04/04/python练习题目-一/" data-id="cjfv4dqjn000zpkq6e9kyfj7s" class="article-share-link">Share</a>
       
       
       
@@ -294,7 +264,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/04/python条件判断和循环/" data-id="cjfv4dqjl000wpkq6k3mumkom" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/04/04/python条件判断和循环/" data-id="cjfv4dqjl000wpkq6k3mumkom" class="article-share-link">Share</a>
       
       
       
@@ -344,7 +314,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/04/ubuntu编译安装openssh/" data-id="cjfv4dqjv0018pkq69jrwwrjq" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/04/04/ubuntu编译安装openssh/" data-id="cjfv4dqjv0018pkq69jrwwrjq" class="article-share-link">Share</a>
       
       
       
@@ -393,7 +363,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/03/负载均衡导致的视图状态消息验证代码错误/" data-id="cjfv4dqjz001epkq6o78fhkct" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/04/03/负载均衡导致的视图状态消息验证代码错误/" data-id="cjfv4dqjz001epkq6o78fhkct" class="article-share-link">Share</a>
       
       
       
@@ -443,7 +413,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/01/python数据类型-二/" data-id="cjfv4dqjg000opkq6g11ih4l9" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/04/01/python数据类型-二/" data-id="cjfv4dqjg000opkq6g11ih4l9" class="article-share-link">Share</a>
       
       
       
@@ -496,7 +466,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/03/30/python数据类型/" data-id="cjfv4dqjj000tpkq6a1b09o3d" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/03/30/python数据类型/" data-id="cjfv4dqjj000tpkq6a1b09o3d" class="article-share-link">Share</a>
       
       
       
@@ -545,7 +515,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/03/28/python开发环境搭建/" data-id="cjfv4dqjh000qpkq6l2xgzk53" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/03/28/python开发环境搭建/" data-id="cjfv4dqjh000qpkq6l2xgzk53" class="article-share-link">Share</a>
       
       
       
@@ -594,7 +564,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/03/27/HBA卡WWN号查看方法/" data-id="cjfv4dqin0001pkq66hrek9c8" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/03/27/HBA卡WWN号查看方法/" data-id="cjfv4dqin0001pkq66hrek9c8" class="article-share-link">Share</a>
       
       
       
@@ -611,7 +581,7 @@
 
 
   <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">下一页&raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next&raquo;</a>
   </nav>
 </section>
            
@@ -621,7 +591,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title categories">分类</h3>
+    <h3 class="widget-title categories">Categories</h3>
     <div class="widget" id="categories">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/system/">系统管理</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/system/LINUX/">LINUX</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/system/WINDOWS/">WINDOWS</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/program/">编程</a><span class="category-list-count">7</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/program/python/">python</a><span class="category-list-count">7</span></li></ul></li></ul>
     </div>
@@ -631,7 +601,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title tagcloud">标签云</h3>
+    <h3 class="widget-title tagcloud">Tag Cloud</h3>
     <div class="widget tagcloud">
       <a href="/tags/BONDING/" style="font-size: 14px;">BONDING</a> <a href="/tags/CENTOS7/" style="font-size: 14px;">CENTOS7</a> <a href="/tags/EMC/" style="font-size: 14px;">EMC</a> <a href="/tags/FORFILES/" style="font-size: 14px;">FORFILES</a> <a href="/tags/HBA/" style="font-size: 14px;">HBA</a> <a href="/tags/HP-UNIX/" style="font-size: 14px;">HP-UNIX</a> <a href="/tags/JUNCTION/" style="font-size: 14px;">JUNCTION</a> <a href="/tags/LINUX/" style="font-size: 22.25px;">LINUX</a> <a href="/tags/MAC/" style="font-size: 14px;">MAC</a> <a href="/tags/MKLINK/" style="font-size: 14px;">MKLINK</a> <a href="/tags/OPENSSH/" style="font-size: 14px;">OPENSSH</a> <a href="/tags/OPENSSL/" style="font-size: 14px;">OPENSSL</a> <a href="/tags/POWERPATH/" style="font-size: 14px;">POWERPATH</a> <a href="/tags/SSH/" style="font-size: 14px;">SSH</a> <a href="/tags/UBUNTU/" style="font-size: 16.75px;">UBUNTU</a> <a href="/tags/WINDOWS/" style="font-size: 19.5px;">WINDOWS</a> <a href="/tags/WINODWS/" style="font-size: 14px;">WINODWS</a> <a href="/tags/WWW/" style="font-size: 14px;">WWW</a> <a href="/tags/XSHELL/" style="font-size: 14px;">XSHELL</a> <a href="/tags/XTERM/" style="font-size: 14px;">XTERM</a> <a href="/tags/ZLIB/" style="font-size: 14px;">ZLIB</a> <a href="/tags/bonding/" style="font-size: 14px;">bonding</a> <a href="/tags/decode/" style="font-size: 14px;">decode</a> <a href="/tags/encode/" style="font-size: 14px;">encode</a> <a href="/tags/for/" style="font-size: 14px;">for</a> <a href="/tags/if/" style="font-size: 14px;">if</a> <a href="/tags/libXaw/" style="font-size: 14px;">libXaw</a> <a href="/tags/libXpm/" style="font-size: 14px;">libXpm</a> <a href="/tags/machinekey/" style="font-size: 14px;">machinekey</a> <a href="/tags/pycharm/" style="font-size: 14px;">pycharm</a> <a href="/tags/python/" style="font-size: 25px;">python</a> <a href="/tags/ssh-copy-id/" style="font-size: 14px;">ssh-copy-id</a> <a href="/tags/ssh-keygen/" style="font-size: 14px;">ssh-keygen</a> <a href="/tags/while/" style="font-size: 14px;">while</a> <a href="/tags/windows/" style="font-size: 14px;">windows</a> <a href="/tags/乘法/" style="font-size: 14px;">乘法</a> <a href="/tags/九宫格/" style="font-size: 14px;">九宫格</a> <a href="/tags/元组/" style="font-size: 14px;">元组</a> <a href="/tags/列表/" style="font-size: 14px;">列表</a> <a href="/tags/双网卡/" style="font-size: 14px;">双网卡</a> <a href="/tags/多个公钥/" style="font-size: 14px;">多个公钥</a> <a href="/tags/字典/" style="font-size: 14px;">字典</a> <a href="/tags/字符/" style="font-size: 14px;">字符</a> <a href="/tags/字符串/" style="font-size: 14px;">字符串</a> <a href="/tags/密钥/" style="font-size: 16.75px;">密钥</a> <a href="/tags/循环/" style="font-size: 14px;">循环</a> <a href="/tags/数字/" style="font-size: 16.75px;">数字</a> <a href="/tags/数据类型/" style="font-size: 16.75px;">数据类型</a> <a href="/tags/条件判断/" style="font-size: 14px;">条件判断</a> <a href="/tags/编码/" style="font-size: 14px;">编码</a> <a href="/tags/网络/" style="font-size: 14px;">网络</a> <a href="/tags/视图状态/" style="font-size: 14px;">视图状态</a> <a href="/tags/计算/" style="font-size: 14px;">计算</a> <a href="/tags/负载均衡/" style="font-size: 14px;">负载均衡</a> <a href="/tags/阶乘/" style="font-size: 14px;">阶乘</a>
     </div>
@@ -640,7 +610,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title recent-posts">最新文章</h3>
+    <h3 class="widget-title recent-posts">Recent Posts</h3>
     <div class="widget">
       <ul>
         
@@ -671,7 +641,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title archive">归档</h3>
+    <h3 class="widget-title archive">Archives</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">9</span></li></ul>
     </div>
@@ -702,10 +672,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
+     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>
