@@ -40,7 +40,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -78,6 +78,10 @@
   <time datetime="2018-04-13T00:51:48.000Z" itemprop="datePublished">2018-04-13</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/program/">编程</a>►<a class="article-category-link" href="/categories/program/python/">python</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -96,14 +100,48 @@
       
         <!-- Table of Contents -->
         
-        
+        <h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h3 id="函数定义"><a href="#函数定义" class="headerlink" title="函数定义"></a>函数定义</h3><p>定义函数使用<code>def</code>语句，依次写出函数名、括号、括号中的参数和冒号<code>:</code>，然后在缩进块中编写函数体，函数的返回值用<code>return</code>语句返回。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">function</span><span class="params">(arg1,arg2,...)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure></p>
+<p><code>pass</code>表示什么也不干。一般用作占位符，比如还没想好代码怎么写，可以先写<code>pass</code>让代码可以运行。<br><code>return</code>返回结果。若没有<code>return</code>函数也会返回结果，只是返回结果为<code>None</code>。<code>return None</code>可以简写为<code>return</code>。<br><code>exit(n)</code>表示强行退出。  </p>
+<h3 id="函数参数"><a href="#函数参数" class="headerlink" title="函数参数"></a>函数参数</h3><h4 id="位置参数"><a href="#位置参数" class="headerlink" title="位置参数"></a>位置参数</h4><p>对于下面计算任意数的任意次方的函数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">power</span><span class="params">(x, n)</span>:</span></span><br><span class="line"><span class="meta">... </span>    s = <span class="number">1</span></span><br><span class="line"><span class="meta">... </span>    <span class="keyword">while</span> n &gt; <span class="number">0</span>:</span><br><span class="line"><span class="meta">... </span>        n = n - <span class="number">1</span></span><br><span class="line"><span class="meta">... </span>        s = s * x</span><br><span class="line"><span class="meta">... </span>    <span class="keyword">return</span> s</span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>power(<span class="number">5</span>,<span class="number">2</span>)</span><br><span class="line"><span class="number">25</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>power(<span class="number">2</span>,<span class="number">5</span>)</span><br><span class="line"><span class="number">32</span></span><br></pre></td></tr></table></figure></p>
+<p>其中的参数<code>x</code>和<code>n</code>都是位置参数，也就是调用函数时，传入的参数按照先后顺序依次赋值给<code>x</code>和<code>n</code>。  </p>
+<h4 id="默认参数"><a href="#默认参数" class="headerlink" title="默认参数"></a>默认参数</h4><p>对于上面的<code>power(x, n)</code>函数，当调用的时候只输入1个参数会如何呢？<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>power(<span class="number">2</span>)</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">TypeError: power() missing <span class="number">1</span> required positional argument: <span class="string">'n'</span></span><br></pre></td></tr></table></figure></p>
+<p>可见少参数是不行的。此时可以通过默认参数简化问题。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">power</span><span class="params">(x, n=<span class="number">2</span>)</span>:</span>    <span class="comment">#设置n默认值为2</span></span><br><span class="line"><span class="meta">... </span>    s = <span class="number">1</span></span><br><span class="line"><span class="meta">... </span>    <span class="keyword">while</span> n &gt; <span class="number">0</span>:</span><br><span class="line"><span class="meta">... </span>        n = n - <span class="number">1</span></span><br><span class="line"><span class="meta">... </span>        s = s * x</span><br><span class="line"><span class="meta">... </span>    <span class="keyword">return</span> s</span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>power(<span class="number">5</span>)    <span class="comment">#此时相当于power(5,2)</span></span><br><span class="line"><span class="number">25</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>power(<span class="number">2</span>,<span class="number">5</span>)    <span class="comment">#当需要计算n不是2的情况时，可以自己输入。</span></span><br><span class="line"><span class="number">32</span></span><br></pre></td></tr></table></figure></p>
+<p>设置默认参数时<br>必选参数在前，默认参数在后，否则python编辑器报错。<br>函数有多个参数时，变化大的参数放前面，变化小的参数放后面。变化小的参数可以作为默认参数。<br>有多个默认参数时，调用的时候既可以按照顺序提供默认参数，也可以不按顺序提供部分默认参数。当不按顺序提供默认参数时，需要把参数名写上。<br>默认参数必须指向不变的参数。<br>不可变类型：整数、字符串、元组。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">变量赋值a=5 后再赋值a=10，这里实际是新生成一个int值对象10，再让a指向它，而5被丢弃。不是改变a的值，相当于重新生成了a。</span><br></pre></td></tr></table></figure></p>
+<p>可变类型： 列表、字典。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">变量赋值la=[1,2,3,4]后再赋值la[2]=5 则是修改list la的第三个元素值，本身la没动，只是其内部的部分值被修改了。</span><br></pre></td></tr></table></figure></p>
+<p>使用可变类型作为默认参数的坑<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(x,l=[])</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(x):</span><br><span class="line">        l.append(i*i)</span><br><span class="line">    print(l)</span><br></pre></td></tr></table></figure></p>
+<p>对于上面的函数，我们看下不同情况下调用的结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>f(<span class="number">2</span>)    <span class="comment">#只传入第一个参数，列表使用默认值</span></span><br><span class="line">[<span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f(<span class="number">3</span>, [<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>])    <span class="comment">#传入所有参数，不使用默认值</span></span><br><span class="line">[<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">4</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f(<span class="number">3</span>)    <span class="comment">#列表使用默认值，此时结果为f(2)得到的列表上追加，而不是在空列表追加</span></span><br><span class="line">[<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">4</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f(<span class="number">3</span>, [<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>])    <span class="comment">#列表不适用默认值，结果和预期一致</span></span><br><span class="line">[<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">4</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f(<span class="number">4</span>)    <span class="comment">#列表使用默认值，此时结果为在f(3)结果的列表追加</span></span><br><span class="line">[<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f(<span class="number">4</span>, [<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>])    <span class="comment">#列表不使用默认值，结果和预期一致</span></span><br><span class="line">[<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>]</span><br></pre></td></tr></table></figure></p>
+<p>原因：python的函数在定义的时候，默认参数<code>L</code>已经被计算出来了，就是<code>[]</code>，也就是变量<code>l</code>指向对象<code>[]</code>。每次调用函数<code>f()</code>的时候，假如改变了<code>l</code>的内容，那么下次调用时默认参数<code>l</code>的内容就变了，不再是默认的<code>[]</code>。  </p>
+<h4 id="可变参数"><a href="#可变参数" class="headerlink" title="可变参数"></a>可变参数</h4><p>可变参数就是参数个数是可变的，可以是1个、2个到任意个，也可以是0个。<br>如计算传入数字的平方和。由于参数个数不一定，可以通过传入列表或者元组。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">calc</span><span class="params">(numbers)</span>:</span></span><br><span class="line"><span class="meta">... </span>    sum = <span class="number">0</span></span><br><span class="line"><span class="meta">... </span>    <span class="keyword">for</span> n <span class="keyword">in</span> numbers:</span><br><span class="line"><span class="meta">... </span>        sum = sum + n * n</span><br><span class="line"><span class="meta">... </span>    <span class="keyword">return</span> sum</span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>calc([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line"><span class="number">14</span></span><br></pre></td></tr></table></figure></p>
+<p>但是调用的时候需要生成列表或者元组。此时可以使用可变参数方式简化。<br>定义可变参数就是在参数前添加一个<code>*</code>号。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">calc</span><span class="params">(*numbers)</span>:</span></span><br><span class="line"><span class="meta">... </span>    sum = <span class="number">0</span></span><br><span class="line"><span class="meta">... </span>    <span class="keyword">for</span> n <span class="keyword">in</span> numbers:</span><br><span class="line"><span class="meta">... </span>        sum = sum + n * n</span><br><span class="line"><span class="meta">... </span>    <span class="keyword">return</span> sum</span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>calc(<span class="number">0</span>)</span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>calc(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"><span class="number">14</span></span><br></pre></td></tr></table></figure></p>
+<p>python允许在列表或者元组前加一个<code>*</code>号，把列表或者元组的元素编程可变参数传进去。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>nums = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>calc(*nums)</span><br><span class="line"><span class="number">14</span></span><br></pre></td></tr></table></figure></p>
+<p>上面的<code>*nums</code>表示把列表nums中的所有元素按照可变参数传进去。   </p>
+<h4 id="关键字参数"><a href="#关键字参数" class="headerlink" title="关键字参数"></a>关键字参数</h4><p>可变函数允许传入任意个参数，这些可变参数在函数调用时自动组装成一个元组。<br>关键字参数允许传入任意个含参数名的参数，这些关键字在函数内部自动组装成一个字典。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">person</span><span class="params">(name, age, **kw)</span>:</span>    <span class="comment">#kw就是关键字参数</span></span><br><span class="line"><span class="meta">... </span>    print(<span class="string">'name:'</span>, name, <span class="string">'age:'</span>, age, <span class="string">'other:'</span>, kw)</span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>person(<span class="string">'xiaohh'</span>, <span class="number">30</span>, city=<span class="string">'beijing'</span>)</span><br><span class="line">name: xiaohh age: <span class="number">30</span> other: &#123;<span class="string">'city'</span>: <span class="string">'beijing'</span>&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="命名关键字参数"><a href="#命名关键字参数" class="headerlink" title="命名关键字参数"></a>命名关键字参数</h4><p>对于关键字参数，调用者可以传入任意不受限制的关键字参数。如果要限制关键字参数的名字，就可以用命名关键字参数。<br>命名关键字参数需要一个特殊分隔符<code>*</code>，<code>*</code>后面的参数被视为命名关键字参数。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">person</span><span class="params">(name, age, *, city, job)</span>:</span>    <span class="comment">#星号前面的name和age属于位置参数</span></span><br><span class="line"><span class="meta">... </span>    print(name, age, city, job)</span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>person(<span class="string">'Jack'</span>, <span class="number">24</span>, city=<span class="string">'Beijing'</span>, job=<span class="string">'Engineer'</span>)</span><br><span class="line">Jack <span class="number">24</span> Beijing Engineer</span><br></pre></td></tr></table></figure></p>
+<p>如果函数定义中已经有一个可变参数，后面跟着的命名关键字参数就不再需要一个特殊分隔符<code>*</code>。命名关键字参数必须传入参数名，若没有传入参数名调用将报错。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">person</span><span class="params">(name, age, *args, city, job)</span>:</span></span><br><span class="line"><span class="meta">... </span>    print(name, age, args, city, job)</span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>person(<span class="string">'Jack'</span>, <span class="number">24</span>, city=<span class="string">'Beijing'</span>, job=<span class="string">'Engineer'</span>)</span><br><span class="line">Jack <span class="number">24</span> () Beijing Engineer</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>person(<span class="string">'Jack'</span>, <span class="number">24</span>, <span class="string">'Beijing'</span>, <span class="string">'Engineer'</span>)</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">TypeError: person() missing <span class="number">2</span> required keyword-only arguments: <span class="string">'city'</span> <span class="keyword">and</span> <span class="string">'job'</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="组合参数"><a href="#组合参数" class="headerlink" title="组合参数"></a>组合参数</h4><p>定义函数时可以选用必选参数、默认参数、关键字参数和命名关键字参数，这5种参数可以组合使用。但是，参数定义的顺序必须是：必选参数、默认参数、可变参数、命名关键字参数和关键字参数。<br>调用函数的时候，python解释器会自动按照参数位置和参数名称把对应的参数传进去。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">f1</span><span class="params">(a, b, c=<span class="number">0</span>, *args, **kw)</span>:</span></span><br><span class="line"><span class="meta">... </span>    print(<span class="string">'a ='</span>, a, <span class="string">'b ='</span>, b, <span class="string">'c ='</span>, c, <span class="string">'args ='</span>, args, <span class="string">'kw ='</span>, kw)</span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f1(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">a = <span class="number">1</span> b = <span class="number">2</span> c = <span class="number">0</span> args = () kw = &#123;&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f1(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="string">'a'</span>, <span class="string">'b'</span>)</span><br><span class="line">a = <span class="number">1</span> b = <span class="number">2</span> c = <span class="number">3</span> args = (<span class="string">'a'</span>, <span class="string">'b'</span>) kw = &#123;&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f1(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="string">'a'</span>, <span class="string">'b'</span>, x=<span class="number">99</span>)</span><br><span class="line">a = <span class="number">1</span> b = <span class="number">2</span> c = <span class="number">3</span> args = (<span class="string">'a'</span>, <span class="string">'b'</span>) kw = &#123;<span class="string">'x'</span>: <span class="number">99</span>&#125;</span><br></pre></td></tr></table></figure></p>
+<p>通过元组或者列表也可以调用上述函数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>args = (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>kw = &#123;<span class="string">'d'</span>: <span class="number">99</span>, <span class="string">'x'</span>: <span class="string">'#'</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f1(*args, **kw)</span><br><span class="line">a = <span class="number">1</span> b = <span class="number">2</span> c = <span class="number">3</span> args = (<span class="number">4</span>,) kw = &#123;<span class="string">'d'</span>: <span class="number">99</span>, <span class="string">'x'</span>: <span class="string">'#'</span>&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>默认参数一定要使用不可变对象，若使用可变对象可能出现逻辑错误。<br><code>*args</code>是可变参数，args接受的是一个元组。<br><code>**kw</code>是关键字参数，kw接受的是一个字典。<br>使用<code>*args</code>和<code>**kw</code>是习惯写法，也可以使用其他参数名，但建议使用习惯写法。<br>可变参数既可以直接传入，也可以先组装列表或者元组，再通过<code>*args</code>传入。<br>关键字参数是既可以直接输入，也可以先组装字典，再通过<code>**kw</code>传入。</p>
+<h3 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h3><p>匿名函数就是没有名字。python使用lambda创建匿名函数。  </p>
+<ul>
+<li>lambda函数是一种快速定义单行的最小函数，可以用在任何需要函数的地方。  </li>
+<li>lambda只是一个表达式，函数体比def简单很多。  </li>
+<li>lambda函数拥有自己的命名空间，且不能访问自己参数列表之外的参数。  </li>
+</ul>
+<p>语法格式如下</p>
+<blockquote>
+<p>lambda [arg1 [,arg2,…..argn]]:expression  </p>
+</blockquote>
+<p>示例<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>sum = <span class="keyword">lambda</span> arg1, arg2: arg1 + arg2;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sum(<span class="number">20</span>,<span class="number">20</span>)</span><br><span class="line"><span class="number">40</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sum(<span class="number">10</span>,<span class="number">10</span>)</span><br><span class="line"><span class="number">20</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h3>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/13/python函数/" data-id="cjfy1mt3q004zvsq6negaggar" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/04/13/python函数/" data-id="cjfy1mt3q004zvsq6negaggar" class="article-share-link">Share</a>
       
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/args/">args</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kw/">kw</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/return/">return</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/函数/">函数</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/参数/">参数</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/可变参数/">可变参数</a></li></ul>
+
     </footer>
   </div>
   
@@ -151,7 +189,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/13/python文件操作/" data-id="cjfy1mt1c000hvsq6mujgdma9" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/04/13/python文件操作/" data-id="cjfy1mt1c000hvsq6mujgdma9" class="article-share-link">Share</a>
       
       
       
@@ -200,7 +238,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/11/python编码/" data-id="cjfy1mt3t0052vsq6zez6q7gk" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/04/11/python编码/" data-id="cjfy1mt3t0052vsq6zez6q7gk" class="article-share-link">Share</a>
       
       
       
@@ -255,7 +293,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/11/python练习题目-二/" data-id="cjfy1mt3j004uvsq6c9jo80ql" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/04/11/python练习题目-二/" data-id="cjfy1mt3j004uvsq6c9jo80ql" class="article-share-link">Share</a>
       
       
       
@@ -308,7 +346,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/04/python练习题目-一/" data-id="cjfy1mt3h004svsq60oo0zrtz" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/04/04/python练习题目-一/" data-id="cjfy1mt3h004svsq60oo0zrtz" class="article-share-link">Share</a>
       
       
       
@@ -357,7 +395,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/04/python条件判断和循环/" data-id="cjfy1mt1n000uvsq6j5sdegjn" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/04/04/python条件判断和循环/" data-id="cjfy1mt1n000uvsq6j5sdegjn" class="article-share-link">Share</a>
       
       
       
@@ -407,7 +445,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/04/ubuntu编译安装openssh/" data-id="cjfy1mt3m004wvsq6qbdunblv" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/04/04/ubuntu编译安装openssh/" data-id="cjfy1mt3m004wvsq6qbdunblv" class="article-share-link">Share</a>
       
       
       
@@ -456,7 +494,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/03/负载均衡导致的视图状态消息验证代码错误/" data-id="cjfy1mt3o004xvsq6lylv2kau" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/04/03/负载均衡导致的视图状态消息验证代码错误/" data-id="cjfy1mt3o004xvsq6lylv2kau" class="article-share-link">Share</a>
       
       
       
@@ -506,7 +544,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/01/python数据类型-二/" data-id="cjfy1mt1p000wvsq6vueqii00" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/04/01/python数据类型-二/" data-id="cjfy1mt1p000wvsq6vueqii00" class="article-share-link">Share</a>
       
       
       
@@ -559,7 +597,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/03/30/python数据类型/" data-id="cjfy1mt1j000ovsq67zdawior" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/03/30/python数据类型/" data-id="cjfy1mt1j000ovsq67zdawior" class="article-share-link">Share</a>
       
       
       
@@ -576,7 +614,7 @@
 
 
   <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">下一页&raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next&raquo;</a>
   </nav>
 </section>
            
@@ -586,9 +624,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title categories">分类</h3>
+    <h3 class="widget-title categories">Categories</h3>
     <div class="widget" id="categories">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/system/">系统管理</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/system/LINUX/">LINUX</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/system/WINDOWS/">WINDOWS</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/program/">编程</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/program/python/">python</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/program/pyton/">pyton</a><span class="category-list-count">1</span></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/system/">系统管理</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/system/LINUX/">LINUX</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/system/WINDOWS/">WINDOWS</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/program/">编程</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/program/python/">python</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/program/pyton/">pyton</a><span class="category-list-count">1</span></li></ul></li></ul>
     </div>
   </div>
 
@@ -596,16 +634,16 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title tagcloud">标签云</h3>
+    <h3 class="widget-title tagcloud">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/BONDING/" style="font-size: 14px;">BONDING</a> <a href="/tags/CENTOS7/" style="font-size: 14px;">CENTOS7</a> <a href="/tags/EMC/" style="font-size: 14px;">EMC</a> <a href="/tags/FORFILES/" style="font-size: 14px;">FORFILES</a> <a href="/tags/HBA/" style="font-size: 14px;">HBA</a> <a href="/tags/HP-UNIX/" style="font-size: 14px;">HP-UNIX</a> <a href="/tags/JUNCTION/" style="font-size: 14px;">JUNCTION</a> <a href="/tags/LINUX/" style="font-size: 22.25px;">LINUX</a> <a href="/tags/MAC/" style="font-size: 14px;">MAC</a> <a href="/tags/MKLINK/" style="font-size: 14px;">MKLINK</a> <a href="/tags/OPENSSH/" style="font-size: 14px;">OPENSSH</a> <a href="/tags/OPENSSL/" style="font-size: 14px;">OPENSSL</a> <a href="/tags/POWERPATH/" style="font-size: 14px;">POWERPATH</a> <a href="/tags/SSH/" style="font-size: 14px;">SSH</a> <a href="/tags/UBUNTU/" style="font-size: 16.75px;">UBUNTU</a> <a href="/tags/WINDOWS/" style="font-size: 19.5px;">WINDOWS</a> <a href="/tags/WINODWS/" style="font-size: 14px;">WINODWS</a> <a href="/tags/WWW/" style="font-size: 14px;">WWW</a> <a href="/tags/XSHELL/" style="font-size: 14px;">XSHELL</a> <a href="/tags/XTERM/" style="font-size: 14px;">XTERM</a> <a href="/tags/ZLIB/" style="font-size: 14px;">ZLIB</a> <a href="/tags/bonding/" style="font-size: 14px;">bonding</a> <a href="/tags/close/" style="font-size: 14px;">close</a> <a href="/tags/decode/" style="font-size: 14px;">decode</a> <a href="/tags/encode/" style="font-size: 14px;">encode</a> <a href="/tags/for/" style="font-size: 14px;">for</a> <a href="/tags/if/" style="font-size: 14px;">if</a> <a href="/tags/libXaw/" style="font-size: 14px;">libXaw</a> <a href="/tags/libXpm/" style="font-size: 14px;">libXpm</a> <a href="/tags/machinekey/" style="font-size: 14px;">machinekey</a> <a href="/tags/open/" style="font-size: 14px;">open</a> <a href="/tags/pycharm/" style="font-size: 14px;">pycharm</a> <a href="/tags/python/" style="font-size: 25px;">python</a> <a href="/tags/read/" style="font-size: 14px;">read</a> <a href="/tags/ssh-copy-id/" style="font-size: 14px;">ssh-copy-id</a> <a href="/tags/ssh-keygen/" style="font-size: 14px;">ssh-keygen</a> <a href="/tags/while/" style="font-size: 14px;">while</a> <a href="/tags/windows/" style="font-size: 14px;">windows</a> <a href="/tags/乘法/" style="font-size: 14px;">乘法</a> <a href="/tags/九宫格/" style="font-size: 14px;">九宫格</a> <a href="/tags/元组/" style="font-size: 14px;">元组</a> <a href="/tags/列表/" style="font-size: 14px;">列表</a> <a href="/tags/双网卡/" style="font-size: 14px;">双网卡</a> <a href="/tags/多个公钥/" style="font-size: 14px;">多个公钥</a> <a href="/tags/字典/" style="font-size: 14px;">字典</a> <a href="/tags/字符/" style="font-size: 14px;">字符</a> <a href="/tags/字符串/" style="font-size: 14px;">字符串</a> <a href="/tags/密钥/" style="font-size: 16.75px;">密钥</a> <a href="/tags/循环/" style="font-size: 14px;">循环</a> <a href="/tags/数字/" style="font-size: 16.75px;">数字</a> <a href="/tags/数据类型/" style="font-size: 16.75px;">数据类型</a> <a href="/tags/文件/" style="font-size: 14px;">文件</a> <a href="/tags/条件判断/" style="font-size: 14px;">条件判断</a> <a href="/tags/编码/" style="font-size: 14px;">编码</a> <a href="/tags/网络/" style="font-size: 14px;">网络</a> <a href="/tags/视图状态/" style="font-size: 14px;">视图状态</a> <a href="/tags/计算/" style="font-size: 14px;">计算</a> <a href="/tags/负载均衡/" style="font-size: 14px;">负载均衡</a> <a href="/tags/阶乘/" style="font-size: 14px;">阶乘</a>
+      <a href="/tags/BONDING/" style="font-size: 14px;">BONDING</a> <a href="/tags/CENTOS7/" style="font-size: 14px;">CENTOS7</a> <a href="/tags/EMC/" style="font-size: 14px;">EMC</a> <a href="/tags/FORFILES/" style="font-size: 14px;">FORFILES</a> <a href="/tags/HBA/" style="font-size: 14px;">HBA</a> <a href="/tags/HP-UNIX/" style="font-size: 14px;">HP-UNIX</a> <a href="/tags/JUNCTION/" style="font-size: 14px;">JUNCTION</a> <a href="/tags/LINUX/" style="font-size: 22.25px;">LINUX</a> <a href="/tags/MAC/" style="font-size: 14px;">MAC</a> <a href="/tags/MKLINK/" style="font-size: 14px;">MKLINK</a> <a href="/tags/OPENSSH/" style="font-size: 14px;">OPENSSH</a> <a href="/tags/OPENSSL/" style="font-size: 14px;">OPENSSL</a> <a href="/tags/POWERPATH/" style="font-size: 14px;">POWERPATH</a> <a href="/tags/SSH/" style="font-size: 14px;">SSH</a> <a href="/tags/UBUNTU/" style="font-size: 16.75px;">UBUNTU</a> <a href="/tags/WINDOWS/" style="font-size: 19.5px;">WINDOWS</a> <a href="/tags/WINODWS/" style="font-size: 14px;">WINODWS</a> <a href="/tags/WWW/" style="font-size: 14px;">WWW</a> <a href="/tags/XSHELL/" style="font-size: 14px;">XSHELL</a> <a href="/tags/XTERM/" style="font-size: 14px;">XTERM</a> <a href="/tags/ZLIB/" style="font-size: 14px;">ZLIB</a> <a href="/tags/args/" style="font-size: 14px;">args</a> <a href="/tags/bonding/" style="font-size: 14px;">bonding</a> <a href="/tags/close/" style="font-size: 14px;">close</a> <a href="/tags/decode/" style="font-size: 14px;">decode</a> <a href="/tags/encode/" style="font-size: 14px;">encode</a> <a href="/tags/for/" style="font-size: 14px;">for</a> <a href="/tags/if/" style="font-size: 14px;">if</a> <a href="/tags/kw/" style="font-size: 14px;">kw</a> <a href="/tags/libXaw/" style="font-size: 14px;">libXaw</a> <a href="/tags/libXpm/" style="font-size: 14px;">libXpm</a> <a href="/tags/machinekey/" style="font-size: 14px;">machinekey</a> <a href="/tags/open/" style="font-size: 14px;">open</a> <a href="/tags/pycharm/" style="font-size: 14px;">pycharm</a> <a href="/tags/python/" style="font-size: 25px;">python</a> <a href="/tags/read/" style="font-size: 14px;">read</a> <a href="/tags/return/" style="font-size: 14px;">return</a> <a href="/tags/ssh-copy-id/" style="font-size: 14px;">ssh-copy-id</a> <a href="/tags/ssh-keygen/" style="font-size: 14px;">ssh-keygen</a> <a href="/tags/while/" style="font-size: 14px;">while</a> <a href="/tags/windows/" style="font-size: 14px;">windows</a> <a href="/tags/乘法/" style="font-size: 14px;">乘法</a> <a href="/tags/九宫格/" style="font-size: 14px;">九宫格</a> <a href="/tags/元组/" style="font-size: 14px;">元组</a> <a href="/tags/函数/" style="font-size: 14px;">函数</a> <a href="/tags/列表/" style="font-size: 14px;">列表</a> <a href="/tags/参数/" style="font-size: 14px;">参数</a> <a href="/tags/双网卡/" style="font-size: 14px;">双网卡</a> <a href="/tags/可变参数/" style="font-size: 14px;">可变参数</a> <a href="/tags/多个公钥/" style="font-size: 14px;">多个公钥</a> <a href="/tags/字典/" style="font-size: 14px;">字典</a> <a href="/tags/字符/" style="font-size: 14px;">字符</a> <a href="/tags/字符串/" style="font-size: 14px;">字符串</a> <a href="/tags/密钥/" style="font-size: 16.75px;">密钥</a> <a href="/tags/循环/" style="font-size: 14px;">循环</a> <a href="/tags/数字/" style="font-size: 16.75px;">数字</a> <a href="/tags/数据类型/" style="font-size: 16.75px;">数据类型</a> <a href="/tags/文件/" style="font-size: 14px;">文件</a> <a href="/tags/条件判断/" style="font-size: 14px;">条件判断</a> <a href="/tags/编码/" style="font-size: 14px;">编码</a> <a href="/tags/网络/" style="font-size: 14px;">网络</a> <a href="/tags/视图状态/" style="font-size: 14px;">视图状态</a> <a href="/tags/计算/" style="font-size: 14px;">计算</a> <a href="/tags/负载均衡/" style="font-size: 14px;">负载均衡</a> <a href="/tags/阶乘/" style="font-size: 14px;">阶乘</a>
     </div>
   </div>
 
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title recent-posts">最新文章</h3>
+    <h3 class="widget-title recent-posts">Recent Posts</h3>
     <div class="widget">
       <ul>
         
@@ -636,7 +674,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title archive">归档</h3>
+    <h3 class="widget-title archive">Archives</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">9</span></li></ul>
     </div>
@@ -667,10 +705,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
+     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>
