@@ -40,7 +40,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -106,15 +106,15 @@
 <li>把A柱子的n-1个圆盘移动到C柱子。</li>
 <li>把A柱子剩余的最大圆盘移动到B柱子。</li>
 <li>把C柱子的n-1个圆盘移动到B柱子。</li>
-<li>C柱子的n-1个怎么移动呢？按照上述步骤递归处理。<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mov</span><span class="params">(a, b, c, n)</span>:</span>    <span class="comment"># n表示圆盘个数，a/b/c分别为源/目标/辅助柱子</span></span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">1</span>:</span><br><span class="line">        <span class="comment"># print("&#123;0&#125;--&gt;&#123;1&#125;:&#123;2&#125;".format(a[0], b[0], a[-1]))</span></span><br><span class="line">        b.append(a.pop())</span><br><span class="line">        <span class="comment"># print(x, y, z)</span></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    mov(a, c, b, n<span class="number">-1</span>)</span><br><span class="line">    <span class="comment"># print("&#123;0&#125;--&gt;&#123;1&#125;:&#123;2&#125;".format(a[0], b[0], a[-1]))</span></span><br><span class="line">    b.append(a.pop())</span><br><span class="line">    <span class="comment"># print(x, y, z)</span></span><br><span class="line">    mov(c, b, a, n<span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">x = [<span class="string">'x'</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>]</span><br><span class="line">y = [<span class="string">'y'</span>]</span><br><span class="line">z = [<span class="string">'z'</span>]</span><br><span class="line">mov(x, y, z, <span class="number">3</span>)</span><br><span class="line">print(x, y, z)</span><br></pre></td></tr></table></figure>
-</li>
+<li>C柱子的n-1个怎么移动呢？按照上述步骤递归处理。</li>
 </ul>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mov</span><span class="params">(a, b, c, n)</span>:</span>    <span class="comment"># n表示圆盘个数，a/b/c分别为源/目标/辅助柱子</span></span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">1</span>:</span><br><span class="line">        <span class="comment"># print("&#123;0&#125;--&gt;&#123;1&#125;:&#123;2&#125;".format(a[0], b[0], a[-1]))</span></span><br><span class="line">        b.append(a.pop())</span><br><span class="line">        <span class="comment"># print(x, y, z)</span></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    mov(a, c, b, n<span class="number">-1</span>)</span><br><span class="line">    <span class="comment"># print("&#123;0&#125;--&gt;&#123;1&#125;:&#123;2&#125;".format(a[0], b[0], a[-1]))</span></span><br><span class="line">    b.append(a.pop())</span><br><span class="line">    <span class="comment"># print(x, y, z)</span></span><br><span class="line">    mov(c, b, a, n<span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">x = [<span class="string">'x'</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>]</span><br><span class="line">y = [<span class="string">'y'</span>]</span><br><span class="line">z = [<span class="string">'z'</span>]</span><br><span class="line">mov(x, y, z, <span class="number">3</span>)</span><br><span class="line">print(x, y, z)</span><br></pre></td></tr></table></figure>
 <p>使用3个列表模拟A、B、C柱子。<br>注释部分可打印出具体移动过程。  </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/14/python处理汉诺塔问题/" data-id="cjfz569f6000rx4q6ywyeqoh9" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/04/14/python处理汉诺塔问题/" data-id="cjfz569f6000rx4q6ywyeqoh9" class="article-share-link">Delen</a>
       
       
       
@@ -163,7 +163,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/13/python函数/" data-id="cjfz569f3000px4q6l6mj6r6l" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/04/13/python函数/" data-id="cjfz569f3000px4q6l6mj6r6l" class="article-share-link">Delen</a>
       
       
       
@@ -216,7 +216,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/13/python文件操作/" data-id="cjfz569fd0010x4q6lwi7vdmv" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/04/13/python文件操作/" data-id="cjfz569fd0010x4q6lwi7vdmv" class="article-share-link">Delen</a>
       
       
       
@@ -265,7 +265,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/11/python编码/" data-id="cjfz569fn001fx4q6nid5if4h" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/04/11/python编码/" data-id="cjfz569fn001fx4q6nid5if4h" class="article-share-link">Delen</a>
       
       
       
@@ -320,7 +320,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/11/python练习题目-二/" data-id="cjfz569fj0019x4q6omvir8ed" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/04/11/python练习题目-二/" data-id="cjfz569fj0019x4q6omvir8ed" class="article-share-link">Delen</a>
       
       
       
@@ -373,7 +373,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/04/python练习题目-一/" data-id="cjfz569fh0016x4q66sg9wb89" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/04/04/python练习题目-一/" data-id="cjfz569fh0016x4q66sg9wb89" class="article-share-link">Delen</a>
       
       
       
@@ -422,7 +422,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/04/python条件判断和循环/" data-id="cjfz569fl001cx4q61hpiydq6" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/04/04/python条件判断和循环/" data-id="cjfz569fl001cx4q61hpiydq6" class="article-share-link">Delen</a>
       
       
       
@@ -472,7 +472,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/04/ubuntu编译安装openssh/" data-id="cjfz569fr001lx4q6m15yikxf" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/04/04/ubuntu编译安装openssh/" data-id="cjfz569fr001lx4q6m15yikxf" class="article-share-link">Delen</a>
       
       
       
@@ -521,7 +521,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/03/负载均衡导致的视图状态消息验证代码错误/" data-id="cjfz569fu001px4q67fl45egr" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/04/03/负载均衡导致的视图状态消息验证代码错误/" data-id="cjfz569fu001px4q67fl45egr" class="article-share-link">Delen</a>
       
       
       
@@ -571,7 +571,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/01/python数据类型-二/" data-id="cjfz569f9000vx4q67qxd4vuy" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/04/01/python数据类型-二/" data-id="cjfz569f9000vx4q67qxd4vuy" class="article-share-link">Delen</a>
       
       
       
@@ -588,7 +588,7 @@
 
 
   <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next&raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Volgende&raquo;</a>
   </nav>
 </section>
            
@@ -598,7 +598,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title categories">Categories</h3>
+    <h3 class="widget-title categories">Categorieën</h3>
     <div class="widget" id="categories">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/system/">系统管理</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/system/LINUX/">LINUX</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/system/WINDOWS/">WINDOWS</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/program/">编程</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/program/python/">python</a><span class="category-list-count">10</span></li></ul></li></ul>
     </div>
@@ -617,7 +617,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title recent-posts">Recent Posts</h3>
+    <h3 class="widget-title recent-posts">Recente berichten</h3>
     <div class="widget">
       <ul>
         
@@ -648,7 +648,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title archive">Archives</h3>
+    <h3 class="widget-title archive">Archieven</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">9</span></li></ul>
     </div>

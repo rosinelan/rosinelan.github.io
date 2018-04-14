@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://rosinelan.github.io/2018/04/13/python函数/index.html">
 <meta property="og:site_name" content="持续不断">
 <meta property="og:description" content="函数函数定义定义函数使用def语句，依次写出函数名、括号、括号中的参数和冒号:，然后在缩进块中编写函数体，函数的返回值用return语句返回。12def function(arg1,arg2,...):    pass">
-<meta property="og:updated_time" content="2018-04-14T08:50:52.550Z">
+<meta property="og:updated_time" content="2018-04-14T08:51:52.371Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python函数">
 <meta name="twitter:description" content="函数函数定义定义函数使用def语句，依次写出函数名、括号、括号中的参数和冒号:，然后在缩进块中编写函数体，函数的返回值用return语句返回。12def function(arg1,arg2,...):    pass">
@@ -42,7 +42,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -134,12 +134,12 @@
 </blockquote>
 <p>示例<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>sum = <span class="keyword">lambda</span> arg1, arg2: arg1 + arg2;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sum(<span class="number">20</span>,<span class="number">20</span>)</span><br><span class="line"><span class="number">40</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sum(<span class="number">10</span>,<span class="number">10</span>)</span><br><span class="line"><span class="number">20</span></span><br></pre></td></tr></table></figure></p>
 <h3 id="递归函数"><a href="#递归函数" class="headerlink" title="递归函数"></a>递归函数</h3><p>在函数内部可以调用其他函数。如果一个函数在内部调用自身本身，这个函数就是递归函数。<br>举个例子，计算阶乘<code>n! = 1 x 2 x 3 x...x n</code>，用函数<code>fact(n)</code>表示，那么<br>fact(n) = n! = 1 x 2 x 3 x …x (n-1) x n = (n-1)! x n = fact(n-1) x n<br>所以<code>fact(n)</code>可以表示为<code>n x fact(n-1)</code>，只有 n = 1时需要特殊处理。<br>那么这个函数可以写成<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fact</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> n * fact(n - <span class="number">1</span>)</span><br></pre></td></tr></table></figure></p>
-<p>比较典型的使用递归函数处理的问题，除了阶乘之外还有汉诺塔问题。<br>具体处理及解决办法见<a href="">python处理汉诺塔问题</a></p>
+<p>比较典型的使用递归函数处理的问题，除了阶乘之外还有汉诺塔问题。<br>具体处理及解决办法见<a href="https://rosinelan.coding.me/2018/04/14/python%E5%A4%84%E7%90%86%E6%B1%89%E8%AF%BA%E5%A1%94%E9%97%AE%E9%A2%98/" target="_blank" rel="noopener">python处理汉诺塔问题</a></p>
 <h3 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h3>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/13/python函数/" data-id="cjfz569f3000px4q6l6mj6r6l" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/04/13/python函数/" data-id="cjfz569f3000px4q6l6mj6r6l" class="article-share-link">Delen</a>
       
       
       
@@ -151,7 +151,7 @@
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =4
@@ -194,7 +194,7 @@
 <nav id="article-nav">
   
     <a href="/2018/04/14/python处理汉诺塔问题/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">Nieuwer</strong>
       <div class="article-nav-title">
         
           python处理汉诺塔问题
@@ -204,7 +204,7 @@
   
   
     <a href="/2018/04/13/python文件操作/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">Ouder</strong>
       <div class="article-nav-title">python文件操作</div>
     </a>
   
@@ -234,7 +234,7 @@
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
               <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#函数"><span class="toc-number">1.</span> <span class="toc-text">函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#函数定义"><span class="toc-number">1.1.</span> <span class="toc-text">函数定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数参数"><span class="toc-number">1.2.</span> <span class="toc-text">函数参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#位置参数"><span class="toc-number">1.2.1.</span> <span class="toc-text">位置参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#默认参数"><span class="toc-number">1.2.2.</span> <span class="toc-text">默认参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#可变参数"><span class="toc-number">1.2.3.</span> <span class="toc-text">可变参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#关键字参数"><span class="toc-number">1.2.4.</span> <span class="toc-text">关键字参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#命名关键字参数"><span class="toc-number">1.2.5.</span> <span class="toc-text">命名关键字参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#组合参数"><span class="toc-number">1.2.6.</span> <span class="toc-text">组合参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#总结"><span class="toc-number">1.2.7.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#匿名函数"><span class="toc-number">1.3.</span> <span class="toc-text">匿名函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#递归函数"><span class="toc-number">1.4.</span> <span class="toc-text">递归函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#高阶函数"><span class="toc-number">1.5.</span> <span class="toc-text">高阶函数</span></a></li></ol></li></ol>
           </div>
