@@ -5,17 +5,17 @@
   
   <title>python处理汉诺塔问题 | 持续不断</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="题目不清楚汉诺塔规则可以点击查看。要求：A、B、C 3个柱子，现在要求以C柱子为辅助，将数量为n的圆盘从A柱子移到B柱子(圆盘最大的在最下面)。 分析 A柱子为源柱子，B柱子为目标柱子，C柱子为辅助柱子。 把A柱子的n-1个圆盘移动到C柱子。 把A柱子剩余的最大圆盘移动到B柱子。 把C柱子的n-1个圆盘移动到B柱子。 C柱子的n-1个怎么移动呢？按照上述步骤递归处理。  代码实现123456789">
+  <meta name="description" content="题目不清楚汉诺塔规则可以点击查看。要求：A、B、C 3个柱子，现在要求以C柱子为辅助，将数量为n的圆盘从A柱子移到B柱子(圆盘最大的在最下面)。">
 <meta name="keywords" content="python,汉诺塔,递归,列表">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python处理汉诺塔问题">
 <meta property="og:url" content="https://rosinelan.github.io/2018/04/14/python处理汉诺塔问题/index.html">
 <meta property="og:site_name" content="持续不断">
-<meta property="og:description" content="题目不清楚汉诺塔规则可以点击查看。要求：A、B、C 3个柱子，现在要求以C柱子为辅助，将数量为n的圆盘从A柱子移到B柱子(圆盘最大的在最下面)。 分析 A柱子为源柱子，B柱子为目标柱子，C柱子为辅助柱子。 把A柱子的n-1个圆盘移动到C柱子。 把A柱子剩余的最大圆盘移动到B柱子。 把C柱子的n-1个圆盘移动到B柱子。 C柱子的n-1个怎么移动呢？按照上述步骤递归处理。  代码实现123456789">
-<meta property="og:updated_time" content="2018-04-14T08:52:14.937Z">
+<meta property="og:description" content="题目不清楚汉诺塔规则可以点击查看。要求：A、B、C 3个柱子，现在要求以C柱子为辅助，将数量为n的圆盘从A柱子移到B柱子(圆盘最大的在最下面)。">
+<meta property="og:updated_time" content="2018-04-14T08:53:29.513Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python处理汉诺塔问题">
-<meta name="twitter:description" content="题目不清楚汉诺塔规则可以点击查看。要求：A、B、C 3个柱子，现在要求以C柱子为辅助，将数量为n的圆盘从A柱子移到B柱子(圆盘最大的在最下面)。 分析 A柱子为源柱子，B柱子为目标柱子，C柱子为辅助柱子。 把A柱子的n-1个圆盘移动到C柱子。 把A柱子剩余的最大圆盘移动到B柱子。 把C柱子的n-1个圆盘移动到B柱子。 C柱子的n-1个怎么移动呢？按照上述步骤递归处理。  代码实现123456789">
+<meta name="twitter:description" content="题目不清楚汉诺塔规则可以点击查看。要求：A、B、C 3个柱子，现在要求以C柱子为辅助，将数量为n的圆盘从A柱子移到B柱子(圆盘最大的在最下面)。">
   
     <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
   
@@ -42,7 +42,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -100,7 +100,7 @@
       
         <!-- Table of Contents -->
         
-        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>不清楚<a href="https://baike.baidu.com/item/%E6%B1%89%E8%AF%BA%E5%A1%94/3468295" target="_blank" rel="noopener">汉诺塔</a>规则可以点击查看。<br>要求：A、B、C 3个柱子，现在要求以C柱子为辅助，将数量为n的圆盘从A柱子移到B柱子(圆盘最大的在最下面)。</p>
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>不清楚<a href="https://baike.baidu.com/item/%E6%B1%89%E8%AF%BA%E5%A1%94/3468295" target="_blank" rel="noopener">汉诺塔</a>规则可以点击查看。<br>要求：A、B、C 3个柱子，现在要求以C柱子为辅助，将数量为n的圆盘从A柱子移到B柱子(圆盘最大的在最下面)。<br><a id="more"></a></p>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><ul>
 <li>A柱子为源柱子，B柱子为目标柱子，C柱子为辅助柱子。</li>
 <li>把A柱子的n-1个圆盘移动到C柱子。</li>
@@ -114,7 +114,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/14/python处理汉诺塔问题/" data-id="cjfz569f6000rx4q6ywyeqoh9" class="article-share-link">Delen</a>
+      <a data-url="https://rosinelan.github.io/2018/04/14/python处理汉诺塔问题/" data-id="cjfz569f6000rx4q6ywyeqoh9" class="article-share-link">分享</a>
       
       
       
@@ -170,7 +170,7 @@
   
   
     <a href="/2018/04/13/python函数/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Ouder</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">python函数</div>
     </a>
   
@@ -228,10 +228,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
+     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>
