@@ -15,7 +15,7 @@
 <meta property="og:image" content="http://cdn.rosinelan.com/blog/program/python-sort-source.png">
 <meta property="og:image" content="http://cdn.rosinelan.com/blog/program/python-sort-print.png">
 <meta property="og:image" content="http://cdn.rosinelan.com/blog/program/python-sort-sorted.png">
-<meta property="og:updated_time" content="2018-04-15T03:22:54.317Z">
+<meta property="og:updated_time" content="2018-04-15T03:52:07.609Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python函数">
 <meta name="twitter:description" content="函数函数定义定义函数使用def语句，依次写出函数名、括号、括号中的参数和冒号:，然后在缩进块中编写函数体，函数的返回值用return语句返回。12def function(arg1,arg2,...):    pass">
@@ -46,7 +46,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Søk"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -163,12 +163,13 @@
 <p>输出结果为<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line">...(略)</span><br><span class="line"><span class="number">81</span></span><br><span class="line"><span class="number">100</span></span><br></pre></td></tr></table></figure></p>
 <h4 id="yield"><a href="#yield" class="headerlink" title="yield"></a>yield</h4><p>如果一个函数中包含关键字<code>yield</code>，那么这个函数就是一个生成器。<br>普通函数和含有<code>yield</code>关键字的生成器区别在于执行流程不一样。<br>函数是顺序执行，遇到<code>return</code>语句或最后一行函数语句就返回。<br>变成生成器的函数，遇到<code>yield</code>语句时返回，再次执行的时候从上次返回的<code>yield</code>语句的下一行继续执行。<br>对于下面的函数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">odd</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">"step 1"</span>)</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">1</span></span><br><span class="line">    print(<span class="string">"step 2"</span>)</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">3</span></span><br><span class="line">    print(<span class="string">"step 3"</span>)</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">5</span></span><br></pre></td></tr></table></figure></p>
 <p>调用的时候，输出结果为<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>n = odd()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(next(n))    <span class="comment">#输出第一步，返回1</span></span><br><span class="line">step <span class="number">1</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(next(n))    <span class="comment">#继续从yield 1下一行开始执行</span></span><br><span class="line">step <span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(next(n))    <span class="comment">#继续从yield 3下一行开始执行</span></span><br><span class="line">step <span class="number">3</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(next(n))    <span class="comment">#当最后一个元素结束时会抛出StopIteration异常</span></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">StopIteration</span><br></pre></td></tr></table></figure></p>
-<p>关于生成器的练习题目，点击<a href="">生成器练习题目</a></p>
+<p>关于生成器的练习题目，点击<a href="https://rosinelan.coding.me/2018/04/15/python%E7%94%9F%E6%88%90%E5%99%A8%E7%BB%83%E4%B9%A0%E9%A2%98%E7%9B%AE/" target="_blank" rel="noopener">生成器练习题目</a></p>
+<h3 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h3><p>生成器是在for循环过程中不断计算出下一个元素，并在适当的条件结束for循环。<br>对于函数改成的生成器，遇到return语句或者执行到函数体最后一句，就是结束生成器的指令，for循环也就结束了。<br>普通函数调用直接返回结果。<br>生成器调用返回一个生成器对象。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/13/python函数/" data-id="cjg09muq2000i0gq6hprwwhxe" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/04/13/python函数/" data-id="cjg09muq2000i0gq6hprwwhxe" class="article-share-link">分享</a>
       
       
       
@@ -180,7 +181,7 @@
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =4
@@ -223,7 +224,7 @@
 <nav id="article-nav">
   
     <a href="/2018/04/14/python处理汉诺塔问题/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
           python处理汉诺塔问题
@@ -233,7 +234,7 @@
   
   
     <a href="/2018/04/13/python文件操作/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">python文件操作</div>
     </a>
   
@@ -263,9 +264,9 @@
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#函数"><span class="toc-number">1.</span> <span class="toc-text">函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#函数定义"><span class="toc-number">1.1.</span> <span class="toc-text">函数定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数参数"><span class="toc-number">1.2.</span> <span class="toc-text">函数参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#位置参数"><span class="toc-number">1.2.1.</span> <span class="toc-text">位置参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#默认参数"><span class="toc-number">1.2.2.</span> <span class="toc-text">默认参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#可变参数"><span class="toc-number">1.2.3.</span> <span class="toc-text">可变参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#关键字参数"><span class="toc-number">1.2.4.</span> <span class="toc-text">关键字参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#命名关键字参数"><span class="toc-number">1.2.5.</span> <span class="toc-text">命名关键字参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#组合参数"><span class="toc-number">1.2.6.</span> <span class="toc-text">组合参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#总结"><span class="toc-number">1.2.7.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#匿名函数"><span class="toc-number">1.3.</span> <span class="toc-text">匿名函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#递归函数"><span class="toc-number">1.4.</span> <span class="toc-text">递归函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#高阶函数"><span class="toc-number">1.5.</span> <span class="toc-text">高阶函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#map"><span class="toc-number">1.5.1.</span> <span class="toc-text">map()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#reduce"><span class="toc-number">1.5.2.</span> <span class="toc-text">reduce()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#filter"><span class="toc-number">1.5.3.</span> <span class="toc-text">filter()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sorted"><span class="toc-number">1.5.4.</span> <span class="toc-text">sorted()</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#列表生成式"><span class="toc-number">1.6.</span> <span class="toc-text">列表生成式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#生成器"><span class="toc-number">1.7.</span> <span class="toc-text">生成器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#exp-for-val-in-collection-if-condition"><span class="toc-number">1.7.1.</span> <span class="toc-text">(exp for val in collection if condition)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#yield"><span class="toc-number">1.7.2.</span> <span class="toc-text">yield</span></a></li></ol></li></ol></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#函数"><span class="toc-number">1.</span> <span class="toc-text">函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#函数定义"><span class="toc-number">1.1.</span> <span class="toc-text">函数定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数参数"><span class="toc-number">1.2.</span> <span class="toc-text">函数参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#位置参数"><span class="toc-number">1.2.1.</span> <span class="toc-text">位置参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#默认参数"><span class="toc-number">1.2.2.</span> <span class="toc-text">默认参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#可变参数"><span class="toc-number">1.2.3.</span> <span class="toc-text">可变参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#关键字参数"><span class="toc-number">1.2.4.</span> <span class="toc-text">关键字参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#命名关键字参数"><span class="toc-number">1.2.5.</span> <span class="toc-text">命名关键字参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#组合参数"><span class="toc-number">1.2.6.</span> <span class="toc-text">组合参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#总结"><span class="toc-number">1.2.7.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#匿名函数"><span class="toc-number">1.3.</span> <span class="toc-text">匿名函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#递归函数"><span class="toc-number">1.4.</span> <span class="toc-text">递归函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#高阶函数"><span class="toc-number">1.5.</span> <span class="toc-text">高阶函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#map"><span class="toc-number">1.5.1.</span> <span class="toc-text">map()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#reduce"><span class="toc-number">1.5.2.</span> <span class="toc-text">reduce()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#filter"><span class="toc-number">1.5.3.</span> <span class="toc-text">filter()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sorted"><span class="toc-number">1.5.4.</span> <span class="toc-text">sorted()</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#列表生成式"><span class="toc-number">1.6.</span> <span class="toc-text">列表生成式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#生成器"><span class="toc-number">1.7.</span> <span class="toc-text">生成器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#exp-for-val-in-collection-if-condition"><span class="toc-number">1.7.1.</span> <span class="toc-text">(exp for val in collection if condition)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#yield"><span class="toc-number">1.7.2.</span> <span class="toc-text">yield</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结-1"><span class="toc-number">1.8.</span> <span class="toc-text">总结</span></a></li></ol></li></ol>
           </div>
       </div>
     </div>
@@ -291,10 +292,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
+     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>

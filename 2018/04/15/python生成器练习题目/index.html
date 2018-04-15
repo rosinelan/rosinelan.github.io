@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://rosinelan.github.io/2018/04/15/python生成器练习题目/index.html">
 <meta property="og:site_name" content="持续不断">
 <meta property="og:description" content="斐波那契数列F[n]=F[n-1]+F[n-2] (n&amp;gt;2,F[0]=1,F[1]=1) 程序分析初第一个数和第二个数，其余数字均由前两个数相加得到。   代码实现使用函数实现">
-<meta property="og:updated_time" content="2018-04-15T03:43:23.156Z">
+<meta property="og:updated_time" content="2018-04-15T04:48:53.156Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python生成器练习题目">
 <meta name="twitter:description" content="斐波那契数列F[n]=F[n-1]+F[n-2] (n&amp;gt;2,F[0]=1,F[1]=1) 程序分析初第一个数和第二个数，其余数字均由前两个数相加得到。   代码实现使用函数实现">
@@ -42,7 +42,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Søk"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -106,11 +106,21 @@
 <p>输出结果为<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>fib(<span class="number">6</span>)</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">8</span></span><br></pre></td></tr></table></figure></p>
 <p>当然，采用生成器方式也可以实现<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fib</span><span class="params">(max)</span>:</span></span><br><span class="line">    n, a, b = <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> n &lt; max:</span><br><span class="line">        <span class="keyword">yield</span> b</span><br><span class="line">        a, b = b, a+b</span><br><span class="line">        n += <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
 <p>此时返回结果为生成器对象，调用时候可以使用<code>next()</code>或者<code>for</code>循环<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> i <span class="keyword">in</span> fib(<span class="number">6</span>):</span><br><span class="line"><span class="meta">... </span>    print(i)</span><br><span class="line">...</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">8</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="杨辉三角"><a href="#杨辉三角" class="headerlink" title="杨辉三角"></a>杨辉三角</h2>
+<h2 id="杨辉三角"><a href="#杨辉三角" class="headerlink" title="杨辉三角"></a>杨辉三角</h2><p>定义见下图<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">          1</span><br><span class="line">         / \</span><br><span class="line">        1   1</span><br><span class="line">       / \ / \</span><br><span class="line">      1   2   1</span><br><span class="line">     / \ / \ / \</span><br><span class="line">    1   3   3   1</span><br><span class="line">   / \ / \ / \ / \</span><br><span class="line">  1   4   6   4   1</span><br><span class="line"> / \ / \ / \ / \ / \</span><br><span class="line">1   5   10  10  5   1</span><br></pre></td></tr></table></figure></p>
+<h3 id="程序分析-1"><a href="#程序分析-1" class="headerlink" title="程序分析"></a>程序分析</h3><p>每一行看做一个list</p>
+<h3 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> operator</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">triagles</span><span class="params">(n)</span>:</span></span><br><span class="line">    a = [<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">while</span> len(a) &lt; n:</span><br><span class="line">        <span class="keyword">yield</span> a</span><br><span class="line">        c = [<span class="number">0</span>] + a</span><br><span class="line">        d = a + [<span class="number">0</span>]</span><br><span class="line">        a = list(map(operator.add, c, d))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">m = triagles(<span class="number">6</span>)</span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> m:</span><br><span class="line">    print(x)</span><br></pre></td></tr></table></figure>
+<p>输出结果  </p>
+<pre><code class="python">[<span class="number">1</span>]
+[<span class="number">1</span>, <span class="number">1</span>]
+[<span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>]
+[<span class="number">1</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">1</span>]
+[<span class="number">1</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">4</span>, <span class="number">1</span>]
+</code></pre>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/15/python生成器练习题目/" data-id="cjg09muql00130gq6wh9ao4x8" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/04/15/python生成器练习题目/" data-id="cjg09muql00130gq6wh9ao4x8" class="article-share-link">分享</a>
       
       
       
@@ -122,7 +132,7 @@
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =4
@@ -166,7 +176,7 @@
   
   
     <a href="/2018/04/14/python文章目录链接/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">python文章目录链接</div>
     </a>
   
@@ -196,9 +206,9 @@
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#斐波那契数列"><span class="toc-number">1.</span> <span class="toc-text">斐波那契数列</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#程序分析"><span class="toc-number">1.1.</span> <span class="toc-text">程序分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码实现"><span class="toc-number">1.2.</span> <span class="toc-text">代码实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#杨辉三角"><span class="toc-number">2.</span> <span class="toc-text">杨辉三角</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#斐波那契数列"><span class="toc-number">1.</span> <span class="toc-text">斐波那契数列</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#程序分析"><span class="toc-number">1.1.</span> <span class="toc-text">程序分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码实现"><span class="toc-number">1.2.</span> <span class="toc-text">代码实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#杨辉三角"><span class="toc-number">2.</span> <span class="toc-text">杨辉三角</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#程序分析-1"><span class="toc-number">2.1.</span> <span class="toc-text">程序分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码实现-1"><span class="toc-number">2.2.</span> <span class="toc-text">代码实现</span></a></li></ol></li></ol>
           </div>
       </div>
     </div>
@@ -224,10 +234,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
+     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>
