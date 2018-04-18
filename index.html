@@ -40,7 +40,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -71,6 +71,85 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-python装饰器" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/18/python装饰器/" class="article-date">
+  <time datetime="2018-04-18T07:36:12.077Z" itemprop="datePublished">2018-04-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <hr>
+<p>title: python装饰器<br>date: 2018-04-18 15:36:12<br>categories:</p>
+<ul>
+<li>编程</li>
+<li>python<br>tags: [python,装饰器,decorator]</li>
+</ul>
+<hr>
+<h2 id="提前了解知识"><a href="#提前了解知识" class="headerlink" title="提前了解知识"></a>提前了解知识</h2><h3 id="赋值调用"><a href="#赋值调用" class="headerlink" title="赋值调用"></a>赋值调用</h3><p>函数也是对象，函数对象是可以被赋值给变量，所以变量也可以调用函数。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">"hello world"</span>)</span><br><span class="line"></span><br><span class="line">a = hello()    <span class="comment">#函数hello()的返回值给a</span></span><br><span class="line">print(a)    <span class="comment">#由于函数hello()无返回值，所以a的结果为None</span></span><br><span class="line">print(<span class="string">"###########"</span>)</span><br><span class="line">b = hello    <span class="comment">#此处将函数hello赋值给b,不是字符串的赋值</span></span><br><span class="line">b()    <span class="comment">#b()相当于hello()</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="开发中的开放封闭原则"><a href="#开发中的开放封闭原则" class="headerlink" title="开发中的开放封闭原则"></a>开发中的开放封闭原则</h3><p>写代码要遵循开放封闭原则，该原则不仅适用于面向对象开发，也适用于函数式编程，简单点说，就是以实现的功能代码不允许被修改，但可以被扩展。  </p>
+<ul>
+<li>封闭：以实现的功能代码</li>
+<li><p>开放：对扩展开放  </p>
+<h2 id="装饰器作用"><a href="#装饰器作用" class="headerlink" title="装饰器作用"></a>装饰器作用</h2><p>装饰器本质上是一个python函数，它可以让其他函数在不需要做任何代码变动的前提下增加额外功能，装饰器的返回值也是一个函数对象。<br>装饰器经常用于如下场景：插入日志、性能测试、事务处理、缓存、权限校验等。通过使用装饰器，可以抽离处大量与函数功能本身无关的雷同代码并继续重用。<br>简单来说，装饰器就是在不改变函数本身的前提下，在函数前面或者后面添加一些额外功能。<br>装饰器通过<code>@</code>调用。 </p>
+<h2 id="装饰器实例"><a href="#装饰器实例" class="headerlink" title="装饰器实例"></a>装饰器实例</h2><h3 id="无参数的装饰器"><a href="#无参数的装饰器" class="headerlink" title="无参数的装饰器"></a>无参数的装饰器</h3><p>对于前面的函数  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">"hello world"</span>)</span><br></pre></td></tr></table></figure>
+<p>现在需要打印日志，在前后加上时间点，在不改变原有函数<code>hello()</code>的情况下如何做？  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>  datetime</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">log</span><span class="params">(func)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">()</span>:</span></span><br><span class="line">        print(<span class="string">"start_time: &#123;0&#125;"</span>.format(datetime.datetime.now()))</span><br><span class="line">        func()</span><br><span class="line">        print(<span class="string">"end_time: &#123;0&#125;"</span>.format(datetime.datetime.now()))</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>上面的<code>log</code>是一个装饰器(decorator)，接受一个函数为参数(func)，并返回一个函数(wrapper)。使用的时候使用前面说的<code>@</code>语法，把装饰器置于函数的定义处。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@log</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">"hello world"</span>)</span><br></pre></td></tr></table></figure></p>
+<p>调用<code>hello()</code>函数的时候，不仅会运行<code>hello()</code>函数本身，还会运行在函数前面和后面加上时间点。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>hello()</span><br><span class="line">start_time: <span class="number">2018</span><span class="number">-04</span><span class="number">-18</span> <span class="number">16</span>:<span class="number">30</span>:<span class="number">57.998073</span></span><br><span class="line">hello world</span><br><span class="line">end_time: <span class="number">2018</span><span class="number">-04</span><span class="number">-18</span> <span class="number">16</span>:<span class="number">30</span>:<span class="number">58.001074</span></span><br></pre></td></tr></table></figure></p>
+<p>代码分析<br>将<code>@log</code>放在<code>hello()</code>函数的定义处，相当于执行了语句<code>hello = log(hello)</code>。<br>由于<code>log()</code>是一个装饰器，返回一个函数，所以原来的<code>hello()</code>函数仍然存在，但是同名的<code>hello</code>变量指向了新的函数，于是调用<code>hello()</code>将执行新函数，新函数是谁呢？新函数是<code>log()</code>函数的返回值，也就是<code>wrapper()</code>函数。  </p>
+<h3 id="带参数的装饰器"><a href="#带参数的装饰器" class="headerlink" title="带参数的装饰器"></a>带参数的装饰器</h3><p>当我们需要传递参数的时候时候怎么处理呢？对于上面的日志处理函数，要传递参数<code>author</code>该怎么处理呢？<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>  datetime</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">log</span><span class="params">(name)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">author</span><span class="params">(func)</span>:</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">()</span>:</span></span><br><span class="line">            print(<span class="string">"author: &#123;0&#125;"</span>.format(name))</span><br><span class="line">            print(<span class="string">"start_time: &#123;0&#125;"</span>.format(datetime.datetime.now()))</span><br><span class="line">            func()</span><br><span class="line">            print(<span class="string">"end_time: &#123;0&#125;"</span>.format(datetime.datetime.now()))</span><br><span class="line">        <span class="keyword">return</span> wrapper</span><br><span class="line">    <span class="keyword">return</span> author</span><br><span class="line"></span><br><span class="line"><span class="meta">@log("xiaohh")</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">"hello world"</span>)</span><br><span class="line"></span><br><span class="line">hello()</span><br></pre></td></tr></table></figure></p>
+<p>输出结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">author: xiaohh</span><br><span class="line">start_time: <span class="number">2018</span><span class="number">-04</span><span class="number">-18</span> <span class="number">20</span>:<span class="number">13</span>:<span class="number">44.912610</span></span><br><span class="line">hello world</span><br><span class="line">end_time: <span class="number">2018</span><span class="number">-04</span><span class="number">-18</span> <span class="number">20</span>:<span class="number">13</span>:<span class="number">44.912610</span></span><br></pre></td></tr></table></figure></p>
+<p>代码分析<br><code>@log(&quot;xiaohh&quot;)</code>相当于执行了语句<code>hello = log(&quot;xiaohh&quot;)(hello)</code>。<br>首先执行<code>log(&quot;xiaohh&quot;)</code>，返回的是<code>author</code>函数，再调用返回的函数，参数是<code>hello</code>函数，返回值最终是<code>wrapper</code>函数。  </p>
+<h3 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h3><p>在上述的函数调用之后，最终返回的是<code>wrapper</code>函数，所以它的<code>__name__</code>属性发生了变化。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(hello.__name__)    <span class="comment">#输出结果wrapper</span></span><br></pre></td></tr></table></figure></p>
+<p>此处需要把原始函数的<code>__name__</code>等属性赋值到<code>wrapper()</code>函数中，否则有些依赖函数签名的代码执行会报错。要实现该功能使用<code>functools.wraps</code>就行。  </p>
+<ul>
+<li>对于不带参数的装饰器</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>  datetime</span><br><span class="line"><span class="keyword">import</span> functools</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">log</span><span class="params">(func)</span>:</span></span><br><span class="line"><span class="meta">    @functools.wraps(func)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">()</span>:</span></span><br><span class="line">        print(<span class="string">"start_time: &#123;0&#125;"</span>.format(datetime.datetime.now()))</span><br><span class="line">        func()</span><br><span class="line">        print(<span class="string">"end_time: &#123;0&#125;"</span>.format(datetime.datetime.now()))</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br></pre></td></tr></table></figure>
+<ul>
+<li>对于带参数的装饰器  </li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>  datetime</span><br><span class="line"><span class="keyword">import</span> functools</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">log</span><span class="params">(name)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">author</span><span class="params">(func)</span>:</span></span><br><span class="line"><span class="meta">        @functools.wraps(func)</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">()</span>:</span></span><br><span class="line">            print(<span class="string">"author: &#123;0&#125;"</span>.format(name))</span><br><span class="line">            print(<span class="string">"start_time: &#123;0&#125;"</span>.format(datetime.datetime.now()))</span><br><span class="line">            func()</span><br><span class="line">            print(<span class="string">"end_time: &#123;0&#125;"</span>.format(datetime.datetime.now()))</span><br><span class="line">        <span class="keyword">return</span> wrapper</span><br><span class="line">    <span class="keyword">return</span> author</span><br><span class="line">```  </span><br><span class="line">输出结果</span><br><span class="line">``` python</span><br><span class="line">print(hello.__name__)    <span class="comment">#输出结果hello</span></span><br></pre></td></tr></table></figure>
+<p>也就是在定义<code>wrapper</code>函数之前加上<code>@functools.wraps(func)</code>即可。  </p>
+<h2 id="基于类的装饰器"><a href="#基于类的装饰器" class="headerlink" title="基于类的装饰器"></a>基于类的装饰器</h2><p>类的构造函数<strong>init</strong>()接受一个函数，然后重载<strong>call</strong>()并返回一个函数达到装饰器函数的效果。<br>具体的调用和程序执行过程其实和函数实现的装饰器是一致的。  </p>
+<h3 id="无参数的类的装饰器"><a href="#无参数的类的装饰器" class="headerlink" title="无参数的类的装饰器"></a>无参数的类的装饰器</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">log</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, func)</span>:</span></span><br><span class="line">        self.func = func</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__call__</span><span class="params">(self, *args, **kwargs)</span>:</span></span><br><span class="line">        print(<span class="string">"start_time: &#123;0&#125;"</span>.format(datetime.datetime.now()))</span><br><span class="line">        self.func(*args, **kwargs)</span><br><span class="line">        print(<span class="string">"end_time: &#123;0&#125;"</span>.format(datetime.datetime.now()))</span><br><span class="line"></span><br><span class="line"><span class="meta">@log</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">"hello world"</span>)</span><br><span class="line"></span><br><span class="line">hello()</span><br></pre></td></tr></table></figure>
+<p>输出结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">start_time: <span class="number">2018</span><span class="number">-04</span><span class="number">-18</span> <span class="number">21</span>:<span class="number">05</span>:<span class="number">56.422751</span></span><br><span class="line">hello world</span><br><span class="line">end_time: <span class="number">2018</span><span class="number">-04</span><span class="number">-18</span> <span class="number">21</span>:<span class="number">05</span>:<span class="number">56.422751</span></span><br></pre></td></tr></table></figure></p>
+<p>这是对前面函数实现的不带参数的装饰器采用类方式实现。  </p>
+<h3 id="带参数的类的装饰器"><a href="#带参数的类的装饰器" class="headerlink" title="带参数的类的装饰器"></a>带参数的类的装饰器</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">log</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__call__</span><span class="params">(self, func)</span>:</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">(*args, **kwargs)</span>:</span></span><br><span class="line">            print(<span class="string">"author: &#123;0&#125;"</span>.format(self.name))</span><br><span class="line">            print(<span class="string">"start_time: &#123;0&#125;"</span>.format(datetime.datetime.now()))</span><br><span class="line">            func(*args, **kwargs)</span><br><span class="line">            print(<span class="string">"end_time: &#123;0&#125;"</span>.format(datetime.datetime.now()))</span><br><span class="line">        <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"><span class="meta">@log("xiaohh")</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">"hello world"</span>)</span><br><span class="line"></span><br><span class="line">hello()</span><br></pre></td></tr></table></figure>
+<p>输出结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">author: xiaohh</span><br><span class="line">start_time: <span class="number">2018</span><span class="number">-04</span><span class="number">-18</span> <span class="number">21</span>:<span class="number">13</span>:<span class="number">27.538287</span></span><br><span class="line">hello world</span><br><span class="line">end_time: <span class="number">2018</span><span class="number">-04</span><span class="number">-18</span> <span class="number">21</span>:<span class="number">13</span>:<span class="number">27.538287</span></span><br></pre></td></tr></table></figure></p>
+<p>这是对前面函数实现的带参数的装饰器采用类方式实现。  </p>
+<h3 id="python内置装饰器"><a href="#python内置装饰器" class="headerlink" title="python内置装饰器"></a>python内置装饰器</h3><p>内置装饰器有3个，分别是<code>staticmethod</code>、<code>classmethod</code>和<code>propety</code>。  </p>
+<ul>
+<li>staticmethod<br>把类中的方法定义为静态方法，使用staticmethod装饰的方法可以使用类或者类的实例对象来调用，不需要传入self。  </li>
+<li>classmethod<br>把类中的方法定义为类方法，使用classmethod装饰的方法可以使用类或者类的实例对象来调用，并将该类对象隐式的作为第一个参数传入。  </li>
+<li>propety<br>把方法变成属性。  <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2>对于函数和类的装饰器实现，上述只是简单的理解装饰器的概念和用法。<br>具体的需要在实际使用过程中体会，特别是关于类的实现部分和内置装饰器带来的便利，需要在面向对象编程中进一步理解。  </li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/04/18/python装饰器/" data-id="cjg54q0ih001948q6u4a2bxkc" class="article-share-link">Delen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
   
     <article id="post-python生成器练习题目" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -109,7 +188,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/15/python生成器练习题目/" data-id="cjg09muql00130gq6wh9ao4x8" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/04/15/python生成器练习题目/" data-id="cjg54q0id001648q6eiqyl7l9" class="article-share-link">Delen</a>
       
       
       
@@ -157,7 +236,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/14/python文章目录链接/" data-id="cjg09mur1001p0gq6ow4ty6jn" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/04/14/python文章目录链接/" data-id="cjg54q0i4001348q6bvikbowg" class="article-share-link">Delen</a>
       
       
       
@@ -206,7 +285,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/14/python处理汉诺塔问题/" data-id="cjg09muty007i0gq6500kwram" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/04/14/python处理汉诺塔问题/" data-id="cjg54q0he000l48q6bu7koeba" class="article-share-link">Delen</a>
       
       
       
@@ -255,7 +334,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/13/python函数/" data-id="cjg09muq2000i0gq6hprwwhxe" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/04/13/python函数/" data-id="cjg54q0h0000g48q6g7883s3e" class="article-share-link">Delen</a>
       
       
       
@@ -308,7 +387,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/13/python文件操作/" data-id="cjg09muqg000x0gq6t9qzgnjh" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/04/13/python文件操作/" data-id="cjg54q0iv001f48q6osm7w0nj" class="article-share-link">Delen</a>
       
       
       
@@ -357,7 +436,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/11/python编码/" data-id="cjg09muqu001f0gq6j8ldb3id" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/04/11/python编码/" data-id="cjg54q0nz007t48q6o8l9hjg5" class="article-share-link">Delen</a>
       
       
       
@@ -412,7 +491,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/11/python练习题目-二/" data-id="cjg09muqq00190gq6uu8olcxh" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/04/11/python练习题目-二/" data-id="cjg54q0ja001t48q600p4oors" class="article-share-link">Delen</a>
       
       
       
@@ -465,7 +544,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/04/python练习题目-一/" data-id="cjg09muqn00160gq6iy3ayedz" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/04/04/python练习题目-一/" data-id="cjg54q0io001c48q6n8tq06z1" class="article-share-link">Delen</a>
       
       
       
@@ -514,7 +593,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/04/python条件判断和循环/" data-id="cjg09muqi00100gq68faaocqq" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/04/04/python条件判断和循环/" data-id="cjg54q0ix001i48q6jywu66y9" class="article-share-link">Delen</a>
       
       
       
@@ -528,60 +607,10 @@
 
 
   
-    <article id="post-ubuntu编译安装openssh" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/04/ubuntu编译安装openssh/" class="article-date">
-  <time datetime="2018-04-04T09:45:59.000Z" itemprop="datePublished">2018-04-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/system/">系统管理</a>►<a class="article-category-link" href="/categories/system/LINUX/">LINUX</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/04/ubuntu编译安装openssh/">ubuntu编译安装openssh</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>新装的<code>UBUNTU 14.04.5 LTS i686</code>版本，可<code>VNC</code>连接。<br>已安装<code>openssl 1.0.1f</code>版本，未安装zlib和openssl。<br>现需要安装openssh用于远程连接，停用vnc。   </p>
-<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>安装openssh主要依赖zlib和openssl，出于安全考虑，建议均安装官方发布的最新稳定版本。<br>
-        
-          <p class="article-more-link">
-            <a href="/2018/04/04/ubuntu编译安装openssh/#more">继续阅读全文 »</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/04/ubuntu编译安装openssh/" data-id="cjg09muqw001i0gq6lxjtcldb" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OPENSSH/">OPENSSH</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OPENSSL/">OPENSSL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UBUNTU/">UBUNTU</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ZLIB/">ZLIB</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
 
 
   <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">下一页&raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Volgende&raquo;</a>
   </nav>
 </section>
            
@@ -591,7 +620,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title categories">分类</h3>
+    <h3 class="widget-title categories">Categorieën</h3>
     <div class="widget" id="categories">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/system/">系统管理</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/system/LINUX/">LINUX</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/system/WINDOWS/">WINDOWS</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/program/">编程</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/program/python/">python</a><span class="category-list-count">12</span></li></ul></li></ul>
     </div>
@@ -601,7 +630,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title tagcloud">标签云</h3>
+    <h3 class="widget-title tagcloud">Tag Cloud</h3>
     <div class="widget tagcloud">
       <a href="/tags/BONDING/" style="font-size: 14px;">BONDING</a> <a href="/tags/CENTOS7/" style="font-size: 14px;">CENTOS7</a> <a href="/tags/EMC/" style="font-size: 14px;">EMC</a> <a href="/tags/FORFILES/" style="font-size: 14px;">FORFILES</a> <a href="/tags/HBA/" style="font-size: 14px;">HBA</a> <a href="/tags/HP-UNIX/" style="font-size: 14px;">HP-UNIX</a> <a href="/tags/JUNCTION/" style="font-size: 14px;">JUNCTION</a> <a href="/tags/LINUX/" style="font-size: 22.25px;">LINUX</a> <a href="/tags/MAC/" style="font-size: 14px;">MAC</a> <a href="/tags/MKLINK/" style="font-size: 14px;">MKLINK</a> <a href="/tags/OPENSSH/" style="font-size: 14px;">OPENSSH</a> <a href="/tags/OPENSSL/" style="font-size: 14px;">OPENSSL</a> <a href="/tags/POWERPATH/" style="font-size: 14px;">POWERPATH</a> <a href="/tags/SSH/" style="font-size: 14px;">SSH</a> <a href="/tags/UBUNTU/" style="font-size: 16.75px;">UBUNTU</a> <a href="/tags/WINDOWS/" style="font-size: 19.5px;">WINDOWS</a> <a href="/tags/WINODWS/" style="font-size: 14px;">WINODWS</a> <a href="/tags/WWW/" style="font-size: 14px;">WWW</a> <a href="/tags/XSHELL/" style="font-size: 14px;">XSHELL</a> <a href="/tags/XTERM/" style="font-size: 14px;">XTERM</a> <a href="/tags/ZLIB/" style="font-size: 14px;">ZLIB</a> <a href="/tags/args/" style="font-size: 14px;">args</a> <a href="/tags/bonding/" style="font-size: 14px;">bonding</a> <a href="/tags/close/" style="font-size: 14px;">close</a> <a href="/tags/decode/" style="font-size: 14px;">decode</a> <a href="/tags/encode/" style="font-size: 14px;">encode</a> <a href="/tags/for/" style="font-size: 14px;">for</a> <a href="/tags/if/" style="font-size: 14px;">if</a> <a href="/tags/kw/" style="font-size: 14px;">kw</a> <a href="/tags/libXaw/" style="font-size: 14px;">libXaw</a> <a href="/tags/libXpm/" style="font-size: 14px;">libXpm</a> <a href="/tags/machinekey/" style="font-size: 14px;">machinekey</a> <a href="/tags/open/" style="font-size: 14px;">open</a> <a href="/tags/pycharm/" style="font-size: 14px;">pycharm</a> <a href="/tags/python/" style="font-size: 25px;">python</a> <a href="/tags/read/" style="font-size: 14px;">read</a> <a href="/tags/return/" style="font-size: 14px;">return</a> <a href="/tags/ssh-copy-id/" style="font-size: 14px;">ssh-copy-id</a> <a href="/tags/ssh-keygen/" style="font-size: 14px;">ssh-keygen</a> <a href="/tags/while/" style="font-size: 14px;">while</a> <a href="/tags/windows/" style="font-size: 14px;">windows</a> <a href="/tags/乘法/" style="font-size: 14px;">乘法</a> <a href="/tags/九宫格/" style="font-size: 14px;">九宫格</a> <a href="/tags/元组/" style="font-size: 14px;">元组</a> <a href="/tags/函数/" style="font-size: 14px;">函数</a> <a href="/tags/列表/" style="font-size: 16.75px;">列表</a> <a href="/tags/参数/" style="font-size: 14px;">参数</a> <a href="/tags/双网卡/" style="font-size: 14px;">双网卡</a> <a href="/tags/可变参数/" style="font-size: 14px;">可变参数</a> <a href="/tags/多个公钥/" style="font-size: 14px;">多个公钥</a> <a href="/tags/字典/" style="font-size: 14px;">字典</a> <a href="/tags/字符/" style="font-size: 14px;">字符</a> <a href="/tags/字符串/" style="font-size: 14px;">字符串</a> <a href="/tags/密钥/" style="font-size: 16.75px;">密钥</a> <a href="/tags/循环/" style="font-size: 14px;">循环</a> <a href="/tags/数字/" style="font-size: 16.75px;">数字</a> <a href="/tags/数据类型/" style="font-size: 16.75px;">数据类型</a> <a href="/tags/文件/" style="font-size: 14px;">文件</a> <a href="/tags/斐波那契数列/" style="font-size: 14px;">斐波那契数列</a> <a href="/tags/条件判断/" style="font-size: 14px;">条件判断</a> <a href="/tags/杨辉三角/" style="font-size: 14px;">杨辉三角</a> <a href="/tags/汉诺塔/" style="font-size: 14px;">汉诺塔</a> <a href="/tags/生成器/" style="font-size: 14px;">生成器</a> <a href="/tags/目录/" style="font-size: 14px;">目录</a> <a href="/tags/编码/" style="font-size: 14px;">编码</a> <a href="/tags/网络/" style="font-size: 14px;">网络</a> <a href="/tags/视图状态/" style="font-size: 14px;">视图状态</a> <a href="/tags/计算/" style="font-size: 14px;">计算</a> <a href="/tags/负载均衡/" style="font-size: 14px;">负载均衡</a> <a href="/tags/递归/" style="font-size: 14px;">递归</a> <a href="/tags/阶乘/" style="font-size: 14px;">阶乘</a>
     </div>
@@ -610,9 +639,13 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title recent-posts">最新文章</h3>
+    <h3 class="widget-title recent-posts">Recente berichten</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/04/18/python装饰器/">(no title)</a>
+          </li>
         
           <li>
             <a href="/2018/04/15/python生成器练习题目/">python生成器练习题目</a>
@@ -630,10 +663,6 @@
             <a href="/2018/04/13/python函数/">python函数</a>
           </li>
         
-          <li>
-            <a href="/2018/04/13/python文件操作/">python文件操作</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -641,9 +670,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title archive">归档</h3>
+    <h3 class="widget-title archive">Archieven</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 
@@ -672,10 +701,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
+     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>
