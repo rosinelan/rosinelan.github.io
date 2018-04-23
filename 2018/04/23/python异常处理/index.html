@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>python异常处理 | 持续不断</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="异常一般情况下在python无法正常处理程序时就会发生一个异常。异常是python对象，表示一个错误。当python程序发生错误时需要捕获处理，否则程序会终止执行。   异常处理捕获异常可以使用try/except语句。">
+<meta name="keywords" content="try,except,raise,finally">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python异常处理">
+<meta property="og:url" content="https://rosinelan.github.io/2018/04/23/python异常处理/index.html">
+<meta property="og:site_name" content="持续不断">
+<meta property="og:description" content="异常一般情况下在python无法正常处理程序时就会发生一个异常。异常是python对象，表示一个错误。当python程序发生错误时需要捕获处理，否则程序会终止执行。   异常处理捕获异常可以使用try/except语句。">
+<meta property="og:updated_time" content="2018-04-23T15:48:14.141Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python异常处理">
+<meta name="twitter:description" content="异常一般情况下在python无法正常处理程序时就会发生一个异常。异常是python对象，表示一个错误。当python程序发生错误时需要捕获处理，否则程序会终止执行。   异常处理捕获异常可以使用try/except语句。">
+  
+    <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">持续不断</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">要松懈的时候再坚持一下</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-python异常处理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/23/python异常处理/" class="article-date">
+  <time datetime="2018-04-23T07:05:40.000Z" itemprop="datePublished">2018-04-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/program/">编程</a>►<a class="article-category-link" href="/categories/program/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      python异常处理
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h3 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h3><p>一般情况下在python无法正常处理程序时就会发生一个异常。<br>异常是python对象，表示一个错误。当python程序发生错误时需要捕获处理，否则程序会终止执行。  </p>
+<h3 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h3><p>捕获异常可以使用<code>try/except</code>语句。<br><a id="more"></a><br>该语句用来检测<code>try</code>语句块中的错误，从而让<code>except</code>语句捕获异常信息并处理。  </p>
+<ul>
+<li><p>语法规则  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">&lt;语句&gt;        <span class="comment">#运行别的代码</span></span><br><span class="line"><span class="keyword">except</span> &lt;名字&gt;：</span><br><span class="line">&lt;语句&gt;        <span class="comment">#如果在try部份引发了'name'异常</span></span><br><span class="line"><span class="keyword">except</span> &lt;名字&gt;，&lt;数据&gt;:</span><br><span class="line">&lt;语句&gt;        <span class="comment">#如果引发了'name'异常，获得附加的数据</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">&lt;语句&gt;        <span class="comment">#如果没有异常发生</span></span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">&lt;语句&gt;        <span class="comment">#不管如何，最后一定执行的代码</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>处理流程<br>当开始一个try语句后，python会在当前程序的上下文中进行标记，这样当异常出现时就可以回到这里，try子句先执行，接下来发生什么依赖于执行时是否出现异常。  </p>
+</li>
+</ul>
+<ol>
+<li>当try后面的语句执行出现异常，python就会调回try并执行第一个匹配该异常的except子句，异常处理完成，然后控制流通过整个try语句。    </li>
+<li>当try后面的语句执行出现异常，却没有匹配的except子句，异常将会被递交到上层的try，或者到程序的最上层(也就是结束程序，并打印出缺省的出错信息)。  </li>
+<li>当try子句执行没有异常，python将执行else后面的语句，然后控制流通过整个try语句。<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3></li>
+</ol>
+<ul>
+<li>有异常出现被捕获的情况<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    print(<span class="string">"开始计算"</span>)</span><br><span class="line">    result = <span class="number">2</span>/<span class="number">0</span></span><br><span class="line">    print(<span class="string">"计算结果为:&#123;0&#125;"</span>.format(result))</span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">    print(<span class="string">"除数不能为0"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"无异常出现"</span>)</span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">    print(<span class="string">"done"</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>输出结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">开始计算</span><br><span class="line">除数不能为<span class="number">0</span></span><br><span class="line">done</span><br></pre></td></tr></table></figure></p>
+<p>根据输出结果可以看到，有异常出现的时候，先执行<code>try</code>语句，遇到异常则停止执行下面的语句(<code>print(&quot;计算结果为:{0}&quot;.format(result))</code>未执行)，跳转至错误处理代码，也就是<code>except</code>语句块，执行完<code>except</code>后执行<code>finally</code>语句块。不执行<code>else</code>语句块。  </p>
+<ul>
+<li>无异常出现情况<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    print(<span class="string">"开始计算"</span>)</span><br><span class="line">    result = <span class="number">2</span>/<span class="number">1</span></span><br><span class="line">    print(<span class="string">"计算结果为:&#123;0&#125;"</span>.format(result))</span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">    print(<span class="string">"除数不能为0"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"无异常出现"</span>)</span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">    print(<span class="string">"done"</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>输出结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">开始计算</span><br><span class="line">计算结果为:<span class="number">2.0</span></span><br><span class="line">无异常出现</span><br><span class="line">done</span><br></pre></td></tr></table></figure></p>
+<p>根据输出结果可以看到，无异常出现的时候先后执行了<code>try</code>、<code>else</code>和<code>finally</code>语句块，未执行<code>except</code>语句块。<br>在异常处理时<code>else</code>和<code>finally</code>语句块可以没有。</p>
+<ul>
+<li>raise抛出错误<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    print(<span class="string">"开始计算"</span>)</span><br><span class="line">    result = <span class="number">2</span>/<span class="number">0</span></span><br><span class="line">    print(<span class="string">"计算结果为:&#123;0&#125;"</span>.format(result))</span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">    print(<span class="string">"除数不能为0"</span>)</span><br><span class="line">    <span class="keyword">raise</span> e    <span class="comment">#添加raise语句抛出错误</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"无异常出现"</span>)</span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">    print(<span class="string">"done"</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>输出结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">开始计算</span><br><span class="line">除数不能为<span class="number">0</span></span><br><span class="line">done</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">7</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">3</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">ZeroDivisionError: division by zero</span><br></pre></td></tr></table></figure></p>
+<p>通过添加<code>raise</code>抛出错误，我们可以看到错误类型为<code>ZeroDivisionError</code>。<br>在python中内置了很多的错误类型，我们可以通过针对不同的错误类型，可以使用不同的<code>except</code>语句处理。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    print(<span class="string">"开始计算"</span>)</span><br><span class="line">    result = <span class="number">2</span>/int(<span class="string">'a'</span>)</span><br><span class="line">    print(<span class="string">"计算结果为:&#123;0&#125;"</span>.format(result))</span><br><span class="line"><span class="keyword">except</span> ZeroDivisionError <span class="keyword">as</span> e:</span><br><span class="line">    print(<span class="string">"除数不能为0"</span>)</span><br><span class="line">    <span class="keyword">raise</span> e</span><br><span class="line"><span class="keyword">except</span> ValueError <span class="keyword">as</span> e:</span><br><span class="line">    print(<span class="string">"ValueError"</span>)</span><br><span class="line">    <span class="keyword">raise</span> e</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"无异常出现"</span>)</span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">    print(<span class="string">"done"</span>)</span><br></pre></td></tr></table></figure></p>
+<p>输出结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">开始计算</span><br><span class="line">ValueError</span><br><span class="line">done</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">10</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">3</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">ValueError: invalid literal <span class="keyword">for</span> int() <span class="keyword">with</span> base <span class="number">10</span>: <span class="string">'a'</span></span><br></pre></td></tr></table></figure></p>
+<p>此时执行<code>try</code>语句块时，<code>int()</code>函数抛出<code>ValueError</code>异常，所以执行了第二个<code>except</code>捕获对应异常信息。<br>前面我们在<code>except</code>中直接使用<code>Exception</code>，由于大部分的错误类型都是继承自该类型，所以可直接捕获其子类。<br>python中所有的错误都是从<code>BaseException</code>类派生的，点击查看<a href="https://docs.python.org/3/library/exceptions.html#exception-hierarchy" target="_blank" rel="noopener">常见的错误类型和继承关系</a>。  </p>
+<h3 id="异常信息规范输出"><a href="#异常信息规范输出" class="headerlink" title="异常信息规范输出"></a>异常信息规范输出</h3><p>在常见的前后端分离开发环境中，对于异常信息通常都是按照约定格式，返回json字符串，从而将异常信息记录下来。<br>下面是一个示例<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">log</span><span class="params">()</span>:</span></span><br><span class="line">    result = &#123;&#125;</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        print(<span class="number">2</span>/<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        result[<span class="string">"msg"</span>] = <span class="string">"Division can not be 0"</span></span><br><span class="line">        result[<span class="string">"code"</span>] = <span class="number">250</span></span><br><span class="line">        result[<span class="string">"data"</span>] = [&#123;<span class="string">"a"</span>: <span class="number">1</span>&#125;, &#123;<span class="string">"b"</span>: <span class="number">2</span>&#125;]</span><br><span class="line">    <span class="keyword">finally</span>:</span><br><span class="line">        <span class="keyword">return</span> json.dumps(result)    <span class="comment">#字典转换为json串</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    print(log())</span><br></pre></td></tr></table></figure></p>
+<p>输出结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">"msg"</span>: <span class="string">"Division can not be 0"</span>, <span class="string">"code"</span>: <span class="number">250</span>, <span class="string">"data"</span>: [&#123;<span class="string">"a"</span>: <span class="number">1</span>&#125;, &#123;<span class="string">"b"</span>: <span class="number">2</span>&#125;]&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/04/23/python异常处理/" data-id="cjgcf1rlh000ec0q6vcql6eha" class="article-share-link">Delen</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/except/">except</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/finally/">finally</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/raise/">raise</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/try/">try</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2018/04/23/python内置模块/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Nieuwer</strong>
+      <div class="article-nav-title">
+        
+          python内置模块
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/04/20/python面向对象/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ouder</strong>
+      <div class="article-nav-title">python面向对象</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#异常"><span class="toc-number">1.</span> <span class="toc-text">异常</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#异常处理"><span class="toc-number">2.</span> <span class="toc-text">异常处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例"><span class="toc-number">3.</span> <span class="toc-text">实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#异常信息规范输出"><span class="toc-number">4.</span> <span class="toc-text">异常信息规范输出</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>
