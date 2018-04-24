@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://rosinelan.github.io/2018/04/23/python内置模块/index.html">
 <meta property="og:site_name" content="持续不断">
 <meta property="og:description" content="内置模块在python中内置了很多模块，无须额外配置就可使用。模块和目录的区别:是否有__init__.py文件，若无则是目录，有则是模块。   datetimedatetime是进行日期和时间处理的标准库。">
-<meta property="og:updated_time" content="2018-04-23T15:57:45.921Z">
+<meta property="og:updated_time" content="2018-04-24T02:17:12.877Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python内置模块">
 <meta name="twitter:description" content="内置模块在python中内置了很多模块，无须额外配置就可使用。模块和目录的区别:是否有__init__.py文件，若无则是目录，有则是模块。   datetimedatetime是进行日期和时间处理的标准库。">
@@ -42,7 +42,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -129,11 +129,32 @@
 <p><code>timedelta</code>后面的参数还有<code>minutes</code>、<code>seconds</code>、<code>microseconds</code>。  </p>
 <p>python中常用的日期时间格式化符号<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">%y 两位数的年份表示（<span class="number">00</span><span class="number">-99</span>）</span><br><span class="line">%Y 四位数的年份表示（<span class="number">000</span><span class="number">-9999</span>）</span><br><span class="line">%m 月份（<span class="number">01</span><span class="number">-12</span>）</span><br><span class="line">%d 月内中的一天（<span class="number">0</span><span class="number">-31</span>）</span><br><span class="line">%H <span class="number">24</span>小时制小时数（<span class="number">0</span><span class="number">-23</span>）</span><br><span class="line">%I <span class="number">12</span>小时制小时数（<span class="number">01</span><span class="number">-12</span>）</span><br><span class="line">%M 分钟数（<span class="number">00</span>=<span class="number">59</span>）</span><br><span class="line">%S 秒（<span class="number">00</span><span class="number">-59</span>）</span><br><span class="line">%c 本地相应的日期表示和时间表示</span><br></pre></td></tr></table></figure></p>
 <p>更多的<a href="https://docs.python.org/3/library/datetime.html#strftime-strptime-behavior" target="_blank" rel="noopener">格式化符号</a>点击查看。  </p>
-<h4 id="time"><a href="#time" class="headerlink" title="time"></a>time</h4><h4 id="commands"><a href="#commands" class="headerlink" title="commands"></a>commands</h4><h4 id="subprocess"><a href="#subprocess" class="headerlink" title="subprocess"></a>subprocess</h4>
+<h4 id="time"><a href="#time" class="headerlink" title="time"></a>time</h4><p>在<code>time</code>模块中，函数<code>gmtime()</code>、<code>localtime()</code>和<code>strptime()</code>以时间元组<code>struct_time</code>形式返回。<br>首先介绍时间元组的表示格式</p>
+<h5 id="struct-time"><a href="#struct-time" class="headerlink" title="struct_time"></a>struct_time</h5><p>时间格式<code>time.struct_time(tm_year=2018, tm_mon=4, tm_mday=24, tm_hour=9, tm_min=3, tm_sec=26, tm_wday=1, tm_yday=114, tm_isdst=0)</code><br>索引值|属性|值<br>-|:-:|:-:<br>0|tm_year|年(如2015)<br>1|tm_mon|月，1-12<br>2|tm_mday|日，1-31<br>3|tm_hour|时，0-23<br>4|tm_min|分，0-59<br>5|tm_sec|秒，0-61<br>6|tm_wday|星期，0-6(0表示星期一)<br>7|tm_yday|一年中第几天(1-266)<br>8|tm_isdst|是否为夏令时。0,1,-1</p>
+<p>说明<br><code>tm_sec</code>取值范围为0-61是考虑了闰秒和双闰秒的因素。<br><code>tm_isdst</code>中，使用夏令时为1，不使用夏令时为0，当不确定是否使用夏令时为-1。<br>夏令时(DST,Daylight Saving Time)指利用夏天天亮的早，人为的将时间提前一小时，以充分利用光照资源减少照明时间，从而节约照明。  </p>
+<h5 id="time-time"><a href="#time-time" class="headerlink" title="time.time()"></a>time.time()</h5><p>返回当前时间的时间戳。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line">print(time.time())    <span class="comment">#输出结果：1524531805.2834768</span></span><br></pre></td></tr></table></figure></p>
+<h5 id="time-sleep"><a href="#time-sleep" class="headerlink" title="time.sleep()"></a>time.sleep()</h5><p>线程推迟指定的时间运行，单位为秒。</p>
+<h5 id="time-clock"><a href="#time-clock" class="headerlink" title="time.clock()"></a>time.clock()</h5><p>在unix系统，返回进程时间，用秒表示的浮点数(时间戳)。<br>在windows系统，第一次调用返回的是进程运行的时间，第二次之后调用均返回自第一次调用以后到现在的运行时间。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line">print(time.clock())    <span class="comment">#输出结果：4.105467826269739e-07</span></span><br><span class="line">time.sleep(<span class="number">1</span>)    <span class="comment">#线程推迟1秒运行</span></span><br><span class="line">print(time.clock())    <span class="comment">#输出结果：1.0005993983026353</span></span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br><span class="line">print(time.clock())    <span class="comment">#输出结果：1.9998817625266034</span></span><br></pre></td></tr></table></figure></p>
+<h5 id="time-localtime-secs"><a href="#time-localtime-secs" class="headerlink" title="time.localtime([secs)"></a>time.localtime([secs)</h5><p>将一个时间戳转换为当前时区的<code>struct_time</code>，若未提供<code>secs</code>参数，返回当前时间的<code>struct_time</code>。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line">print(time.localtime())     </span><br><span class="line"><span class="comment">#输出结果：time.struct_time(tm_year=2018, tm_mon=4, tm_mday=24, tm_hour=9, tm_min=43, tm_sec=22, tm_wday=1, tm_yday=114, tm_isdst=0)</span></span><br><span class="line">print(time.localtime(<span class="number">1304575584.1361799</span>))     </span><br><span class="line"><span class="comment">#输出结果：time.struct_time(tm_year=2011, tm_mon=5, tm_mday=5, tm_hour=14, tm_min=6, tm_sec=24, tm_wday=3, tm_yday=125, tm_isdst=0)</span></span><br></pre></td></tr></table></figure></p>
+<h5 id="time-gmtime-secs"><a href="#time-gmtime-secs" class="headerlink" title="time.gmtime([secs])"></a>time.gmtime([secs])</h5><p>将一个时间戳转换为UTC时区的<code>struct_time</code>，若未提供<code>secs</code>参数，返回当前时间的对应的UTC时区<code>struct_time</code>。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line">print(time.gmtime())</span><br><span class="line"><span class="comment">#输出结果：time.struct_time(tm_year=2018, tm_mon=4, tm_mday=24, tm_hour=1, tm_min=46, tm_sec=28, tm_wday=1, tm_yday=114, tm_isdst=0)</span></span><br><span class="line">print(time.gmtime(<span class="number">1304575584.1361799</span>))</span><br><span class="line"><span class="comment">#输出结果：time.struct_time(tm_year=2011, tm_mon=5, tm_mday=5, tm_hour=6, tm_min=6, tm_sec=24, tm_wday=3, tm_yday=125, tm_isdst=0)</span></span><br></pre></td></tr></table></figure></p>
+<h5 id="time-mktime-t"><a href="#time-mktime-t" class="headerlink" title="time.mktime(t)"></a>time.mktime(t)</h5><p>将一个<code>struct_time</code>转换为时间戳。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line">print(time.mktime(time.localtime()))    <span class="comment">#输出结果：1524534556.0</span></span><br></pre></td></tr></table></figure></p>
+<h5 id="time-asctime-t"><a href="#time-asctime-t" class="headerlink" title="time.asctime([t])"></a>time.asctime([t])</h5><p>把一个表示时间的元组或者<code>struct_time</code>表示为<code>Sun Jun 20 23:21:05 1993</code>形式，若没有参数，将会<code>time.localtime()</code>作为参数传入。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line">print(time.asctime(time.localtime()))    <span class="comment">#输出结果：Tue Apr 24 09:53:03 2018</span></span><br></pre></td></tr></table></figure></p>
+<h5 id="time-ctime-secs"><a href="#time-ctime-secs" class="headerlink" title="time.ctime([secs])"></a>time.ctime([secs])</h5><p>把一个时间戳转换为<code>Sun Jun 20 23:21:05 1993</code>形式，若没有参数或None的时候，默认将<code>time.time()</code>作为参数。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line">print(time.ctime())    <span class="comment">#输出结果：Tue Apr 24 09:55:15 2018</span></span><br><span class="line">print(time.ctime(<span class="number">1304575584.1361799</span>))     <span class="comment">#输出结果：Thu May  5 14:06:24 2011</span></span><br></pre></td></tr></table></figure></p>
+<h5 id="time-strftime-format-t"><a href="#time-strftime-format-t" class="headerlink" title="time.strftime(format[,t])"></a>time.strftime(format[,t])</h5><p>把一个表示时间的元组或者<code>struct_time</code>转换为格式化的时间字符串。如果未指定t(也就是表示时间的元组)，传入<code>time.localtime()</code>。如果元组中的任何一个元素越界，<code>ValueError</code>错误将会被抛出。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line">print(time.strftime(<span class="string">"%Y-%m-%d %H:%M:%S"</span>, time.localtime()))     <span class="comment">#输出结果：2018-04-24 10:00:14</span></span><br></pre></td></tr></table></figure></p>
+<h5 id="time-strptime-string-format"><a href="#time-strptime-string-format" class="headerlink" title="time.strptime(string[,format])"></a>time.strptime(string[,format])</h5><p>把一个格式化时间字符串转换为<code>struct_time</code>。也就是<code>strftime()</code>的逆操作。<br>当不指定字符串格式时，<code>format</code>默认格式为”%a %b %d %H:%M:%S %Y”(下面第二行的格式)。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line">print(time.strptime(<span class="string">"2018-04-24 10:00:14"</span>, <span class="string">"%Y-%m-%d %H:%M:%S"</span>))     </span><br><span class="line"><span class="comment">#输出结果：time.struct_time(tm_year=2018, tm_mon=4, tm_mday=24, tm_hour=10, tm_min=0, tm_sec=14, tm_wday=1, tm_yday=114, tm_isdst=-1)</span></span><br><span class="line">print(time.strptime(<span class="string">"Tue Apr 24 10:03:14 2018"</span>))     </span><br><span class="line"><span class="comment">#输出结果：time.struct_time(tm_year=2018, tm_mon=4, tm_mday=24, tm_hour=10, tm_min=3, tm_sec=14, tm_wday=1, tm_yday=114, tm_isdst=-1)</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>总结<br>在time模块中，一共有3种时间表示方式，分别是<code>timstamp</code>(时间戳)、<code>struct_time</code>(元组)和<code>格式化字符串</code>(str)。  </li>
+</ul>
+<ol>
+<li>返回时间戳(timestamp)的方法<br>time()  无参数<br>mktime()  参数为struct_time</li>
+<li>返回元组(struct_time)的方法<br>localtime()  无参数<br>gmtime()  参数为timestamp<br>strptime()  参数为str</li>
+<li>返回字符串(str)的方法<br>asctime()  参数为struct_time<br>ctime()  参数为timestamp<br>strftime()  参数为struct_time<br>更多的关于<a href="https://docs.python.org/3/library/time.html" target="_blank" rel="noopener"><code>time</code>模块内容</a>点击查看。<h4 id="commands"><a href="#commands" class="headerlink" title="commands"></a>commands</h4></li>
+</ol>
+<h4 id="subprocess"><a href="#subprocess" class="headerlink" title="subprocess"></a>subprocess</h4>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/23/python内置模块/" data-id="cjgcf1rle000bc0q6lioc2gtm" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/04/23/python内置模块/" data-id="cjgcf1rle000bc0q6lioc2gtm" class="article-share-link">分享</a>
       
       
       
@@ -145,7 +166,7 @@
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =4
@@ -189,7 +210,7 @@
   
   
     <a href="/2018/04/23/python异常处理/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">python异常处理</div>
     </a>
   
@@ -219,9 +240,9 @@
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#内置模块"><span class="toc-number">1.</span> <span class="toc-text">内置模块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#datetime"><span class="toc-number">1.1.</span> <span class="toc-text">datetime</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#获取当前时间和日期"><span class="toc-number">1.1.1.</span> <span class="toc-text">获取当前时间和日期</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#格式转换"><span class="toc-number">1.1.2.</span> <span class="toc-text">格式转换</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#time"><span class="toc-number">1.2.</span> <span class="toc-text">time</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#commands"><span class="toc-number">1.3.</span> <span class="toc-text">commands</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#subprocess"><span class="toc-number">1.4.</span> <span class="toc-text">subprocess</span></a></li></ol></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#内置模块"><span class="toc-number">1.</span> <span class="toc-text">内置模块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#datetime"><span class="toc-number">1.1.</span> <span class="toc-text">datetime</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#获取当前时间和日期"><span class="toc-number">1.1.1.</span> <span class="toc-text">获取当前时间和日期</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#格式转换"><span class="toc-number">1.1.2.</span> <span class="toc-text">格式转换</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#time"><span class="toc-number">1.2.</span> <span class="toc-text">time</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#struct-time"><span class="toc-number">1.2.1.</span> <span class="toc-text">struct_time</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#time-time"><span class="toc-number">1.2.2.</span> <span class="toc-text">time.time()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#time-sleep"><span class="toc-number">1.2.3.</span> <span class="toc-text">time.sleep()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#time-clock"><span class="toc-number">1.2.4.</span> <span class="toc-text">time.clock()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#time-localtime-secs"><span class="toc-number">1.2.5.</span> <span class="toc-text">time.localtime([secs)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#time-gmtime-secs"><span class="toc-number">1.2.6.</span> <span class="toc-text">time.gmtime([secs])</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#time-mktime-t"><span class="toc-number">1.2.7.</span> <span class="toc-text">time.mktime(t)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#time-asctime-t"><span class="toc-number">1.2.8.</span> <span class="toc-text">time.asctime([t])</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#time-ctime-secs"><span class="toc-number">1.2.9.</span> <span class="toc-text">time.ctime([secs])</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#time-strftime-format-t"><span class="toc-number">1.2.10.</span> <span class="toc-text">time.strftime(format[,t])</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#time-strptime-string-format"><span class="toc-number">1.2.11.</span> <span class="toc-text">time.strptime(string[,format])</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#commands"><span class="toc-number">1.3.</span> <span class="toc-text">commands</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#subprocess"><span class="toc-number">1.4.</span> <span class="toc-text">subprocess</span></a></li></ol></li></ol>
           </div>
       </div>
     </div>
@@ -247,10 +268,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
+     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>
