@@ -5,17 +5,17 @@
   
   <title>python内置模块(二) | 持续不断</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="subprocesssubprocess模块用来生成子进程，并可以通过管道连接它们的输入/输出/错误，以及获得它们的返回值。   getoutput(cmd)该命令类似commands模块中的getoutput()，执行cmd命令返回执行结果。">
-<meta name="keywords" content="subprocess,log,sys,os">
+  <meta name="description" content="关于datetime/time/commands模块的内容可以点击python内置模块查看。   subprocesssubprocess模块用来生成子进程，并可以通过管道连接它们的输入/输出/错误，以及获得它们的返回值。   getoutput(cmd)该命令类似commands模块中的getoutput()，执行cmd命令返回执行结果。">
+<meta name="keywords" content="subprocess,log,sys,os,Popen">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python内置模块(二)">
 <meta property="og:url" content="https://rosinelan.github.io/2018/04/25/python内置模块-二/index.html">
 <meta property="og:site_name" content="持续不断">
-<meta property="og:description" content="subprocesssubprocess模块用来生成子进程，并可以通过管道连接它们的输入/输出/错误，以及获得它们的返回值。   getoutput(cmd)该命令类似commands模块中的getoutput()，执行cmd命令返回执行结果。">
-<meta property="og:updated_time" content="2018-04-25T14:42:54.261Z">
+<meta property="og:description" content="关于datetime/time/commands模块的内容可以点击python内置模块查看。   subprocesssubprocess模块用来生成子进程，并可以通过管道连接它们的输入/输出/错误，以及获得它们的返回值。   getoutput(cmd)该命令类似commands模块中的getoutput()，执行cmd命令返回执行结果。">
+<meta property="og:updated_time" content="2018-04-25T14:51:43.670Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python内置模块(二)">
-<meta name="twitter:description" content="subprocesssubprocess模块用来生成子进程，并可以通过管道连接它们的输入/输出/错误，以及获得它们的返回值。   getoutput(cmd)该命令类似commands模块中的getoutput()，执行cmd命令返回执行结果。">
+<meta name="twitter:description" content="关于datetime/time/commands模块的内容可以点击python内置模块查看。   subprocesssubprocess模块用来生成子进程，并可以通过管道连接它们的输入/输出/错误，以及获得它们的返回值。   getoutput(cmd)该命令类似commands模块中的getoutput()，执行cmd命令返回执行结果。">
   
     <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
   
@@ -100,7 +100,8 @@
       
         <!-- Table of Contents -->
         
-        <h3 id="subprocess"><a href="#subprocess" class="headerlink" title="subprocess"></a>subprocess</h3><p><code>subprocess</code>模块用来生成子进程，并可以通过管道连接它们的输入/输出/错误，以及获得它们的返回值。  </p>
+        <p>关于<code>datetime/time/commands</code>模块的内容可以点击<a href="https://rosinelan.coding.me/2018/04/23/python%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97/" target="_blank" rel="noopener">python内置模块</a>查看。  </p>
+<h3 id="subprocess"><a href="#subprocess" class="headerlink" title="subprocess"></a>subprocess</h3><p><code>subprocess</code>模块用来生成子进程，并可以通过管道连接它们的输入/输出/错误，以及获得它们的返回值。  </p>
 <h4 id="getoutput-cmd"><a href="#getoutput-cmd" class="headerlink" title="getoutput(cmd)"></a>getoutput(cmd)</h4><p>该命令类似<code>commands</code>模块中的<code>getoutput()</code>，执行<code>cmd</code>命令返回执行结果。<br><a id="more"></a><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>PIDS = subprocess.getoutput(<span class="string">"netstat -aon | findstr 0:80"</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(PIDS)</span><br><span class="line">  TCP    <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span>:<span class="number">80</span>             <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span>:<span class="number">0</span>              LISTENING       <span class="number">4</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>PIDS1 = subprocess.getoutput(<span class="string">"netstat -aon | grep 0:80"</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(PIDS1)</span><br><span class="line"><span class="string">'grep'</span> 不是内部或外部命令，也不是可运行的程序</span><br><span class="line">或批处理文件。</span><br></pre></td></tr></table></figure></p>
 <h4 id="getstatusoutput-cmd"><a href="#getstatusoutput-cmd" class="headerlink" title="getstatusoutput(cmd)"></a>getstatusoutput(cmd)</h4><p>该命令类似<code>commands</code>模块中的<code>getstatusoutput()</code>，执行<code>cmd</code>命令返回包含2个元素的元组。<br>第一个元素为命令执行状态(int)，如果执行成功返回0，不成功返回非0。<br>第二个元素为命令执行结果(str)。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> subprocess</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>PIDS = subprocess.getstatusoutput(<span class="string">"netstat -aon | findstr 0:80"</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(PIDS)  <span class="comment">#输出结果为元组</span></span><br><span class="line">(<span class="number">0</span>, <span class="string">'  TCP    0.0.0.0:80             0.0.0.0:0              LISTENING       4\n  TCP    192.168.0.102:64793    111.202.100.60:80      TIME_WAIT       0'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>PIDS1 = subprocess.getstatusoutput(<span class="string">"netstat -aon | grep 0:80"</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(PIDS1)</span><br><span class="line">(<span class="number">255</span>, <span class="string">"'grep' 不是内部或外部命令，也不是可运行的程序\n或批处理文件。"</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>status, result = subprocess.getstatusoutput(<span class="string">"netstat -aon | grep 0:80"</span>)    <span class="comment">#python中典型使用方法</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(status)</span><br><span class="line"><span class="number">255</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(result)</span><br><span class="line"><span class="string">'grep'</span> 不是内部或外部命令，也不是可运行的程序</span><br><span class="line">或批处理文件。</span><br></pre></td></tr></table></figure></p>
 <h4 id="call"><a href="#call" class="headerlink" title="call()"></a>call()</h4><p>参数说明<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">subprocess.call(args, *, stdin=<span class="keyword">None</span>, stdout=<span class="keyword">None</span>, stderr=<span class="keyword">None</span>, shell=<span class="keyword">False</span>, timeout=<span class="keyword">None</span>)</span><br></pre></td></tr></table></figure></p>
@@ -151,7 +152,7 @@
       
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/log/">log</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/os/">os</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/subprocess/">subprocess</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sys/">sys</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Popen/">Popen</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/log/">log</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/os/">os</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/subprocess/">subprocess</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sys/">sys</a></li></ul>
 
     </footer>
   </div>
