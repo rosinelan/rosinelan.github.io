@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://rosinelan.github.io/2018/04/25/python内置模块-二/index.html">
 <meta property="og:site_name" content="持续不断">
 <meta property="og:description" content="关于datetime/time/commands模块的内容可以点击python内置模块查看。   subprocesssubprocess模块用来生成子进程，并可以通过管道连接它们的输入/输出/错误，以及获得它们的返回值。   getoutput(cmd)该命令类似commands模块中的getoutput()，执行cmd命令返回执行结果。">
-<meta property="og:updated_time" content="2018-04-26T01:54:02.233Z">
+<meta property="og:updated_time" content="2018-04-26T02:25:06.407Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python内置模块(二)">
 <meta name="twitter:description" content="关于datetime/time/commands模块的内容可以点击python内置模块查看。   subprocesssubprocess模块用来生成子进程，并可以通过管道连接它们的输入/输出/错误，以及获得它们的返回值。   getoutput(cmd)该命令类似commands模块中的getoutput()，执行cmd命令返回执行结果。">
@@ -42,7 +42,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -251,11 +251,36 @@
 </ul>
 <p>知识点分享<br>在执行命令的时候，windows和unix的命令不尽相同，可以使用<code>os.name</code>进行区分，保证代码的兼容性。类似下面代码<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> os.name == <span class="string">"nt"</span>:</span><br><span class="line">    cmd = <span class="string">"ipconfig"</span></span><br><span class="line"><span class="keyword">elif</span> os.name == <span class="string">"posix"</span>:</span><br><span class="line">    cmd = <span class="string">"ifconfig"</span></span><br><span class="line"></span><br><span class="line">os.system(cmd)</span><br></pre></td></tr></table></figure></p>
 <p>os是一个操作系统接口模块，提供了各种和操作系统相关的功能，上面写到的文件和目录操作等知识其中的一部分。更多更详细的内容可以点击<a href="https://docs.python.org/3.6/library/os.html" target="_blank" rel="noopener">Miscellaneous operating system interfaces</a>查看官网介绍。</p>
-
+<h3 id="random"><a href="#random" class="headerlink" title="random"></a>random</h3><p>random是随机数操作模块，可以用来生成随机数和完成与随机数相关的功能。  </p>
+<ul>
+<li><p>random.random()<br>用于生成半开区间[0.0, 1.0)内的一个随机浮点数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>random.random()</span><br><span class="line"><span class="number">0.5716693670763958</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>random.uniform(a, b)<br>用于生成一个指定范围内[a, b]的随机浮点数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>random.uniform(<span class="number">10</span>, <span class="number">50</span>)</span><br><span class="line"><span class="number">48.107294751423076</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>random.randint(a, b)<br>用于生成一个指定范围内[a, b]的整数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>random.randint(<span class="number">10</span>, <span class="number">50</span>)</span><br><span class="line"><span class="number">30</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>random.randrange(start, stop[, step])<br>用于从指定范围[start, stop)。按指定基数step递增的集合中获取一个随机数，step默认为1。<br>random.randrange(stop)等价于random.randrange(0,stop)。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>random.randrange(<span class="number">10</span>, <span class="number">50</span>, <span class="number">5</span>)</span><br><span class="line"><span class="number">15</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>random.randrange(<span class="number">10</span>, <span class="number">50</span>)</span><br><span class="line"><span class="number">22</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>random.randrange(<span class="number">50</span>)</span><br><span class="line"><span class="number">42</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>random.randrange(<span class="number">50</span>)</span><br><span class="line"><span class="number">28</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>random.choice(seq)<br>从指定序列seq中随机获取一个元素。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>random.choice(<span class="string">"abc1234"</span>)</span><br><span class="line"><span class="string">'2'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>random.choice([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="string">"a"</span>])</span><br><span class="line"><span class="number">6</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>random.sample(population, k)<br>从指定序列中随机抽取k个不重复的元素，并以列表的形式返回，用于不进行内容替换的随机抽样。  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>random.sample(list, <span class="number">3</span>)</span><br><span class="line">[<span class="number">2</span>, <span class="number">1</span>, <span class="number">3</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>random.sample(list1, <span class="number">5</span>)</span><br><span class="line">[<span class="number">5</span>, <span class="number">5</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>random.shuffle(x[, random])<br>用于随机打乱一个列表中的元素，需要注意的是该函数操作的是列表对象，且没有返回值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(random.shuffle([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]))    <span class="comment">#该函数无返回值，直接给列表操作无效</span></span><br><span class="line"><span class="keyword">None</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>random.shuffle(list)    <span class="comment">#传递的参数必须是列表对象。</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(list)</span><br><span class="line">[<span class="number">6</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">1</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>random.shuffle(list)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(list)</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">5</span>]</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>更多更详细的内容可以点击<a href="https://docs.python.org/3.6/library/random.html" target="_blank" rel="noopener">Generate pseudo-random numbers</a>查看官网内容。</p>
+<h3 id="string"><a href="#string" class="headerlink" title="string"></a>string</h3><h3 id="sys"><a href="#sys" class="headerlink" title="sys"></a>sys</h3>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/25/python内置模块-二/" data-id="cjgf7ptq6000et4q67ia0ui34" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/04/25/python内置模块-二/" data-id="cjgf7ptq6000et4q67ia0ui34" class="article-share-link">分享</a>
       
       
       
@@ -267,7 +292,7 @@
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =4
@@ -311,7 +336,7 @@
   
   
     <a href="/2018/04/23/python内置模块/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">python内置模块</div>
     </a>
   
@@ -341,9 +366,9 @@
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#subprocess"><span class="toc-number">1.</span> <span class="toc-text">subprocess</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#getoutput-cmd"><span class="toc-number">1.1.</span> <span class="toc-text">getoutput(cmd)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#getstatusoutput-cmd"><span class="toc-number">1.2.</span> <span class="toc-text">getstatusoutput(cmd)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#call"><span class="toc-number">1.3.</span> <span class="toc-text">call()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#check-call"><span class="toc-number">1.4.</span> <span class="toc-text">check_call()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#check-output"><span class="toc-number">1.5.</span> <span class="toc-text">check_output()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#run"><span class="toc-number">1.6.</span> <span class="toc-text">run()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#参数说明"><span class="toc-number">1.7.</span> <span class="toc-text">参数说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CompleteProcess类说明"><span class="toc-number">1.8.</span> <span class="toc-text">CompleteProcess类说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Popen"><span class="toc-number">1.9.</span> <span class="toc-text">Popen</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#os"><span class="toc-number">2.</span> <span class="toc-text">os</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#os-path"><span class="toc-number">2.1.</span> <span class="toc-text">os.path</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#os-1"><span class="toc-number">2.2.</span> <span class="toc-text">os</span></a></li></ol></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#subprocess"><span class="toc-number">1.</span> <span class="toc-text">subprocess</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#getoutput-cmd"><span class="toc-number">1.1.</span> <span class="toc-text">getoutput(cmd)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#getstatusoutput-cmd"><span class="toc-number">1.2.</span> <span class="toc-text">getstatusoutput(cmd)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#call"><span class="toc-number">1.3.</span> <span class="toc-text">call()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#check-call"><span class="toc-number">1.4.</span> <span class="toc-text">check_call()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#check-output"><span class="toc-number">1.5.</span> <span class="toc-text">check_output()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#run"><span class="toc-number">1.6.</span> <span class="toc-text">run()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#参数说明"><span class="toc-number">1.7.</span> <span class="toc-text">参数说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CompleteProcess类说明"><span class="toc-number">1.8.</span> <span class="toc-text">CompleteProcess类说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Popen"><span class="toc-number">1.9.</span> <span class="toc-text">Popen</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#os"><span class="toc-number">2.</span> <span class="toc-text">os</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#os-path"><span class="toc-number">2.1.</span> <span class="toc-text">os.path</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#os-1"><span class="toc-number">2.2.</span> <span class="toc-text">os</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#random"><span class="toc-number">3.</span> <span class="toc-text">random</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#string"><span class="toc-number">4.</span> <span class="toc-text">string</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sys"><span class="toc-number">5.</span> <span class="toc-text">sys</span></a></li></ol>
           </div>
       </div>
     </div>
@@ -369,10 +394,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
+     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>
