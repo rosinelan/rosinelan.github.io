@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://rosinelan.github.io/2018/04/27/python内置模块-三/index.html">
 <meta property="og:site_name" content="持续不断">
 <meta property="og:description" content="内置模块datetime、time、commands相关内容点击python内置模块查看。内置模块subprocess、os、random、sys、logging相关内容点击python内置模块(二)查看。   hashlibhaslib模块为不同的安全哈希/安全散列(Secure Hash Algorithm)和信息摘要算法(Message Digest Algorithm)实现了一个公共的、通">
-<meta property="og:updated_time" content="2018-04-27T14:39:23.768Z">
+<meta property="og:updated_time" content="2018-04-27T14:44:13.784Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python内置模块(三)">
 <meta name="twitter:description" content="内置模块datetime、time、commands相关内容点击python内置模块查看。内置模块subprocess、os、random、sys、logging相关内容点击python内置模块(二)查看。   hashlibhaslib模块为不同的安全哈希/安全散列(Secure Hash Algorithm)和信息摘要算法(Message Digest Algorithm)实现了一个公共的、通">
@@ -134,13 +134,12 @@
 </table>
 <p>摘要算法又称哈希算法、散列算法。它通过一个函数，把任意长度的数据转换为一个长度固定的字符串(通常用16进制字符串表示)。常用的是<code>md5</code>算法。 </p>
 <blockquote>
-<p>hashlib模块对应的属性和函数 </p>
-<ul>
-<li>hselib.new(name[, date])<br>通用的哈希对象构造函数，用于构造指定的哈希算法对应的哈希对象。其中<code>name</code>用于指定哈希算法名称，如<code>md5</code>、<code>sha1</code>，不区分大小写；<code>data</code>可选，表示初始数据。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>hashlib.new(<span class="string">'md5'</span>)    <span class="comment">#构建hash对象</span></span><br><span class="line">&lt;md5 HASH object @ <span class="number">0x00000131AE948AD0</span>&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
+<p>hashlib模块对应的属性和函数</p>
 </blockquote>
 <ul>
+<li><p>hselib.new(name[, date])<br>通用的哈希对象构造函数，用于构造指定的哈希算法对应的哈希对象。其中<code>name</code>用于指定哈希算法名称，如<code>md5</code>、<code>sha1</code>，不区分大小写；<code>data</code>可选，表示初始数据。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>hashlib.new(<span class="string">'md5'</span>)    <span class="comment">#构建hash对象</span></span><br><span class="line">&lt;md5 HASH object @ <span class="number">0x00000131AE948AD0</span>&gt;</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>hashlib.算法名称()<br>可以直接通过具体的哈希算法名称对应的函数获取哈希对象，如hashlib.md5()等。<br>hashlib.md5()和hashlib.new(‘md5’)是等价的。  </p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>hashlib.md5()</span><br><span class="line">&lt;md5 HASH object @ <span class="number">0x00000131AE9489E0</span>&gt;</span><br></pre></td></tr></table></figure>
 </li>
