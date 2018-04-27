@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://rosinelan.github.io/2018/04/27/python内置模块-三/index.html">
 <meta property="og:site_name" content="持续不断">
 <meta property="og:description" content="内置模块datetime、time、commands相关内容点击python内置模块查看。内置模块subprocess、os、random、sys、logging相关内容点击python内置模块(二)查看。   hashlibhaslib模块为不同的安全哈希/安全散列(Secure Hash Algorithm)和信息摘要算法(Message Digest Algorithm)实现了一个公共的、通">
-<meta property="og:updated_time" content="2018-04-27T14:51:48.316Z">
+<meta property="og:updated_time" content="2018-04-27T15:00:28.568Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python内置模块(三)">
 <meta name="twitter:description" content="内置模块datetime、time、commands相关内容点击python内置模块查看。内置模块subprocess、os、random、sys、logging相关内容点击python内置模块(二)查看。   hashlibhaslib模块为不同的安全哈希/安全散列(Secure Hash Algorithm)和信息摘要算法(Message Digest Algorithm)实现了一个公共的、通">
@@ -106,29 +106,29 @@
 <thead>
 <tr>
 <th>数据加密方式</th>
-<th style="text-align:center">描述</th>
-<th style="text-align:center">主要解决问题</th>
-<th style="text-align:center">常用算法</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">主要解决问题</th>
+<th style="text-align:left">常用算法</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>对称加密</td>
-<td style="text-align:center">数据加密和解密使用相同的密钥</td>
-<td style="text-align:center">数据的机密性</td>
-<td style="text-align:center">DES,AES</td>
+<td style="text-align:left">数据加密和解密使用相同的密钥</td>
+<td style="text-align:left">数据的机密性</td>
+<td style="text-align:left">DES,AES</td>
 </tr>
 <tr>
 <td>非对称加密</td>
-<td style="text-align:center">也叫公钥加密，指数据加密和解密使用不同的密钥(密钥对)</td>
-<td style="text-align:center">身份验证</td>
-<td style="text-align:center">DSA,RSA</td>
+<td style="text-align:left">也叫公钥加密，指数据加密和解密使用不同的密钥(密钥对)</td>
+<td style="text-align:left">身份验证</td>
+<td style="text-align:left">DSA,RSA</td>
 </tr>
 <tr>
 <td>单向加密</td>
-<td style="text-align:center">只能加密数据，不能解密数据</td>
-<td style="text-align:center">数据的完整性验证</td>
-<td style="text-align:center">MD5,SHA系统算法</td>
+<td style="text-align:left">只能加密数据，不能解密数据</td>
+<td style="text-align:left">数据的完整性验证</td>
+<td style="text-align:left">MD5,SHA系统算法</td>
 </tr>
 </tbody>
 </table>
@@ -259,10 +259,7 @@
 </tr>
 </tbody>
 </table>
-<blockquote>
-<p>序列化示例</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> json</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>json.dumps(&#123;<span class="string">'a'</span>:<span class="string">'str'</span>, <span class="string">'c'</span>: <span class="keyword">True</span>, <span class="string">'e'</span>: <span class="number">10</span>, <span class="string">'b'</span>: <span class="number">11.1</span>, <span class="string">'d'</span>: <span class="keyword">None</span>, <span class="string">'f'</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="string">'g'</span>:(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>)&#125;)</span><br><span class="line"><span class="string">'&#123;"a": "str", "c": true, "e": 10, "b": 11.1, "d": null, "f": [1, 2, 3], "g": [4, 5, 6]&#125;'</span></span><br></pre></td></tr></table></figure>
+<p><strong>序列化示例</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> json</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>json.dumps(&#123;<span class="string">'a'</span>:<span class="string">'str'</span>, <span class="string">'c'</span>: <span class="keyword">True</span>, <span class="string">'e'</span>: <span class="number">10</span>, <span class="string">'b'</span>: <span class="number">11.1</span>, <span class="string">'d'</span>: <span class="keyword">None</span>, <span class="string">'f'</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="string">'g'</span>:(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>)&#125;)</span><br><span class="line"><span class="string">'&#123;"a": "str", "c": true, "e": 10, "b": 11.1, "d": null, "f": [1, 2, 3], "g": [4, 5, 6]&#125;'</span></span><br></pre></td></tr></table></figure></p>
 <p><code>sort_keys</code>参数： 表示序列化时是否对dict的key进行排序（dict默认是无序的）<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>json.dumps(&#123;<span class="string">'a'</span>:<span class="string">'str'</span>, <span class="string">'c'</span>: <span class="keyword">True</span>, <span class="string">'e'</span>: <span class="number">10</span>, <span class="string">'b'</span>: <span class="number">11.1</span>, <span class="string">'d'</span>: <span class="keyword">None</span>, <span class="string">'f'</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="string">'g'</span>:(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>)&#125;, sort_keys=<span class="keyword">True</span>)</span><br><span class="line"><span class="string">'&#123;"a": "str", "b": 11.1, "c": true, "d": null, "e": 10, "f": [1, 2, 3], "g": [4, 5, 6]&#125;'</span></span><br></pre></td></tr></table></figure></p>
 <p><code>indent</code>参数： 表示缩进，它可以使得数据存储的格式变得更加优雅、可读性更强；如果indent是一个非负整数或字符串，则JSON array元素和object成员将会被以相应的缩进级别进行打印输出；如果indent是0或负数或空字符串，则将只会插入换行，不会有缩进。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(json.dumps(&#123;<span class="string">'a'</span>:<span class="string">'str'</span>, <span class="string">'c'</span>: <span class="keyword">True</span>, <span class="string">'e'</span>: <span class="number">10</span>, <span class="string">'b'</span>: <span class="number">11.1</span>, <span class="string">'d'</span>: <span class="keyword">None</span>, <span class="string">'f'</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="string">'g'</span>:(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>)&#125;, sort_keys=<span class="keyword">True</span>, indent=<span class="number">4</span>))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"a"</span>: <span class="string">"str"</span>,</span><br><span class="line">    <span class="string">"b"</span>: <span class="number">11.1</span>,</span><br><span class="line">    <span class="string">"c"</span>: true,</span><br><span class="line">    <span class="string">"d"</span>: null,</span><br><span class="line">    <span class="string">"e"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"f"</span>: [</span><br><span class="line">        <span class="number">1</span>,</span><br><span class="line">        <span class="number">2</span>,</span><br><span class="line">        <span class="number">3</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="string">"g"</span>: [</span><br><span class="line">        <span class="number">4</span>,</span><br><span class="line">        <span class="number">5</span>,</span><br><span class="line">        <span class="number">6</span></span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p><code>separators</code>参数： 尽管indent参数可以使得数据存储的格式变得更加优雅、可读性更强，但是那是通过添加一些冗余的空白字符进行填充的。当json被用于网络数据通信时，应该尽可能的减少无用的数据传输，这样可以节省带宽并加快数据传输速度。json模块序列化Python对象后得到的json字符串中的’,’号和’:’号分隔符后默认都会附加一个空白字符，我们可以通过<code>separators</code>参数重新指定分隔符，从而去除无用的空白字符。<br>该参数的值应该是一个tuple(item_separator, key_separator)</p>
