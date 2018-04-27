@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>python内置模块(三) | 持续不断</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="内置模块datetime、time、commands相关内容点击python内置模块查看。内置模块subprocess、os、random、sys、logging相关内容点击python内置模块(二)查看。   hashlibhaslib模块为不同的安全哈希/安全散列(Secure Hash Algorithm)和信息摘要算法(Message Digest Algorithm)实现了一个公共的、通">
+<meta name="keywords" content="hashlib,StringIO,BytesIO,Json">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python内置模块(三)">
+<meta property="og:url" content="https://rosinelan.github.io/2018/04/27/python内置模块-三/index.html">
+<meta property="og:site_name" content="持续不断">
+<meta property="og:description" content="内置模块datetime、time、commands相关内容点击python内置模块查看。内置模块subprocess、os、random、sys、logging相关内容点击python内置模块(二)查看。   hashlibhaslib模块为不同的安全哈希/安全散列(Secure Hash Algorithm)和信息摘要算法(Message Digest Algorithm)实现了一个公共的、通">
+<meta property="og:updated_time" content="2018-04-27T14:34:08.267Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python内置模块(三)">
+<meta name="twitter:description" content="内置模块datetime、time、commands相关内容点击python内置模块查看。内置模块subprocess、os、random、sys、logging相关内容点击python内置模块(二)查看。   hashlibhaslib模块为不同的安全哈希/安全散列(Secure Hash Algorithm)和信息摘要算法(Message Digest Algorithm)实现了一个公共的、通">
+  
+    <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">持续不断</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">要松懈的时候再坚持一下</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-python内置模块-三" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/27/python内置模块-三/" class="article-date">
+  <time datetime="2018-04-27T06:08:41.000Z" itemprop="datePublished">2018-04-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/program/">编程</a>►<a class="article-category-link" href="/categories/program/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      python内置模块(三)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <p>内置模块<code>datetime</code>、<code>time</code>、<code>commands</code>相关内容点击<a href="https://rosinelan.coding.me/2018/04/23/python%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97/" target="_blank" rel="noopener">python内置模块</a>查看。<br>内置模块<code>subprocess</code>、<code>os</code>、<code>random</code>、<code>sys</code>、<code>logging</code>相关内容点击<a href="https://rosinelan.coding.me/2018/04/25/python%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97-%E4%BA%8C/" target="_blank" rel="noopener">python内置模块(二)</a>查看。  </p>
+<h3 id="hashlib"><a href="#hashlib" class="headerlink" title="hashlib"></a>hashlib</h3><p><code>haslib</code>模块为不同的安全哈希/安全散列(Secure Hash Algorithm)和信息摘要算法(Message Digest Algorithm)实现了一个公共的、通用的接口。haslib模块提供了很多算法的函数实现，例如：md5、sha1、sha224、sha256、sha384、sha512等。<br>此处简单介绍下集中数据加密方式<br>数据加密方式|描述|主要解决问题|常用算法<br>-|:-:|:-:|:-:<br>对称加密|数据加密和解密使用相同的密钥|数据的机密性|DES,AES<br>非对称加密|也叫公钥加密，指数据加密和解密使用不同的密钥(密钥对)|身份验证|DSA,RSA<br>单向加密|只能加密数据，不能解密数据|数据的完整性验证|MD5,SHA系统算法</p>
+<p>摘要算法又称哈希算法、散列算法。它通过一个函数，把任意长度的数据转换为一个长度固定的字符串(通常用16进制字符串表示)。常用的是<code>md5</code>算法。 </p>
+<blockquote>
+<p>hashlib模块对应的属性和函数 </p>
+<ul>
+<li>hselib.new(name[, date])<br>通用的哈希对象构造函数，用于构造指定的哈希算法对应的哈希对象。其中<code>name</code>用于指定哈希算法名称，如<code>md5</code>、<code>sha1</code>，不区分大小写；<code>data</code>可选，表示初始数据。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>hashlib.new(<span class="string">'md5'</span>)    <span class="comment">#构建hash对象</span></span><br><span class="line">&lt;md5 HASH object @ <span class="number">0x00000131AE948AD0</span>&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li><p>hashlib.算法名称()<br>可以直接通过具体的哈希算法名称对应的函数获取哈希对象，如hashlib.md5()等。<br>hashlib.md5()和hashlib.new(‘md5’)是等价的。  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>hashlib.md5()</span><br><span class="line">&lt;md5 HASH object @ <span class="number">0x00000131AE9489E0</span>&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>hashlib.algorithms_guaranteed<br>它的值是该模块在所有平台都支持的哈希算法的名称集合。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>hashlib.algorithms_guaranteed</span><br><span class="line">&#123;<span class="string">'sha384'</span>, <span class="string">'blake2b'</span>, <span class="string">'sha3_384'</span>, <span class="string">'shake_128'</span>, <span class="string">'sha3_256'</span>, <span class="string">'sha3_224'</span>, <span class="string">'md5'</span>, <span class="string">'sha3_512'</span>, <span class="string">'blake2s'</span>, <span class="string">'sha224'</span>, <span class="string">'shake_256'</span>, <span class="string">'sha256'</span>, <span class="string">'sha512'</span>, <span class="string">'sha1'</span>&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>hashlib.algorithms_available<br>当前运行python解释器中可用的哈希算法的集合。<code>algorithms_guaranteed</code>是它的子集。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>hashlib.algorithms_available</span><br><span class="line">&#123;<span class="string">'md4'</span>, <span class="string">'sha3_384'</span>, <span class="string">'shake_128'</span>, <span class="string">'whirlpool'</span>, <span class="string">'SHA224'</span>, <span class="string">'blake2s'</span>, <span class="string">'ripemd160'</span>, <span class="string">'MD4'</span>, <span class="string">'sha1'</span>, <span class="string">'sha384'</span>, <span class="string">'SHA384'</span>, <span class="string">'ecdsa-with-SHA1'</span>, <span class="string">'md5'</span>, <span class="string">'SHA256'</span>, <span class="string">'DSA-SHA'</span>, <span class="string">'SHA1'</span>, <span class="string">'sha3_512'</span>, <span class="string">'shake_256'</span>, <span class="string">'sha'</span>, <span class="string">'sha256'</span>, <span class="string">'sha512'</span>, <span class="string">'DSA'</span>, <span class="string">'RIPEMD160'</span>, <span class="string">'blake2b'</span>, <span class="string">'dsaEncryption'</span>, <span class="string">'SHA512'</span>, <span class="string">'sha3_224'</span>, <span class="string">'sha224'</span>, <span class="string">'SHA'</span>, <span class="string">'sha3_256'</span>, <span class="string">'MD5'</span>, <span class="string">'dsaWithSHA'</span>&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>hash对象对应的属性和方法</p>
+<ul>
+<li>hash.update()<br>更新哈希对象所要计算的数据，多次调用为累加效果。<br><code>m.update(a);m.update(b)</code>等价于<code>m.update(a+b)</code>。</li>
+<li>hash.digest()<br>返回传递给update()函数的所有数据的摘要信息(二进制格式的字符串)</li>
+<li>hash.hexdigest()<br>返回传递给update()函数的所有数据的摘要信息(十六进制格式的字符串)</li>
+<li>hash.copy()<br>返回该哈希对象的一个copy(“clone”)，这个函数可以用来有效的计算共享一个公共初始化子串的数据的摘要信息。</li>
+<li>hash.digest_size<br>hash结果的字节大小，即<code>hash.digest()</code>方法返回结果的字符串长度。该值对于哈希对象是固定的。md5:16，sha1:20, sha224:28。</li>
+<li>hash.name<br>当前哈希对象对应的哈希算法的标准名称(小写)，可以直接传递给<code>hashlib.new()</code>函数来创建另外一个同类型的哈希对象。<br>使用示例<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>m = hashlib.md5()    <span class="comment">#创建hash对象</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>m.update(<span class="string">'hello world'</span>.encode(<span class="string">'utf-8'</span>))    <span class="comment">#更新hash对象的计算数据</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(m)</span><br><span class="line">&lt;md5 HASH object @ <span class="number">0x00000131AE9489E0</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(m.hexdigest())    <span class="comment">#返回对应数据摘要信息(十六进制)</span></span><br><span class="line"><span class="number">5</span>eb63bbbe01eeed093cb22bb8f5acdc3</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(m.digest())    <span class="comment">#返回对应数据摘要信息(二进制)</span></span><br><span class="line"><span class="string">b'^\xb6;\xbb\xe0\x1e\xee\xd0\x93\xcb"\xbb\x8fZ\xcd\xc3'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(m.name)    <span class="comment">#返回使用的哈希算法</span></span><br><span class="line">md5</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(m.digest_size)    <span class="comment">#返回字符串长度</span></span><br><span class="line"><span class="number">16</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<p>注意点：</p>
+<ol>
+<li>实际使用中都是获取十六进制的字符串，也就是使用<code>hash.hexdigest()</code>。  </li>
+<li>使用hashlib模块一般是3步，通过<code>hashlib.md5()</code>创建哈希对象;通过<code>update()</code>追加需要计算的数据；通过<code>hexdigest()</code>得到数据对应的十六进制字符串(也就是摘要信息)。<h3 id="StringIO"><a href="#StringIO" class="headerlink" title="StringIO"></a>StringIO</h3><code>StringIO</code>主要用来在内存中写入字符串及字符串的缓存。其接口和文件操作的接口是一致的，基本所有关于文件的方法都可以用。<br>关于文件操作的方法可以点击<a href="https://rosinelan.coding.me/2018/04/13/python%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" target="_blank" rel="noopener">python文件操作</a>查看更多内容。<br>示例<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> io <span class="keyword">import</span> StringIO</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s = StringIO()    <span class="comment">#初始化StringIO对象</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s.write(<span class="string">'hello world'</span>)    <span class="comment">#写入字符串</span></span><br><span class="line"><span class="number">11</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s.getvalue()    <span class="comment">#获取实例中的字符串</span></span><br><span class="line"><span class="string">'hello world'</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><code>stringIO.getvalue()</code>返回StringIO实例中的字符串。<br>读取StringIO中的字符串，也可以使用文件类似的<code>read</code>、<code>readline</code>、<code>readlines</code>等方法。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>s = StringIO()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s.write(<span class="string">'hello world'</span>)</span><br><span class="line"><span class="number">11</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s.write(<span class="string">'\n new line'</span>)</span><br><span class="line"><span class="number">10</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s.seek(<span class="number">0</span>)    <span class="comment">#回到文件开头</span></span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> line <span class="keyword">in</span> s:</span><br><span class="line"><span class="meta">... </span>    print(line)</span><br><span class="line">...</span><br><span class="line">hello world</span><br><span class="line"></span><br><span class="line"> new line</span><br></pre></td></tr></table></figure></p>
+<h3 id="BytesIO"><a href="#BytesIO" class="headerlink" title="BytesIO"></a>BytesIO</h3><p><code>StringIO</code>操作只能是<code>str</code>，如果要操作二进制数据，就需要使用<code>BytesIO</code>。<br><code>BytesIO</code>实现了在内存中读写bytes。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> io <span class="keyword">import</span> BytesIO</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f = BytesIO()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f.write(<span class="string">'中文'</span>.encode(<span class="string">'utf-8'</span>))</span><br><span class="line"><span class="number">6</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(f.getvalue())</span><br><span class="line"><span class="string">b'\xe4\xb8\xad\xe6\x96\x87'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f.seek(<span class="number">0</span>)    <span class="comment">#回到文件最开头</span></span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f.read()    <span class="comment">#读取</span></span><br><span class="line"><span class="string">b'\xe4\xb8\xad\xe6\x96\x87'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'中文'</span>.encode(<span class="string">'utf-8'</span>)    <span class="comment">#读取的内容和写入的对比</span></span><br><span class="line"><span class="string">b'\xe4\xb8\xad\xe6\x96\x87'</span></span><br></pre></td></tr></table></figure></p>
+<p>此处写入的内容不是<code>中文</code>字符串，而是经过UTF-8编码的bytes。</p>
+<h3 id="Json"><a href="#Json" class="headerlink" title="Json"></a>Json</h3><p>Json(JavaScript Object Notation)，它是一种轻量级的数据交换格式。其应用最广泛的是作为AJAX中web服务器和客户端的通讯的数据格式，现在也常用于http请求。  </p>
+<ul>
+<li>序列化和反序列化<br>将对象转换为可通过网络传输或可以存储到本地磁盘的数据格式(如：XML、JSON或特定数据格式)的过程称为序列化；反之则称为反序列化。<br>python的JSON模块序列化和反序列化的过程分别叫做：encoding和decoding。<br>encoding：把python对象转换成JSON字符串。<br>decoding：把JSON字符串转换成python对象。  <blockquote>
+<p>json模块提供了下面的方法进行序列化和反序列化操作</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#序列化：将python对象转换成json字符串</span></span><br><span class="line">dumps(obj, *, skipkeys=<span class="keyword">False</span>, ensure_ascii=<span class="keyword">True</span>, check_circular=<span class="keyword">True</span>, allow_nan=<span class="keyword">True</span>, cls=<span class="keyword">None</span>, indent=<span class="keyword">None</span>, separators=<span class="keyword">None</span>, default=<span class="keyword">None</span>, sort_keys=<span class="keyword">False</span>, **kw)</span><br><span class="line"><span class="comment">#反序列化：将json字符串转换成python对象</span></span><br><span class="line">loads(s, *, encoding=<span class="keyword">None</span>, cls=<span class="keyword">None</span>, object_hook=<span class="keyword">None</span>, parse_float=<span class="keyword">None</span>, parse_int=<span class="keyword">None</span>, parse_constant=<span class="keyword">None</span>, object_pairs_hook=<span class="keyword">None</span>, **kw)</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>将序列化后得到的json数据保存到文件以及直接读取文件中的json数据进行反序列化操作<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#序列化：将python对象转换成json字符串并存储到文件</span></span><br><span class="line">dump(obj, fp, *, skipkeys=<span class="keyword">False</span>, ensure_ascii=<span class="keyword">True</span>, check_circular=<span class="keyword">True</span>, allow_nan=<span class="keyword">True</span>, cls=<span class="keyword">None</span>, indent=<span class="keyword">None</span>, separators=<span class="keyword">None</span>, default=<span class="keyword">None</span>, sort_keys=<span class="keyword">False</span>, **kw)</span><br><span class="line"><span class="comment">#反序列化：读取指定文件中的json字符串并转换成python对象</span></span><br><span class="line">load(fp, *, cls=<span class="keyword">None</span>, object_hook=<span class="keyword">None</span>, parse_float=<span class="keyword">None</span>, parse_int=<span class="keyword">None</span>, parse_constant=<span class="keyword">None</span>, object_pairs_hook=<span class="keyword">None</span>, **kw)</span><br></pre></td></tr></table></figure></p>
+<p>json和python数据类型对应关系</p>
+</blockquote>
+<ol>
+<li>python转换为json</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Python</th>
+<th style="text-align:center">JSON</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dict</td>
+<td style="text-align:center">object</td>
+</tr>
+<tr>
+<td>list,tuple</td>
+<td style="text-align:center">array</td>
+</tr>
+<tr>
+<td>str</td>
+<td style="text-align:center">string</td>
+</tr>
+<tr>
+<td>int,float,int- &amp; float-derived Enums</td>
+<td style="text-align:center">number</td>
+</tr>
+<tr>
+<td>True</td>
+<td style="text-align:center">true</td>
+</tr>
+<tr>
+<td>False</td>
+<td style="text-align:center">false</td>
+</tr>
+<tr>
+<td>None</td>
+<td style="text-align:center">null</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>json转换为python</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>JSON</th>
+<th style="text-align:center">Python</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>object</td>
+<td style="text-align:center">dict</td>
+</tr>
+<tr>
+<td>array</td>
+<td style="text-align:center">list</td>
+</tr>
+<tr>
+<td>string</td>
+<td style="text-align:center">str</td>
+</tr>
+<tr>
+<td>number(int)</td>
+<td style="text-align:center">int</td>
+</tr>
+<tr>
+<td>number(real)</td>
+<td style="text-align:center">float</td>
+</tr>
+<tr>
+<td>true</td>
+<td style="text-align:center">True</td>
+</tr>
+<tr>
+<td>false</td>
+<td style="text-align:center">False</td>
+</tr>
+<tr>
+<td>null</td>
+<td style="text-align:center">None</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>序列化示例<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> json</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>json.dumps(&#123;<span class="string">'a'</span>:<span class="string">'str'</span>, <span class="string">'c'</span>: <span class="keyword">True</span>, <span class="string">'e'</span>: <span class="number">10</span>, <span class="string">'b'</span>: <span class="number">11.1</span>, <span class="string">'d'</span>: <span class="keyword">None</span>, <span class="string">'f'</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="string">'g'</span>:(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>)&#125;)</span><br><span class="line"><span class="string">'&#123;"a": "str", "c": true, "e": 10, "b": 11.1, "d": null, "f": [1, 2, 3], "g": [4, 5, 6]&#125;'</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p><code>sort_keys</code>参数： 表示序列化时是否对dict的key进行排序（dict默认是无序的）<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>json.dumps(&#123;<span class="string">'a'</span>:<span class="string">'str'</span>, <span class="string">'c'</span>: <span class="keyword">True</span>, <span class="string">'e'</span>: <span class="number">10</span>, <span class="string">'b'</span>: <span class="number">11.1</span>, <span class="string">'d'</span>: <span class="keyword">None</span>, <span class="string">'f'</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="string">'g'</span>:(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>)&#125;, sort_keys=<span class="keyword">True</span>)</span><br><span class="line"><span class="string">'&#123;"a": "str", "b": 11.1, "c": true, "d": null, "e": 10, "f": [1, 2, 3], "g": [4, 5, 6]&#125;'</span></span><br></pre></td></tr></table></figure></p>
+<p><code>indent</code>参数： 表示缩进，它可以使得数据存储的格式变得更加优雅、可读性更强；如果indent是一个非负整数或字符串，则JSON array元素和object成员将会被以相应的缩进级别进行打印输出；如果indent是0或负数或空字符串，则将只会插入换行，不会有缩进。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(json.dumps(&#123;<span class="string">'a'</span>:<span class="string">'str'</span>, <span class="string">'c'</span>: <span class="keyword">True</span>, <span class="string">'e'</span>: <span class="number">10</span>, <span class="string">'b'</span>: <span class="number">11.1</span>, <span class="string">'d'</span>: <span class="keyword">None</span>, <span class="string">'f'</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="string">'g'</span>:(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>)&#125;, sort_keys=<span class="keyword">True</span>, indent=<span class="number">4</span>))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"a"</span>: <span class="string">"str"</span>,</span><br><span class="line">    <span class="string">"b"</span>: <span class="number">11.1</span>,</span><br><span class="line">    <span class="string">"c"</span>: true,</span><br><span class="line">    <span class="string">"d"</span>: null,</span><br><span class="line">    <span class="string">"e"</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="string">"f"</span>: [</span><br><span class="line">        <span class="number">1</span>,</span><br><span class="line">        <span class="number">2</span>,</span><br><span class="line">        <span class="number">3</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="string">"g"</span>: [</span><br><span class="line">        <span class="number">4</span>,</span><br><span class="line">        <span class="number">5</span>,</span><br><span class="line">        <span class="number">6</span></span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>separators</code>参数： 尽管indent参数可以使得数据存储的格式变得更加优雅、可读性更强，但是那是通过添加一些冗余的空白字符进行填充的。当json被用于网络数据通信时，应该尽可能的减少无用的数据传输，这样可以节省带宽并加快数据传输速度。json模块序列化Python对象后得到的json字符串中的’,’号和’:’号分隔符后默认都会附加一个空白字符，我们可以通过<code>separators</code>参数重新指定分隔符，从而去除无用的空白字符。<br>该参数的值应该是一个tuple(item_separator, key_separator)</p>
+<ul>
+<li>若indent是None，其默认值为(‘, ‘, ‘: ‘)</li>
+<li>若indent不为None，则默认值为(‘,’, ‘: ‘)</li>
+<li>我们可以通过为separator赋值为(‘,’, ‘:’)来消除空白字符<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>json.dumps(&#123;<span class="string">'a'</span>:<span class="string">'str'</span>, <span class="string">'c'</span>: <span class="keyword">True</span>, <span class="string">'e'</span>: <span class="number">10</span>, <span class="string">'b'</span>: <span class="number">11.1</span>, <span class="string">'d'</span>: <span class="keyword">None</span>, <span class="string">'f'</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="string">'g'</span>:(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>)&#125;)</span><br><span class="line"><span class="string">'&#123;"a": "str", "c": true, "e": 10, "b": 11.1, "d": null, "f": [1, 2, 3], "g": [4, 5, 6]&#125;'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>json.dumps(&#123;<span class="string">'a'</span>:<span class="string">'str'</span>, <span class="string">'c'</span>: <span class="keyword">True</span>, <span class="string">'e'</span>: <span class="number">10</span>, <span class="string">'b'</span>: <span class="number">11.1</span>, <span class="string">'d'</span>: <span class="keyword">None</span>, <span class="string">'f'</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="string">'g'</span>:(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>)&#125;, separators=(<span class="string">','</span>,<span class="string">':'</span>))</span><br><span class="line"><span class="string">'&#123;"a":"str","c":true,"e":10,"b":11.1,"d":null,"f":[1,2,3],"g":[4,5,6]&#125;'</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><code>ensure_ascii</code>参数： 当该参数的值为True（默认值）时，输出中的所有非ASCII字符（比如中文）都会被转义成’\uXXXX’组成的序列，得到的结果是一个完全由ASCII字符组成的str实例。如果我们想得到一个人类可读的输出结果，需要把ensure_ascii参数的值设置为False。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>stu=&#123;<span class="string">"name"</span>: <span class="string">"小明"</span>, <span class="string">"age"</span> : <span class="number">16</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>stu_json = json.dumps(stu)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(stu_json)</span><br><span class="line">&#123;<span class="string">"name"</span>: <span class="string">"\u5c0f\u660e"</span>, <span class="string">"age"</span>: <span class="number">16</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>stu_json01 = json.dumps(stu, ensure_ascii=<span class="keyword">False</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(stu_json01)</span><br><span class="line">&#123;<span class="string">"name"</span>: <span class="string">"小明"</span>, <span class="string">"age"</span>: <span class="number">16</span>&#125;</span><br></pre></td></tr></table></figure></p>
+<p>说明：<code>\u5c0f\u660e</code>是unicode字符对应的内存编码值，该内存编码名称为”unicode-escape”。可以通过<code>unicodestr.encode(&#39;unicode-escape&#39;)</code>和<code>decode(&#39;unicode-escape&#39;)</code>完成unicode字符串和Unicode内存编码序列进行相互转换。</p>
+<blockquote>
+<p>反序列化示例</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>json.loads(<span class="string">'&#123;"a": "str", "c": true, "b": 11.1, "e": 10, "d": null, "g": [4, 5, 6], "f": [1, 2, 3]&#125;'</span>)</span><br><span class="line">&#123;<span class="string">'a'</span>: <span class="string">'str'</span>, <span class="string">'c'</span>: <span class="keyword">True</span>, <span class="string">'b'</span>: <span class="number">11.1</span>, <span class="string">'e'</span>: <span class="number">10</span>, <span class="string">'d'</span>: <span class="keyword">None</span>, <span class="string">'g'</span>: [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>], <span class="string">'f'</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>json.loads(<span class="string">'&#123;"a":"str","c":true,"b":11.1,"e":10,"d":null,"g":[4,5,6],"f":[1,2,3]&#125;'</span>)</span><br><span class="line">&#123;<span class="string">'a'</span>: <span class="string">'str'</span>, <span class="string">'c'</span>: <span class="keyword">True</span>, <span class="string">'b'</span>: <span class="number">11.1</span>, <span class="string">'e'</span>: <span class="number">10</span>, <span class="string">'d'</span>: <span class="keyword">None</span>, <span class="string">'g'</span>: [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>], <span class="string">'f'</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>load()和dump()<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#序列化到文件中</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">with</span> open(<span class="string">'test.json'</span>, <span class="string">'w'</span>) <span class="keyword">as</span> fp:</span><br><span class="line"><span class="meta">... </span>    json.dump(&#123;<span class="string">'a'</span>:<span class="string">'str中国'</span>, <span class="string">'c'</span>: <span class="keyword">True</span>, <span class="string">'e'</span>: <span class="number">10</span>, <span class="string">'b'</span>: <span class="number">11.1</span>, <span class="string">'d'</span>: <span class="keyword">None</span>, <span class="string">'f'</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="string">'g'</span>:(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>)&#125;, fp, indent=<span class="number">4</span>)</span><br><span class="line">...</span><br><span class="line"><span class="comment">#反序列化文件中的内容</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">with</span> open(<span class="string">'test.json'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> fp:</span><br><span class="line"><span class="meta">... </span>    json.load(fp)</span><br><span class="line">...</span><br><span class="line">&#123;<span class="string">'a'</span>: <span class="string">'str中国'</span>, <span class="string">'c'</span>: <span class="keyword">True</span>, <span class="string">'e'</span>: <span class="number">10</span>, <span class="string">'b'</span>: <span class="number">11.1</span>, <span class="string">'d'</span>: <span class="keyword">None</span>, <span class="string">'f'</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="string">'g'</span>: [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>注意：如果试图使用相同的<code>fp</code>调用dump()函数去序列化多个对象，将会产生一个无效的JSON文件。也就是说对于一个fd只能调用一次<code>dump()</code>。<br>更多更详细的内容可以点击<a href="https://docs.python.org/3.6/library/json.html" target="_blank" rel="noopener">JSON encoder and decoder</a>查看官网内容。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/04/27/python内置模块-三/" data-id="cjgi25ud30006bgq64juu3651" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BytesIO/">BytesIO</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Json/">Json</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/StringIO/">StringIO</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hashlib/">hashlib</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/04/25/python内置模块-二/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">python内置模块(二)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#hashlib"><span class="toc-number">1.</span> <span class="toc-text">hashlib</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#StringIO"><span class="toc-number">2.</span> <span class="toc-text">StringIO</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BytesIO"><span class="toc-number">3.</span> <span class="toc-text">BytesIO</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Json"><span class="toc-number">4.</span> <span class="toc-text">Json</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>
