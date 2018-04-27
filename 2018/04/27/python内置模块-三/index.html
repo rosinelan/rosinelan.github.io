@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://rosinelan.github.io/2018/04/27/python内置模块-三/index.html">
 <meta property="og:site_name" content="持续不断">
 <meta property="og:description" content="内置模块datetime、time、commands相关内容点击python内置模块查看。内置模块subprocess、os、random、sys、logging相关内容点击python内置模块(二)查看。   hashlibhaslib模块为不同的安全哈希/安全散列(Secure Hash Algorithm)和信息摘要算法(Message Digest Algorithm)实现了一个公共的、通">
-<meta property="og:updated_time" content="2018-04-27T14:44:13.784Z">
+<meta property="og:updated_time" content="2018-04-27T14:49:07.510Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python内置模块(三)">
 <meta name="twitter:description" content="内置模块datetime、time、commands相关内容点击python内置模块查看。内置模块subprocess、os、random、sys、logging相关内容点击python内置模块(二)查看。   hashlibhaslib模块为不同的安全哈希/安全散列(Secure Hash Algorithm)和信息摘要算法(Message Digest Algorithm)实现了一个公共的、通">
@@ -42,7 +42,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -132,10 +132,7 @@
 </tr>
 </tbody>
 </table>
-<p>摘要算法又称哈希算法、散列算法。它通过一个函数，把任意长度的数据转换为一个长度固定的字符串(通常用16进制字符串表示)。常用的是<code>md5</code>算法。 </p>
-<blockquote>
-<p>hashlib模块对应的属性和函数</p>
-</blockquote>
+<p>摘要算法又称哈希算法、散列算法。它通过一个函数，把任意长度的数据转换为一个长度固定的字符串(通常用16进制字符串表示)。常用的是<code>md5</code>算法。<br><strong>hashlib模块对应的属性和函数</strong></p>
 <ul>
 <li><p>hselib.new(name[, date])<br>通用的哈希对象构造函数，用于构造指定的哈希算法对应的哈希对象。其中<code>name</code>用于指定哈希算法名称，如<code>md5</code>、<code>sha1</code>，不区分大小写；<code>data</code>可选，表示初始数据。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>hashlib.new(<span class="string">'md5'</span>)    <span class="comment">#构建hash对象</span></span><br><span class="line">&lt;md5 HASH object @ <span class="number">0x00000131AE948AD0</span>&gt;</span><br></pre></td></tr></table></figure>
@@ -303,7 +300,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/27/python内置模块-三/" data-id="cjgi25ud30006bgq64juu3651" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/04/27/python内置模块-三/" data-id="cjgi25ud30006bgq64juu3651" class="article-share-link">分享</a>
       
       
       
@@ -315,7 +312,7 @@
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =4
@@ -359,7 +356,7 @@
   
   
     <a href="/2018/04/25/python内置模块-二/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">python内置模块(二)</div>
     </a>
   
@@ -389,7 +386,7 @@
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
               <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#hashlib"><span class="toc-number">1.</span> <span class="toc-text">hashlib</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#StringIO"><span class="toc-number">2.</span> <span class="toc-text">StringIO</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BytesIO"><span class="toc-number">3.</span> <span class="toc-text">BytesIO</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Json"><span class="toc-number">4.</span> <span class="toc-text">Json</span></a></li></ol>
           </div>
@@ -417,10 +414,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
+     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>
