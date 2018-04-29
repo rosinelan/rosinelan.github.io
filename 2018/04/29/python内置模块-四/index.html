@@ -12,10 +12,12 @@
 <meta property="og:url" content="https://rosinelan.github.io/2018/04/29/python内置模块-四/index.html">
 <meta property="og:site_name" content="持续不断">
 <meta property="og:description" content="内置模块datetime、time、commands相关内容点击python内置模块查看。内置模块subprocess、os、random、sys、logging相关内容点击python内置模块(二)查看。内置模块hashlib、StringIO、BytesIO、Json相关内容点击python内置模块(三)查看。   rere模块是python中处理正则表达式的一个模块，通过re模块的方法，把正">
-<meta property="og:updated_time" content="2018-04-29T15:40:48.879Z">
+<meta property="og:image" content="http:///">
+<meta property="og:updated_time" content="2018-04-29T16:25:33.944Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python内置模块(四)">
 <meta name="twitter:description" content="内置模块datetime、time、commands相关内容点击python内置模块查看。内置模块subprocess、os、random、sys、logging相关内容点击python内置模块(二)查看。内置模块hashlib、StringIO、BytesIO、Json相关内容点击python内置模块(三)查看。   rere模块是python中处理正则表达式的一个模块，通过re模块的方法，把正">
+<meta name="twitter:image" content="http:///">
   
     <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
   
@@ -42,7 +44,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Søk"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -101,8 +103,13 @@
         <!-- Table of Contents -->
         
         <p>内置模块<code>datetime</code>、<code>time</code>、<code>commands</code>相关内容点击<a href="https://rosinelan.coding.me/2018/04/23/python%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97/" target="_blank" rel="noopener">python内置模块</a>查看。<br>内置模块<code>subprocess</code>、<code>os</code>、<code>random</code>、<code>sys</code>、<code>logging</code>相关内容点击<a href="https://rosinelan.coding.me/2018/04/25/python%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97-%E4%BA%8C/" target="_blank" rel="noopener">python内置模块(二)</a>查看。<br>内置模块<code>hashlib</code>、<code>StringIO</code>、<code>BytesIO</code>、<code>Json</code>相关内容点击<a href="https://rosinelan.coding.me/2018/04/27/python%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97-%E4%B8%89/" target="_blank" rel="noopener">python内置模块(三)</a>查看。  </p>
-<h3 id="re"><a href="#re" class="headerlink" title="re"></a>re</h3><p><code>re</code>模块是python中处理正则表达式的一个模块，通过re模块的方法，把正则表达式编译成正则对象，以便使用正则对象的方法。  </p>
-<h4 id="正则语法"><a href="#正则语法" class="headerlink" title="正则语法"></a>正则语法</h4><h4 id="re方法"><a href="#re方法" class="headerlink" title="re方法"></a>re方法</h4><ul>
+<h3 id="re"><a href="#re" class="headerlink" title="re"></a>re</h3><p><code>re</code>模块是python中处理正则表达式的一个模块，通过re模块的方法，把正则表达式编译成正则对象，以便使用正则对象的方法。<br><a id="more"></a></p>
+<h4 id="正则语法"><a href="#正则语法" class="headerlink" title="正则语法"></a>正则语法</h4><p>首先推荐一个在线的正则表达式验证调试网站<a href="https://regex101.com/" target="_blank" rel="noopener">regular expressions 101</a>。支持<code>python</code>、<code>javascript</code>、<code>python</code>和<code>golang</code>4种语言的正则语法。使用时注意勾选正确的语言。<br>正则表达式中的字符分为<code>普通字符</code>和<code>元字符</code>，通过普通字符和元字符组合成一个特定匹配规则的表达式。除元字符之外的都是普通字符。下面介绍部分元字符。  </p>
+<ul>
+<li>单个字符匹配<br><code>.</code> 匹配换行符<code>\n</code>之外的任意一个字符。<br><code>[...]</code> 表示一个字符集集合。被匹配的文本对应位置可以是这个字符集合中指定的任意字符。<br><code>[^...]</code> 表示匹配除该字符集合指定的字符外的其它所有字符中的任意一个。<br><code>\</code> 转义字符，可以用来改变特殊字符的含原有义。</li>
+<li>预定义字符集<br><code>\d</code> 数字 [0-9]<br><code>\D</code> 非数字 [^\d]<br><code>\s</code> 空白字符 [&lt;空格&gt;\t\r\n\f\v]<br><code>\S</code> 非空白字母 [^\s]<br><code>\w</code> 单词字符 [A-Za-z0-9]<br><code>\W</code> 费单词字符 [^\w]  </li>
+<li>字符次数匹配<br><code>*</code> 匹配前一个字符0或无限次<br><code>+</code> 匹配前一个字符0或无限次<br><code>?</code> 匹配前一个字符0或1次<br><code>{m}</code> 匹配前一个字符m次<br><code>{m, n}</code> 匹配前一个字符m至n次。<br><code>*? + ???(m,n)?</code> 使变成非贪婪模式</li>
+<li>边界匹配<br><code>^</code> 匹配字符串开头。多行模式下匹配每一行的开头。<br><code>$</code> 匹配字符串末尾。多行模式下匹配每一行的末尾。<br><code>\A</code> 仅匹配字符串开头。<br><code>\Z</code> 仅匹配字符串末尾。<br><code>\b</code> 匹配\w和\W之间。<br><code>\B</code> [^\b]<br>关于更多的逻辑分组、特殊构造可以查看图片<img src="http://" alt="regular">。<h4 id="re方法"><a href="#re方法" class="headerlink" title="re方法"></a>re方法</h4></li>
 <li>compile(pattern, flags=0)<br>使用<code>complie()</code>函数编译正则表达式，返回正则表达式对象。  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> re</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>p = re.compile(<span class="string">r'[a-z]+'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>type(p)</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">_sre</span>.<span class="title">SRE_Pattern</span>'&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
@@ -140,7 +147,9 @@
 </ul>
 <p><code>re</code>在模块级别提供的函数如下<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">match(pattern, string, flags=<span class="number">0</span>)</span><br><span class="line">fullmatch(pattern, string, flags=<span class="number">0</span>)</span><br><span class="line">search(pattern, string, flags=<span class="number">0</span>)</span><br><span class="line">findall(pattern, string, flags=<span class="number">0</span>)</span><br><span class="line">sub(pattern, repl, string, count=<span class="number">0</span>, flags=<span class="number">0</span>)</span><br><span class="line">split(pattern, string, maxsplit=<span class="number">0</span>, flags=<span class="number">0</span>)</span><br></pre></td></tr></table></figure></p>
 <p>函数名称和<code>re</code>对象所提供的函数名称同名，其实就是正则表达式对象方法的封装，功能相同。<br>通过<code>complie()</code>声明正则对象，然后调用正则对象方法效率比直接使用模块级别函数高。  </p>
-<p>关于python正则语法，可以点击<a href="https://docs.python.org/3/howto/regex.html#regex-howto" target="_blank" rel="noopener">Regular Expression HOWTO</a>查看更多内容。<br>关于python正则模块使用，可以点击<a href="https://docs.python.org/3/library/re.html" target="_blank" rel="noopener">Regular expression operations</a>查看更多内容。</p>
+<ul>
+<li>正则表达式的<code>r</code>前缀<br>对于一些特殊的字符需要通过<code>/</code>(反斜线)进行转义处理才能被正确的识别。加上<code>r</code>(raw，原始的意思)表示字符串的字面值就是其真实值，不需要进行转义等操作。<br>关于python正则语法，可以点击<a href="https://docs.python.org/3/howto/regex.html#regex-howto" target="_blank" rel="noopener">Regular Expression HOWTO</a>查看更多内容。<br>关于python正则模块使用，可以点击<a href="https://docs.python.org/3/library/re.html" target="_blank" rel="noopener">Regular expression operations</a>查看更多内容。</li>
+</ul>
 
       
     </div>
@@ -157,7 +166,7 @@
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>推荐文章</h2>
+    <h2>Recommended Posts</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =4
@@ -231,7 +240,7 @@
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">文章目录</strong>
+        <strong class="toc-title">Content</strong>
         <div class="toc-widget-list">
               <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#re"><span class="toc-number">1.</span> <span class="toc-text">re</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#正则语法"><span class="toc-number">1.1.</span> <span class="toc-text">正则语法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#re方法"><span class="toc-number">1.2.</span> <span class="toc-text">re方法</span></a></li></ol></li></ol>
           </div>
