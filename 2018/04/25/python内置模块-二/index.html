@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://rosinelan.github.io/2018/04/25/python内置模块-二/index.html">
 <meta property="og:site_name" content="持续不断">
 <meta property="og:description" content="关于datetime/time/commands模块的内容可以点击python内置模块查看。   subprocesssubprocess模块用来生成子进程，并可以通过管道连接它们的输入/输出/错误，以及获得它们的返回值。   getoutput(cmd)该命令类似commands模块中的getoutput()，执行cmd命令返回执行结果。">
-<meta property="og:updated_time" content="2018-04-27T06:06:47.228Z">
+<meta property="og:updated_time" content="2018-04-29T13:45:39.902Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python内置模块(二)">
 <meta name="twitter:description" content="关于datetime/time/commands模块的内容可以点击python内置模块查看。   subprocesssubprocess模块用来生成子进程，并可以通过管道连接它们的输入/输出/错误，以及获得它们的返回值。   getoutput(cmd)该命令类似commands模块中的getoutput()，执行cmd命令返回执行结果。">
@@ -42,7 +42,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Søk"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -404,12 +404,66 @@
 </li>
 </ol>
 <p>更多更详细的内容可以点击<a href="https://docs.python.org/3/library/string.html" target="_blank" rel="noopener">Common string operations</a>查看官网内容。</p>
-<h3 id="logging"><a href="#logging" class="headerlink" title="logging"></a>logging</h3><p>更多更详细的内容可以点击<a href="https://docs.python.org/3.6/library/logging.html" target="_blank" rel="noopener">Logging facility for Python</a>查看官网内容。</p>
+<h3 id="logging"><a href="#logging" class="headerlink" title="logging"></a>logging</h3><ol>
+<li>日志级别</li>
+</ol>
+<p>下面列出的是日志级别及对应的值，当需要自定义日志级别及对应的值时，需要参考已经预先定义的级别及数值。<br>假如自定义的级别的数值和预先定义好的出现冲突，默认将会改写预定义的值，同时对应预定义的级别名称也失效。  </p>
+<table>
+<thead>
+<tr>
+<th>级别</th>
+<th style="text-align:center">数字值</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CRITICAL</td>
+<td style="text-align:center">50</td>
+<td style="text-align:center">发生严重错误，导致应用程序不能继续运行</td>
+</tr>
+<tr>
+<td>ERROR</td>
+<td style="text-align:center">40</td>
+<td style="text-align:center">由于一个更严重的问题导致某些功能不能正常运行时记录的信息</td>
+</tr>
+<tr>
+<td>WARNING</td>
+<td style="text-align:center">30</td>
+<td style="text-align:center">在某些不期望的事情发生时记录的信息，但是此时应用程序可以正常运行</td>
+</tr>
+<tr>
+<td>INFO</td>
+<td style="text-align:center">20</td>
+<td style="text-align:center">信息详细程度仅次于DEBUG，通常只记录关键节点信息，确认程序按照预期运行</td>
+</tr>
+<tr>
+<td>DEBUG</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">最详细的日志信息，典型应用场景是问题诊断</td>
+</tr>
+<tr>
+<td>NOTSET</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">等同于DEBUG</td>
+</tr>
+</tbody>
+</table>
+<p>上述对应的级别，从上到下日志输出量是越来越多，越来越详细。<br>当为某个应用程序指定一个日志级别之后，应用程序会记录所有日志级别大于或等于指定日志级别的日志信息，而不是仅仅记录指定级别的日志信息，小于该级别的日志记录将会被丢弃。  </p>
+<ol>
+<li>使用方式<br>logging模块提供两种记录日志的方式</li>
+</ol>
+<ul>
+<li>第一种是使用logging提供的模块级别的函数</li>
+<li>第二种是使用logging日志系统的四大组件</li>
+</ul>
+<p>其中logging提供的模块级别的函数也是对logging日志系统相关类的封装。<br>logging模块定义的模块级别的常用函数<br>函数|说明<br>-|:-:</p>
+<p>更多更详细的内容可以点击<a href="https://docs.python.org/3.6/library/logging.html" target="_blank" rel="noopener">Logging facility for Python</a>查看官网内容。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/25/python内置模块-二/" data-id="cjgi25udc000abgq6l75bnm32" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/04/25/python内置模块-二/" data-id="cjgkzffqu0015kcq6yac93hja" class="article-share-link">Share</a>
       
       
       
@@ -464,7 +518,7 @@
 <nav id="article-nav">
   
     <a href="/2018/04/27/python内置模块-三/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
+      <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
           python内置模块(三)
@@ -474,7 +528,7 @@
   
   
     <a href="/2018/04/23/python内置模块/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">python内置模块</div>
     </a>
   
@@ -532,10 +586,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
+     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>
