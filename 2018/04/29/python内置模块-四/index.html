@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="持续不断">
 <meta property="og:description" content="内置模块datetime、time、commands相关内容点击python内置模块查看。内置模块subprocess、os、random、sys、logging相关内容点击python内置模块(二)查看。内置模块hashlib、StringIO、BytesIO、Json相关内容点击python内置模块(三)查看。   rere模块是python中处理正则表达式的一个模块，通过re模块的方法，把正">
 <meta property="og:image" content="http://cdn.rosinelan.com/blog/program/regular.png">
-<meta property="og:updated_time" content="2018-05-01T02:51:57.790Z">
+<meta property="og:updated_time" content="2018-05-01T02:53:16.842Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python内置模块(四)">
 <meta name="twitter:description" content="内置模块datetime、time、commands相关内容点击python内置模块查看。内置模块subprocess、os、random、sys、logging相关内容点击python内置模块(二)查看。内置模块hashlib、StringIO、BytesIO、Json相关内容点击python内置模块(三)查看。   rere模块是python中处理正则表达式的一个模块，通过re模块的方法，把正">
@@ -44,7 +44,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -153,13 +153,14 @@
 <p><code>re</code>在模块级别提供的函数如下<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">match(pattern, string, flags=<span class="number">0</span>)</span><br><span class="line">fullmatch(pattern, string, flags=<span class="number">0</span>)</span><br><span class="line">search(pattern, string, flags=<span class="number">0</span>)</span><br><span class="line">findall(pattern, string, flags=<span class="number">0</span>)</span><br><span class="line">sub(pattern, repl, string, count=<span class="number">0</span>, flags=<span class="number">0</span>)</span><br><span class="line">split(pattern, string, maxsplit=<span class="number">0</span>, flags=<span class="number">0</span>)</span><br></pre></td></tr></table></figure></p>
 <p>函数名称和<code>re</code>对象所提供的函数名称同名，其实就是正则表达式对象方法的封装，功能相同。<br>通过<code>complie()</code>声明正则对象，然后调用正则对象方法效率比直接使用模块级别函数高。  </p>
 <ul>
-<li>正则表达式的<code>r</code>前缀<br>对于一些特殊的字符需要通过<code>/</code>(反斜线)进行转义处理才能被正确的识别。加上<code>r</code>(raw，原始的意思)表示字符串的字面值就是其真实值，不需要进行转义等操作。<br>关于python正则语法，可以点击<a href="https://docs.python.org/3/howto/regex.html#regex-howto" target="_blank" rel="noopener">Regular Expression HOWTO</a>查看更多内容。<br>关于python正则模块使用，可以点击<a href="https://docs.python.org/3/library/re.html" target="_blank" rel="noopener">Regular expression operations</a>查看更多内容。</li>
+<li>正则表达式的<code>r</code>前缀<br>对于一些特殊的字符需要通过<code>/</code>(反斜线)进行转义处理才能被正确的识别。加上<code>r</code>(raw，原始的意思)表示字符串的字面值就是其真实值，不需要进行转义等操作。  </li>
 </ul>
+<p>关于python正则语法，可以点击<a href="https://docs.python.org/3/howto/regex.html#regex-howto" target="_blank" rel="noopener">Regular Expression HOWTO</a>查看更多内容。<br>关于python正则模块使用，可以点击<a href="https://docs.python.org/3/library/re.html" target="_blank" rel="noopener">Regular expression operations</a>查看更多内容。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/29/python内置模块-四/" data-id="cjgkzffqs0012kcq6utt8lh18" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/04/29/python内置模块-四/" data-id="cjgkzffqs0012kcq6utt8lh18" class="article-share-link">分享</a>
       
       
       
@@ -171,7 +172,7 @@
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =4
@@ -215,7 +216,7 @@
   
   
     <a href="/2018/04/27/python内置模块-三/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">python内置模块(三)</div>
     </a>
   
@@ -245,7 +246,7 @@
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
               <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#re"><span class="toc-number">1.</span> <span class="toc-text">re</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#正则语法"><span class="toc-number">1.1.</span> <span class="toc-text">正则语法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#re方法"><span class="toc-number">1.2.</span> <span class="toc-text">re方法</span></a></li></ol></li></ol>
           </div>
@@ -273,10 +274,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
+     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>
