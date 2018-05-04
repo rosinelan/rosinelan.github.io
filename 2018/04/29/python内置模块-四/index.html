@@ -6,14 +6,14 @@
   <title>python内置模块(四) | 持续不断</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="内置模块datetime、time、commands相关内容点击python内置模块查看。内置模块subprocess、os、random、sys、logging相关内容点击python内置模块(二)查看。内置模块hashlib、StringIO、BytesIO、Json相关内容点击python内置模块(三)查看。   rere模块是python中处理正则表达式的一个模块，通过re模块的方法，把正">
-<meta name="keywords" content="re,python">
+<meta name="keywords" content="python,re">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python内置模块(四)">
 <meta property="og:url" content="https://rosinelan.github.io/2018/04/29/python内置模块-四/index.html">
 <meta property="og:site_name" content="持续不断">
 <meta property="og:description" content="内置模块datetime、time、commands相关内容点击python内置模块查看。内置模块subprocess、os、random、sys、logging相关内容点击python内置模块(二)查看。内置模块hashlib、StringIO、BytesIO、Json相关内容点击python内置模块(三)查看。   rere模块是python中处理正则表达式的一个模块，通过re模块的方法，把正">
 <meta property="og:image" content="http://cdn.rosinelan.com/blog/program/regular.png">
-<meta property="og:updated_time" content="2018-05-01T02:53:16.842Z">
+<meta property="og:updated_time" content="2018-05-04T08:42:33.685Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python内置模块(四)">
 <meta name="twitter:description" content="内置模块datetime、time、commands相关内容点击python内置模块查看。内置模块subprocess、os、random、sys、logging相关内容点击python内置模块(二)查看。内置模块hashlib、StringIO、BytesIO、Json相关内容点击python内置模块(三)查看。   rere模块是python中处理正则表达式的一个模块，通过re模块的方法，把正">
@@ -44,7 +44,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -106,11 +106,11 @@
 <h3 id="re"><a href="#re" class="headerlink" title="re"></a>re</h3><p><code>re</code>模块是python中处理正则表达式的一个模块，通过re模块的方法，把正则表达式编译成正则对象，以便使用正则对象的方法。<br><a id="more"></a></p>
 <h4 id="正则语法"><a href="#正则语法" class="headerlink" title="正则语法"></a>正则语法</h4><p>首先推荐一个在线的正则表达式验证调试网站<a href="https://regex101.com/" target="_blank" rel="noopener">regular expressions 101</a>。支持<code>python</code>、<code>javascript</code>、<code>python</code>和<code>golang</code>4种语言的正则语法。使用时注意勾选正确的语言。<br>正则表达式中的字符分为<code>普通字符</code>和<code>元字符</code>，通过普通字符和元字符组合成一个特定匹配规则的表达式。除元字符之外的都是普通字符。下面介绍部分元字符。  </p>
 <ul>
-<li>单个字符匹配<br><code>.</code> 匹配换行符<code>\n</code>之外的任意一个字符。<br><code>[...]</code> 表示一个字符集集合。被匹配的文本对应位置可以是这个字符集合中指定的任意字符。<br><code>[^...]</code> 表示匹配除该字符集合指定的字符外的其它所有字符中的任意一个。<br><code>\</code> 转义字符，可以用来改变特殊字符的含原有义。</li>
-<li>预定义字符集<br><code>\d</code> 数字 [0-9]<br><code>\D</code> 非数字 [^\d]<br><code>\s</code> 空白字符 [&lt;空格&gt;\t\r\n\f\v]<br><code>\S</code> 非空白字母 [^\s]<br><code>\w</code> 单词字符 [A-Za-z0-9]<br><code>\W</code> 费单词字符 [^\w]  </li>
-<li>字符次数匹配<br><code>*</code> 匹配前一个字符0或无限次<br><code>+</code> 匹配前一个字符0或无限次<br><code>?</code> 匹配前一个字符0或1次<br><code>{m}</code> 匹配前一个字符m次<br><code>{m, n}</code> 匹配前一个字符m至n次。<br><code>*? + ???(m,n)?</code> 使变成非贪婪模式</li>
+<li>单个字符匹配<br><code>.</code> 匹配换行符<code>\n</code>之外的任意一个字符。<br><code>[...]</code> 表示一个字符集集合。被匹配的文本对应位置可以是这个字符集合中指定的任意字符。<br><code>[^...]</code> 表示匹配除该字符集合指定的字符外的其它所有字符中的任意一个。<br><code>\</code> 转义字符，可以用来改变特殊字符的原有含义。</li>
+<li>预定义字符集<br><code>\d</code> 数字 [0-9]<br><code>\D</code> 非数字 [^\d]<br><code>\s</code> 空白字符 [&lt;空格&gt;\t\r\n\f\v]<br><code>\S</code> 非空白字母 [^\s]<br><code>\w</code> 单词字符 [A-Za-z0-9]<br><code>\W</code> 非单词字符 [^\w]  </li>
+<li>字符次数匹配<br><code>*</code> 匹配前一个字符0或无限次<br><code>+</code> 匹配前一个字符1或无限次<br><code>?</code> 匹配前一个字符0或1次<br><code>{m}</code> 匹配前一个字符m次<br><code>{m, n}</code> 匹配前一个字符m至n次。<br><code>*? + ???(m,n)?</code> 使变成非贪婪模式</li>
 <li>边界匹配<br><code>^</code> 匹配字符串开头。多行模式下匹配每一行的开头。<br><code>$</code> 匹配字符串末尾。多行模式下匹配每一行的末尾。<br><code>\A</code> 仅匹配字符串开头。<br><code>\Z</code> 仅匹配字符串末尾。<br><code>\b</code> 匹配\w和\W之间。<br><code>\B</code> [^\b]</li>
-<li>逻辑与分组<br><code>|</code> 表示逻辑或，代表它左右两边的表达式会任意匹配一个。总是优先匹配左边的表达式，若匹配成功则跳过右边的表达式匹配。若<code>|</code>没有出现在<code>()</code>中，则它的有效范围是整个正则表达式。<br><code>(...)</code> 被括起来的表达式表示一个分组，且每一个分组都有一个正整数编号，从表达式开始每遇到一个分组的左括号，分组编号就+1,。另外，分组表达式作为一个整体，后面可接表示词次数的字符。分组表达式中的<code>|</code>仅在该分组中有效。<br><code>(?P&lt;NAMEE...&gt;)</code> 表示一个分组，除了原有的分组编号外，又指定了一个分组名称。<br><code>\&lt;number&gt;</code> 引用编号为<code>&lt;number&gt;</code>的分组所匹配到的字符串。<br><code>(?P=name)</code> 引用名称为<code>name</code>的分组所匹配到的字符串。  </li>
+<li>逻辑与分组<br><code>|</code> 表示逻辑或，代表它左右两边的表达式会任意匹配一个。总是优先匹配左边的表达式，若匹配成功则跳过右边的表达式匹配。若<code>|</code>没有出现在<code>()</code>中，则它的有效范围是整个正则表达式。<br><code>(...)</code> 被括起来的表达式表示一个分组，且每一个分组都有一个正整数编号，从表达式开始每遇到一个分组的左括号，分组编号就+1,。另外，分组表达式作为一个整体，后面可接表示词次数的字符。分组表达式中的<code>|</code>仅在该分组中有效。<br><code>(?P&lt;NAME...&gt;)</code> 表示一个分组，除了原有的分组编号外，又指定了一个分组名称。<br><code>\&lt;number&gt;</code> 引用编号为<code>&lt;number&gt;</code>的分组所匹配到的字符串。<br><code>(?P=name)</code> 引用名称为<code>name</code>的分组所匹配到的字符串。  </li>
 <li>特殊构造<br><code>(?:...)</code> (…)的不分组版本，用于使用<code>|</code>或后接数量词。<br><code>(?#...)</code> #后的内容将作为注释被忽略。<br><code>(?=...)</code> 后面的字符串内容需要匹配表达式才能成功匹配。不消耗字符串的内容。<br><code>(?&lt;=...)</code> 前面的字符串内容需要匹配表达式才能成功匹配。不消耗字符串的内容。<br><code>(?!...)</code> 后面的字符串内容需要不匹配表达式才能成功匹配。不消耗字符串内容。<br><code>(?&lt;!...)</code> 前面的字符串内容需要不匹配表达式才能成功匹配。不消耗字符串内容。<br><code>(?iLmsux)</code><br><code>(?(id/name)yes-pattern|no-pattern)</code> 编号为id或别名为name的分组匹配到字符，则需要匹配yes-pattern表达式，否则需要匹配no-pattern表达式。<code>|no-pattern</code>可以省略。<br>关于更多的逻辑分组、特殊构造可以查看图片<img src="http://cdn.rosinelan.com/blog/program/regular.png" alt="regular"><h4 id="re方法"><a href="#re方法" class="headerlink" title="re方法"></a>re方法</h4></li>
 <li>compile(pattern, flags=0)<br>使用<code>compile()</code>函数编译正则表达式，返回正则表达式对象。  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> re</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>p = re.compile(<span class="string">r'[a-z]+'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>type(p)</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">_sre</span>.<span class="title">SRE_Pattern</span>'&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
@@ -160,7 +160,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/29/python内置模块-四/" data-id="cjgkzffqs0012kcq6utt8lh18" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/04/29/python内置模块-四/" data-id="cjgrzf085000xq8q6zdcmipim" class="article-share-link">Share</a>
       
       
       
@@ -172,7 +172,7 @@
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>推荐文章</h2>
+    <h2>Recommended Posts</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =4
@@ -214,9 +214,18 @@
     
 <nav id="article-nav">
   
+    <a href="/2018/05/04/python正则表达式练习题/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          python正则表达式练习题
+        
+      </div>
+    </a>
+  
   
     <a href="/2018/04/27/python内置模块-三/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">python内置模块(三)</div>
     </a>
   
@@ -246,7 +255,7 @@
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">文章目录</strong>
+        <strong class="toc-title">Content</strong>
         <div class="toc-widget-list">
               <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#re"><span class="toc-number">1.</span> <span class="toc-text">re</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#正则语法"><span class="toc-number">1.1.</span> <span class="toc-text">正则语法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#re方法"><span class="toc-number">1.2.</span> <span class="toc-text">re方法</span></a></li></ol></li></ol>
           </div>
@@ -274,10 +283,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
+     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>

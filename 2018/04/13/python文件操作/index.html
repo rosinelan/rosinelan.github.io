@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://rosinelan.github.io/2018/04/13/python文件操作/index.html">
 <meta property="og:site_name" content="持续不断">
 <meta property="og:description" content="文件操作在python中读写文件有3个步骤    调用open()函数，返回一个File对象。  1&amp;gt;&amp;gt;&amp;gt; helloFile = open(&apos;D:\\BaiduNetdiskDownload\\livepython1\\06\\file.txt&apos;)">
-<meta property="og:updated_time" content="2018-04-14T03:36:07.486Z">
+<meta property="og:updated_time" content="2018-05-02T06:18:56.803Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python文件操作">
 <meta name="twitter:description" content="文件操作在python中读写文件有3个步骤    调用open()函数，返回一个File对象。  1&amp;gt;&amp;gt;&amp;gt; helloFile = open(&apos;D:\\BaiduNetdiskDownload\\livepython1\\06\\file.txt&apos;)">
@@ -42,7 +42,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -124,7 +124,9 @@
 <h3 id="写入文件"><a href="#写入文件" class="headerlink" title="写入文件"></a>写入文件</h3><p>要在文件中写入内容，需要以<code>w</code>或<code>a</code>模式打开文件，若<code>open()</code>打开的文件不存在，将会创建新的空白文件。写入之后需要使用<code>close()</code>方法关闭。<br>示例<br>使用<code>w</code>(写)模式写入<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>baconFile = open(<span class="string">'bacon.txt'</span>, <span class="string">'w'</span>)    <span class="comment">#该文件此时不存在</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>baconFile.write(<span class="string">'Hello World!\n'</span>)    <span class="comment">#写入时若需要换行符需要自己添加</span></span><br><span class="line"><span class="number">13</span>    <span class="comment">#返回的为写入字符的个数</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>baconFile.write(<span class="string">'正在测试写模式写入!\n'</span>)</span><br><span class="line"><span class="number">11</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>baconFile.close()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>baconFile = open(<span class="string">'bacon.txt'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>baconFile.read()    <span class="comment">#再次读取，已经正确写入</span></span><br><span class="line"><span class="string">'Hello World!\n正在测试写模式写入!\n'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>baconFile.close()</span><br></pre></td></tr></table></figure></p>
 <p>使用<code>a</code>(追加)模式写入<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>baconFile = open(<span class="string">'bacon.txt'</span>, <span class="string">'a'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>baconFile.write(<span class="string">'正在测试追加模式写入!\n'</span>)</span><br><span class="line"><span class="number">12</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>baconFile.close()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>baconFile = open(<span class="string">'bacon.txt'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>baconFile.read()</span><br><span class="line"><span class="string">'Hello World!\n正在测试写模式写入!\n正在测试追加模式写入!\n'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>baconFile.close()</span><br></pre></td></tr></table></figure></p>
 <p>需要特别注意<code>w</code>模式，假如写入的文件已存在，将会覆盖原文件，从头写入。  </p>
-<h3 id="使用with"><a href="#使用with" class="headerlink" title="使用with"></a>使用with</h3><p>从上面代码看到，每次调用<code>open()</code>打开文件，调用<code>write()</code>写入文件，总是要调用<code>close()</code>关闭文件。这样比较麻烦，python引入<code>with</code>语句自动帮我们调用<code>close()</code>方法。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">with</span> open(<span class="string">'bacon.txt'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line"><span class="meta">... </span>    print(f.read())</span><br><span class="line">...</span><br><span class="line">Hello World!</span><br><span class="line">正在测试写模式写入!</span><br><span class="line">正在测试追加模式写入!</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">当我们写入文件时，操作系统往往不会立刻把数据写入磁盘，而是放到内存缓存起来，空闲的时候再慢慢写入。只有调用`close()`方法时，操作系统才保证把没有写入的数据全部写入磁盘。忘记调用`close()`后果是数据可能只写了一部分到磁盘造成数据丢失。建议操作文件IO时始终使用`<span class="keyword">with</span>`语句。  </span><br><span class="line"><span class="comment">### 其他文件对象方法  </span></span><br><span class="line">name 返回该对象对应的文件名  </span><br><span class="line">``` python</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">with</span> open(<span class="string">'bacon.txt'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line"><span class="meta">... </span>    print(f.name)</span><br><span class="line">...</span><br><span class="line">bacon.txt</span><br></pre></td></tr></table></figure></p>
+<h3 id="使用with"><a href="#使用with" class="headerlink" title="使用with"></a>使用with</h3><p>从上面代码看到，每次调用<code>open()</code>打开文件，调用<code>write()</code>写入文件，总是要调用<code>close()</code>关闭文件。这样比较麻烦，python引入<code>with</code>语句自动帮我们调用<code>close()</code>方法。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">with</span> open(<span class="string">'bacon.txt'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line"><span class="meta">... </span>    print(f.read())</span><br><span class="line">...</span><br><span class="line">Hello World!</span><br><span class="line">正在测试写模式写入!</span><br><span class="line">正在测试追加模式写入!</span><br></pre></td></tr></table></figure></p>
+<p>当我们写入文件时，操作系统往往不会立刻把数据写入磁盘，而是放到内存缓存起来，空闲的时候再慢慢写入。只有调用<code>close()</code>方法时，操作系统才保证把没有写入的数据全部写入磁盘。忘记调用<code>close()</code>后果是数据可能只写了一部分到磁盘造成数据丢失。建议操作文件IO时始终使用<code>with</code>语句。  </p>
+<h3 id="其他文件对象方法"><a href="#其他文件对象方法" class="headerlink" title="其他文件对象方法"></a>其他文件对象方法</h3><p>name 返回该对象对应的文件名<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">with</span> open(<span class="string">'bacon.txt'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line"><span class="meta">... </span>    print(f.name)</span><br><span class="line">...</span><br><span class="line">bacon.txt</span><br></pre></td></tr></table></figure></p>
 <p>fileno() 返回文件描述符<br>文件描述符是非负整数，内核访问文件的时候使用文件描述符，以此指定操作的文件。具体的使用办法以后再说。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">with</span> open(<span class="string">'bacon.txt'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line"><span class="meta">... </span>    print(f.fileno())</span><br><span class="line">...</span><br><span class="line"><span class="number">5</span></span><br></pre></td></tr></table></figure></p>
 <p>encoding()  返回文件编码<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">with</span> open(<span class="string">'bacon.txt'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line"><span class="meta">... </span>    print(f.encoding)</span><br><span class="line">...</span><br><span class="line">cp936    <span class="comment">#此处cp936就是GBK编码</span></span><br></pre></td></tr></table></figure></p>
 <p>closed 返回值为布尔值，判断文件是否已经关闭。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>baconFile = open(<span class="string">'bacon.txt'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>baconFile.closed    <span class="comment">#打开之后尚未关闭</span></span><br><span class="line"><span class="keyword">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>baconFile.close()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>baconFile.closed    <span class="comment">#已经使用close()方法关闭</span></span><br><span class="line"><span class="keyword">True</span></span><br></pre></td></tr></table></figure></p>
@@ -144,7 +146,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/13/python文件操作/" data-id="cjgkzffre001xkcq632cm5ezp" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/04/13/python文件操作/" data-id="cjgrzf08g0019q8q6dbhzaidg" class="article-share-link">Share</a>
       
       
       
@@ -156,7 +158,7 @@
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>推荐文章</h2>
+    <h2>Recommended Posts</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =4
@@ -199,7 +201,7 @@
 <nav id="article-nav">
   
     <a href="/2018/04/13/python函数/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
+      <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
           python函数
@@ -209,7 +211,7 @@
   
   
     <a href="/2018/04/11/python编码/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">python编码</div>
     </a>
   
@@ -239,9 +241,9 @@
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">文章目录</strong>
+        <strong class="toc-title">Content</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#文件操作"><span class="toc-number">1.</span> <span class="toc-text">文件操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#open-函数打开文件"><span class="toc-number">1.1.</span> <span class="toc-text">open()函数打开文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#读取文件内容"><span class="toc-number">1.2.</span> <span class="toc-text">读取文件内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#写入文件"><span class="toc-number">1.3.</span> <span class="toc-text">写入文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用with"><span class="toc-number">1.4.</span> <span class="toc-text">使用with</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件编码"><span class="toc-number">1.5.</span> <span class="toc-text">文件编码</span></a></li></ol></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#文件操作"><span class="toc-number">1.</span> <span class="toc-text">文件操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#open-函数打开文件"><span class="toc-number">1.1.</span> <span class="toc-text">open()函数打开文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#读取文件内容"><span class="toc-number">1.2.</span> <span class="toc-text">读取文件内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#写入文件"><span class="toc-number">1.3.</span> <span class="toc-text">写入文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用with"><span class="toc-number">1.4.</span> <span class="toc-text">使用with</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他文件对象方法"><span class="toc-number">1.5.</span> <span class="toc-text">其他文件对象方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件编码"><span class="toc-number">1.6.</span> <span class="toc-text">文件编码</span></a></li></ol></li></ol>
           </div>
       </div>
     </div>
@@ -267,10 +269,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
+     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>

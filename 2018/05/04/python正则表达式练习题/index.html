@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>python正则表达式练习题 | 持续不断</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="针对前面正则表达式及re模块进行复习，然后题目实战。   正则常用语法熟悉最常用的正则语法。    单字符匹配. 匹配除换行符之外的任意一个字符。[...] 表示匹配一个字符集集合，如[A-Za-z0-9]表示匹配所有字母和数字。">
+<meta name="keywords" content="re,正则,爬虫">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python正则表达式练习题">
+<meta property="og:url" content="https://rosinelan.github.io/2018/05/04/python正则表达式练习题/index.html">
+<meta property="og:site_name" content="持续不断">
+<meta property="og:description" content="针对前面正则表达式及re模块进行复习，然后题目实战。   正则常用语法熟悉最常用的正则语法。    单字符匹配. 匹配除换行符之外的任意一个字符。[...] 表示匹配一个字符集集合，如[A-Za-z0-9]表示匹配所有字母和数字。">
+<meta property="og:image" content="http://cdn.rosinelan.com/blog/program/upstream.png">
+<meta property="og:image" content="http://cdn.rosinelan.com/blog/program/upstream.png">
+<meta property="og:updated_time" content="2018-05-04T13:14:59.810Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python正则表达式练习题">
+<meta name="twitter:description" content="针对前面正则表达式及re模块进行复习，然后题目实战。   正则常用语法熟悉最常用的正则语法。    单字符匹配. 匹配除换行符之外的任意一个字符。[...] 表示匹配一个字符集集合，如[A-Za-z0-9]表示匹配所有字母和数字。">
+<meta name="twitter:image" content="http://cdn.rosinelan.com/blog/program/upstream.png">
+  
+    <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">持续不断</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">要松懈的时候再坚持一下</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-python正则表达式练习题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/04/python正则表达式练习题/" class="article-date">
+  <time datetime="2018-05-04T06:43:36.000Z" itemprop="datePublished">2018-05-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/program/">编程</a>►<a class="article-category-link" href="/categories/program/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      python正则表达式练习题
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <p>针对前面<code>正则表达式</code>及<code>re</code>模块进行复习，然后题目实战。  </p>
+<h3 id="正则常用语法"><a href="#正则常用语法" class="headerlink" title="正则常用语法"></a>正则常用语法</h3><p>熟悉最常用的正则语法。  </p>
+<ul>
+<li>单字符匹配<br><code>.</code> 匹配除换行符之外的任意一个字符。<br><code>[...]</code> 表示匹配一个字符集集合，如<code>[A-Za-z0-9]</code>表示匹配所有字母和数字。  <a id="more"></a>
+<code>[^...]</code> 表示匹配除该字符集集合指定字符外的任意字符。如<code>[^0-9]</code>表示匹配除数字之外的所有字符。<br><code>\</code> 转义字符，用来改变特殊字符的原有含义(使其表示本身)。  </li>
+<li>预定义字符集<br><code>\d</code> 表示数字<br><code>\D</code> 表示非数字<br><code>\s</code> 表示空白字符<br><code>\S</code> 表示非空白字符<br><code>\w</code> 表示字母和数字<br><code>\W</code> 表示非字母和数字</li>
+<li>字符次数匹配<br><code>*</code> 匹配前一个字符0或者无限次<br><code>+</code> 匹配前一个字符1或者无限次<br><code>?</code> 匹配前一个字符0或者1次</li>
+<li>边界匹配<br><code>^</code> 匹配字符串开头<br><code>$</code> 匹配字符串结尾  </li>
+<li>分组<br><code>(...)</code> 分组<br><code>(?P&lt;NAME&gt;)</code> 分组，并且指定该分组的名称为NAME。<br><code>(?P=NAME)</code> 引用名称为NAME的分组所匹配到的字符串，配合上一个使用。  <h3 id="题目一"><a href="#题目一" class="headerlink" title="题目一"></a>题目一</h3>从地址<code>http://qwd.jd.com/fcgi-bin/qwd_searchitem_ex?skuid=26878432382%7C1658610413%7C26222795271%7C25168000024%7C11731514723%7C26348513019%7C20000220615%7C4813030%7C25965247088%7C5327182%7C19588651151%7C1780924%7C15495544751%7C10114188069%7C27036535156%7C10123099847%7C26016197600%7C10503200866%7C16675691362%7C15904713681</code>得到的json字符串，使用正则匹配，查找出商品对应的<code>skuid</code>(商品唯一编码)和<code>skuimgurl</code>(商品图片)。</li>
+<li>题目分析</li>
+</ul>
+<ol>
+<li>首先使用简单的爬虫功能得到需要匹配的数据；</li>
+<li>根据json字符串的规律编写对应的正则表达式</li>
+<li>输出</li>
+</ol>
+<ul>
+<li>代码实现<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">"http://qwd.jd.com/fcgi-bin/qwd_searchitem_ex?skuid=26878432382%7C1658610413%7C26222795271%7C25168000024%7C11731514723%7C26348513019%7C20000220615%7C4813030%7C25965247088%7C5327182%7C19588651151%7C1780924%7C15495544751%7C10114188069%7C27036535156%7C10123099847%7C26016197600%7C10503200866%7C16675691362%7C15904713681"</span></span><br><span class="line">session = requests.session()</span><br><span class="line">r = session.get(url)    <span class="comment">#简单爬虫使用示意，后面会讲到</span></span><br><span class="line">html = r.text</span><br><span class="line"></span><br><span class="line">reg = re.compile(<span class="string">r"\s*\"skuid\":\"(\d+)\",\s*\S*\s*\S*\s*\"skuimgurl\":\"(\S*.jpg)\""</span>)    <span class="comment">#正则表达式</span></span><br><span class="line">result = reg.findall(html)</span><br><span class="line">print(result)    <span class="comment">#使用()分组，输出结果为2个分组的数据</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>输出结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[(<span class="string">'26878432382'</span>, <span class="string">'https://img20.360buyimg.com/n7/jfs/t18226/169/1318243724/390477/5b0718ff/5ac44edcNa350dbd9.jpg'</span>), (<span class="string">'5327182'</span>, <span class="string">'https://img20.360buyimg.com/n7/jfs/t17461/138/1837663326/68820/5f8da5cd/5ad9b1e2N42bce837.jpg'</span>), (<span class="string">'11731514723'</span>, <span class="string">'https://img20.360buyimg.com/n7/jfs/t19231/337/2147939016/196162/4210a6ae/5aea6250N0235cd05.jpg'</span>), (<span class="string">'19588651151'</span>, <span class="string">'https://img20.360buyimg.com/n7/jfs/t11341/60/1553062810/120774/ab9534ff/5a02c3f4Naebe34b7.jpg'</span>), (<span class="string">'15495544751'</span>, <span class="string">'https://img20.360buyimg.com/n7/jfs/t18088/43/2048465630/167669/dd3c8b7b/5ae12c40N57c98ea8.jpg'</span>), (<span class="string">'16675691362'</span>, <span class="string">'https://img20.360buyimg.com/n7/jfs/t18490/21/2141098141/120513/b3ca521a/5ae90247N3b4909ae.jpg'</span>), (<span class="string">'26222795271'</span>, <span class="string">'https://img20.360buyimg.com/n7/jfs/t19441/291/1597121495/310550/9bc2e141/5ad05fc0N1510cae5.jpg'</span>), (<span class="string">'1780924'</span>, <span class="string">'https://img20.360buyimg.com/n7/jfs/t17167/97/1957869461/43204/d064647b/5adda3e0Ne1d3aa86.jpg'</span>), (<span class="string">'4813030'</span>, <span class="string">'https://img20.360buyimg.com/n7/jfs/t19198/83/1908967366/189260/7538e84b/5adda865N8f547981.jpg'</span>), (<span class="string">'27036535156'</span>, <span class="string">'https://img20.360buyimg.com/n7/jfs/t19399/140/2175516321/123017/41e6d6a8/5aea87d3N9736cc9d.jpg'</span>), (<span class="string">'26348513019'</span>, <span class="string">'https://img20.360buyimg.com/n7/jfs/t14857/240/2643838980/220943/c982fda1/5aaf2002Ndd25bc52.jpg'</span>), (<span class="string">'26016197600'</span>, <span class="string">'https://img20.360buyimg.com/n7/jfs/t19894/76/195725612/190103/23c60ca1/5aeabb94N3e0266bc.jpg'</span>), (<span class="string">'25168000024'</span>, <span class="string">'https://img20.360buyimg.com/n7/jfs/t17629/301/2062161127/434152/aa3560a5/5ae319f9N1ae1146c.jpg'</span>), (<span class="string">'25965247088'</span>, <span class="string">'https://img20.360buyimg.com/n7/jfs/t19270/67/2232771964/253207/25f41fd9/5aea61b0Nfd21a809.jpg'</span>), (<span class="string">'10123099847'</span>, <span class="string">'https://img20.360buyimg.com/n7/jfs/t15511/14/1469153129/729958/b0af0ca1/5a533063N15fea56c.jpg'</span>), (<span class="string">'20000220615'</span>, <span class="string">'https://img20.360buyimg.com/n7/jfs/t16426/172/2638358261/151693/87020840/5ab869ddN30621fec.jpg'</span>), (<span class="string">'15904713681'</span>, <span class="string">'https://img20.360buyimg.com/n7/jfs/t17287/197/2249621651/366556/d36ae213/5aeadb4cN97f413f3.jpg'</span>), (<span class="string">'10114188069'</span>, <span class="string">'https://img20.360buyimg.com/n7/jfs/t19927/88/179058964/386205/afd08ef1/5ae9717fN07f116d9.jpg'</span>), (<span class="string">'10503200866'</span>, <span class="string">'https://img20.360buyimg.com/n7/jfs/t18139/246/1628563908/114414/9315ac7c/5ad0647eNa9f1e2af.jpg'</span>), (<span class="string">'1658610413'</span>, <span class="string">'https://img20.360buyimg.com/n7/jfs/t19411/79/1017814440/108641/1b185d6d/5ab8b479Nd2417e97.jpg'</span>)]</span><br></pre></td></tr></table></figure></p>
+<h3 id="题目二"><a href="#题目二" class="headerlink" title="题目二"></a>题目二</h3><p>根据文件<code>ga10.wms5.jd.com.txt</code>中的内容，分别匹配<code>upstream</code>和<code>location</code>{}中的内容，将对应内容分别写入文件夹<code>upstream</code>和<code>location</code>，文件夹中分别是以配置名称命名的配置内容。显示结果如下<br><img src="http://cdn.rosinelan.com/blog/program/upstream.png" alt="regular" title="regular">。</p>
+<ul>
+<li>题目分析</li>
+</ul>
+<ol>
+<li>正则匹配<code>upstream</code>内容，分组应包括名称及全部内容，名称用于文件命名，全部内容用于写入文件。  </li>
+<li>利用<code>os</code>模块进行文件夹判断、创建、切换等功能的实现。  </li>
+<li>最后写入文件。  </li>
+<li><code>location</code>处理方法基本一致。 </li>
+</ol>
+<ul>
+<li>代码实现<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> codecs</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">regupstream = re.compile(<span class="string">r"\s*(upstream\s+(\S+)\s+&#123;[^&#125;]+&#125;)"</span>)</span><br><span class="line"><span class="keyword">with</span> codecs.open(<span class="string">"ga10.wms5.jd.com.txt"</span>) <span class="keyword">as</span> fum:</span><br><span class="line">    upstmlist = regupstream.findall(fum.read())</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(<span class="string">"upstream"</span>):</span><br><span class="line">        os.mkdir(<span class="string">"upstream"</span>)</span><br><span class="line">    os.chdir(<span class="string">"upstream"</span>)</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> upstmlist:</span><br><span class="line">        <span class="keyword">with</span> codecs.open(item[<span class="number">1</span>], <span class="string">"w"</span>) <span class="keyword">as</span> fumw:</span><br><span class="line">            fumw.write(item[<span class="number">0</span>])</span><br><span class="line">    os.chdir(<span class="string">".."</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">reglocation = re.compile(<span class="string">r"\s*(location\s+\/(\S+)\/\s+&#123;[^&#125;]+&#125;)"</span>)</span><br><span class="line"><span class="keyword">with</span> codecs.open(<span class="string">"ga10.wms5.jd.com.txt"</span>) <span class="keyword">as</span> flc:</span><br><span class="line">    lcalist = reglocation.findall(flc.read())</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(<span class="string">"location"</span>):</span><br><span class="line">        os.mkdir(<span class="string">"location"</span>)</span><br><span class="line">    os.chdir(<span class="string">"location"</span>)</span><br><span class="line">    <span class="keyword">for</span> ilocal <span class="keyword">in</span> lcalist:</span><br><span class="line">        filename1 = ilocal[<span class="number">1</span>]+<span class="string">".conf"</span></span><br><span class="line">        <span class="keyword">with</span> codecs.open(filename1, <span class="string">"w"</span>) <span class="keyword">as</span> flcw:</span><br><span class="line">            flcw.write(ilocal[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>输出结果<br><img src="http://cdn.rosinelan.com/blog/program/upstream.png" alt="regular_rex" title="regular_rex"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/05/04/python正则表达式练习题/" data-id="cjgrzf08n001fq8q66hhmakmi" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/re/">re</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则/">正则</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/爬虫/">爬虫</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>Recommended Posts</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/04/29/python内置模块-四/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">python内置模块(四)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">Content</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#正则常用语法"><span class="toc-number">1.</span> <span class="toc-text">正则常用语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目一"><span class="toc-number">2.</span> <span class="toc-text">题目一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目二"><span class="toc-number">3.</span> <span class="toc-text">题目二</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>
