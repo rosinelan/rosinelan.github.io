@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://rosinelan.github.io/2018/05/06/python访问mysql/index.html">
 <meta property="og:site_name" content="持续不断">
 <meta property="og:description" content="简介python中的DB-API为大多数数据库实现了接口，使用它连接数据库，就可以使用相同的方式操作各数据库。使用DB-API基本流程">
-<meta property="og:updated_time" content="2018-05-06T15:26:58.789Z">
+<meta property="og:updated_time" content="2018-05-09T12:59:36.060Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python访问mysql">
 <meta name="twitter:description" content="简介python中的DB-API为大多数数据库实现了接口，使用它连接数据库，就可以使用相同的方式操作各数据库。使用DB-API基本流程">
@@ -42,7 +42,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -123,13 +123,13 @@
 </li>
 </ul>
 <p>参数说明<br>host：数据库主机名.默认是用本地主机。<br>user：数据库登陆名.默认是当前用户。<br>passwd：数据库登陆的秘密.默认为空。<br>db：要使用的数据库名.没有默认值。<br>port：MySQL服务使用的TCP端口.默认是3306，数字类型。</p>
-<h3 id="python访问mysql"><a href="#python访问mysql" class="headerlink" title="python访问mysql"></a>python访问mysql</h3><p>一个典型的执行过程<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pymysql</span><br><span class="line"></span><br><span class="line">conn = pymysql.connect(host=<span class="string">"192.168.48.136"</span>, port=<span class="number">3306</span>, user=<span class="string">"xiang"</span>, passwd=<span class="string">"xiang"</span>, db=<span class="string">"test"</span>)</span><br><span class="line">cus = conn.cursor()</span><br><span class="line">sql = <span class="string">"select * from test2;"</span></span><br><span class="line">cus.execute(sql)</span><br><span class="line">result = cus.fetchall()</span><br><span class="line">print(result)</span><br><span class="line">cus.close()</span><br><span class="line">conn.close()</span><br></pre></td></tr></table></figure></p>
+<h3 id="python访问mysql"><a href="#python访问mysql" class="headerlink" title="python访问mysql"></a>python访问mysql</h3><p>一个典型的执行过程<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pymysql</span><br><span class="line"></span><br><span class="line">conn = pymysql.connect(host=<span class="string">"192.168.48.136"</span>, port=<span class="number">3306</span>, user=<span class="string">"xiang"</span>, passwd=<span class="string">"xiang"</span>, db=<span class="string">"test"</span>)    <span class="comment">#创建连接</span></span><br><span class="line">cus = conn.cursor()    <span class="comment">#连接对象的cursor方法</span></span><br><span class="line">sql = <span class="string">"select * from test2;"</span></span><br><span class="line">cus.execute(sql)    <span class="comment">#执行sql</span></span><br><span class="line">result = cus.fetchall()    <span class="comment">#游标对象的方法，获取所有返回结果</span></span><br><span class="line">print(result)</span><br><span class="line">cus.close()</span><br><span class="line">conn.close()</span><br></pre></td></tr></table></figure></p>
 <p>在实际编码过程中，推荐通过函数形式调用，方便重复使用和修改。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">connect_mysql</span><span class="params">()</span>:</span></span><br><span class="line">    db_config = &#123;</span><br><span class="line">        <span class="string">'host'</span>: <span class="string">'192.168.48.128'</span>,</span><br><span class="line">        <span class="string">'port'</span>: <span class="number">3306</span>,</span><br><span class="line">        <span class="string">'user'</span>: <span class="string">'xiang'</span>,</span><br><span class="line">        <span class="string">'passwd'</span>: <span class="string">'123456'</span>,</span><br><span class="line">        <span class="string">'db'</span>: <span class="string">'python'</span>,</span><br><span class="line">        <span class="string">'charset'</span>: <span class="string">'utf8'</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    cnx = pymysql.connect(**db_config)</span><br><span class="line">    <span class="keyword">return</span> cnx</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/06/python访问mysql/" data-id="cjguz0uzm004n0oq6t7y8xrd7" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/05/06/python访问mysql/" data-id="cjgz9lx570046q4q6w1sh67ja" class="article-share-link">Share</a>
       
       
       
@@ -141,7 +141,7 @@
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>推荐文章</h2>
+    <h2>Recommended Posts</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =4
@@ -183,9 +183,18 @@
     
 <nav id="article-nav">
   
+    <a href="/2018/05/09/python访问mysql-二/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          python访问mysql(二)
+        
+      </div>
+    </a>
+  
   
     <a href="/2018/05/04/python正则表达式练习题/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">python正则表达式练习题</div>
     </a>
   
@@ -215,7 +224,7 @@
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">文章目录</strong>
+        <strong class="toc-title">Content</strong>
         <div class="toc-widget-list">
               <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mysql数据库"><span class="toc-number">2.</span> <span class="toc-text">mysql数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#mysql中的事务"><span class="toc-number">2.1.</span> <span class="toc-text">mysql中的事务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mysql常用操作"><span class="toc-number">2.2.</span> <span class="toc-text">mysql常用操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#python访问mysql"><span class="toc-number">3.</span> <span class="toc-text">python访问mysql</span></a></li></ol>
           </div>
@@ -243,10 +252,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
+     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>
