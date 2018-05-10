@@ -15,7 +15,7 @@
 <meta property="og:image" content="http://cdn.rosinelan.com/blog/program/mysql_explain_StdID.png">
 <meta property="og:image" content="http://cdn.rosinelan.com/blog/program/mysql_explain_Score.png">
 <meta property="og:image" content="http://cdn.rosinelan.com/blog/program/mysql_explain_Age.png">
-<meta property="og:updated_time" content="2018-05-10T00:26:50.338Z">
+<meta property="og:updated_time" content="2018-05-10T00:29:26.772Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python访问mysql(二)">
 <meta name="twitter:description" content="关于mysql中的事务、python访问mysql简单步骤、mysql常见操作等内容点击python访问mysql查看。在前面介绍python访问mysql的一个典型执行过程中出现了cursor()方法，它就是游标。我们执行sql命令或者得到执行结果都需要使用游标。   curosr()cursor游标是处理数据的一种方法，为了查看或者处理结果集中的数据，游标提供了在结果集中一次一行或者多行前进或">
@@ -46,7 +46,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -148,18 +148,21 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> student <span class="keyword">where</span> Score &lt; <span class="number">60</span>;</span><br><span class="line"><span class="keyword">truncate</span> <span class="keyword">table</span> student;</span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> student;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>truncate：清空表中的数据，和不带where条件的delete作用一样。<br>drop：删除表结构。</p>
+<p><code>truncate</code>：清空表中的数据，和不带where条件的delete作用一样。<br><code>drop</code>：删除表结构。</p>
 <ul>
-<li>索引index<br>创建index<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">index</span> idx_std_stID <span class="keyword">on</span> student(StdID);</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> student <span class="keyword">add</span> <span class="keyword">index</span> idx_std_stScore(StdID,Score);</span><br></pre></td></tr></table></figure>
+<li><p>创建索引index</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">index</span> idx_std_stID <span class="keyword">on</span> student(StdID);</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> student <span class="keyword">add</span> <span class="keyword">index</span> idx_std_stScore(StdID,Score);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除索引index</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> student <span class="keyword">drop</span> <span class="keyword">index</span> idx_std_stScore;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>删除index<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> student <span class="keyword">drop</span> <span class="keyword">index</span> idx_std_stScore;</span><br></pre></td></tr></table></figure></p>
 <p>通过常见索引可以加快语句查询的速度，类似于字典中的目录。<br>那么我们如何确定语句是否使用索引呢？使用explain+sql语句即可。<br><code>explain select StdID from student;</code><br><img src="http://cdn.rosinelan.com/blog/program/mysql_explain_StdID.png" alt="mysql_explain_StdID" title="mysql_explain_StdID"><br><code>explain select Score from student;</code><br><img src="http://cdn.rosinelan.com/blog/program/mysql_explain_Score.png" alt="mysql_explain_Score" title="mysql_explain_Score"><br><code>explain select Age from student;</code><br><img src="http://cdn.rosinelan.com/blog/program/mysql_explain_Age.png" alt="mysql_explain_Age" title="mysql_explain_Age"><br>从字段<code>key</code>中可以看到索引名称，若为null则表示未使用索引。<br><strong>备注</strong><br>对于sql语句及index索引只是介绍基本的语法规则，更多内容以后继续学习。<br>查询中可能涉及到多表的<code>join</code>，可能会用到分组<code>group by</code>，也可能会使用到更多的<code>count()</code>、<code>order by</code>等函数。<br>索引可能会涉及到唯一索引<code>UNIQUE INDEX</code>、全文索引<code>FULLTEXT INDEX</code>等内容。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/09/python访问mysql-二/" data-id="cjgz9lx540044q4q6bhhi0vvt" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/05/09/python访问mysql-二/" data-id="cjgz9lx540044q4q6bhhi0vvt" class="article-share-link">分享</a>
       
       
       
@@ -171,7 +174,7 @@
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =4
@@ -215,7 +218,7 @@
   
   
     <a href="/2018/05/06/python访问mysql/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">python访问mysql</div>
     </a>
   
@@ -245,7 +248,7 @@
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
               <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#curosr"><span class="toc-number">1.</span> <span class="toc-text">curosr()</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#执行命令"><span class="toc-number">1.1.</span> <span class="toc-text">执行命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#返回结果"><span class="toc-number">1.2.</span> <span class="toc-text">返回结果</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据库连接池"><span class="toc-number">2.</span> <span class="toc-text">数据库连接池</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据库操作"><span class="toc-number">3.</span> <span class="toc-text">数据库操作</span></a></li></ol>
           </div>
@@ -273,10 +276,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
+     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>
