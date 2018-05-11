@@ -5,18 +5,18 @@
   
   <title>python中使用SQLAlchemy | 持续不断</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="概念简介 ORMORM是Object-Relational Mapping的简写。今天学习的SQLAlchemy其实就是ORM框架中最有名的一个。SQLAlchemy框架工作通过数据的API，使用关系对象映射进行数据库操作，也就是：将对象转换成SQL，然后使用数据API执行SQL并获取执行结果。SQLAlchemy本身无法操作数据库，其必须通过pymysql等第三方插件。上图中Dialect用于和">
+  <meta name="description" content="概念简介 ORMORM是Object-Relational Mapping的简写。今天学习的SQLAlchemy其实就是ORM框架中最有名的一个。SQLAlchemy框架工作通过数据的API，使用关系对象映射进行数据库操作，也就是：将对象转换成SQL，然后使用数据API执行SQL并获取执行结果。">
 <meta name="keywords" content="ORM,SQLAIchemy">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python中使用SQLAlchemy">
 <meta property="og:url" content="https://rosinelan.github.io/2018/05/11/python中使用SQLAlchemy/index.html">
 <meta property="og:site_name" content="持续不断">
-<meta property="og:description" content="概念简介 ORMORM是Object-Relational Mapping的简写。今天学习的SQLAlchemy其实就是ORM框架中最有名的一个。SQLAlchemy框架工作通过数据的API，使用关系对象映射进行数据库操作，也就是：将对象转换成SQL，然后使用数据API执行SQL并获取执行结果。SQLAlchemy本身无法操作数据库，其必须通过pymysql等第三方插件。上图中Dialect用于和">
+<meta property="og:description" content="概念简介 ORMORM是Object-Relational Mapping的简写。今天学习的SQLAlchemy其实就是ORM框架中最有名的一个。SQLAlchemy框架工作通过数据的API，使用关系对象映射进行数据库操作，也就是：将对象转换成SQL，然后使用数据API执行SQL并获取执行结果。">
 <meta property="og:image" content="http://cdn.rosinelan.com/blog/program/orm-sqlalchemy-core.jpg">
-<meta property="og:updated_time" content="2018-05-11T09:05:18.064Z">
+<meta property="og:updated_time" content="2018-05-11T09:07:55.387Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python中使用SQLAlchemy">
-<meta name="twitter:description" content="概念简介 ORMORM是Object-Relational Mapping的简写。今天学习的SQLAlchemy其实就是ORM框架中最有名的一个。SQLAlchemy框架工作通过数据的API，使用关系对象映射进行数据库操作，也就是：将对象转换成SQL，然后使用数据API执行SQL并获取执行结果。SQLAlchemy本身无法操作数据库，其必须通过pymysql等第三方插件。上图中Dialect用于和">
+<meta name="twitter:description" content="概念简介 ORMORM是Object-Relational Mapping的简写。今天学习的SQLAlchemy其实就是ORM框架中最有名的一个。SQLAlchemy框架工作通过数据的API，使用关系对象映射进行数据库操作，也就是：将对象转换成SQL，然后使用数据API执行SQL并获取执行结果。">
 <meta name="twitter:image" content="http://cdn.rosinelan.com/blog/program/orm-sqlalchemy-core.jpg">
   
     <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
@@ -44,7 +44,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -103,7 +103,8 @@
         <!-- Table of Contents -->
         
         <h3 id="概念简介"><a href="#概念简介" class="headerlink" title="概念简介"></a>概念简介</h3><ul>
-<li>ORM<br><code>ORM</code>是Object-Relational Mapping的简写。今天学习的<code>SQLAlchemy</code>其实就是ORM框架中最有名的一个。<br><code>SQLAlchemy</code>框架工作<br>通过数据的API，使用关系对象映射进行数据库操作，也就是：将对象转换成SQL，然后使用数据API执行SQL并获取执行结果。<br><img src="http://cdn.rosinelan.com/blog/program/orm-sqlalchemy-core.jpg" alt="orm-sqlalchemy-core" title="orm-sqlalchemy-core"><br>SQLAlchemy本身无法操作数据库，其必须通过<code>pymysql</code>等第三方插件。上图中Dialect用于和数据API进行交流，根据配置文件的不同调用不同的数据库API，从而实现对数据库的操作。  <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mysqldb</span></span><br><span class="line">mysql+mysqldb://&lt;user&gt;:&lt;password&gt;@&lt;host&gt;[:&lt;port&gt;]/&lt;dbname&gt;</span><br><span class="line"><span class="comment"># pymysql</span></span><br><span class="line">mysql+pymysql://&lt;username&gt;:&lt;password&gt;@&lt;host&gt;/&lt;dbname&gt;[?&lt;options&gt;]</span><br><span class="line"><span class="comment"># mysql-connector</span></span><br><span class="line">mysql+mysqlconnector://&lt;user&gt;:&lt;password&gt;@&lt;host&gt;[:&lt;port&gt;]/&lt;dbname&gt;</span><br><span class="line"><span class="comment"># cx_oracle</span></span><br><span class="line"> oracle+cx_oracle://user:pass@host:port/dbname[?key=value&amp;key=value...]</span><br></pre></td></tr></table></figure>
+<li>ORM<br><code>ORM</code>是Object-Relational Mapping的简写。今天学习的<code>SQLAlchemy</code>其实就是ORM框架中最有名的一个。<br><code>SQLAlchemy</code>框架工作<br>通过数据的API，使用关系对象映射进行数据库操作，也就是：将对象转换成SQL，然后使用数据API执行SQL并获取执行结果。  <a id="more"></a>
+<img src="http://cdn.rosinelan.com/blog/program/orm-sqlalchemy-core.jpg" alt="orm-sqlalchemy-core" title="orm-sqlalchemy-core"><br>SQLAlchemy本身无法操作数据库，其必须通过<code>pymysql</code>等第三方插件。上图中Dialect用于和数据API进行交流，根据配置文件的不同调用不同的数据库API，从而实现对数据库的操作。  <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mysqldb</span></span><br><span class="line">mysql+mysqldb://&lt;user&gt;:&lt;password&gt;@&lt;host&gt;[:&lt;port&gt;]/&lt;dbname&gt;</span><br><span class="line"><span class="comment"># pymysql</span></span><br><span class="line">mysql+pymysql://&lt;username&gt;:&lt;password&gt;@&lt;host&gt;/&lt;dbname&gt;[?&lt;options&gt;]</span><br><span class="line"><span class="comment"># mysql-connector</span></span><br><span class="line">mysql+mysqlconnector://&lt;user&gt;:&lt;password&gt;@&lt;host&gt;[:&lt;port&gt;]/&lt;dbname&gt;</span><br><span class="line"><span class="comment"># cx_oracle</span></span><br><span class="line"> oracle+cx_oracle://user:pass@host:port/dbname[?key=value&amp;key=value...]</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h3 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h3><p>ORM思想的核心是隐藏了数据访问细节，提供了通用的数据库交互。并且完全不用考虑SQL语句，从而快速开发。  </p>
@@ -155,7 +156,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/11/python中使用SQLAlchemy/" data-id="cjh1qlkz20006loq6usjmz3zh" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/05/11/python中使用SQLAlchemy/" data-id="cjh1qlkz20006loq6usjmz3zh" class="article-share-link">Share</a>
       
       
       
@@ -167,7 +168,7 @@
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>推荐文章</h2>
+    <h2>Recommended Posts</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =4
@@ -211,7 +212,7 @@
   
   
     <a href="/2018/05/09/python访问mysql-二/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">python访问mysql(二)</div>
     </a>
   
@@ -241,7 +242,7 @@
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">文章目录</strong>
+        <strong class="toc-title">Content</strong>
         <div class="toc-widget-list">
               <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#概念简介"><span class="toc-number">1.</span> <span class="toc-text">概念简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对比"><span class="toc-number">2.</span> <span class="toc-text">对比</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#查询"><span class="toc-number">2.1.</span> <span class="toc-text">查询</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说明"><span class="toc-number">3.</span> <span class="toc-text">说明</span></a></li></ol>
           </div>
@@ -269,10 +270,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
+     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>
