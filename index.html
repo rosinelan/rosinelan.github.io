@@ -72,6 +72,101 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-python中使用SQLAlchemy" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/11/python中使用SQLAlchemy/" class="article-date">
+  <time datetime="2018-05-11T03:35:35.000Z" itemprop="datePublished">2018-05-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/program/">编程</a>►<a class="article-category-link" href="/categories/program/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/11/python中使用SQLAlchemy/">python中使用SQLAlchemy</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h3 id="概念简介"><a href="#概念简介" class="headerlink" title="概念简介"></a>概念简介</h3><ul>
+<li>ORM<br><code>ORM</code>是Object-Relational Mapping的简写。今天学习的<code>SQLAlchemy</code>其实就是ORM框架中最有名的一个。<br><code>SQLAlchemy</code>框架工作<br>通过数据的API，使用关系对象映射进行数据库操作，也就是：将对象转换成SQL，然后使用数据API执行SQL并获取执行结果。<br><img src="http://cdn.rosinelan.com/blog/program/orm-sqlalchemy-core.jpg" alt="orm-sqlalchemy-core" title="orm-sqlalchemy-core"><br>SQLAlchemy本身无法操作数据库，其必须通过<code>pymysql</code>等第三方插件。上图中Dialect用于和数据API进行交流，根据配置文件的不同调用不同的数据库API，从而实现对数据库的操作。  <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mysqldb</span></span><br><span class="line">mysql+mysqldb://&lt;user&gt;:&lt;password&gt;@&lt;host&gt;[:&lt;port&gt;]/&lt;dbname&gt;</span><br><span class="line"><span class="comment"># pymysql</span></span><br><span class="line">mysql+pymysql://&lt;username&gt;:&lt;password&gt;@&lt;host&gt;/&lt;dbname&gt;[?&lt;options&gt;]</span><br><span class="line"><span class="comment"># mysql-connector</span></span><br><span class="line">mysql+mysqlconnector://&lt;user&gt;:&lt;password&gt;@&lt;host&gt;[:&lt;port&gt;]/&lt;dbname&gt;</span><br><span class="line"><span class="comment"># cx_oracle</span></span><br><span class="line"> oracle+cx_oracle://user:pass@host:port/dbname[?key=value&amp;key=value...]</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h3><p>ORM思想的核心是隐藏了数据访问细节，提供了通用的数据库交互。并且完全不用考虑SQL语句，从而快速开发。  </p>
+<ul>
+<li>使用SQL创建表<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> student(</span><br><span class="line">  <span class="keyword">id</span> <span class="built_in">int</span> <span class="keyword">not</span> <span class="literal">null</span> auto_increment,</span><br><span class="line">  <span class="keyword">name</span> <span class="built_in">varchar</span>(<span class="number">100</span>),</span><br><span class="line">  age <span class="built_in">int</span>,</span><br><span class="line">  address <span class="built_in">varchar</span>(<span class="number">100</span>),</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span>(<span class="keyword">id</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>上述是一个简单的创建单表的语句。  </p>
+<ul>
+<li>使用SQLAlchemy<br>方法1<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine, Column, String, Integer, MetaData</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.ext.declarative <span class="keyword">import</span> declarative_base</span><br><span class="line"></span><br><span class="line">engine = create_engine(<span class="string">"mysql+pymysql://root:123456@localhost/test"</span>, encoding=<span class="string">'UTF-8'</span>, echo=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line">Base = declarative_base()    <span class="comment">#生成orm基类</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(Base)</span>:</span></span><br><span class="line">    __tablename__ = <span class="string">'student'</span>    <span class="comment">#指定表名</span></span><br><span class="line">    id = Column(Integer, primary_key=<span class="keyword">True</span>)</span><br><span class="line">    name = Column(String(<span class="number">100</span>))</span><br><span class="line">    age = Column(Integer)</span><br><span class="line">    address = Column(String(<span class="number">100</span>))</span><br><span class="line"></span><br><span class="line">Base.metadata.create_all(engine)    <span class="comment">#创建表结构</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>方法2<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> Table, MetaData, Column, Integer, String, create_engine</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> mapper</span><br><span class="line"></span><br><span class="line">engine = create_engine(<span class="string">"mysql+pymysql://root:123456@localhost/test"</span>, encoding=<span class="string">'UTF-8'</span>, echo=<span class="keyword">True</span>)</span><br><span class="line">metadata = MetaData()</span><br><span class="line"></span><br><span class="line">student = Table(<span class="string">'student'</span>, metadata,</span><br><span class="line">             Column(<span class="string">'id'</span>, Integer, primary_key=<span class="keyword">True</span>),</span><br><span class="line">             Column(<span class="string">'name'</span>, String(<span class="number">100</span>)),</span><br><span class="line">             Column(<span class="string">'age'</span>, Integer),</span><br><span class="line">             Column(<span class="string">'address'</span>, String(<span class="number">100</span>))</span><br><span class="line">             )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, age, address)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.age = age</span><br><span class="line">        self.address = address</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">mapper(Student, student)    <span class="comment">#此处有问题，待解决</span></span><br><span class="line">```  </span><br><span class="line">说明</span><br><span class="line">`echo=<span class="keyword">True</span>` 显示每条执行的SQL语句，可以关闭。    </span><br><span class="line">`create_engine()`返回一个Engine的实例，并且表示通过数据库语法处理细节的核心接口，这种情况下数据库语法将被解释成python的类方法。 </span><br><span class="line">上面简单示例对比了下使用SQL直接创建表和使用ORM框架建表的区别，下面开始介绍`SQLAlchemy`的使用。  </span><br><span class="line"><span class="comment">### 使用</span></span><br><span class="line"><span class="comment">#### 安装</span></span><br><span class="line">通过`pip install SQLAlchemy`安装，访问mysql使用`pymysql`，安装方法`pip install pumysql`。可以参照[python访问mysql](https://rosinelan.coding.me/<span class="number">2018</span>/<span class="number">05</span>/<span class="number">06</span>/python%E8%AE%BF%E9%<span class="number">97</span>%AEmysql/)。  </span><br><span class="line"><span class="comment">#### 插入</span></span><br><span class="line">``` python</span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine, Column, String, Integer, MetaData</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.ext.declarative <span class="keyword">import</span> declarative_base</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> sessionmaker</span><br><span class="line"></span><br><span class="line">engine = create_engine(<span class="string">"mysql+pymysql://root:123456@localhost/test"</span>, encoding=<span class="string">'UTF-8'</span>, echo=<span class="keyword">True</span>)</span><br><span class="line">DBsession = sessionmaker(bind=engine) <span class="comment">#创建与数据库的会话session class ,注意,这里返回给session的是个class,不是实例</span></span><br><span class="line">session = DBsession()    <span class="comment">#生成session实例</span></span><br><span class="line">Base = declarative_base()</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(Base)</span>:</span></span><br><span class="line">    __tablename__ = <span class="string">'student'</span></span><br><span class="line">    id = Column(Integer, primary_key=<span class="keyword">True</span>)</span><br><span class="line">    name = Column(String(<span class="number">100</span>))</span><br><span class="line">    age = Column(Integer)</span><br><span class="line">    address = Column(String(<span class="number">100</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">student1 = Student(id=<span class="number">1001</span>, name=<span class="string">'Alice'</span>, age=<span class="number">25</span>, address=<span class="string">"anhui"</span>)</span><br><span class="line">student2 = Student(id=<span class="number">1002</span>, name=<span class="string">'Bob'</span>, age=<span class="number">69</span>, address=<span class="string">"beijing"</span>)</span><br><span class="line">student3 = Student(id=<span class="number">1003</span>, name=<span class="string">'Cerry'</span>, age=<span class="number">14</span>, address=<span class="string">"jiangsu"</span>)</span><br><span class="line"></span><br><span class="line">session.add_all([student1, student2, student3])</span><br><span class="line">session.commit()</span><br><span class="line">session.close()</span><br></pre></td></tr></table></figure></p>
+<h4 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h4><p>查询是通过Session的<code>query()</code>方法创建一个查询对象，这个函数的参数可以是任何类或者类的描述的集合。<br>查询出来的数据是一个对象，直接通过对象的属性调用。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> sessionmaker</span><br><span class="line"><span class="keyword">from</span> db.orm2 <span class="keyword">import</span> Student</span><br><span class="line"></span><br><span class="line">engine = create_engine(<span class="string">'mysql+pymysql://root:123456@localhost/test'</span>)</span><br><span class="line">DBsession = sessionmaker(bind=engine)</span><br><span class="line">session = DBsession()</span><br><span class="line"></span><br><span class="line">a = session.query(Student)</span><br><span class="line">print(a)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> a:</span><br><span class="line">    print(i.id, i.name, i.age, i.address)</span><br></pre></td></tr></table></figure></p>
+<p>输出结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT student.id AS student_id, student.name AS student_name, student.age AS student_age, student.address AS student_address </span><br><span class="line">FROM student</span><br><span class="line"><span class="number">1001</span> Alice <span class="number">25</span> anhui</span><br><span class="line"><span class="number">1002</span> Bob <span class="number">69</span> beijing</span><br><span class="line"><span class="number">1003</span> Cerry <span class="number">14</span> jiangsu</span><br></pre></td></tr></table></figure></p>
+<p><code>session.query(Student)</code>结果为查询的SQL语句，若出现查询结果错误可以通过查看SQL确认。  </p>
+<ul>
+<li>filter()和filter_by()<br>过滤条件。<code>==</code>、<code>!=</code>、<code>like</code>等过滤操作都可以在filter函数中使用。  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> sessionmaker</span><br><span class="line"><span class="keyword">from</span> db.orm2 <span class="keyword">import</span> Student</span><br><span class="line"></span><br><span class="line">engine = create_engine(<span class="string">'mysql+pymysql://root:123456@localhost/test'</span>)</span><br><span class="line">DBsession = sessionmaker(bind=engine)</span><br><span class="line">session = DBsession()</span><br><span class="line"></span><br><span class="line">a = session.query(Student).filter(Student.id == <span class="number">1001</span>)</span><br><span class="line">b = session.query(Student).filter_by(id=<span class="number">1001</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> a:</span><br><span class="line">    print(x.id, x.name, x.age, x.address)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> b:</span><br><span class="line">    print(i.id, i.name, i.age, i.address)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>输出结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1001</span> Alice <span class="number">25</span> anhui</span><br><span class="line"><span class="number">1001</span> Alice <span class="number">25</span> anhui</span><br></pre></td></tr></table></figure></p>
+<p><code>filter()</code>和<code>filter_by()</code>区别<br>filter可以像写sql的where条件那样写&gt;、&lt;等条件，但引用列名时，需要通过<code>类名.属性名</code>的方式。<br>filter_by可以使用python的正常参数传递方法传递条件，指定列名时，不需要额外指定类名，参数名对应类中的属性名，不能使用&gt;、&lt;等条件。<br>当使用filter的时候条件之间是使用<code>==</code>，filter_by使用的是<code>=</code>。<br>filter不支持组合查询，只能连续调用filter变相实现。filter_by的参数是**kwargs，直接支持组合查询。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">filters = &#123;<span class="string">'id'</span>:<span class="number">1002</span>, <span class="string">'name'</span>:<span class="string">'Bob'</span>&#125;</span><br><span class="line">b = session.query(Student).filter_by(**filters)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> b:</span><br><span class="line">    print(i.id, i.name, i.age, i.address)</span><br></pre></td></tr></table></figure></p>
+<p>输出结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1002</span> Bob <span class="number">69</span> beijing</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>all()<br>返回一个列表，可以通过遍历列表获取每个对象。  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = session.query(Student).filter(Student.id &gt; <span class="number">1001</span>).all()</span><br><span class="line">print(a)</span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> a:</span><br><span class="line">    print(x.id, x.name, x.age, x.address)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>输出结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[&lt;db.orm2.Student object at <span class="number">0x00000197ECC759E8</span>&gt;, &lt;db.orm2.Student object at <span class="number">0x00000197ECC75A58</span>&gt;]</span><br><span class="line"><span class="number">1002</span> Bob <span class="number">69</span> beijing</span><br><span class="line"><span class="number">1003</span> Cerry <span class="number">14</span> jiangsu</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>one()<br>返回且仅返回一个查询结果。当结果数量不足或者多于一个时会报错。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = session.query(Student).filter(Student.id == <span class="number">1001</span>).one()</span><br><span class="line">print(a)</span><br><span class="line">print(a.id, a.name, a.age, a.address)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>输出结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;db.orm2.Student object at <span class="number">0x000001B7C57E7908</span>&gt;</span><br><span class="line"><span class="number">1001</span> Alice <span class="number">25</span> anhui</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>first()<br>返回至多一个结果，而且以单项形式，而不是只有一个元素的tuple形式返回。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = session.query(Student).filter(Student.id &gt; <span class="number">1001</span>).first()</span><br><span class="line">print(a)</span><br><span class="line">print(a.id, a.name, a.age, a.address)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>输出结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;db.orm2.Student object at <span class="number">0x000001C63E536B00</span>&gt;</span><br><span class="line"><span class="number">1002</span> Bob <span class="number">69</span> beijing</span><br></pre></td></tr></table></figure></p>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><ol>
+<li>MetaData类<br>主要用于保存表结构，连接字符串等数据，是一个多表共享的对象。<br><code>metadata = MetaData(engine)</code>绑定一个数据源的metadata。<br><code>metadata.create_all(engine)</code> 创建表，该操作会先判断表是否存在，若存在则不创建。  </li>
+<li>Table类<br>构造函数为<code>Table.__init__(self, name, metadata,*args, **kwargs)</code><br>name  表名<br>metadata 共享的元数据<br><em>args中<code>Column</code>是列定义<br>下面是可变参数`*</em>kwargs`定义<br>schema 此表的结构名称，默认None<br>autoload 自动从现有表中读入表结构，默认False<br>autoload_with 从其他engine读取结构，默认None<br>include_columns 如果autoload设置为True，则此项数组中的列明将被引用，没有写的列明将被忽略，None表示所有都列明都引用，默认None<br>mustexist 如果为True，表示这个表必须在其他的python应用中定义，必须是metadata的一部分，默认False<br>useexisting 如果为True，表示这个表必须被其他应用定义过，将忽略结构定义，默认False<br>owner 表所有者，用于Orcal，默认None<br>quote 设置为True，如果表明是SQL关键字，将强制转义，默认False<br>quote_schema  设置为True，如果列明是SQL关键字，将强制转义，默认False<br>mysql_engine  mysql专用，可以设置’InnoDB’或’MyISAM’</li>
+<li>Column类<br>构造函数为<code>Column.__init__(self,  name,  type_,  *args,  **kwargs)</code><br>name 列名<br>type_ 类型，更多类型sqlalchemy.types<br>下面是<code>*args</code>参数定义<br>Constraint（约束）<br>ForeignKey（外键）<br>ColumnDefault（默认）<br>Sequenceobjects（序列）定义<br>key 列名的别名，默认None<br>下面是<code>**kwargs</code>参数定义<br>primary_key 如果为True，则是主键<br>nullable 是否可为Null，默认是True<br>default 默认值，默认是None<br>index 是否是索引，默认是True<br>unique 是否唯一键，默认是False<br>onupdate 指定一个更新时候的值，这个操作是定义在SQLAlchemy中，不是在数据库里的，当更新一条数据时设置，大部分用于updateTime这类字段<br>autoincrement 设置为整型自动增长，只有没有默认值，并且是Integer类型，默认是True<br>quote 如果列明是关键字，则强制转义，默认False</li>
+<li>创建会话<br>Session的主要目的是建立与数据库的会话，它维护你加载和关联的所有数据库对象。它是数据库查询（Query）的一个入口。<br>在<code>SQLAlchemy</code>中，数据库的查询操作是通过Query对象来实现的,而Session提供了创建Query对象的接口。Query对象返回的结果是一组同一映射（Identity Map）对象组成的集合。事实上，集合中的一个对象，对应于数据库表中的一行（即一条记录）。所谓同一映射，是指每个对象有一个唯一的ID。如果两个对象（的引用）ID相同，则认为它们对应的是相同的对象。<br>要完成数据库查询，就需要建立与数据库的连接。这就需要用到Engine对象。一个Engine可能是关联一个Session对象，也可能关联一个数据库表。<br>当然Session最重要的功能还是实现原子操作。<br>ORM通过session与数据库建立连接进行通信，如下所示<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> sessionmaker</span><br><span class="line"></span><br><span class="line">DBSession = sessionmaker(bind=engine)</span><br><span class="line">session = DBSession()</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>通过sessionmake方法创建一个Session工厂，然后在调用工厂的方法来实例化一个Session对象。</p>
+<p>要了解更多关于<code>SQLAlchemy</code>内容可以点击<a href="http://docs.sqlalchemy.org/en/latest/dialects/index.html" target="_blank" rel="noopener">SQLAlchemy Documentation</a>查看官方介绍。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/05/11/python中使用SQLAlchemy/" data-id="cjh1qlkz20006loq6usjmz3zh" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ORM/">ORM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQLAIchemy/">SQLAIchemy</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
     <article id="post-python访问mysql-二" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/05/09/python访问mysql-二/" class="article-date">
@@ -108,7 +203,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/09/python访问mysql-二/" data-id="cjgz9lx540044q4q6bhhi0vvt" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/05/09/python访问mysql-二/" data-id="cjh1qll3j003cloq6w35z6k36" class="article-share-link">分享</a>
       
       
       
@@ -157,7 +252,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/06/python访问mysql/" data-id="cjgz9lx570046q4q6w1sh67ja" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/05/06/python访问mysql/" data-id="cjh1qll470044loq66tlv0hcy" class="article-share-link">分享</a>
       
       
       
@@ -209,7 +304,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/04/python正则表达式练习题/" data-id="cjgz9lx5d004eq4q6aencldts" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/05/04/python正则表达式练习题/" data-id="cjh1qll3p003hloq6tsw5vmw2" class="article-share-link">分享</a>
       
       
       
@@ -259,7 +354,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/29/python内置模块-四/" data-id="cjgz9lx4k003mq4q61e5fe0j1" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/04/29/python内置模块-四/" data-id="cjh1qll2k002aloq6ho46uyyd" class="article-share-link">分享</a>
       
       
       
@@ -309,7 +404,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/27/python内置模块-三/" data-id="cjgz9lx24000iq4q6sndw1bqw" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/04/27/python内置模块-三/" data-id="cjh1qll2v002nloq62lnhlzq1" class="article-share-link">分享</a>
       
       
       
@@ -360,7 +455,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/25/python内置模块-二/" data-id="cjgz9lx27000lq4q61ces5rme" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/04/25/python内置模块-二/" data-id="cjh1qll2g0027loq6kl74bne7" class="article-share-link">分享</a>
       
       
       
@@ -410,7 +505,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/23/python内置模块/" data-id="cjgz9lx4g003kq4q6azw7hxaw" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/04/23/python内置模块/" data-id="cjh1qll2o002floq6rzp21nzj" class="article-share-link">分享</a>
       
       
       
@@ -460,7 +555,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/23/python异常处理/" data-id="cjgz9lx4b003fq4q6sxowxs60" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/04/23/python异常处理/" data-id="cjh1qll3e0037loq6ovxht4ld" class="article-share-link">分享</a>
       
       
       
@@ -509,60 +604,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/20/python面向对象/" data-id="cjgz9lx5f004gq4q6cp4uw12k" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/04/20/python面向对象/" data-id="cjh1qll43003yloq6fpi80dw1" class="article-share-link">分享</a>
       
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OOP/">OOP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/多态/">多态</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/构造器/">构造器</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/类/">类</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/继承/">继承</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面向对象/">面向对象</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
-    <article id="post-python装饰器" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/18/python装饰器/" class="article-date">
-  <time datetime="2018-04-18T07:36:12.000Z" itemprop="datePublished">2018-04-18</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/program/">编程</a>►<a class="article-category-link" href="/categories/program/python/">python</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/18/python装饰器/">python装饰器</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="提前了解知识"><a href="#提前了解知识" class="headerlink" title="提前了解知识"></a>提前了解知识</h2><h3 id="赋值调用"><a href="#赋值调用" class="headerlink" title="赋值调用"></a>赋值调用</h3><p>函数也是对象，函数对象是可以被赋值给变量，所以变量也可以调用函数。<br>
-        
-          <p class="article-more-link">
-            <a href="/2018/04/18/python装饰器/#more">继续阅读全文 »</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/18/python装饰器/" data-id="cjgz9lx5n004qq4q6pdh2rcsw" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/decorator/">decorator</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/装饰器/">装饰器</a></li></ul>
 
     </footer>
   </div>
@@ -587,7 +633,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title categories">分类</h3>
     <div class="widget" id="categories">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/system/">系统管理</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/system/LINUX/">LINUX</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/system/WINDOWS/">WINDOWS</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/program/">编程</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/program/python/">python</a><span class="category-list-count">22</span></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/system/">系统管理</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/system/LINUX/">LINUX</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/system/WINDOWS/">WINDOWS</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/program/">编程</a><span class="category-list-count">23</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/program/python/">python</a><span class="category-list-count">23</span></li></ul></li></ul>
     </div>
   </div>
 
@@ -597,7 +643,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title tagcloud">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/BONDING/" style="font-size: 14px;">BONDING</a> <a href="/tags/BytesIO/" style="font-size: 14px;">BytesIO</a> <a href="/tags/CENTOS7/" style="font-size: 14px;">CENTOS7</a> <a href="/tags/EMC/" style="font-size: 14px;">EMC</a> <a href="/tags/FORFILES/" style="font-size: 14px;">FORFILES</a> <a href="/tags/HBA/" style="font-size: 14px;">HBA</a> <a href="/tags/HP-UNIX/" style="font-size: 14px;">HP-UNIX</a> <a href="/tags/JUNCTION/" style="font-size: 14px;">JUNCTION</a> <a href="/tags/Json/" style="font-size: 14px;">Json</a> <a href="/tags/LINUX/" style="font-size: 22.25px;">LINUX</a> <a href="/tags/MAC/" style="font-size: 14px;">MAC</a> <a href="/tags/MKLINK/" style="font-size: 14px;">MKLINK</a> <a href="/tags/OOP/" style="font-size: 14px;">OOP</a> <a href="/tags/OPENSSH/" style="font-size: 14px;">OPENSSH</a> <a href="/tags/OPENSSL/" style="font-size: 14px;">OPENSSL</a> <a href="/tags/POWERPATH/" style="font-size: 14px;">POWERPATH</a> <a href="/tags/Popen/" style="font-size: 14px;">Popen</a> <a href="/tags/SSH/" style="font-size: 14px;">SSH</a> <a href="/tags/StringIO/" style="font-size: 14px;">StringIO</a> <a href="/tags/UBUNTU/" style="font-size: 16.75px;">UBUNTU</a> <a href="/tags/WINDOWS/" style="font-size: 19.5px;">WINDOWS</a> <a href="/tags/WINODWS/" style="font-size: 14px;">WINODWS</a> <a href="/tags/WWW/" style="font-size: 14px;">WWW</a> <a href="/tags/XSHELL/" style="font-size: 14px;">XSHELL</a> <a href="/tags/XTERM/" style="font-size: 14px;">XTERM</a> <a href="/tags/ZLIB/" style="font-size: 14px;">ZLIB</a> <a href="/tags/args/" style="font-size: 14px;">args</a> <a href="/tags/bonding/" style="font-size: 14px;">bonding</a> <a href="/tags/close/" style="font-size: 14px;">close</a> <a href="/tags/commands/" style="font-size: 14px;">commands</a> <a href="/tags/cursor/" style="font-size: 14px;">cursor</a> <a href="/tags/datetime/" style="font-size: 14px;">datetime</a> <a href="/tags/decode/" style="font-size: 14px;">decode</a> <a href="/tags/decorator/" style="font-size: 14px;">decorator</a> <a href="/tags/delete/" style="font-size: 14px;">delete</a> <a href="/tags/drop/" style="font-size: 14px;">drop</a> <a href="/tags/encode/" style="font-size: 14px;">encode</a> <a href="/tags/except/" style="font-size: 14px;">except</a> <a href="/tags/finally/" style="font-size: 14px;">finally</a> <a href="/tags/for/" style="font-size: 14px;">for</a> <a href="/tags/hashlib/" style="font-size: 14px;">hashlib</a> <a href="/tags/if/" style="font-size: 14px;">if</a> <a href="/tags/insert/" style="font-size: 14px;">insert</a> <a href="/tags/kw/" style="font-size: 14px;">kw</a> <a href="/tags/libXaw/" style="font-size: 14px;">libXaw</a> <a href="/tags/libXpm/" style="font-size: 14px;">libXpm</a> <a href="/tags/log/" style="font-size: 14px;">log</a> <a href="/tags/machinekey/" style="font-size: 14px;">machinekey</a> <a href="/tags/mysql/" style="font-size: 14px;">mysql</a> <a href="/tags/open/" style="font-size: 14px;">open</a> <a href="/tags/os/" style="font-size: 14px;">os</a> <a href="/tags/pycharm/" style="font-size: 14px;">pycharm</a> <a href="/tags/pymysql/" style="font-size: 14px;">pymysql</a> <a href="/tags/python/" style="font-size: 25px;">python</a> <a href="/tags/raise/" style="font-size: 14px;">raise</a> <a href="/tags/re/" style="font-size: 16.75px;">re</a> <a href="/tags/read/" style="font-size: 14px;">read</a> <a href="/tags/return/" style="font-size: 14px;">return</a> <a href="/tags/select/" style="font-size: 14px;">select</a> <a href="/tags/ssh-copy-id/" style="font-size: 14px;">ssh-copy-id</a> <a href="/tags/ssh-keygen/" style="font-size: 14px;">ssh-keygen</a> <a href="/tags/subprocess/" style="font-size: 14px;">subprocess</a> <a href="/tags/sys/" style="font-size: 14px;">sys</a> <a href="/tags/timedelta/" style="font-size: 14px;">timedelta</a> <a href="/tags/times/" style="font-size: 14px;">times</a> <a href="/tags/try/" style="font-size: 14px;">try</a> <a href="/tags/update/" style="font-size: 14px;">update</a> <a href="/tags/while/" style="font-size: 14px;">while</a> <a href="/tags/windows/" style="font-size: 14px;">windows</a> <a href="/tags/乘法/" style="font-size: 14px;">乘法</a> <a href="/tags/九宫格/" style="font-size: 14px;">九宫格</a> <a href="/tags/事务/" style="font-size: 14px;">事务</a> <a href="/tags/元组/" style="font-size: 14px;">元组</a> <a href="/tags/函数/" style="font-size: 14px;">函数</a> <a href="/tags/列表/" style="font-size: 16.75px;">列表</a> <a href="/tags/参数/" style="font-size: 14px;">参数</a> <a href="/tags/双网卡/" style="font-size: 14px;">双网卡</a> <a href="/tags/可变参数/" style="font-size: 14px;">可变参数</a> <a href="/tags/多个公钥/" style="font-size: 14px;">多个公钥</a> <a href="/tags/多态/" style="font-size: 14px;">多态</a> <a href="/tags/字典/" style="font-size: 14px;">字典</a> <a href="/tags/字符/" style="font-size: 14px;">字符</a> <a href="/tags/字符串/" style="font-size: 14px;">字符串</a> <a href="/tags/密钥/" style="font-size: 16.75px;">密钥</a> <a href="/tags/循环/" style="font-size: 14px;">循环</a> <a href="/tags/数字/" style="font-size: 16.75px;">数字</a> <a href="/tags/数据类型/" style="font-size: 16.75px;">数据类型</a> <a href="/tags/文件/" style="font-size: 14px;">文件</a> <a href="/tags/斐波那契数列/" style="font-size: 14px;">斐波那契数列</a> <a href="/tags/条件判断/" style="font-size: 14px;">条件判断</a> <a href="/tags/杨辉三角/" style="font-size: 14px;">杨辉三角</a> <a href="/tags/构造器/" style="font-size: 14px;">构造器</a> <a href="/tags/正则/" style="font-size: 14px;">正则</a> <a href="/tags/汉诺塔/" style="font-size: 14px;">汉诺塔</a> <a href="/tags/游标/" style="font-size: 14px;">游标</a> <a href="/tags/爬虫/" style="font-size: 14px;">爬虫</a> <a href="/tags/生成器/" style="font-size: 14px;">生成器</a> <a href="/tags/目录/" style="font-size: 14px;">目录</a> <a href="/tags/类/" style="font-size: 14px;">类</a> <a href="/tags/继承/" style="font-size: 14px;">继承</a> <a href="/tags/编码/" style="font-size: 14px;">编码</a> <a href="/tags/网络/" style="font-size: 14px;">网络</a> <a href="/tags/装饰器/" style="font-size: 14px;">装饰器</a> <a href="/tags/视图状态/" style="font-size: 14px;">视图状态</a> <a href="/tags/计算/" style="font-size: 14px;">计算</a> <a href="/tags/负载均衡/" style="font-size: 14px;">负载均衡</a> <a href="/tags/递归/" style="font-size: 14px;">递归</a> <a href="/tags/阶乘/" style="font-size: 14px;">阶乘</a> <a href="/tags/面向对象/" style="font-size: 14px;">面向对象</a>
+      <a href="/tags/BONDING/" style="font-size: 14px;">BONDING</a> <a href="/tags/BytesIO/" style="font-size: 14px;">BytesIO</a> <a href="/tags/CENTOS7/" style="font-size: 14px;">CENTOS7</a> <a href="/tags/EMC/" style="font-size: 14px;">EMC</a> <a href="/tags/FORFILES/" style="font-size: 14px;">FORFILES</a> <a href="/tags/HBA/" style="font-size: 14px;">HBA</a> <a href="/tags/HP-UNIX/" style="font-size: 14px;">HP-UNIX</a> <a href="/tags/JUNCTION/" style="font-size: 14px;">JUNCTION</a> <a href="/tags/Json/" style="font-size: 14px;">Json</a> <a href="/tags/LINUX/" style="font-size: 22.25px;">LINUX</a> <a href="/tags/MAC/" style="font-size: 14px;">MAC</a> <a href="/tags/MKLINK/" style="font-size: 14px;">MKLINK</a> <a href="/tags/OOP/" style="font-size: 14px;">OOP</a> <a href="/tags/OPENSSH/" style="font-size: 14px;">OPENSSH</a> <a href="/tags/OPENSSL/" style="font-size: 14px;">OPENSSL</a> <a href="/tags/ORM/" style="font-size: 14px;">ORM</a> <a href="/tags/POWERPATH/" style="font-size: 14px;">POWERPATH</a> <a href="/tags/Popen/" style="font-size: 14px;">Popen</a> <a href="/tags/SQLAIchemy/" style="font-size: 14px;">SQLAIchemy</a> <a href="/tags/SSH/" style="font-size: 14px;">SSH</a> <a href="/tags/StringIO/" style="font-size: 14px;">StringIO</a> <a href="/tags/UBUNTU/" style="font-size: 16.75px;">UBUNTU</a> <a href="/tags/WINDOWS/" style="font-size: 19.5px;">WINDOWS</a> <a href="/tags/WINODWS/" style="font-size: 14px;">WINODWS</a> <a href="/tags/WWW/" style="font-size: 14px;">WWW</a> <a href="/tags/XSHELL/" style="font-size: 14px;">XSHELL</a> <a href="/tags/XTERM/" style="font-size: 14px;">XTERM</a> <a href="/tags/ZLIB/" style="font-size: 14px;">ZLIB</a> <a href="/tags/args/" style="font-size: 14px;">args</a> <a href="/tags/bonding/" style="font-size: 14px;">bonding</a> <a href="/tags/close/" style="font-size: 14px;">close</a> <a href="/tags/commands/" style="font-size: 14px;">commands</a> <a href="/tags/cursor/" style="font-size: 14px;">cursor</a> <a href="/tags/datetime/" style="font-size: 14px;">datetime</a> <a href="/tags/decode/" style="font-size: 14px;">decode</a> <a href="/tags/decorator/" style="font-size: 14px;">decorator</a> <a href="/tags/delete/" style="font-size: 14px;">delete</a> <a href="/tags/drop/" style="font-size: 14px;">drop</a> <a href="/tags/encode/" style="font-size: 14px;">encode</a> <a href="/tags/except/" style="font-size: 14px;">except</a> <a href="/tags/finally/" style="font-size: 14px;">finally</a> <a href="/tags/for/" style="font-size: 14px;">for</a> <a href="/tags/hashlib/" style="font-size: 14px;">hashlib</a> <a href="/tags/if/" style="font-size: 14px;">if</a> <a href="/tags/insert/" style="font-size: 14px;">insert</a> <a href="/tags/kw/" style="font-size: 14px;">kw</a> <a href="/tags/libXaw/" style="font-size: 14px;">libXaw</a> <a href="/tags/libXpm/" style="font-size: 14px;">libXpm</a> <a href="/tags/log/" style="font-size: 14px;">log</a> <a href="/tags/machinekey/" style="font-size: 14px;">machinekey</a> <a href="/tags/mysql/" style="font-size: 14px;">mysql</a> <a href="/tags/open/" style="font-size: 14px;">open</a> <a href="/tags/os/" style="font-size: 14px;">os</a> <a href="/tags/pycharm/" style="font-size: 14px;">pycharm</a> <a href="/tags/pymysql/" style="font-size: 14px;">pymysql</a> <a href="/tags/python/" style="font-size: 25px;">python</a> <a href="/tags/raise/" style="font-size: 14px;">raise</a> <a href="/tags/re/" style="font-size: 16.75px;">re</a> <a href="/tags/read/" style="font-size: 14px;">read</a> <a href="/tags/return/" style="font-size: 14px;">return</a> <a href="/tags/select/" style="font-size: 14px;">select</a> <a href="/tags/ssh-copy-id/" style="font-size: 14px;">ssh-copy-id</a> <a href="/tags/ssh-keygen/" style="font-size: 14px;">ssh-keygen</a> <a href="/tags/subprocess/" style="font-size: 14px;">subprocess</a> <a href="/tags/sys/" style="font-size: 14px;">sys</a> <a href="/tags/timedelta/" style="font-size: 14px;">timedelta</a> <a href="/tags/times/" style="font-size: 14px;">times</a> <a href="/tags/try/" style="font-size: 14px;">try</a> <a href="/tags/update/" style="font-size: 14px;">update</a> <a href="/tags/while/" style="font-size: 14px;">while</a> <a href="/tags/windows/" style="font-size: 14px;">windows</a> <a href="/tags/乘法/" style="font-size: 14px;">乘法</a> <a href="/tags/九宫格/" style="font-size: 14px;">九宫格</a> <a href="/tags/事务/" style="font-size: 14px;">事务</a> <a href="/tags/元组/" style="font-size: 14px;">元组</a> <a href="/tags/函数/" style="font-size: 14px;">函数</a> <a href="/tags/列表/" style="font-size: 16.75px;">列表</a> <a href="/tags/参数/" style="font-size: 14px;">参数</a> <a href="/tags/双网卡/" style="font-size: 14px;">双网卡</a> <a href="/tags/可变参数/" style="font-size: 14px;">可变参数</a> <a href="/tags/多个公钥/" style="font-size: 14px;">多个公钥</a> <a href="/tags/多态/" style="font-size: 14px;">多态</a> <a href="/tags/字典/" style="font-size: 14px;">字典</a> <a href="/tags/字符/" style="font-size: 14px;">字符</a> <a href="/tags/字符串/" style="font-size: 14px;">字符串</a> <a href="/tags/密钥/" style="font-size: 16.75px;">密钥</a> <a href="/tags/循环/" style="font-size: 14px;">循环</a> <a href="/tags/数字/" style="font-size: 16.75px;">数字</a> <a href="/tags/数据类型/" style="font-size: 16.75px;">数据类型</a> <a href="/tags/文件/" style="font-size: 14px;">文件</a> <a href="/tags/斐波那契数列/" style="font-size: 14px;">斐波那契数列</a> <a href="/tags/条件判断/" style="font-size: 14px;">条件判断</a> <a href="/tags/杨辉三角/" style="font-size: 14px;">杨辉三角</a> <a href="/tags/构造器/" style="font-size: 14px;">构造器</a> <a href="/tags/正则/" style="font-size: 14px;">正则</a> <a href="/tags/汉诺塔/" style="font-size: 14px;">汉诺塔</a> <a href="/tags/游标/" style="font-size: 14px;">游标</a> <a href="/tags/爬虫/" style="font-size: 14px;">爬虫</a> <a href="/tags/生成器/" style="font-size: 14px;">生成器</a> <a href="/tags/目录/" style="font-size: 14px;">目录</a> <a href="/tags/类/" style="font-size: 14px;">类</a> <a href="/tags/继承/" style="font-size: 14px;">继承</a> <a href="/tags/编码/" style="font-size: 14px;">编码</a> <a href="/tags/网络/" style="font-size: 14px;">网络</a> <a href="/tags/装饰器/" style="font-size: 14px;">装饰器</a> <a href="/tags/视图状态/" style="font-size: 14px;">视图状态</a> <a href="/tags/计算/" style="font-size: 14px;">计算</a> <a href="/tags/负载均衡/" style="font-size: 14px;">负载均衡</a> <a href="/tags/递归/" style="font-size: 14px;">递归</a> <a href="/tags/阶乘/" style="font-size: 14px;">阶乘</a> <a href="/tags/面向对象/" style="font-size: 14px;">面向对象</a>
     </div>
   </div>
 
@@ -607,6 +653,10 @@
     <h3 class="widget-title recent-posts">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/05/11/python中使用SQLAlchemy/">python中使用SQLAlchemy</a>
+          </li>
         
           <li>
             <a href="/2018/05/09/python访问mysql-二/">python访问mysql(二)</a>
@@ -624,10 +674,6 @@
             <a href="/2018/04/29/python内置模块-四/">python内置模块(四)</a>
           </li>
         
-          <li>
-            <a href="/2018/04/27/python内置模块-三/">python内置模块(三)</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -637,7 +683,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title archive">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 

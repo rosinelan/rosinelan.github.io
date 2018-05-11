@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>python中使用SQLAlchemy | 持续不断</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="概念简介 ORMORM是Object-Relational Mapping的简写。今天学习的SQLAlchemy其实就是ORM框架中最有名的一个。SQLAlchemy框架工作通过数据的API，使用关系对象映射进行数据库操作，也就是：将对象转换成SQL，然后使用数据API执行SQL并获取执行结果。SQLAlchemy本身无法操作数据库，其必须通过pymysql等第三方插件。上图中Dialect用于和">
+<meta name="keywords" content="ORM,SQLAIchemy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python中使用SQLAlchemy">
+<meta property="og:url" content="https://rosinelan.github.io/2018/05/11/python中使用SQLAlchemy/index.html">
+<meta property="og:site_name" content="持续不断">
+<meta property="og:description" content="概念简介 ORMORM是Object-Relational Mapping的简写。今天学习的SQLAlchemy其实就是ORM框架中最有名的一个。SQLAlchemy框架工作通过数据的API，使用关系对象映射进行数据库操作，也就是：将对象转换成SQL，然后使用数据API执行SQL并获取执行结果。SQLAlchemy本身无法操作数据库，其必须通过pymysql等第三方插件。上图中Dialect用于和">
+<meta property="og:image" content="http://cdn.rosinelan.com/blog/program/orm-sqlalchemy-core.jpg">
+<meta property="og:updated_time" content="2018-05-11T09:05:18.064Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python中使用SQLAlchemy">
+<meta name="twitter:description" content="概念简介 ORMORM是Object-Relational Mapping的简写。今天学习的SQLAlchemy其实就是ORM框架中最有名的一个。SQLAlchemy框架工作通过数据的API，使用关系对象映射进行数据库操作，也就是：将对象转换成SQL，然后使用数据API执行SQL并获取执行结果。SQLAlchemy本身无法操作数据库，其必须通过pymysql等第三方插件。上图中Dialect用于和">
+<meta name="twitter:image" content="http://cdn.rosinelan.com/blog/program/orm-sqlalchemy-core.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">持续不断</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">要松懈的时候再坚持一下</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-python中使用SQLAlchemy" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/11/python中使用SQLAlchemy/" class="article-date">
+  <time datetime="2018-05-11T03:35:35.000Z" itemprop="datePublished">2018-05-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/program/">编程</a>►<a class="article-category-link" href="/categories/program/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      python中使用SQLAlchemy
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h3 id="概念简介"><a href="#概念简介" class="headerlink" title="概念简介"></a>概念简介</h3><ul>
+<li>ORM<br><code>ORM</code>是Object-Relational Mapping的简写。今天学习的<code>SQLAlchemy</code>其实就是ORM框架中最有名的一个。<br><code>SQLAlchemy</code>框架工作<br>通过数据的API，使用关系对象映射进行数据库操作，也就是：将对象转换成SQL，然后使用数据API执行SQL并获取执行结果。<br><img src="http://cdn.rosinelan.com/blog/program/orm-sqlalchemy-core.jpg" alt="orm-sqlalchemy-core" title="orm-sqlalchemy-core"><br>SQLAlchemy本身无法操作数据库，其必须通过<code>pymysql</code>等第三方插件。上图中Dialect用于和数据API进行交流，根据配置文件的不同调用不同的数据库API，从而实现对数据库的操作。  <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mysqldb</span></span><br><span class="line">mysql+mysqldb://&lt;user&gt;:&lt;password&gt;@&lt;host&gt;[:&lt;port&gt;]/&lt;dbname&gt;</span><br><span class="line"><span class="comment"># pymysql</span></span><br><span class="line">mysql+pymysql://&lt;username&gt;:&lt;password&gt;@&lt;host&gt;/&lt;dbname&gt;[?&lt;options&gt;]</span><br><span class="line"><span class="comment"># mysql-connector</span></span><br><span class="line">mysql+mysqlconnector://&lt;user&gt;:&lt;password&gt;@&lt;host&gt;[:&lt;port&gt;]/&lt;dbname&gt;</span><br><span class="line"><span class="comment"># cx_oracle</span></span><br><span class="line"> oracle+cx_oracle://user:pass@host:port/dbname[?key=value&amp;key=value...]</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h3><p>ORM思想的核心是隐藏了数据访问细节，提供了通用的数据库交互。并且完全不用考虑SQL语句，从而快速开发。  </p>
+<ul>
+<li>使用SQL创建表<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> student(</span><br><span class="line">  <span class="keyword">id</span> <span class="built_in">int</span> <span class="keyword">not</span> <span class="literal">null</span> auto_increment,</span><br><span class="line">  <span class="keyword">name</span> <span class="built_in">varchar</span>(<span class="number">100</span>),</span><br><span class="line">  age <span class="built_in">int</span>,</span><br><span class="line">  address <span class="built_in">varchar</span>(<span class="number">100</span>),</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span>(<span class="keyword">id</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>上述是一个简单的创建单表的语句。  </p>
+<ul>
+<li>使用SQLAlchemy<br>方法1<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine, Column, String, Integer, MetaData</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.ext.declarative <span class="keyword">import</span> declarative_base</span><br><span class="line"></span><br><span class="line">engine = create_engine(<span class="string">"mysql+pymysql://root:123456@localhost/test"</span>, encoding=<span class="string">'UTF-8'</span>, echo=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line">Base = declarative_base()    <span class="comment">#生成orm基类</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(Base)</span>:</span></span><br><span class="line">    __tablename__ = <span class="string">'student'</span>    <span class="comment">#指定表名</span></span><br><span class="line">    id = Column(Integer, primary_key=<span class="keyword">True</span>)</span><br><span class="line">    name = Column(String(<span class="number">100</span>))</span><br><span class="line">    age = Column(Integer)</span><br><span class="line">    address = Column(String(<span class="number">100</span>))</span><br><span class="line"></span><br><span class="line">Base.metadata.create_all(engine)    <span class="comment">#创建表结构</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>方法2<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> Table, MetaData, Column, Integer, String, create_engine</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> mapper</span><br><span class="line"></span><br><span class="line">engine = create_engine(<span class="string">"mysql+pymysql://root:123456@localhost/test"</span>, encoding=<span class="string">'UTF-8'</span>, echo=<span class="keyword">True</span>)</span><br><span class="line">metadata = MetaData()</span><br><span class="line"></span><br><span class="line">student = Table(<span class="string">'student'</span>, metadata,</span><br><span class="line">             Column(<span class="string">'id'</span>, Integer, primary_key=<span class="keyword">True</span>),</span><br><span class="line">             Column(<span class="string">'name'</span>, String(<span class="number">100</span>)),</span><br><span class="line">             Column(<span class="string">'age'</span>, Integer),</span><br><span class="line">             Column(<span class="string">'address'</span>, String(<span class="number">100</span>))</span><br><span class="line">             )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, age, address)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.age = age</span><br><span class="line">        self.address = address</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">mapper(Student, student)    <span class="comment">#此处有问题，待解决</span></span><br><span class="line">```  </span><br><span class="line">说明</span><br><span class="line">`echo=<span class="keyword">True</span>` 显示每条执行的SQL语句，可以关闭。    </span><br><span class="line">`create_engine()`返回一个Engine的实例，并且表示通过数据库语法处理细节的核心接口，这种情况下数据库语法将被解释成python的类方法。 </span><br><span class="line">上面简单示例对比了下使用SQL直接创建表和使用ORM框架建表的区别，下面开始介绍`SQLAlchemy`的使用。  </span><br><span class="line"><span class="comment">### 使用</span></span><br><span class="line"><span class="comment">#### 安装</span></span><br><span class="line">通过`pip install SQLAlchemy`安装，访问mysql使用`pymysql`，安装方法`pip install pumysql`。可以参照[python访问mysql](https://rosinelan.coding.me/<span class="number">2018</span>/<span class="number">05</span>/<span class="number">06</span>/python%E8%AE%BF%E9%<span class="number">97</span>%AEmysql/)。  </span><br><span class="line"><span class="comment">#### 插入</span></span><br><span class="line">``` python</span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine, Column, String, Integer, MetaData</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.ext.declarative <span class="keyword">import</span> declarative_base</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> sessionmaker</span><br><span class="line"></span><br><span class="line">engine = create_engine(<span class="string">"mysql+pymysql://root:123456@localhost/test"</span>, encoding=<span class="string">'UTF-8'</span>, echo=<span class="keyword">True</span>)</span><br><span class="line">DBsession = sessionmaker(bind=engine) <span class="comment">#创建与数据库的会话session class ,注意,这里返回给session的是个class,不是实例</span></span><br><span class="line">session = DBsession()    <span class="comment">#生成session实例</span></span><br><span class="line">Base = declarative_base()</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(Base)</span>:</span></span><br><span class="line">    __tablename__ = <span class="string">'student'</span></span><br><span class="line">    id = Column(Integer, primary_key=<span class="keyword">True</span>)</span><br><span class="line">    name = Column(String(<span class="number">100</span>))</span><br><span class="line">    age = Column(Integer)</span><br><span class="line">    address = Column(String(<span class="number">100</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">student1 = Student(id=<span class="number">1001</span>, name=<span class="string">'Alice'</span>, age=<span class="number">25</span>, address=<span class="string">"anhui"</span>)</span><br><span class="line">student2 = Student(id=<span class="number">1002</span>, name=<span class="string">'Bob'</span>, age=<span class="number">69</span>, address=<span class="string">"beijing"</span>)</span><br><span class="line">student3 = Student(id=<span class="number">1003</span>, name=<span class="string">'Cerry'</span>, age=<span class="number">14</span>, address=<span class="string">"jiangsu"</span>)</span><br><span class="line"></span><br><span class="line">session.add_all([student1, student2, student3])</span><br><span class="line">session.commit()</span><br><span class="line">session.close()</span><br></pre></td></tr></table></figure></p>
+<h4 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h4><p>查询是通过Session的<code>query()</code>方法创建一个查询对象，这个函数的参数可以是任何类或者类的描述的集合。<br>查询出来的数据是一个对象，直接通过对象的属性调用。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> sessionmaker</span><br><span class="line"><span class="keyword">from</span> db.orm2 <span class="keyword">import</span> Student</span><br><span class="line"></span><br><span class="line">engine = create_engine(<span class="string">'mysql+pymysql://root:123456@localhost/test'</span>)</span><br><span class="line">DBsession = sessionmaker(bind=engine)</span><br><span class="line">session = DBsession()</span><br><span class="line"></span><br><span class="line">a = session.query(Student)</span><br><span class="line">print(a)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> a:</span><br><span class="line">    print(i.id, i.name, i.age, i.address)</span><br></pre></td></tr></table></figure></p>
+<p>输出结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT student.id AS student_id, student.name AS student_name, student.age AS student_age, student.address AS student_address </span><br><span class="line">FROM student</span><br><span class="line"><span class="number">1001</span> Alice <span class="number">25</span> anhui</span><br><span class="line"><span class="number">1002</span> Bob <span class="number">69</span> beijing</span><br><span class="line"><span class="number">1003</span> Cerry <span class="number">14</span> jiangsu</span><br></pre></td></tr></table></figure></p>
+<p><code>session.query(Student)</code>结果为查询的SQL语句，若出现查询结果错误可以通过查看SQL确认。  </p>
+<ul>
+<li>filter()和filter_by()<br>过滤条件。<code>==</code>、<code>!=</code>、<code>like</code>等过滤操作都可以在filter函数中使用。  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> sessionmaker</span><br><span class="line"><span class="keyword">from</span> db.orm2 <span class="keyword">import</span> Student</span><br><span class="line"></span><br><span class="line">engine = create_engine(<span class="string">'mysql+pymysql://root:123456@localhost/test'</span>)</span><br><span class="line">DBsession = sessionmaker(bind=engine)</span><br><span class="line">session = DBsession()</span><br><span class="line"></span><br><span class="line">a = session.query(Student).filter(Student.id == <span class="number">1001</span>)</span><br><span class="line">b = session.query(Student).filter_by(id=<span class="number">1001</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> a:</span><br><span class="line">    print(x.id, x.name, x.age, x.address)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> b:</span><br><span class="line">    print(i.id, i.name, i.age, i.address)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>输出结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1001</span> Alice <span class="number">25</span> anhui</span><br><span class="line"><span class="number">1001</span> Alice <span class="number">25</span> anhui</span><br></pre></td></tr></table></figure></p>
+<p><code>filter()</code>和<code>filter_by()</code>区别<br>filter可以像写sql的where条件那样写&gt;、&lt;等条件，但引用列名时，需要通过<code>类名.属性名</code>的方式。<br>filter_by可以使用python的正常参数传递方法传递条件，指定列名时，不需要额外指定类名，参数名对应类中的属性名，不能使用&gt;、&lt;等条件。<br>当使用filter的时候条件之间是使用<code>==</code>，filter_by使用的是<code>=</code>。<br>filter不支持组合查询，只能连续调用filter变相实现。filter_by的参数是**kwargs，直接支持组合查询。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">filters = &#123;<span class="string">'id'</span>:<span class="number">1002</span>, <span class="string">'name'</span>:<span class="string">'Bob'</span>&#125;</span><br><span class="line">b = session.query(Student).filter_by(**filters)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> b:</span><br><span class="line">    print(i.id, i.name, i.age, i.address)</span><br></pre></td></tr></table></figure></p>
+<p>输出结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1002</span> Bob <span class="number">69</span> beijing</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>all()<br>返回一个列表，可以通过遍历列表获取每个对象。  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = session.query(Student).filter(Student.id &gt; <span class="number">1001</span>).all()</span><br><span class="line">print(a)</span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> a:</span><br><span class="line">    print(x.id, x.name, x.age, x.address)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>输出结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[&lt;db.orm2.Student object at <span class="number">0x00000197ECC759E8</span>&gt;, &lt;db.orm2.Student object at <span class="number">0x00000197ECC75A58</span>&gt;]</span><br><span class="line"><span class="number">1002</span> Bob <span class="number">69</span> beijing</span><br><span class="line"><span class="number">1003</span> Cerry <span class="number">14</span> jiangsu</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>one()<br>返回且仅返回一个查询结果。当结果数量不足或者多于一个时会报错。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = session.query(Student).filter(Student.id == <span class="number">1001</span>).one()</span><br><span class="line">print(a)</span><br><span class="line">print(a.id, a.name, a.age, a.address)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>输出结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;db.orm2.Student object at <span class="number">0x000001B7C57E7908</span>&gt;</span><br><span class="line"><span class="number">1001</span> Alice <span class="number">25</span> anhui</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>first()<br>返回至多一个结果，而且以单项形式，而不是只有一个元素的tuple形式返回。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = session.query(Student).filter(Student.id &gt; <span class="number">1001</span>).first()</span><br><span class="line">print(a)</span><br><span class="line">print(a.id, a.name, a.age, a.address)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>输出结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;db.orm2.Student object at <span class="number">0x000001C63E536B00</span>&gt;</span><br><span class="line"><span class="number">1002</span> Bob <span class="number">69</span> beijing</span><br></pre></td></tr></table></figure></p>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><ol>
+<li>MetaData类<br>主要用于保存表结构，连接字符串等数据，是一个多表共享的对象。<br><code>metadata = MetaData(engine)</code>绑定一个数据源的metadata。<br><code>metadata.create_all(engine)</code> 创建表，该操作会先判断表是否存在，若存在则不创建。  </li>
+<li>Table类<br>构造函数为<code>Table.__init__(self, name, metadata,*args, **kwargs)</code><br>name  表名<br>metadata 共享的元数据<br><em>args中<code>Column</code>是列定义<br>下面是可变参数`*</em>kwargs`定义<br>schema 此表的结构名称，默认None<br>autoload 自动从现有表中读入表结构，默认False<br>autoload_with 从其他engine读取结构，默认None<br>include_columns 如果autoload设置为True，则此项数组中的列明将被引用，没有写的列明将被忽略，None表示所有都列明都引用，默认None<br>mustexist 如果为True，表示这个表必须在其他的python应用中定义，必须是metadata的一部分，默认False<br>useexisting 如果为True，表示这个表必须被其他应用定义过，将忽略结构定义，默认False<br>owner 表所有者，用于Orcal，默认None<br>quote 设置为True，如果表明是SQL关键字，将强制转义，默认False<br>quote_schema  设置为True，如果列明是SQL关键字，将强制转义，默认False<br>mysql_engine  mysql专用，可以设置’InnoDB’或’MyISAM’</li>
+<li>Column类<br>构造函数为<code>Column.__init__(self,  name,  type_,  *args,  **kwargs)</code><br>name 列名<br>type_ 类型，更多类型sqlalchemy.types<br>下面是<code>*args</code>参数定义<br>Constraint（约束）<br>ForeignKey（外键）<br>ColumnDefault（默认）<br>Sequenceobjects（序列）定义<br>key 列名的别名，默认None<br>下面是<code>**kwargs</code>参数定义<br>primary_key 如果为True，则是主键<br>nullable 是否可为Null，默认是True<br>default 默认值，默认是None<br>index 是否是索引，默认是True<br>unique 是否唯一键，默认是False<br>onupdate 指定一个更新时候的值，这个操作是定义在SQLAlchemy中，不是在数据库里的，当更新一条数据时设置，大部分用于updateTime这类字段<br>autoincrement 设置为整型自动增长，只有没有默认值，并且是Integer类型，默认是True<br>quote 如果列明是关键字，则强制转义，默认False</li>
+<li>创建会话<br>Session的主要目的是建立与数据库的会话，它维护你加载和关联的所有数据库对象。它是数据库查询（Query）的一个入口。<br>在<code>SQLAlchemy</code>中，数据库的查询操作是通过Query对象来实现的,而Session提供了创建Query对象的接口。Query对象返回的结果是一组同一映射（Identity Map）对象组成的集合。事实上，集合中的一个对象，对应于数据库表中的一行（即一条记录）。所谓同一映射，是指每个对象有一个唯一的ID。如果两个对象（的引用）ID相同，则认为它们对应的是相同的对象。<br>要完成数据库查询，就需要建立与数据库的连接。这就需要用到Engine对象。一个Engine可能是关联一个Session对象，也可能关联一个数据库表。<br>当然Session最重要的功能还是实现原子操作。<br>ORM通过session与数据库建立连接进行通信，如下所示<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> sessionmaker</span><br><span class="line"></span><br><span class="line">DBSession = sessionmaker(bind=engine)</span><br><span class="line">session = DBSession()</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>通过sessionmake方法创建一个Session工厂，然后在调用工厂的方法来实例化一个Session对象。</p>
+<p>要了解更多关于<code>SQLAlchemy</code>内容可以点击<a href="http://docs.sqlalchemy.org/en/latest/dialects/index.html" target="_blank" rel="noopener">SQLAlchemy Documentation</a>查看官方介绍。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/05/11/python中使用SQLAlchemy/" data-id="cjh1qlkz20006loq6usjmz3zh" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ORM/">ORM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQLAIchemy/">SQLAIchemy</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/05/09/python访问mysql-二/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">python访问mysql(二)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#概念简介"><span class="toc-number">1.</span> <span class="toc-text">概念简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对比"><span class="toc-number">2.</span> <span class="toc-text">对比</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#查询"><span class="toc-number">2.1.</span> <span class="toc-text">查询</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说明"><span class="toc-number">3.</span> <span class="toc-text">说明</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>
