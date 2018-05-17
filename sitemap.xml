@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://rosinelan.github.io/2018/05/17/python%E8%AE%BF%E9%97%AEredis/</loc>
+    
+    <lastmod>2018-05-17T01:00:52.734Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://rosinelan.github.io/2018/05/14/python%E4%B8%AD%E4%BD%BF%E7%94%A8SQLAlchemy-%E4%BA%8C/</loc>
     
     <lastmod>2018-05-14T09:21:05.187Z</lastmod>
