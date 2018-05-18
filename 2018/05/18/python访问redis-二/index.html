@@ -5,17 +5,17 @@
   
   <title>python访问redis(二) | 持续不断</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="关于常用nosql数据库介绍及redis安装配置的介绍，点击python访问redis查看。前面介绍了redis常用的数据类型，包括String、List、Hash、Set和Sorted Set。下面针对不同数据类型的操作进行介绍。 String set(name, value)设置值，默认不存在则创建，存在则修改 get(name)获取值 1234567import redispool = re">
+  <meta name="description" content="关于常用nosql数据库介绍及redis安装配置的介绍，点击python访问redis查看。前面介绍了redis常用的数据类型，包括String、List、Hash、Set和Sorted Set。下面针对不同数据类型的操作进行介绍。 String set(name, value)设置值，默认不存在则创建，存在则修改">
 <meta name="keywords" content="redis,get,set">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python访问redis(二)">
 <meta property="og:url" content="https://rosinelan.github.io/2018/05/18/python访问redis-二/index.html">
 <meta property="og:site_name" content="持续不断">
-<meta property="og:description" content="关于常用nosql数据库介绍及redis安装配置的介绍，点击python访问redis查看。前面介绍了redis常用的数据类型，包括String、List、Hash、Set和Sorted Set。下面针对不同数据类型的操作进行介绍。 String set(name, value)设置值，默认不存在则创建，存在则修改 get(name)获取值 1234567import redispool = re">
-<meta property="og:updated_time" content="2018-05-18T15:54:11.291Z">
+<meta property="og:description" content="关于常用nosql数据库介绍及redis安装配置的介绍，点击python访问redis查看。前面介绍了redis常用的数据类型，包括String、List、Hash、Set和Sorted Set。下面针对不同数据类型的操作进行介绍。 String set(name, value)设置值，默认不存在则创建，存在则修改">
+<meta property="og:updated_time" content="2018-05-18T17:13:03.542Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python访问redis(二)">
-<meta name="twitter:description" content="关于常用nosql数据库介绍及redis安装配置的介绍，点击python访问redis查看。前面介绍了redis常用的数据类型，包括String、List、Hash、Set和Sorted Set。下面针对不同数据类型的操作进行介绍。 String set(name, value)设置值，默认不存在则创建，存在则修改 get(name)获取值 1234567import redispool = re">
+<meta name="twitter:description" content="关于常用nosql数据库介绍及redis安装配置的介绍，点击python访问redis查看。前面介绍了redis常用的数据类型，包括String、List、Hash、Set和Sorted Set。下面针对不同数据类型的操作进行介绍。 String set(name, value)设置值，默认不存在则创建，存在则修改">
   
     <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
   
@@ -42,7 +42,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -102,7 +102,7 @@
         
         <p>关于常用nosql数据库介绍及redis安装配置的介绍，点击<a href="https://rosinelan.coding.me/2018/05/17/python%E8%AE%BF%E9%97%AEredis/" target="_blank" rel="noopener">python访问redis</a>查看。<br>前面介绍了<code>redis</code>常用的数据类型，包括<code>String</code>、<code>List</code>、<code>Hash</code>、<code>Set</code>和<code>Sorted Set</code>。下面针对不同数据类型的操作进行介绍。</p>
 <h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><ul>
-<li>set(name, value)<br>设置值，默认不存在则创建，存在则修改</li>
+<li>set(name, value)<br>设置值，默认不存在则创建，存在则修改<a id="more"></a></li>
 <li><p>get(name)<br>获取值</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> redis</span><br><span class="line"></span><br><span class="line">pool = redis.ConnectionPool(host=<span class="string">"118.24.18.158"</span>, port=<span class="number">6379</span>)</span><br><span class="line">r = redis.Redis(connection_pool=pool)</span><br><span class="line">r.set(<span class="string">"db"</span>, <span class="string">"oracle"</span>)</span><br><span class="line">print(r.get(<span class="string">"db"</span>))    <span class="comment">#输出结果：b'oracle'</span></span><br><span class="line">print(r.get(<span class="string">"db"</span>).decode())    <span class="comment">#输出结果：oracle</span></span><br></pre></td></tr></table></figure>
 </li>
@@ -155,20 +155,84 @@
 <li><p>srem(name, *values)<br>从集合name中删除指定的值。  </p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">r.sadd(<span class="string">"dbset"</span>, <span class="string">"oracle"</span>, <span class="string">"mysql"</span>, <span class="string">"redis"</span>)</span><br><span class="line">print(r.smembers(<span class="string">"dbset"</span>))     <span class="comment">#输出结果：&#123;b'oracle', b'redis', b'mysql'&#125;</span></span><br><span class="line">r.srem(<span class="string">"dbset"</span>, <span class="string">"mysql"</span>, <span class="string">"redis"</span>)</span><br><span class="line">print(r.smembers(<span class="string">"dbset"</span>))     <span class="comment">#输出结果：&#123;b'oracle'&#125;</span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p>sunion(keys, *args)</p>
+<li><p>sunion(keys, *args)<br>返回多个集合的并集</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">r.sadd(<span class="string">"set1"</span>, <span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>)</span><br><span class="line">r.sadd(<span class="string">"set2"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>, <span class="string">"4"</span>)</span><br><span class="line">r.sadd(<span class="string">"set3"</span>, <span class="string">"3"</span>, <span class="string">"4"</span>, <span class="string">"5"</span>)</span><br><span class="line">print(r.sunion(<span class="string">"set1"</span>, <span class="string">"set2"</span>, <span class="string">"set3"</span>))    <span class="comment">#输出结果：&#123;b'5', b'2', b'3', b'1', b'4'&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>sinter()<br>返回多个集合的交集</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">r.sadd(<span class="string">"set1"</span>, <span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>)</span><br><span class="line">r.sadd(<span class="string">"set2"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>, <span class="string">"4"</span>)</span><br><span class="line">r.sadd(<span class="string">"set3"</span>, <span class="string">"3"</span>, <span class="string">"4"</span>, <span class="string">"5"</span>)</span><br><span class="line">print(r.sinter(<span class="string">"set1"</span>, <span class="string">"set2"</span>, <span class="string">"set3"</span>))    <span class="comment">#输出结果：&#123;b'3'&#125;</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="Zset"><a href="#Zset" class="headerlink" title="Zset"></a>Zset</h1><p>Zset也就是sorted Set，有序集合。在集合的基础上元素的排序根据另外一个值进行比较。所以有序集合每个元素有2个值，即值和分数，分数专门用来做排序。  </p>
 <ul>
-<li>sinter()</li>
+<li><p>zadd(name, <em>args, *</em>kwargs)<br>集合添加元素，下面两种写法是等价的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">r.zadd(<span class="string">"dbset"</span>, <span class="string">"oracle"</span>, <span class="number">1</span>, <span class="string">"redis"</span>, <span class="number">3</span>, <span class="string">"mysql"</span>, <span class="number">2</span>)</span><br><span class="line">r.zadd(<span class="string">"dbset"</span>, oracle=<span class="number">1</span>, redis=<span class="number">3</span>, mysql=<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>zcard(name)<br>有序集合中名称为name的元素个数。  </p>
+</li>
+<li><p>zrange(name, start, end)<br>返回有序集合name中位于start和end之间的元素，默认为升序排列。  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">r.zadd(<span class="string">"dbset"</span>, <span class="string">"oracle"</span>, <span class="number">1</span>, <span class="string">"redis"</span>, <span class="number">3</span>, <span class="string">"mysql"</span>, <span class="number">2</span>)</span><br><span class="line">print(r.zrange(<span class="string">"dbset"</span>, <span class="number">0</span>, <span class="number">-1</span>))    <span class="comment">#输出结果：[b'oracle', b'mysql', b'redis']</span></span><br><span class="line">print(r.zcard(<span class="string">"dbset"</span>))    <span class="comment">#输出结果：3</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>zrem(name, *values)<br>删除有序集合name中的值。  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">r.zadd(<span class="string">"dbset"</span>, oracle=<span class="number">1</span>, redis=<span class="number">3</span>, mysql=<span class="number">2</span>)</span><br><span class="line">r.zrem(<span class="string">"dbset"</span>, <span class="string">"oracle"</span>)</span><br><span class="line">print(r.zrange(<span class="string">"dbset"</span>, <span class="number">0</span>, <span class="number">-1</span>))   <span class="comment">#输出结果：[b'mysql', b'redis']</span></span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="Hash"><a href="#Hash" class="headerlink" title="Hash"></a>Hash</h3><h3 id="其它常用操作"><a href="#其它常用操作" class="headerlink" title="其它常用操作"></a>其它常用操作</h3><p>下面的操作适用于上述所有类型</p>
+<h3 id="Hash"><a href="#Hash" class="headerlink" title="Hash"></a>Hash</h3><p>redis中的Hash在内存中类似于一个name对应一个dict来存储。  </p>
+<ul>
+<li>hset(name, key, value)<br>名称为name的hash中，将key的值设置为value。<br>若成功添加则返回1，否则返回0.  </li>
+<li><p>hget(name, key)<br>在名称的name的hash中，返回key的对应值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">r.hset(<span class="string">"dbhash"</span>, <span class="string">"db1"</span>, <span class="string">"oracle"</span>)</span><br><span class="line">print(r.hget(<span class="string">"dbhash"</span>, <span class="string">"db1"</span>))    <span class="comment">#输出结果：b'oracle'</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>hmset(name, mapping)<br>名称为name的hash中，根据mapping字典内容添加对应的key和value。  </p>
+</li>
+<li><p>hmget(name, keys, *args)<br>名称为name的hash中获取多个keys的值。  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">r.hmset(<span class="string">"dbhash"</span>, &#123;<span class="string">"db1"</span>: <span class="string">"oracle"</span>, <span class="string">"db2"</span>: <span class="string">"mysql"</span>&#125;)</span><br><span class="line">print(r.hmget(<span class="string">"dbhash"</span>, <span class="string">"db1"</span>, <span class="string">"db2"</span>))    <span class="comment">#输出结果：[b'oracle', b'mysql']</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>hkeys(name)<br>列表形式返回名称为name的hash中的keys。  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">r.hmset(<span class="string">"dbhash"</span>, &#123;<span class="string">"db1"</span>: <span class="string">"oracle"</span>, <span class="string">"db2"</span>: <span class="string">"mysql"</span>&#125;)</span><br><span class="line">print(r.hkeys(<span class="string">"dbhash"</span>))     <span class="comment">#输出结果：[b'db1', b'db2']</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>hvals()<br>列表形式返回名称为name的hash中的values。 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">r.hmset(<span class="string">"dbhash"</span>, &#123;<span class="string">"db1"</span>: <span class="string">"oracle"</span>, <span class="string">"db2"</span>: <span class="string">"mysql"</span>&#125;)</span><br><span class="line">print(r.hvals(<span class="string">"dbhash"</span>))    <span class="comment">#输出结果：[b'oracle', b'mysql']</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>hexists(name, key)<br>名称为name的hash中是否存在key。返回值为布尔值。  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">r.hmset(<span class="string">"dbhash"</span>, &#123;<span class="string">"db1"</span>: <span class="string">"oracle"</span>, <span class="string">"db2"</span>: <span class="string">"mysql"</span>&#125;)</span><br><span class="line">print(r.hexists(<span class="string">"dbhash"</span>, <span class="string">"db1"</span>))     <span class="comment">#输出结果：True</span></span><br><span class="line">print(r.hexists(<span class="string">"dbhash"</span>, <span class="string">"db3"</span>))     <span class="comment">#输出结果：False</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>hdel(name, keys)<br>删除名称为name的hash中的keys。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">r.hmset(<span class="string">"dbhash"</span>, &#123;<span class="string">"db1"</span>: <span class="string">"oracle"</span>, <span class="string">"db2"</span>: <span class="string">"mysql"</span>&#125;)</span><br><span class="line">print(r.hdel(<span class="string">"dbhash"</span>, <span class="string">"db1"</span>))    <span class="comment">#输出结果：1</span></span><br><span class="line">print(r.hkeys(<span class="string">"dbhash"</span>))    <span class="comment">#输出结果：[b'db2']</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>hlen(name)<br>返回名称为name的hash中元素的个数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">r.hmset(<span class="string">"dbhash"</span>, &#123;<span class="string">"db1"</span>: <span class="string">"oracle"</span>, <span class="string">"db2"</span>: <span class="string">"mysql"</span>&#125;)</span><br><span class="line">print(r.hlen(<span class="string">"dbhash"</span>))    <span class="comment">#输出结果：2</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="其它常用操作"><a href="#其它常用操作" class="headerlink" title="其它常用操作"></a>其它常用操作</h3><p>下面的操作适用于上述所有类型</p>
+<ul>
+<li><p>keys(pattern=’*’)<br>返回匹配pattern的key。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">r.set(<span class="string">"dbset"</span>, <span class="number">1</span>)</span><br><span class="line">r.set(<span class="string">"dbstr"</span>, <span class="number">2</span>)</span><br><span class="line">r.set(<span class="string">"int"</span>, <span class="number">3</span>)</span><br><span class="line">print(r.keys(pattern=<span class="string">'db*'</span>))    <span class="comment">#输出结果：[b'dbstr', b'dbset']</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>delete(<em>names)<br>删除</em>name指定的一个或多个keys。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">r.set(<span class="string">"dbset"</span>, <span class="number">1</span>)</span><br><span class="line">r.set(<span class="string">"dbstr"</span>, <span class="number">2</span>)</span><br><span class="line">r.set(<span class="string">"int"</span>, <span class="number">3</span>)</span><br><span class="line">print(r.delete(<span class="string">"dbset"</span>, <span class="string">"dbstr"</span>))</span><br><span class="line">print(r.keys())</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>exists(name)<br>判断key为name是否存在。返回值为布尔值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">r.set(<span class="string">"dbset"</span>, <span class="number">1</span>)</span><br><span class="line">print(r.exists(<span class="string">"dbset"</span>))     <span class="comment">#输出结果：True</span></span><br><span class="line">print(r.exists(<span class="string">"dbstr"</span>))     <span class="comment">#输出结果：False</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>rename(src, dst)<br>修改key的名称，修改成功返回True，否则返回错误。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">r.set(<span class="string">"dbset"</span>, <span class="number">1</span>)</span><br><span class="line">print(r.rename(<span class="string">"dbset"</span>, <span class="string">"db"</span>))    <span class="comment">#输出结果：True</span></span><br><span class="line">print(r.keys())    <span class="comment">#输出结果：[b'db']</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>expire(name, time)<br>设置key的过期时间。  </p>
+</li>
+<li><p>type()<br>返回key所存储值的类型。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">r.set(<span class="string">"dbset"</span>, <span class="number">1</span>)</span><br><span class="line">print(r.type(<span class="string">"dbset"</span>))    <span class="comment">#输出结果：b'string'</span></span><br><span class="line">r.zadd(<span class="string">"dbset1"</span>, oracle=<span class="number">1</span>, redis=<span class="number">3</span>, mysql=<span class="number">2</span>)</span><br><span class="line">print(r.type(<span class="string">"dbset1"</span>))    <span class="comment">#输出结果：b'zset'</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>move(name, db)<br>将key为name的元素迁移至db。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">r.set(<span class="string">"dbset"</span>, <span class="string">"dbstr"</span>)</span><br><span class="line">print(r.move(<span class="string">"dbset"</span>, <span class="number">1</span>))    <span class="comment">#输出结果：True</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>flushall()<br>删除所有的key。</p>
+</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/18/python访问redis-二/" data-id="cjhc5eaif002yscq6ija5v698" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/05/18/python访问redis-二/" data-id="cjhc5eaif002yscq6ija5v698" class="article-share-link">Share</a>
       
       
       
@@ -180,7 +244,7 @@
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>推荐文章</h2>
+    <h2>Recommended Posts</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =4
@@ -223,7 +287,7 @@
 <nav id="article-nav">
   
     <a href="/2018/05/18/python访问memcached/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
+      <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
           python访问memcached
@@ -233,7 +297,7 @@
   
   
     <a href="/2018/05/17/python访问redis/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">python访问redis</div>
     </a>
   
@@ -263,9 +327,9 @@
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">文章目录</strong>
+        <strong class="toc-title">Content</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#String"><span class="toc-number">1.</span> <span class="toc-text">String</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#List"><span class="toc-number">2.</span> <span class="toc-text">List</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Set"><span class="toc-number">3.</span> <span class="toc-text">Set</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hash"><span class="toc-number">4.</span> <span class="toc-text">Hash</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其它常用操作"><span class="toc-number">5.</span> <span class="toc-text">其它常用操作</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#String"><span class="toc-number">1.</span> <span class="toc-text">String</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#List"><span class="toc-number">2.</span> <span class="toc-text">List</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Set"><span class="toc-number">3.</span> <span class="toc-text">Set</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Zset"><span class="toc-number"></span> <span class="toc-text">Zset</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Hash"><span class="toc-number">1.</span> <span class="toc-text">Hash</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其它常用操作"><span class="toc-number">2.</span> <span class="toc-text">其它常用操作</span></a></li></ol>
           </div>
       </div>
     </div>
@@ -291,10 +355,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
+     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>

@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://rosinelan.github.io/2018/05/17/python%E8%AE%BF%E9%97%AEredis/</loc>
+    
+    <lastmod>2018-05-18T17:13:57.356Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://rosinelan.github.io/2018/05/18/python%E8%AE%BF%E9%97%AEredis-%E4%BA%8C/</loc>
     
-    <lastmod>2018-05-18T15:54:11.291Z</lastmod>
+    <lastmod>2018-05-18T17:13:03.542Z</lastmod>
     
   </url>
   
@@ -12,13 +19,6 @@
     <loc>https://rosinelan.github.io/2018/05/18/python%E8%AE%BF%E9%97%AEmemcached/</loc>
     
     <lastmod>2018-05-18T07:43:55.418Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://rosinelan.github.io/2018/05/17/python%E8%AE%BF%E9%97%AEredis/</loc>
-    
-    <lastmod>2018-05-18T07:42:05.833Z</lastmod>
     
   </url>
   
