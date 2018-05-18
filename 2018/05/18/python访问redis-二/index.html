@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://rosinelan.github.io/2018/05/18/python访问redis-二/index.html">
 <meta property="og:site_name" content="持续不断">
 <meta property="og:description" content="关于常用nosql数据库介绍及redis安装配置的介绍，点击python访问redis查看。前面介绍了redis常用的数据类型，包括String、List、Hash、Set和Sorted Set。下面针对不同数据类型的操作进行介绍。 String set(name, value)设置值，默认不存在则创建，存在则修改">
-<meta property="og:updated_time" content="2018-05-18T17:13:03.542Z">
+<meta property="og:updated_time" content="2018-05-18T17:27:20.265Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python访问redis(二)">
 <meta name="twitter:description" content="关于常用nosql数据库介绍及redis安装配置的介绍，点击python访问redis查看。前面介绍了redis常用的数据类型，包括String、List、Hash、Set和Sorted Set。下面针对不同数据类型的操作进行介绍。 String set(name, value)设置值，默认不存在则创建，存在则修改">
@@ -42,7 +42,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -162,7 +162,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">r.sadd(<span class="string">"set1"</span>, <span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>)</span><br><span class="line">r.sadd(<span class="string">"set2"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>, <span class="string">"4"</span>)</span><br><span class="line">r.sadd(<span class="string">"set3"</span>, <span class="string">"3"</span>, <span class="string">"4"</span>, <span class="string">"5"</span>)</span><br><span class="line">print(r.sinter(<span class="string">"set1"</span>, <span class="string">"set2"</span>, <span class="string">"set3"</span>))    <span class="comment">#输出结果：&#123;b'3'&#125;</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h1 id="Zset"><a href="#Zset" class="headerlink" title="Zset"></a>Zset</h1><p>Zset也就是sorted Set，有序集合。在集合的基础上元素的排序根据另外一个值进行比较。所以有序集合每个元素有2个值，即值和分数，分数专门用来做排序。  </p>
+<h3 id="Zset"><a href="#Zset" class="headerlink" title="Zset"></a>Zset</h3><p>Zset也就是sorted Set，有序集合。在集合的基础上元素的排序根据另外一个值进行比较。所以有序集合每个元素有2个值，即值和分数，分数专门用来做排序。  </p>
 <ul>
 <li><p>zadd(name, <em>args, *</em>kwargs)<br>集合添加元素，下面两种写法是等价的。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">r.zadd(<span class="string">"dbset"</span>, <span class="string">"oracle"</span>, <span class="number">1</span>, <span class="string">"redis"</span>, <span class="number">3</span>, <span class="string">"mysql"</span>, <span class="number">2</span>)</span><br><span class="line">r.zadd(<span class="string">"dbset"</span>, oracle=<span class="number">1</span>, redis=<span class="number">3</span>, mysql=<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
@@ -232,7 +232,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/18/python访问redis-二/" data-id="cjhc5eaif002yscq6ija5v698" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/05/18/python访问redis-二/" data-id="cjhc5eaif002yscq6ija5v698" class="article-share-link">分享</a>
       
       
       
@@ -244,7 +244,7 @@
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =4
@@ -287,7 +287,7 @@
 <nav id="article-nav">
   
     <a href="/2018/05/18/python访问memcached/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
           python访问memcached
@@ -297,7 +297,7 @@
   
   
     <a href="/2018/05/17/python访问redis/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">python访问redis</div>
     </a>
   
@@ -327,9 +327,9 @@
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#String"><span class="toc-number">1.</span> <span class="toc-text">String</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#List"><span class="toc-number">2.</span> <span class="toc-text">List</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Set"><span class="toc-number">3.</span> <span class="toc-text">Set</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Zset"><span class="toc-number"></span> <span class="toc-text">Zset</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Hash"><span class="toc-number">1.</span> <span class="toc-text">Hash</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其它常用操作"><span class="toc-number">2.</span> <span class="toc-text">其它常用操作</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#String"><span class="toc-number">1.</span> <span class="toc-text">String</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#List"><span class="toc-number">2.</span> <span class="toc-text">List</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Set"><span class="toc-number">3.</span> <span class="toc-text">Set</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Zset"><span class="toc-number">4.</span> <span class="toc-text">Zset</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hash"><span class="toc-number">5.</span> <span class="toc-text">Hash</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其它常用操作"><span class="toc-number">6.</span> <span class="toc-text">其它常用操作</span></a></li></ol>
           </div>
       </div>
     </div>
@@ -355,10 +355,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
+     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>
