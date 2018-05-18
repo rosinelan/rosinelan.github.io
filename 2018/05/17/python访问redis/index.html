@@ -5,17 +5,17 @@
   
   <title>python访问redis | 持续不断</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="首先看个案例无论是电商网站还是支付系统，都离不开数据的存储和增删改查，在这种情况下，每一次登录、访问等都会访问，这样会给数据库造成很大的压力，当数据库无法支撑过高的访问量，轻则影响用户体验，重则导致数据库宕机，网站无法访问。如何解决数据库压力过大的问题呢？    优化应用程序，减少数据库的连接数，尽量使用数据库连接池。 使用消息队列，常见的有RabbitMQ,ActiveMQ，Kafka,Rock">
-<meta name="keywords" content="nosql,redis">
+  <meta name="description" content="首先看个案例无论是电商网站还是支付系统，都离不开数据的存储和增删改查，在这种情况下，每一次登录、访问等都会访问，这样会给数据库造成很大的压力，当数据库无法支撑过高的访问量，轻则影响用户体验，重则导致数据库宕机，网站无法访问。如何解决数据库压力过大的问题呢？    优化应用程序，减少数据库的连接数，尽量使用数据库连接池。">
+<meta name="keywords" content="redis,nosql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python访问redis">
 <meta property="og:url" content="https://rosinelan.github.io/2018/05/17/python访问redis/index.html">
 <meta property="og:site_name" content="持续不断">
-<meta property="og:description" content="首先看个案例无论是电商网站还是支付系统，都离不开数据的存储和增删改查，在这种情况下，每一次登录、访问等都会访问，这样会给数据库造成很大的压力，当数据库无法支撑过高的访问量，轻则影响用户体验，重则导致数据库宕机，网站无法访问。如何解决数据库压力过大的问题呢？    优化应用程序，减少数据库的连接数，尽量使用数据库连接池。 使用消息队列，常见的有RabbitMQ,ActiveMQ，Kafka,Rock">
-<meta property="og:updated_time" content="2018-05-17T01:38:22.901Z">
+<meta property="og:description" content="首先看个案例无论是电商网站还是支付系统，都离不开数据的存储和增删改查，在这种情况下，每一次登录、访问等都会访问，这样会给数据库造成很大的压力，当数据库无法支撑过高的访问量，轻则影响用户体验，重则导致数据库宕机，网站无法访问。如何解决数据库压力过大的问题呢？    优化应用程序，减少数据库的连接数，尽量使用数据库连接池。">
+<meta property="og:updated_time" content="2018-05-18T07:42:05.833Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python访问redis">
-<meta name="twitter:description" content="首先看个案例无论是电商网站还是支付系统，都离不开数据的存储和增删改查，在这种情况下，每一次登录、访问等都会访问，这样会给数据库造成很大的压力，当数据库无法支撑过高的访问量，轻则影响用户体验，重则导致数据库宕机，网站无法访问。如何解决数据库压力过大的问题呢？    优化应用程序，减少数据库的连接数，尽量使用数据库连接池。 使用消息队列，常见的有RabbitMQ,ActiveMQ，Kafka,Rock">
+<meta name="twitter:description" content="首先看个案例无论是电商网站还是支付系统，都离不开数据的存储和增删改查，在这种情况下，每一次登录、访问等都会访问，这样会给数据库造成很大的压力，当数据库无法支撑过高的访问量，轻则影响用户体验，重则导致数据库宕机，网站无法访问。如何解决数据库压力过大的问题呢？    优化应用程序，减少数据库的连接数，尽量使用数据库连接池。">
   
     <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
   
@@ -102,7 +102,7 @@
         
         <p>首先看个案例<br>无论是电商网站还是支付系统，都离不开数据的存储和增删改查，在这种情况下，每一次登录、访问等都会访问，这样会给数据库造成很大的压力，当数据库无法支撑过高的访问量，轻则影响用户体验，重则导致数据库宕机，网站无法访问。<br>如何解决数据库压力过大的问题呢？  </p>
 <ol>
-<li>优化应用程序，减少数据库的连接数，尽量使用数据库连接池。</li>
+<li>优化应用程序，减少数据库的连接数，尽量使用数据库连接池。<a id="more"></a></li>
 <li>使用消息队列，常见的有RabbitMQ,ActiveMQ，Kafka,RocketMQ等。</li>
 <li>通过使用redis等缓存数据，分担数据库读压力，同时直接从内存读数据速度更快。</li>
 </ol>
@@ -117,20 +117,19 @@
 <li>BASE：相对于事务严格的ACID特性，NoSQL数据库保证的是BASE特性。BASE是最终一致性和软事务。<br>NoSQL数据库并没有一个统一的架构，两种NoSQL数据库之间的不同，甚至远远超过两种关系型数据库的不同。可以说，NoSQL各有所长，成功的NoSQL必然特别适用于某些场合或者某些应用，在这些场合中会远远胜过关系型数据库和其他的NoSQL<h4 id="常用的nosql数据库"><a href="#常用的nosql数据库" class="headerlink" title="常用的nosql数据库"></a>常用的nosql数据库</h4>临时性键值存储|永久性键值存储|面向文档的数据库|面向列的数据库<br>-|:-:|:-:|:-:|<br>Memcached|Tokyo Tyrant|MangoDB|Cassandra<br>Redis|Flare|CouchDB|HBase<br>&nbsp;|ROMA||HyperTable<br>&nbsp;|Redis||<h3 id="redis安装和配置"><a href="#redis安装和配置" class="headerlink" title="redis安装和配置"></a>redis安装和配置</h3><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4>redis主要用于linux下，下面centos7下面安装最新版本redis-4.0.9。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget http://download.redis.io/releases/redis-4.0.9.tar.gz</span><br><span class="line">tar xzf redis-4.0.9.tar.gz</span><br><span class="line"><span class="built_in">cd</span> redis-4.0.9/</span><br><span class="line">make</span><br><span class="line"><span class="built_in">cd</span> src &amp;&amp; make all</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>安装过程中报错说明</p>
-<ul>
-<li>未安装gcc编译工具<br>redis基于C语言编写，需要使用gcc等编译工具，若未安装，在<code>make</code>编译过程中会报错。使用<code>yum install gcc</code>安装，默认会安装gcc及对应的依赖包即可。</li>
-<li>未安装<code>jemalloc</code><br>默认情况下redis的<code>memory allocator</code>是<code>jemalloc</code>，若未安装会出现下面报错信息<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">zmalloc.h:50:31: fatal error: jemalloc/jemalloc.h: No such file or directory</span><br><span class="line"> <span class="comment">#include &lt;jemalloc/jemalloc.h&gt;</span></span><br><span class="line">                               ^</span><br><span class="line">compilation terminated.</span><br><span class="line">make[1]: *** [adlist.o] Error 1</span><br><span class="line">make[1]: Leaving directory `/usr/<span class="built_in">local</span>/src/redis-4.0.9/src<span class="string">'</span></span><br><span class="line"><span class="string">make: *** [all] Error 2</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>可以设置使用<code>libc malloc</code>，编译的时候使用<code>make MALLOC=libc</code>即可。<br>具体更多内容可以参见redis解压目录下的<code>redis.MD</code>文件中<code>Allocator</code>部分。</p>
 <h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>redis可以单机多实例，通过修改配置文件，不同实例使用不同的配置文件和端口号即可。<br>下面配置文件统一存放在<code>conf</code>目录中。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/src/   </span><br><span class="line">mv redis-4.0.9 redis    <span class="comment">#目录重命名，取消版本信息</span></span><br><span class="line"><span class="built_in">cd</span> redis</span><br><span class="line">mkdir conf     <span class="comment">#新建配置文件目录，统一存放配置文件</span></span><br><span class="line">cp redis.conf conf/redis_6379.conf    <span class="comment">#配置文件，以端口号命名</span></span><br></pre></td></tr></table></figure></p>
 <p>修改<code>redis_6379.conf</code>文件，默认该配置项为no，修改为yes。<br>该参数表示是否使用守护线程的方式启动。<br>当设置为<code>yes</code>时，表示开启守护进程模式。该模式下，redis在后台运行，并将进程pid写入至配置文件中设置的pidfile中，此时redis将一直运行，除非手动kill该进程。<br>当设置为<code>no</code>时，当前界面将进入redis的命令行界面，ctrl+c强制退出或者关闭连接工具都会导致redis进程退出。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">daemonize yes</span><br></pre></td></tr></table></figure></p>
 <p><strong>启动</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-server /usr/<span class="built_in">local</span>/src/redis/conf/redis_6379.conf</span><br></pre></td></tr></table></figure></p>
 <p><strong>确认是否启动</strong><br>通过进程确认<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@VM_0_4_centos conf]# ps aux|grep redis</span><br><span class="line">root     25841  0.0  0.1 141772  1976 ?        Ssl  23:26   0:00 redis-server 127.0.0.1:6379</span><br><span class="line">root     25856  0.0  0.0 112644   964 pts/1    R+   23:26   0:00 grep --color=auto redis</span><br></pre></td></tr></table></figure></p>
 <p>通过端口号确认<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@VM_0_4_centos conf]# netstat -lntp |grep 6379</span><br><span class="line">tcp        0      0 127.0.0.1:6379          0.0.0.0:*               LISTEN      25841/redis-server</span><br></pre></td></tr></table></figure></p>
-<h3 id="redis数据类型"><a href="#redis数据类型" class="headerlink" title="redis数据类型"></a>redis数据类型</h3><p>redis支持5种数据类型，分别是String(字符串)、List(列表)、Hash(字典)、Set(集合)、Sorted Set(有序集合)。<br>本质上来说，redis存储的是key-value对，其中key是字符串，对应的value类型决定了redis的数据类型。</p>
+<h4 id="错误信息说明"><a href="#错误信息说明" class="headerlink" title="错误信息说明"></a>错误信息说明</h4><ul>
+<li>未安装gcc编译工具<br>redis基于C语言编写，需要使用gcc等编译工具，若未安装，在<code>make</code>编译过程中会报错。使用<code>yum install gcc</code>安装，默认会安装gcc及对应的依赖包即可。</li>
+<li>未安装<code>jemalloc</code><br>默认情况下redis的<code>memory allocator</code>是<code>jemalloc</code>，若未安装会出现下面报错信息<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">zmalloc.h:50:31: fatal error: jemalloc/jemalloc.h: No such file or directory</span><br><span class="line"> <span class="comment">#include &lt;jemalloc/jemalloc.h&gt;</span></span><br><span class="line">                               ^</span><br><span class="line">compilation terminated.</span><br><span class="line">make[1]: *** [adlist.o] Error 1</span><br><span class="line">make[1]: Leaving directory `/usr/<span class="built_in">local</span>/src/redis-4.0.9/src<span class="string">'</span></span><br><span class="line"><span class="string">make: *** [all] Error 2</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>可以设置使用<code>libc malloc</code>，编译的时候使用<code>make MALLOC=libc</code>即可。<br>具体更多内容可以参见redis解压目录下的<code>redis.MD</code>文件中<code>Allocator</code>部分。</p>
 <ul>
+<li>异机连接端口不通<br>在redis配置文件中，默认情况下<code>bing 127.0.0.1</code>，也就是仅允许本机连接。当通过其他机器连接的时候会出现无法连接的情况。<br>修改redis配置文件，将<code>bing 127.0.0.1</code>修改为<code>bind 0.0.0.0</code>，然后重启<code>redis-server</code>服务。<h3 id="redis数据类型"><a href="#redis数据类型" class="headerlink" title="redis数据类型"></a>redis数据类型</h3>redis支持5种数据类型，分别是String(字符串)、List(列表)、Hash(字典)、Set(集合)、Sorted Set(有序集合)。<br>本质上来说，redis存储的是key-value对，其中key是字符串，对应的value类型决定了redis的数据类型。</li>
 <li><p>String(字符串)<br>string是redis最基本的类型，其基本模型也是一个key对应一个value。<br>string类型是二进制安全的。也就是说redis的string可以包含任何数据。比如jpg图片或者序列化的对象 。<br>string类型是Redis最基本的数据类型，一个键最大能存储512MB。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; SET name <span class="string">"xiaohh"</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; GET name</span><br><span class="line"><span class="string">"xiaohh"</span></span><br></pre></td></tr></table></figure>
 </li>
@@ -156,7 +155,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/17/python访问redis/" data-id="cjh9u3ite004cmsq6mveqimzr" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/05/17/python访问redis/" data-id="cjhc5eair0039scq69chnpbwf" class="article-share-link">分享</a>
       
       
       
@@ -210,6 +209,15 @@
     
 <nav id="article-nav">
   
+    <a href="/2018/05/18/python访问redis-二/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          python访问redis(二)
+        
+      </div>
+    </a>
+  
   
     <a href="/2018/05/14/python中使用SQLAlchemy-二/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
@@ -244,7 +252,7 @@
       
         <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#nosql介绍"><span class="toc-number">1.</span> <span class="toc-text">nosql介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#特征"><span class="toc-number">1.1.</span> <span class="toc-text">特征</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#常用的nosql数据库"><span class="toc-number">1.2.</span> <span class="toc-text">常用的nosql数据库</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#redis安装和配置"><span class="toc-number">2.</span> <span class="toc-text">redis安装和配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#安装"><span class="toc-number">2.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置"><span class="toc-number">2.2.</span> <span class="toc-text">配置</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#redis数据类型"><span class="toc-number">3.</span> <span class="toc-text">redis数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#python访问redis"><span class="toc-number">4.</span> <span class="toc-text">python访问redis</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#nosql介绍"><span class="toc-number">1.</span> <span class="toc-text">nosql介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#特征"><span class="toc-number">1.1.</span> <span class="toc-text">特征</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#常用的nosql数据库"><span class="toc-number">1.2.</span> <span class="toc-text">常用的nosql数据库</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#redis安装和配置"><span class="toc-number">2.</span> <span class="toc-text">redis安装和配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#安装"><span class="toc-number">2.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置"><span class="toc-number">2.2.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#错误信息说明"><span class="toc-number">2.3.</span> <span class="toc-text">错误信息说明</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#redis数据类型"><span class="toc-number">3.</span> <span class="toc-text">redis数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#python访问redis"><span class="toc-number">4.</span> <span class="toc-text">python访问redis</span></a></li></ol>
           </div>
       </div>
     </div>

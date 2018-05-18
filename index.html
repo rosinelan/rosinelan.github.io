@@ -72,6 +72,162 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-python访问memcached" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/18/python访问memcached/" class="article-date">
+  <time datetime="2018-05-18T06:15:25.000Z" itemprop="datePublished">2018-05-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/program/">编程</a>►<a class="article-category-link" href="/categories/program/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/18/python访问memcached/">python访问memcached</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/05/18/python访问memcached/" data-id="cjhc5eaic002uscq6tpv4vusi" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/memcached/">memcached</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
+    <article id="post-python访问redis-二" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/18/python访问redis-二/" class="article-date">
+  <time datetime="2018-05-18T06:15:06.000Z" itemprop="datePublished">2018-05-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/program/">编程</a>►<a class="article-category-link" href="/categories/program/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/18/python访问redis-二/">python访问redis(二)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <p>关于常用nosql数据库介绍及redis安装配置的介绍，点击<a href="https://rosinelan.coding.me/2018/05/17/python%E8%AE%BF%E9%97%AEredis/" target="_blank" rel="noopener">python访问redis</a>查看。<br>前面介绍了<code>redis</code>常用的数据类型，包括<code>String</code>、<code>List</code>、<code>Hash</code>、<code>Set</code>和<code>Sorted Set</code>。下面针对不同数据类型的操作进行介绍。</p>
+<h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><ul>
+<li>set(name, value)<br>设置值，默认不存在则创建，存在则修改</li>
+<li><p>get(name)<br>获取值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> redis</span><br><span class="line"></span><br><span class="line">pool = redis.ConnectionPool(host=<span class="string">"118.24.18.158"</span>, port=<span class="number">6379</span>)</span><br><span class="line">r = redis.Redis(connection_pool=pool)</span><br><span class="line">r.set(<span class="string">"db"</span>, <span class="string">"oracle"</span>)</span><br><span class="line">print(r.get(<span class="string">"db"</span>))    <span class="comment">#输出结果：b'oracle'</span></span><br><span class="line">print(r.get(<span class="string">"db"</span>).decode())    <span class="comment">#输出结果：oracle</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>mset(<em>args, *</em>kwargs)<br>批量设置值，传入参数为类型为<code>dict</code></p>
+</li>
+<li>mget(keys, *args)<br>批量获取key的值，传入参数类型为<code>tuple</code><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">r.mset(db1=<span class="string">"oracle"</span>, db2=<span class="string">"mysql"</span>, db3=<span class="string">"redis"</span>)</span><br><span class="line">print(r.mget(<span class="string">"db1"</span>, <span class="string">"db2"</span>, <span class="string">"db3"</span>))    <span class="comment">#输出结果：[b'oracle', b'mysql', b'redis']</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>或者使用下面传递参数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">r.mset(&#123;<span class="string">"db1"</span>: <span class="string">"oracle"</span>, <span class="string">"db2"</span>: <span class="string">"mysql"</span>, <span class="string">"db3"</span>: <span class="string">"redis"</span>&#125;)</span><br><span class="line">print(r.mget([<span class="string">"db1"</span>, <span class="string">"db2"</span>, <span class="string">"db3"</span>]))    <span class="comment">#输出结果：[b'oracle', b'mysql', b'redis']</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>append(key, value)<br>在key对应的value后面追加内容<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">r.set(<span class="string">"db"</span>, <span class="string">"oracle"</span>)</span><br><span class="line">print(r.get(<span class="string">"db"</span>))     <span class="comment">#输出结果：b'oracle'</span></span><br><span class="line">r.append(<span class="string">"db"</span>, <span class="string">" and "</span>)</span><br><span class="line">r.append(<span class="string">"db"</span>, <span class="string">"mysql"</span>)</span><br><span class="line">print(r.get(<span class="string">"db"</span>))     <span class="comment">#输出结果：b'oracle and mysql'</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><p>在redis中，list类型的存储按照一个name对应一个list来存储。  </p>
+<ul>
+<li>lpush(name, *values)<br>左边添加<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">r.lpush(<span class="string">"db"</span>, <span class="string">"oracle"</span>)</span><br><span class="line">r.lpush(<span class="string">"db"</span>, <span class="string">"mysql"</span>)</span><br><span class="line">r.lpush(<span class="string">"db"</span>, <span class="string">"redis"</span>)</span><br><span class="line">print(r.lrange(<span class="string">"db"</span>, <span class="number">0</span>, <span class="number">-1</span>))    <span class="comment">#输出结果：[b'redis', b'mysql', b'oracle']</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>或者可以如下<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">r.lpush(<span class="string">"db"</span>, <span class="string">"oracle"</span>, <span class="string">"mysql"</span>, <span class="string">"redis"</span>)</span><br><span class="line">print(r.lrange(<span class="string">"db"</span>, <span class="number">0</span>, <span class="number">-1</span>))    <span class="comment">#输出结果：[b'redis', b'mysql', b'oracle']</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>rpush(name, *values)<br>右边添加</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">r.rpush(<span class="string">"db"</span>, <span class="string">"oracle"</span>)</span><br><span class="line">r.rpush(<span class="string">"db"</span>, <span class="string">"mysql"</span>)</span><br><span class="line">r.rpush(<span class="string">"db"</span>, <span class="string">"redis"</span>)</span><br><span class="line">print(r.lrange(<span class="string">"db"</span>, <span class="number">0</span>, <span class="number">-1</span>))    <span class="comment">#输出结果：[b'oracle', b'mysql', b'redis']</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>linsert(name, where, refvalue, value)<br>根据where参数，在列表name的值refvalue前面或者后面插入值value，成功则返回值为新的列表的长度，否则返回-1。<br>where取值为before或者after。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">r.lpush(<span class="string">"db"</span>, <span class="string">"oracle"</span>)</span><br><span class="line">print(r.lrange(<span class="string">"db"</span>, <span class="number">0</span>, <span class="number">-1</span>))    <span class="comment">#输出结果：[b'oracle']</span></span><br><span class="line">r.linsert(<span class="string">"db"</span>, <span class="string">"after"</span>, <span class="string">"oracle"</span>, <span class="string">"mysql"</span>)</span><br><span class="line">print(r.lrange(<span class="string">"db"</span>, <span class="number">0</span>, <span class="number">-1</span>))    <span class="comment">#输出结果：[b'oracle', b'mysql']</span></span><br><span class="line">r.linsert(<span class="string">"db"</span>, <span class="string">"before"</span>, <span class="string">"mysql"</span>, <span class="string">"redis"</span>)</span><br><span class="line">print(r.lrange(<span class="string">"db"</span>, <span class="number">0</span>, <span class="number">-1</span>))    <span class="comment">#输出结果：[b'oracle', b'redis', b'mysql']</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>lpop(name)<br>删除列表name中的第一个元素，返回值为删除的元素</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">r.lpush(<span class="string">"db"</span>, <span class="string">"oracle"</span>, <span class="string">"mysql"</span>, <span class="string">"redis"</span>)</span><br><span class="line">print(r.lrange(<span class="string">"db"</span>, <span class="number">0</span>, <span class="number">-1</span>))    <span class="comment">#输出结果：[b'redis', b'mysql', b'oracle']</span></span><br><span class="line">print(r.lpop(<span class="string">"db"</span>))    <span class="comment">#输出结果：b'redis'</span></span><br><span class="line">print(r.lrange(<span class="string">"db"</span>, <span class="number">0</span>, <span class="number">-1</span>))    <span class="comment">#输出结果：[b'mysql', b'oracle']</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>lrange(name, start, end)<br>通过分片返回list位于start和end范围的值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">r.lpush(<span class="string">"db"</span>, <span class="string">"oracle"</span>)</span><br><span class="line">r.lpush(<span class="string">"db"</span>, <span class="string">"mysql"</span>)</span><br><span class="line">r.lpush(<span class="string">"db"</span>, <span class="string">"redis"</span>)</span><br><span class="line">print(r.lrange(<span class="string">"db"</span>, <span class="number">0</span>, <span class="number">2</span>))    <span class="comment">#输出结果：[b'redis', b'mysql', b'oracle']</span></span><br><span class="line">print(r.lrange(<span class="string">"db"</span>,<span class="number">0</span>, <span class="number">1</span>))    <span class="comment">#输出结果：[b'redis', b'mysql']</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>lset(name, index, value)<br>修改list中指定位置的值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">r.lpush(<span class="string">"db"</span>, <span class="string">"oracle"</span>, <span class="string">"mysql"</span>, <span class="string">"redis"</span>)</span><br><span class="line">print(r.lrange(<span class="string">"db"</span>, <span class="number">0</span>, <span class="number">-1</span>))    <span class="comment">#输出结果：[b'redis', b'mysql', b'oracle']</span></span><br><span class="line">r.lset(<span class="string">"db"</span>, <span class="number">1</span>, <span class="string">"nosql"</span>)</span><br><span class="line">print(r.lrange(<span class="string">"db"</span>, <span class="number">0</span>, <span class="number">-1</span>))    <span class="comment">#输出结果：[b'redis', b'nosql', b'oracle']</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>lrem(name, value, num)<br>删除列表name中最先出现的num个值为value的元素。<br><code>num</code>默认值为0，表示删除全部值为value的元素；<br><code>num&gt;0</code>表示删除值为value的元素时从头到尾匹配；<br><code>num&gt;0</code>表示删除值为value的元素时从尾到头匹配。  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">r.lpush(<span class="string">"db"</span>, <span class="string">"oracle"</span>, <span class="string">"mysql"</span>, <span class="string">"redis"</span>, <span class="string">"redis"</span>)</span><br><span class="line">print(r.lrange(<span class="string">"db"</span>, <span class="number">0</span>, <span class="number">-1</span>))    <span class="comment">#输出结果：[b'redis', b'redis', b'mysql', b'oracle']</span></span><br><span class="line">r.lrem(<span class="string">"db"</span>, <span class="string">"redis"</span>)</span><br><span class="line">print(r.lrange(<span class="string">"db"</span>, <span class="number">0</span>, <span class="number">-1</span>))    <span class="comment">#输出结果：[b'mysql', b'oracle']</span></span><br><span class="line">r.lpush(<span class="string">"db1"</span>, <span class="string">"oracle"</span>, <span class="string">"redis"</span>, <span class="string">"mysql"</span>, <span class="string">"redis"</span>, <span class="string">"redis"</span>)</span><br><span class="line">print(r.lrange(<span class="string">"db1"</span>, <span class="number">0</span>, <span class="number">-1</span>))    <span class="comment">#输出结果：[b'redis', b'redis', b'mysql', b'redis', b'oracle']</span></span><br><span class="line">r.lrem(<span class="string">"db1"</span>, <span class="string">"redis"</span>, <span class="number">1</span>)</span><br><span class="line">print(r.lrange(<span class="string">"db1"</span>, <span class="number">0</span>, <span class="number">-1</span>))    <span class="comment">#输出结果：[b'redis', b'mysql', b'redis', b'oracle']</span></span><br><span class="line">r.lpush(<span class="string">"db2"</span>, <span class="string">"oracle"</span>, <span class="string">"redis"</span>, <span class="string">"mysql"</span>, <span class="string">"redis"</span>, <span class="string">"redis"</span>)</span><br><span class="line">print(r.lrange(<span class="string">"db2"</span>, <span class="number">0</span>, <span class="number">-1</span>))    <span class="comment">#输出结果：[b'redis', b'redis', b'mysql', b'redis', b'oracle']</span></span><br><span class="line">r.lrem(<span class="string">"db2"</span>, <span class="string">"redis"</span>, <span class="number">-2</span>)</span><br><span class="line">print(r.lrange(<span class="string">"db2"</span>, <span class="number">0</span>, <span class="number">-1</span>))    <span class="comment">#输出结果：[b'redis', b'mysql', b'oracle']</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h3><p>Set集合就是不允许重复元素的列表。  </p>
+<ul>
+<li>sadd(name, *values)<br>集合name中添加值。</li>
+<li>scard(name)<br>返回集合name中元素的数量。  </li>
+<li><p>smembers(name)<br>返回集合的所有成员。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">r.sadd(<span class="string">"dbset"</span>, <span class="string">"oracle"</span>, <span class="string">"mysql"</span>, <span class="string">"redis"</span>)</span><br><span class="line">print(r.scard(<span class="string">"dbset"</span>))    <span class="comment">#输出结果：3</span></span><br><span class="line">print(r.smembers(<span class="string">"dbset"</span>))    <span class="comment">#输出结果：&#123;b'mysql', b'redis', b'oracle'&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>spop(name)<br>随机删除并返回集合name中的一个元素。  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">r.sadd(<span class="string">"dbset"</span>, <span class="string">"oracle"</span>, <span class="string">"mysql"</span>, <span class="string">"redis"</span>)</span><br><span class="line">print(r.smembers(<span class="string">"dbset"</span>))    <span class="comment">#输出结果：&#123;b'redis', b'oracle', b'mysql'&#125;</span></span><br><span class="line">print(r.spop(<span class="string">"dbset"</span>))    <span class="comment">#输出结果：b'mysql'</span></span><br><span class="line">print(r.smembers(<span class="string">"dbset"</span>))    <span class="comment">#输出结果：&#123;b'oracle', b'redis'&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>srem(name, *values)<br>从集合name中删除指定的值。  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">r.sadd(<span class="string">"dbset"</span>, <span class="string">"oracle"</span>, <span class="string">"mysql"</span>, <span class="string">"redis"</span>)</span><br><span class="line">print(r.smembers(<span class="string">"dbset"</span>))     <span class="comment">#输出结果：&#123;b'oracle', b'redis', b'mysql'&#125;</span></span><br><span class="line">r.srem(<span class="string">"dbset"</span>, <span class="string">"mysql"</span>, <span class="string">"redis"</span>)</span><br><span class="line">print(r.smembers(<span class="string">"dbset"</span>))     <span class="comment">#输出结果：&#123;b'oracle'&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>sunion(keys, *args)</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>sinter()</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="Hash"><a href="#Hash" class="headerlink" title="Hash"></a>Hash</h3><h3 id="其它常用操作"><a href="#其它常用操作" class="headerlink" title="其它常用操作"></a>其它常用操作</h3><p>下面的操作适用于上述所有类型</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/05/18/python访问redis-二/" data-id="cjhc5eaif002yscq6ija5v698" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/get/">get</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/set/">set</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
     <article id="post-python访问redis" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/05/17/python访问redis/" class="article-date">
@@ -98,65 +254,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- Table of Contents -->
-        
         <p>首先看个案例<br>无论是电商网站还是支付系统，都离不开数据的存储和增删改查，在这种情况下，每一次登录、访问等都会访问，这样会给数据库造成很大的压力，当数据库无法支撑过高的访问量，轻则影响用户体验，重则导致数据库宕机，网站无法访问。<br>如何解决数据库压力过大的问题呢？  </p>
 <ol>
-<li>优化应用程序，减少数据库的连接数，尽量使用数据库连接池。</li>
-<li>使用消息队列，常见的有RabbitMQ,ActiveMQ，Kafka,RocketMQ等。</li>
-<li>通过使用redis等缓存数据，分担数据库读压力，同时直接从内存读数据速度更快。</li>
-</ol>
-<p>下面主要针对redis等nosql数据库进行介绍。  </p>
-<h3 id="nosql介绍"><a href="#nosql介绍" class="headerlink" title="nosql介绍"></a>nosql介绍</h3><h4 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h4><p>对于NoSQL并没有一个明确的范围和定义，但是他们都普遍存在下面一些共同特征：</p>
-<ol>
-<li>不需要预定义模式：不需要事先定义数据模式，预定义表结构。数据中的每条记录都可能有不同的属性和格式。当插入数据时，并不需要预先定义它们的模式。</li>
-<li>无共享架构：相对于将所有数据存储的存储区域网络中的全共享架构。NoSQL往往将数据划分后存储在各个本地服务器上。因为从本地磁盘读取数据的性能往往好于通过网络传输读取数据的性能，从而提高了系统的性能。</li>
-<li>弹性可扩展：可以在系统运行的时候，动态增加或者删除结点。不需要停机维护，数据可以自动迁移。</li>
-<li>分区：相对于将数据存放于同一个节点，NoSQL数据库需要将数据进行分区，将记录分散在多个节点上面。并且通常分区的同时还要做复制。这样既提高了并行性能，又能保证没有单点失效的问题。</li>
-<li>异步复制：和RAID存储系统不同的是，NoSQL中的复制，往往是基于日志的异步复制。这样，数据就可以尽快地写入一个节点，而不会被网络传输引起迟延。缺点是并不总是能保证一致性，这样的方式在出现故障的时候，可能会丢失少量的数据。</li>
-<li>BASE：相对于事务严格的ACID特性，NoSQL数据库保证的是BASE特性。BASE是最终一致性和软事务。<br>NoSQL数据库并没有一个统一的架构，两种NoSQL数据库之间的不同，甚至远远超过两种关系型数据库的不同。可以说，NoSQL各有所长，成功的NoSQL必然特别适用于某些场合或者某些应用，在这些场合中会远远胜过关系型数据库和其他的NoSQL<h4 id="常用的nosql数据库"><a href="#常用的nosql数据库" class="headerlink" title="常用的nosql数据库"></a>常用的nosql数据库</h4>临时性键值存储|永久性键值存储|面向文档的数据库|面向列的数据库<br>-|:-:|:-:|:-:|<br>Memcached|Tokyo Tyrant|MangoDB|Cassandra<br>Redis|Flare|CouchDB|HBase<br>&nbsp;|ROMA||HyperTable<br>&nbsp;|Redis||<h3 id="redis安装和配置"><a href="#redis安装和配置" class="headerlink" title="redis安装和配置"></a>redis安装和配置</h3><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4>redis主要用于linux下，下面centos7下面安装最新版本redis-4.0.9。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget http://download.redis.io/releases/redis-4.0.9.tar.gz</span><br><span class="line">tar xzf redis-4.0.9.tar.gz</span><br><span class="line"><span class="built_in">cd</span> redis-4.0.9/</span><br><span class="line">make</span><br><span class="line"><span class="built_in">cd</span> src &amp;&amp; make all</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>安装过程中报错说明</p>
-<ul>
-<li>未安装gcc编译工具<br>redis基于C语言编写，需要使用gcc等编译工具，若未安装，在<code>make</code>编译过程中会报错。使用<code>yum install gcc</code>安装，默认会安装gcc及对应的依赖包即可。</li>
-<li>未安装<code>jemalloc</code><br>默认情况下redis的<code>memory allocator</code>是<code>jemalloc</code>，若未安装会出现下面报错信息<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">zmalloc.h:50:31: fatal error: jemalloc/jemalloc.h: No such file or directory</span><br><span class="line"> <span class="comment">#include &lt;jemalloc/jemalloc.h&gt;</span></span><br><span class="line">                               ^</span><br><span class="line">compilation terminated.</span><br><span class="line">make[1]: *** [adlist.o] Error 1</span><br><span class="line">make[1]: Leaving directory `/usr/<span class="built_in">local</span>/src/redis-4.0.9/src<span class="string">'</span></span><br><span class="line"><span class="string">make: *** [all] Error 2</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>可以设置使用<code>libc malloc</code>，编译的时候使用<code>make MALLOC=libc</code>即可。<br>具体更多内容可以参见redis解压目录下的<code>redis.MD</code>文件中<code>Allocator</code>部分。</p>
-<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>redis可以单机多实例，通过修改配置文件，不同实例使用不同的配置文件和端口号即可。<br>下面配置文件统一存放在<code>conf</code>目录中。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/src/   </span><br><span class="line">mv redis-4.0.9 redis    <span class="comment">#目录重命名，取消版本信息</span></span><br><span class="line"><span class="built_in">cd</span> redis</span><br><span class="line">mkdir conf     <span class="comment">#新建配置文件目录，统一存放配置文件</span></span><br><span class="line">cp redis.conf conf/redis_6379.conf    <span class="comment">#配置文件，以端口号命名</span></span><br></pre></td></tr></table></figure></p>
-<p>修改<code>redis_6379.conf</code>文件，默认该配置项为no，修改为yes。<br>该参数表示是否使用守护线程的方式启动。<br>当设置为<code>yes</code>时，表示开启守护进程模式。该模式下，redis在后台运行，并将进程pid写入至配置文件中设置的pidfile中，此时redis将一直运行，除非手动kill该进程。<br>当设置为<code>no</code>时，当前界面将进入redis的命令行界面，ctrl+c强制退出或者关闭连接工具都会导致redis进程退出。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">daemonize yes</span><br></pre></td></tr></table></figure></p>
-<p><strong>启动</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-server /usr/<span class="built_in">local</span>/src/redis/conf/redis_6379.conf</span><br></pre></td></tr></table></figure></p>
-<p><strong>确认是否启动</strong><br>通过进程确认<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@VM_0_4_centos conf]# ps aux|grep redis</span><br><span class="line">root     25841  0.0  0.1 141772  1976 ?        Ssl  23:26   0:00 redis-server 127.0.0.1:6379</span><br><span class="line">root     25856  0.0  0.0 112644   964 pts/1    R+   23:26   0:00 grep --color=auto redis</span><br></pre></td></tr></table></figure></p>
-<p>通过端口号确认<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@VM_0_4_centos conf]# netstat -lntp |grep 6379</span><br><span class="line">tcp        0      0 127.0.0.1:6379          0.0.0.0:*               LISTEN      25841/redis-server</span><br></pre></td></tr></table></figure></p>
-<h3 id="redis数据类型"><a href="#redis数据类型" class="headerlink" title="redis数据类型"></a>redis数据类型</h3><p>redis支持5种数据类型，分别是String(字符串)、List(列表)、Hash(字典)、Set(集合)、Sorted Set(有序集合)。<br>本质上来说，redis存储的是key-value对，其中key是字符串，对应的value类型决定了redis的数据类型。</p>
-<ul>
-<li><p>String(字符串)<br>string是redis最基本的类型，其基本模型也是一个key对应一个value。<br>string类型是二进制安全的。也就是说redis的string可以包含任何数据。比如jpg图片或者序列化的对象 。<br>string类型是Redis最基本的数据类型，一个键最大能存储512MB。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; SET name <span class="string">"xiaohh"</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; GET name</span><br><span class="line"><span class="string">"xiaohh"</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>List(列表)<br>Redis 列表是简单的字符串列表，按照插入顺序排序。你可以添加一个元素到列表的头部（左边）或者尾部（右边）。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; lpush xiaohh redis</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; lpush xiaohh mongodb</span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br><span class="line">127.0.0.1:6379&gt; lpush xiaohh rabitmq</span><br><span class="line">(<span class="built_in">integer</span>) 3</span><br><span class="line">127.0.0.1:6379&gt; lrange xiaohh 0 2</span><br><span class="line">1) <span class="string">"rabitmq"</span></span><br><span class="line">2) <span class="string">"mongodb"</span></span><br><span class="line">3) <span class="string">"redis"</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Hash(字典)<br>Redis hash 是一个键值(key=&gt;value)对集合。<br>Redis hash是一个string类型的field和value的映射表，hash特别适合用于存储对象。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; HMSET myhash fileld1 <span class="string">"Hello"</span> fileld2 <span class="string">"World"</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; HGET myhash fileld1</span><br><span class="line"><span class="string">"Hello"</span></span><br><span class="line">127.0.0.1:6379&gt; HGET myhash fileld2</span><br><span class="line"><span class="string">"World"</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Set(集合)<br>Redis的Set是string类型的无序集合。<br>集合是通过哈希表实现的，所以添加，删除，查找的复杂度都是O(1)。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">27.0.0.1:6379&gt; sadd <span class="built_in">type</span> redis</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; sadd <span class="built_in">type</span> mongodb</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; sadd <span class="built_in">type</span> rabbitmq</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; sadd <span class="built_in">type</span> rabbitmq</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line">127.0.0.1:6379&gt; smembers <span class="built_in">type</span></span><br><span class="line">1) <span class="string">"rabbitmq"</span></span><br><span class="line">2) <span class="string">"mongodb"</span></span><br><span class="line">3) <span class="string">"redis"</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>由于Set中元素具有唯一性的，所以重复添加的<code>rabbitmq</code>只有一个，第二次添加将被忽略。</p>
-<ul>
-<li>Sorted Set(有序集合)<br>Redis zset 和 set 一样也是string类型元素的集合,且不允许重复的成员。<br>不同的是每个元素都会关联一个double类型的分数。redis正是通过分数来为集合中的成员进行从小到大的排序。<br>zset的成员是唯一的,但分数(score)却可以重复。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; zadd  type1 0 redis</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; zadd type1 3 mongodb</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; zadd type1 2 rabbitmq</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; zadd type1 2 rabbitmq</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line">127.0.0.1:6379&gt; ZRANGEBYSCORE type1 0 10</span><br><span class="line">1) <span class="string">"redis"</span></span><br><span class="line">2) <span class="string">"rabbitmq"</span></span><br><span class="line">3) <span class="string">"mongodb"</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="python访问redis"><a href="#python访问redis" class="headerlink" title="python访问redis"></a>python访问redis</h3><p>python访问redis需要安装对应的<code>redis</code>包。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install redis</span><br></pre></td></tr></table></figure></p>
-<p>redis连接池<br>redis-py使用connection pool来管理对一个redis server的所有连接，避免每次建立、释放连接的开销。<br>默认，每个Redis实例都会维护一个自己的连接。可以直接建立一个连接池，然后作为Redis参数，这样就可以实现多个Redis实例共享一个连接池。<br>连接redis服务器<br>连接redis服务器需要提供redis服务器的地址和端口号，默认端口号为6379。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> redis</span><br><span class="line"></span><br><span class="line">pool = redis.ConnectionPool(host=<span class="string">"118.24.18.158"</span>, port=<span class="string">"6379"</span>)</span><br><span class="line">r = redis.Redis(connection_pool=pool)</span><br><span class="line">r.set(<span class="string">"name"</span>, <span class="string">"xiaohh"</span>)</span><br><span class="line">print(r.get(<span class="string">"name"</span>))    <span class="comment">#输出结果："xiaohh"</span></span><br></pre></td></tr></table></figure></p>
-<p>通过python对redis数据库进行操作，首先建立redis的连接，然后对不同的数据类型采用不同的方法进行操作。<br>具体操作方法下次介绍。<br>更多redis相关内容可以点击查看<a href="https://redis.io/documentation" target="_blank" rel="noopener">官方文档</a>。</p>
-
+<li>优化应用程序，减少数据库的连接数，尽量使用数据库连接池。
+        
+          <p class="article-more-link">
+            <a href="/2018/05/17/python访问redis/#more">继续阅读全文 »</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/17/python访问redis/" data-id="cjh9u3ite004cmsq6mveqimzr" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/05/17/python访问redis/" data-id="cjhc5eair0039scq69chnpbwf" class="article-share-link">分享</a>
       
       
       
@@ -205,7 +314,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/14/python中使用SQLAlchemy-二/" data-id="cjh9u3ip1000dmsq60ed6325l" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/05/14/python中使用SQLAlchemy-二/" data-id="cjhc5eagz0013scq6bpw9u6l5" class="article-share-link">分享</a>
       
       
       
@@ -255,7 +364,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/11/python中使用SQLAlchemy/" data-id="cjh9u3ioz000amsq6p9baltzc" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/05/11/python中使用SQLAlchemy/" data-id="cjhc5eagx0011scq6ybngdk3z" class="article-share-link">分享</a>
       
       
       
@@ -305,7 +414,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/09/python访问mysql-二/" data-id="cjh9u3itj004hmsq6ifkrfp1n" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/05/09/python访问mysql-二/" data-id="cjhc5eaik0035scq6v4xrhjbo" class="article-share-link">分享</a>
       
       
       
@@ -354,7 +463,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/06/python访问mysql/" data-id="cjh9u3itx004umsq6xmvs70p5" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/05/06/python访问mysql/" data-id="cjhc5eaj7003rscq6w7wknghc" class="article-share-link">分享</a>
       
       
       
@@ -406,7 +515,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/04/python正则表达式练习题/" data-id="cjh9u3it50045msq6klulsui7" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/05/04/python正则表达式练习题/" data-id="cjhc5eai9002rscq6f2eomtle" class="article-share-link">分享</a>
       
       
       
@@ -456,7 +565,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/29/python内置模块-四/" data-id="cjh9u3iu10051msq6innmkcjo" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/04/29/python内置模块-四/" data-id="cjhc5eah6001fscq61h5914ov" class="article-share-link">分享</a>
       
       
       
@@ -506,7 +615,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/27/python内置模块-三/" data-id="cjh9u3irp0032msq6hgnrhiwq" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/04/27/python内置模块-三/" data-id="cjhc5eahd001pscq6xemontt0" class="article-share-link">分享</a>
       
       
       
@@ -520,111 +629,10 @@
 
 
   
-    <article id="post-python内置模块-二" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/25/python内置模块-二/" class="article-date">
-  <time datetime="2018-04-25T00:03:32.000Z" itemprop="datePublished">2018-04-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/program/">编程</a>►<a class="article-category-link" href="/categories/program/python/">python</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/25/python内置模块-二/">python内置模块(二)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>关于<code>datetime/time/commands</code>模块的内容可以点击<a href="https://rosinelan.coding.me/2018/04/23/python%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97/" target="_blank" rel="noopener">python内置模块</a>查看。  </p>
-<h3 id="subprocess"><a href="#subprocess" class="headerlink" title="subprocess"></a>subprocess</h3><p><code>subprocess</code>模块用来生成子进程，并可以通过管道连接它们的输入/输出/错误，以及获得它们的返回值。  </p>
-<h4 id="getoutput-cmd"><a href="#getoutput-cmd" class="headerlink" title="getoutput(cmd)"></a>getoutput(cmd)</h4><p>该命令类似<code>commands</code>模块中的<code>getoutput()</code>，执行<code>cmd</code>命令返回执行结果。<br>
-        
-          <p class="article-more-link">
-            <a href="/2018/04/25/python内置模块-二/#more">继续阅读全文 »</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/25/python内置模块-二/" data-id="cjh9u3irm0031msq6c14zjsvr" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Popen/">Popen</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/log/">log</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/os/">os</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/subprocess/">subprocess</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sys/">sys</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
-    <article id="post-python内置模块" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/23/python内置模块/" class="article-date">
-  <time datetime="2018-04-23T07:05:50.000Z" itemprop="datePublished">2018-04-23</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/program/">编程</a>►<a class="article-category-link" href="/categories/program/python/">python</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/23/python内置模块/">python内置模块</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="内置模块"><a href="#内置模块" class="headerlink" title="内置模块"></a>内置模块</h3><p>在python中内置了很多模块，无须额外配置就可使用。<br>模块和目录的区别:是否有<code>__init__.py</code>文件，若无则是目录，有则是模块。  </p>
-<h4 id="datetime"><a href="#datetime" class="headerlink" title="datetime"></a>datetime</h4><p>datetime是进行日期和时间处理的标准库。<br>
-        
-          <p class="article-more-link">
-            <a href="/2018/04/23/python内置模块/#more">继续阅读全文 »</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/23/python内置模块/" data-id="cjh9u3iu30053msq6aryj66fo" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/commands/">commands</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/datetime/">datetime</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/timedelta/">timedelta</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/times/">times</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
 
 
   <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">下一页&raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">下一页&raquo;</a>
   </nav>
 </section>
            
@@ -636,7 +644,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title categories">分类</h3>
     <div class="widget" id="categories">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/system/">系统管理</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/system/LINUX/">LINUX</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/system/WINDOWS/">WINDOWS</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/program/">编程</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/program/python/">python</a><span class="category-list-count">25</span></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/system/">系统管理</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/system/LINUX/">LINUX</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/system/WINDOWS/">WINDOWS</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/program/">编程</a><span class="category-list-count">27</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/program/python/">python</a><span class="category-list-count">27</span></li></ul></li></ul>
     </div>
   </div>
 
@@ -646,7 +654,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title tagcloud">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/BONDING/" style="font-size: 14px;">BONDING</a> <a href="/tags/BytesIO/" style="font-size: 14px;">BytesIO</a> <a href="/tags/CENTOS7/" style="font-size: 14px;">CENTOS7</a> <a href="/tags/EMC/" style="font-size: 14px;">EMC</a> <a href="/tags/FORFILES/" style="font-size: 14px;">FORFILES</a> <a href="/tags/HBA/" style="font-size: 14px;">HBA</a> <a href="/tags/HP-UNIX/" style="font-size: 14px;">HP-UNIX</a> <a href="/tags/JUNCTION/" style="font-size: 14px;">JUNCTION</a> <a href="/tags/Json/" style="font-size: 14px;">Json</a> <a href="/tags/LINUX/" style="font-size: 22.25px;">LINUX</a> <a href="/tags/MAC/" style="font-size: 14px;">MAC</a> <a href="/tags/MKLINK/" style="font-size: 14px;">MKLINK</a> <a href="/tags/OOP/" style="font-size: 14px;">OOP</a> <a href="/tags/OPENSSH/" style="font-size: 14px;">OPENSSH</a> <a href="/tags/OPENSSL/" style="font-size: 14px;">OPENSSL</a> <a href="/tags/ORM/" style="font-size: 14px;">ORM</a> <a href="/tags/POWERPATH/" style="font-size: 14px;">POWERPATH</a> <a href="/tags/Popen/" style="font-size: 14px;">Popen</a> <a href="/tags/SQLAIchemy/" style="font-size: 14px;">SQLAIchemy</a> <a href="/tags/SSH/" style="font-size: 14px;">SSH</a> <a href="/tags/StringIO/" style="font-size: 14px;">StringIO</a> <a href="/tags/UBUNTU/" style="font-size: 16.75px;">UBUNTU</a> <a href="/tags/WINDOWS/" style="font-size: 19.5px;">WINDOWS</a> <a href="/tags/WINODWS/" style="font-size: 14px;">WINODWS</a> <a href="/tags/WWW/" style="font-size: 14px;">WWW</a> <a href="/tags/XSHELL/" style="font-size: 14px;">XSHELL</a> <a href="/tags/XTERM/" style="font-size: 14px;">XTERM</a> <a href="/tags/ZLIB/" style="font-size: 14px;">ZLIB</a> <a href="/tags/args/" style="font-size: 14px;">args</a> <a href="/tags/bonding/" style="font-size: 14px;">bonding</a> <a href="/tags/close/" style="font-size: 14px;">close</a> <a href="/tags/commands/" style="font-size: 14px;">commands</a> <a href="/tags/count/" style="font-size: 14px;">count</a> <a href="/tags/cursor/" style="font-size: 14px;">cursor</a> <a href="/tags/datetime/" style="font-size: 14px;">datetime</a> <a href="/tags/decode/" style="font-size: 14px;">decode</a> <a href="/tags/decorator/" style="font-size: 14px;">decorator</a> <a href="/tags/delete/" style="font-size: 16.75px;">delete</a> <a href="/tags/drop/" style="font-size: 14px;">drop</a> <a href="/tags/encode/" style="font-size: 14px;">encode</a> <a href="/tags/except/" style="font-size: 14px;">except</a> <a href="/tags/finally/" style="font-size: 14px;">finally</a> <a href="/tags/for/" style="font-size: 14px;">for</a> <a href="/tags/groupby/" style="font-size: 14px;">groupby</a> <a href="/tags/hashlib/" style="font-size: 14px;">hashlib</a> <a href="/tags/if/" style="font-size: 14px;">if</a> <a href="/tags/insert/" style="font-size: 14px;">insert</a> <a href="/tags/kw/" style="font-size: 14px;">kw</a> <a href="/tags/libXaw/" style="font-size: 14px;">libXaw</a> <a href="/tags/libXpm/" style="font-size: 14px;">libXpm</a> <a href="/tags/log/" style="font-size: 14px;">log</a> <a href="/tags/machinekey/" style="font-size: 14px;">machinekey</a> <a href="/tags/mysql/" style="font-size: 14px;">mysql</a> <a href="/tags/nosql/" style="font-size: 14px;">nosql</a> <a href="/tags/open/" style="font-size: 14px;">open</a> <a href="/tags/orderby/" style="font-size: 14px;">orderby</a> <a href="/tags/os/" style="font-size: 14px;">os</a> <a href="/tags/pycharm/" style="font-size: 14px;">pycharm</a> <a href="/tags/pymysql/" style="font-size: 14px;">pymysql</a> <a href="/tags/python/" style="font-size: 25px;">python</a> <a href="/tags/raise/" style="font-size: 14px;">raise</a> <a href="/tags/re/" style="font-size: 16.75px;">re</a> <a href="/tags/read/" style="font-size: 14px;">read</a> <a href="/tags/redis/" style="font-size: 14px;">redis</a> <a href="/tags/return/" style="font-size: 14px;">return</a> <a href="/tags/select/" style="font-size: 14px;">select</a> <a href="/tags/ssh-copy-id/" style="font-size: 14px;">ssh-copy-id</a> <a href="/tags/ssh-keygen/" style="font-size: 14px;">ssh-keygen</a> <a href="/tags/subprocess/" style="font-size: 14px;">subprocess</a> <a href="/tags/sys/" style="font-size: 14px;">sys</a> <a href="/tags/timedelta/" style="font-size: 14px;">timedelta</a> <a href="/tags/times/" style="font-size: 14px;">times</a> <a href="/tags/try/" style="font-size: 14px;">try</a> <a href="/tags/update/" style="font-size: 16.75px;">update</a> <a href="/tags/while/" style="font-size: 14px;">while</a> <a href="/tags/windows/" style="font-size: 14px;">windows</a> <a href="/tags/乘法/" style="font-size: 14px;">乘法</a> <a href="/tags/九宫格/" style="font-size: 14px;">九宫格</a> <a href="/tags/事务/" style="font-size: 14px;">事务</a> <a href="/tags/元组/" style="font-size: 14px;">元组</a> <a href="/tags/函数/" style="font-size: 14px;">函数</a> <a href="/tags/分组/" style="font-size: 14px;">分组</a> <a href="/tags/列表/" style="font-size: 16.75px;">列表</a> <a href="/tags/参数/" style="font-size: 14px;">参数</a> <a href="/tags/双网卡/" style="font-size: 14px;">双网卡</a> <a href="/tags/可变参数/" style="font-size: 14px;">可变参数</a> <a href="/tags/多个公钥/" style="font-size: 14px;">多个公钥</a> <a href="/tags/多态/" style="font-size: 14px;">多态</a> <a href="/tags/字典/" style="font-size: 14px;">字典</a> <a href="/tags/字符/" style="font-size: 14px;">字符</a> <a href="/tags/字符串/" style="font-size: 14px;">字符串</a> <a href="/tags/密钥/" style="font-size: 16.75px;">密钥</a> <a href="/tags/循环/" style="font-size: 14px;">循环</a> <a href="/tags/排序/" style="font-size: 14px;">排序</a> <a href="/tags/数字/" style="font-size: 16.75px;">数字</a> <a href="/tags/数据类型/" style="font-size: 16.75px;">数据类型</a> <a href="/tags/文件/" style="font-size: 14px;">文件</a> <a href="/tags/斐波那契数列/" style="font-size: 14px;">斐波那契数列</a> <a href="/tags/条件判断/" style="font-size: 14px;">条件判断</a> <a href="/tags/杨辉三角/" style="font-size: 14px;">杨辉三角</a> <a href="/tags/构造器/" style="font-size: 14px;">构造器</a> <a href="/tags/正则/" style="font-size: 14px;">正则</a> <a href="/tags/汉诺塔/" style="font-size: 14px;">汉诺塔</a> <a href="/tags/游标/" style="font-size: 14px;">游标</a> <a href="/tags/爬虫/" style="font-size: 14px;">爬虫</a> <a href="/tags/生成器/" style="font-size: 14px;">生成器</a> <a href="/tags/目录/" style="font-size: 14px;">目录</a> <a href="/tags/类/" style="font-size: 14px;">类</a> <a href="/tags/统计/" style="font-size: 14px;">统计</a> <a href="/tags/继承/" style="font-size: 14px;">继承</a> <a href="/tags/编码/" style="font-size: 14px;">编码</a> <a href="/tags/网络/" style="font-size: 14px;">网络</a> <a href="/tags/装饰器/" style="font-size: 14px;">装饰器</a> <a href="/tags/视图状态/" style="font-size: 14px;">视图状态</a> <a href="/tags/计算/" style="font-size: 14px;">计算</a> <a href="/tags/负载均衡/" style="font-size: 14px;">负载均衡</a> <a href="/tags/递归/" style="font-size: 14px;">递归</a> <a href="/tags/阶乘/" style="font-size: 14px;">阶乘</a> <a href="/tags/面向对象/" style="font-size: 14px;">面向对象</a>
+      <a href="/tags/BONDING/" style="font-size: 14px;">BONDING</a> <a href="/tags/BytesIO/" style="font-size: 14px;">BytesIO</a> <a href="/tags/CENTOS7/" style="font-size: 14px;">CENTOS7</a> <a href="/tags/EMC/" style="font-size: 14px;">EMC</a> <a href="/tags/FORFILES/" style="font-size: 14px;">FORFILES</a> <a href="/tags/HBA/" style="font-size: 14px;">HBA</a> <a href="/tags/HP-UNIX/" style="font-size: 14px;">HP-UNIX</a> <a href="/tags/JUNCTION/" style="font-size: 14px;">JUNCTION</a> <a href="/tags/Json/" style="font-size: 14px;">Json</a> <a href="/tags/LINUX/" style="font-size: 22.25px;">LINUX</a> <a href="/tags/MAC/" style="font-size: 14px;">MAC</a> <a href="/tags/MKLINK/" style="font-size: 14px;">MKLINK</a> <a href="/tags/OOP/" style="font-size: 14px;">OOP</a> <a href="/tags/OPENSSH/" style="font-size: 14px;">OPENSSH</a> <a href="/tags/OPENSSL/" style="font-size: 14px;">OPENSSL</a> <a href="/tags/ORM/" style="font-size: 14px;">ORM</a> <a href="/tags/POWERPATH/" style="font-size: 14px;">POWERPATH</a> <a href="/tags/Popen/" style="font-size: 14px;">Popen</a> <a href="/tags/SQLAIchemy/" style="font-size: 14px;">SQLAIchemy</a> <a href="/tags/SSH/" style="font-size: 14px;">SSH</a> <a href="/tags/StringIO/" style="font-size: 14px;">StringIO</a> <a href="/tags/UBUNTU/" style="font-size: 16.75px;">UBUNTU</a> <a href="/tags/WINDOWS/" style="font-size: 19.5px;">WINDOWS</a> <a href="/tags/WINODWS/" style="font-size: 14px;">WINODWS</a> <a href="/tags/WWW/" style="font-size: 14px;">WWW</a> <a href="/tags/XSHELL/" style="font-size: 14px;">XSHELL</a> <a href="/tags/XTERM/" style="font-size: 14px;">XTERM</a> <a href="/tags/ZLIB/" style="font-size: 14px;">ZLIB</a> <a href="/tags/args/" style="font-size: 14px;">args</a> <a href="/tags/bonding/" style="font-size: 14px;">bonding</a> <a href="/tags/close/" style="font-size: 14px;">close</a> <a href="/tags/commands/" style="font-size: 14px;">commands</a> <a href="/tags/count/" style="font-size: 14px;">count</a> <a href="/tags/cursor/" style="font-size: 14px;">cursor</a> <a href="/tags/datetime/" style="font-size: 14px;">datetime</a> <a href="/tags/decode/" style="font-size: 14px;">decode</a> <a href="/tags/decorator/" style="font-size: 14px;">decorator</a> <a href="/tags/delete/" style="font-size: 16.75px;">delete</a> <a href="/tags/drop/" style="font-size: 14px;">drop</a> <a href="/tags/encode/" style="font-size: 14px;">encode</a> <a href="/tags/except/" style="font-size: 14px;">except</a> <a href="/tags/finally/" style="font-size: 14px;">finally</a> <a href="/tags/for/" style="font-size: 14px;">for</a> <a href="/tags/get/" style="font-size: 14px;">get</a> <a href="/tags/groupby/" style="font-size: 14px;">groupby</a> <a href="/tags/hashlib/" style="font-size: 14px;">hashlib</a> <a href="/tags/if/" style="font-size: 14px;">if</a> <a href="/tags/insert/" style="font-size: 14px;">insert</a> <a href="/tags/kw/" style="font-size: 14px;">kw</a> <a href="/tags/libXaw/" style="font-size: 14px;">libXaw</a> <a href="/tags/libXpm/" style="font-size: 14px;">libXpm</a> <a href="/tags/log/" style="font-size: 14px;">log</a> <a href="/tags/machinekey/" style="font-size: 14px;">machinekey</a> <a href="/tags/memcached/" style="font-size: 14px;">memcached</a> <a href="/tags/mysql/" style="font-size: 14px;">mysql</a> <a href="/tags/nosql/" style="font-size: 14px;">nosql</a> <a href="/tags/open/" style="font-size: 14px;">open</a> <a href="/tags/orderby/" style="font-size: 14px;">orderby</a> <a href="/tags/os/" style="font-size: 14px;">os</a> <a href="/tags/pycharm/" style="font-size: 14px;">pycharm</a> <a href="/tags/pymysql/" style="font-size: 14px;">pymysql</a> <a href="/tags/python/" style="font-size: 25px;">python</a> <a href="/tags/raise/" style="font-size: 14px;">raise</a> <a href="/tags/re/" style="font-size: 16.75px;">re</a> <a href="/tags/read/" style="font-size: 14px;">read</a> <a href="/tags/redis/" style="font-size: 16.75px;">redis</a> <a href="/tags/return/" style="font-size: 14px;">return</a> <a href="/tags/select/" style="font-size: 14px;">select</a> <a href="/tags/set/" style="font-size: 14px;">set</a> <a href="/tags/ssh-copy-id/" style="font-size: 14px;">ssh-copy-id</a> <a href="/tags/ssh-keygen/" style="font-size: 14px;">ssh-keygen</a> <a href="/tags/subprocess/" style="font-size: 14px;">subprocess</a> <a href="/tags/sys/" style="font-size: 14px;">sys</a> <a href="/tags/timedelta/" style="font-size: 14px;">timedelta</a> <a href="/tags/times/" style="font-size: 14px;">times</a> <a href="/tags/try/" style="font-size: 14px;">try</a> <a href="/tags/update/" style="font-size: 16.75px;">update</a> <a href="/tags/while/" style="font-size: 14px;">while</a> <a href="/tags/windows/" style="font-size: 14px;">windows</a> <a href="/tags/乘法/" style="font-size: 14px;">乘法</a> <a href="/tags/九宫格/" style="font-size: 14px;">九宫格</a> <a href="/tags/事务/" style="font-size: 14px;">事务</a> <a href="/tags/元组/" style="font-size: 14px;">元组</a> <a href="/tags/函数/" style="font-size: 14px;">函数</a> <a href="/tags/分组/" style="font-size: 14px;">分组</a> <a href="/tags/列表/" style="font-size: 16.75px;">列表</a> <a href="/tags/参数/" style="font-size: 14px;">参数</a> <a href="/tags/双网卡/" style="font-size: 14px;">双网卡</a> <a href="/tags/可变参数/" style="font-size: 14px;">可变参数</a> <a href="/tags/多个公钥/" style="font-size: 14px;">多个公钥</a> <a href="/tags/多态/" style="font-size: 14px;">多态</a> <a href="/tags/字典/" style="font-size: 14px;">字典</a> <a href="/tags/字符/" style="font-size: 14px;">字符</a> <a href="/tags/字符串/" style="font-size: 14px;">字符串</a> <a href="/tags/密钥/" style="font-size: 16.75px;">密钥</a> <a href="/tags/循环/" style="font-size: 14px;">循环</a> <a href="/tags/排序/" style="font-size: 14px;">排序</a> <a href="/tags/数字/" style="font-size: 16.75px;">数字</a> <a href="/tags/数据类型/" style="font-size: 16.75px;">数据类型</a> <a href="/tags/文件/" style="font-size: 14px;">文件</a> <a href="/tags/斐波那契数列/" style="font-size: 14px;">斐波那契数列</a> <a href="/tags/条件判断/" style="font-size: 14px;">条件判断</a> <a href="/tags/杨辉三角/" style="font-size: 14px;">杨辉三角</a> <a href="/tags/构造器/" style="font-size: 14px;">构造器</a> <a href="/tags/正则/" style="font-size: 14px;">正则</a> <a href="/tags/汉诺塔/" style="font-size: 14px;">汉诺塔</a> <a href="/tags/游标/" style="font-size: 14px;">游标</a> <a href="/tags/爬虫/" style="font-size: 14px;">爬虫</a> <a href="/tags/生成器/" style="font-size: 14px;">生成器</a> <a href="/tags/目录/" style="font-size: 14px;">目录</a> <a href="/tags/类/" style="font-size: 14px;">类</a> <a href="/tags/统计/" style="font-size: 14px;">统计</a> <a href="/tags/继承/" style="font-size: 14px;">继承</a> <a href="/tags/编码/" style="font-size: 14px;">编码</a> <a href="/tags/网络/" style="font-size: 14px;">网络</a> <a href="/tags/装饰器/" style="font-size: 14px;">装饰器</a> <a href="/tags/视图状态/" style="font-size: 14px;">视图状态</a> <a href="/tags/计算/" style="font-size: 14px;">计算</a> <a href="/tags/负载均衡/" style="font-size: 14px;">负载均衡</a> <a href="/tags/递归/" style="font-size: 14px;">递归</a> <a href="/tags/阶乘/" style="font-size: 14px;">阶乘</a> <a href="/tags/面向对象/" style="font-size: 14px;">面向对象</a>
     </div>
   </div>
 
@@ -656,6 +664,14 @@
     <h3 class="widget-title recent-posts">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/05/18/python访问memcached/">python访问memcached</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/18/python访问redis-二/">python访问redis(二)</a>
+          </li>
         
           <li>
             <a href="/2018/05/17/python访问redis/">python访问redis</a>
@@ -669,14 +685,6 @@
             <a href="/2018/05/11/python中使用SQLAlchemy/">python中使用SQLAlchemy</a>
           </li>
         
-          <li>
-            <a href="/2018/05/09/python访问mysql-二/">python访问mysql(二)</a>
-          </li>
-        
-          <li>
-            <a href="/2018/05/06/python访问mysql/">python访问mysql</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -686,7 +694,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title archive">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 
