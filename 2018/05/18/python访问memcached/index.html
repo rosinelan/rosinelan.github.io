@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://rosinelan.github.io/2018/05/18/python访问memcached/index.html">
 <meta property="og:site_name" content="持续不断">
 <meta property="og:description" content="memcached介绍Memcached 是一个高性能的分布式内存对象缓存系统，用于动态Web应用以减轻数据库负载。它通过在内存中缓存数据和对象来减少读取数据库的次数，从而提高动态、数据库驱动网站的速度。Memcached基于一个存储键/值对的hashmap。其守护进程（daemon ）是用C写的，但是客户端可以用任何语言来编写，并通过memcached协议与守护进程通信。memcached在实现">
-<meta property="og:updated_time" content="2018-05-19T00:59:14.236Z">
+<meta property="og:updated_time" content="2018-05-19T01:11:57.960Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python访问memcached">
 <meta name="twitter:description" content="memcached介绍Memcached 是一个高性能的分布式内存对象缓存系统，用于动态Web应用以减轻数据库负载。它通过在内存中缓存数据和对象来减少读取数据库的次数，从而提高动态、数据库驱动网站的速度。Memcached基于一个存储键/值对的hashmap。其守护进程（daemon ）是用C写的，但是客户端可以用任何语言来编写，并通过memcached协议与守护进程通信。memcached在实现">
@@ -42,7 +42,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -137,13 +137,19 @@
 <li><p>append(key, val)<br>在指定key对应的value<code>后面</code>追加内容。</p>
 </li>
 <li>prepend(key, val)<br>在指定key对应的额value<code>前面</code>追加内容。</li>
-<li>stats<br>查看历史操作<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mem.set(<span class="string">"db"</span>, <span class="string">"oracle"</span>)</span><br><span class="line">print(mem.get(<span class="string">"db"</span>))    <span class="comment">#输出结果：oracle</span></span><br><span class="line">mem.append(<span class="string">"db"</span>, <span class="string">" or mysql"</span>)</span><br><span class="line">print(mem.get(<span class="string">"db"</span>))    <span class="comment">#输出结果：oracle or mysql</span></span><br><span class="line">mem.prepend(<span class="string">"db"</span>, <span class="string">"redis or "</span>)</span><br><span class="line">print(mem.get(<span class="string">"db"</span>))    <span class="comment">#输出结果：redis or oracle or mysql</span></span><br><span class="line">print(mem.stats)    <span class="comment">#输出结果：&#123;'set': 1, 'get': 3, 'append': 1, 'prepend': 1&#125;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>stats<br>查看历史操作</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mem.set(<span class="string">"db"</span>, <span class="string">"oracle"</span>)</span><br><span class="line">print(mem.get(<span class="string">"db"</span>))    <span class="comment">#输出结果：oracle</span></span><br><span class="line">mem.append(<span class="string">"db"</span>, <span class="string">" or mysql"</span>)</span><br><span class="line">print(mem.get(<span class="string">"db"</span>))    <span class="comment">#输出结果：oracle or mysql</span></span><br><span class="line">mem.prepend(<span class="string">"db"</span>, <span class="string">"redis or "</span>)</span><br><span class="line">print(mem.get(<span class="string">"db"</span>))    <span class="comment">#输出结果：redis or oracle or mysql</span></span><br><span class="line">print(mem.stats)    <span class="comment">#输出结果：&#123;'set': 1, 'get': 3, 'append': 1, 'prepend': 1&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>gets和cas<br>使用缓存系统共享数据资源就必然绕不开数据争夺和脏数据（数据混乱）的问题。<br>假设商城某件商品的剩余个数保存在memcache中，product_count = 900，<br>A用户刷新页面从memecache中读取到product_count = 900，<br>B用户刷新页面从memecache中读取到product_count = 900，<br>A,B用户均购买商品，并修改product_count的值。<br>A修改后，product_count = 899；<br>B修改后，product_count = 899；<br>然而正确数字应该是898，数据就混乱了。<br>如果想要避免这种情况的发生，则可以使用gets和cas。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mem = memcache.Client([<span class="string">"118.24.18.158:11211"</span>])</span><br><span class="line">mem.set(<span class="string">"count"</span>, <span class="string">"100"</span>)</span><br><span class="line">print(mem.get(<span class="string">"count"</span>))    <span class="comment">#输出结果：100</span></span><br><span class="line">print(mem.cas(<span class="string">"count"</span>, <span class="string">"99"</span>))    <span class="comment">#输出结果：True</span></span><br><span class="line">print(mem.gets(<span class="string">"count"</span>))    <span class="comment">#输出结果：99</span></span><br></pre></td></tr></table></figure>
+</li>
 </ul>
+<p>gets和cas一起使用，cas是<code>check and set</code>操作。它仅当当前客户端最后一次取值后，该key对应的值没有被其他客户端修改的情况下，才能够将值写入。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/18/python访问memcached/" data-id="cjhc5eaic002uscq6tpv4vusi" class="article-share-link">Delen</a>
+      <a data-url="https://rosinelan.github.io/2018/05/18/python访问memcached/" data-id="cjhc5eaic002uscq6tpv4vusi" class="article-share-link">分享</a>
       
       
       
@@ -199,7 +205,7 @@
   
   
     <a href="/2018/05/18/python访问redis-二/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Ouder</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">python访问redis(二)</div>
     </a>
   
@@ -257,10 +263,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
+     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>
