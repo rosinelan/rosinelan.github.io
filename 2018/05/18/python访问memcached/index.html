@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://rosinelan.github.io/2018/05/18/python访问memcached/index.html">
 <meta property="og:site_name" content="持续不断">
 <meta property="og:description" content="memcached介绍Memcached 是一个高性能的分布式内存对象缓存系统，用于动态Web应用以减轻数据库负载。它通过在内存中缓存数据和对象来减少读取数据库的次数，从而提高动态、数据库驱动网站的速度。Memcached基于一个存储键/值对的hashmap。其守护进程（daemon ）是用C写的，但是客户端可以用任何语言来编写，并通过memcached协议与守护进程通信。memcached在实现">
-<meta property="og:updated_time" content="2018-05-19T01:11:57.960Z">
+<meta property="og:updated_time" content="2018-05-19T01:13:21.826Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python访问memcached">
 <meta name="twitter:description" content="memcached介绍Memcached 是一个高性能的分布式内存对象缓存系统，用于动态Web应用以减轻数据库负载。它通过在内存中缓存数据和对象来减少读取数据库的次数，从而提高动态、数据库驱动网站的速度。Memcached基于一个存储键/值对的hashmap。其守护进程（daemon ）是用C写的，但是客户端可以用任何语言来编写，并通过memcached协议与守护进程通信。memcached在实现">
@@ -100,7 +100,7 @@
       
         <!-- Table of Contents -->
         
-        <h3 id="memcached介绍"><a href="#memcached介绍" class="headerlink" title="memcached介绍"></a>memcached介绍</h3><p>Memcached 是一个高性能的分布式内存对象缓存系统，用于动态Web应用以减轻数据库负载。它通过在内存中缓存数据和对象来减少读取数据库的次数，从而提高动态、数据库驱动网站的速度。Memcached基于一个存储键/值对的hashmap。其守护进程（daemon ）是用C写的，但是客户端可以用任何语言来编写，并通过memcached协议与守护进程通信。<br>memcached在实现分布式群集部署时，memcached服务之间是不能进行通讯的，分布式也是通过客户端的算法把数据保存在不同的memcached中。magent是一款开源的代理服务软件，我们可以通过它来实现缓存数据的同步。magent还可以使用keepalived来实现高可用。</p>
+        <h3 id="memcached介绍"><a href="#memcached介绍" class="headerlink" title="memcached介绍"></a>memcached介绍</h3><p>Memcached 是一个高性能的分布式内存对象缓存系统，用于动态Web应用以减轻数据库负载。它通过在内存中缓存数据和对象来减少读取数据库的次数，从而提高动态、数据库驱动网站的速度。Memcached基于一个存储键/值对的hashmap。其守护进程（daemon ）是用C写的，但是客户端可以用任何语言来编写，并通过memcached协议与守护进程通信。<br>memcached在实现分布式群集部署时，memcached服务之间是不能进行通讯的，分布式也是通过客户端的算法把数据保存在不同的memcached中。magent是一款开源的代理服务软件，我们可以通过它来实现缓存数据的同步。magent还可以使用keepalived来实现高可用。<br><a id="more"></a></p>
 <h3 id="memcached安装"><a href="#memcached安装" class="headerlink" title="memcached安装"></a>memcached安装</h3><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>在linux下安装</p>
 <ul>
 <li><p>安装libevent<br>Libevent 是一个异步事件处理软件函式库，以 BSD 许可证释出。Memcached 依赖 Libevent，因此必须先安装 Libevent。</p>
