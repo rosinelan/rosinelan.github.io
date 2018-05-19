@@ -5,17 +5,17 @@
   
   <title>python访问memcached | 持续不断</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="memcached介绍memcached安装cd /usr/local/srcwget http://memcached.org/latesttar zxf memcached-1.5.7.tar.gzmv memcached-1.5.7 memcachedcd memcached/./configure &amp;amp;&amp;amp; make &amp;amp;&amp;amp; make install memcac">
+  <meta name="description" content="memcached介绍Memcached 是一个高性能的分布式内存对象缓存系统，用于动态Web应用以减轻数据库负载。它通过在内存中缓存数据和对象来减少读取数据库的次数，从而提高动态、数据库驱动网站的速度。Memcached基于一个存储键/值对的hashmap。其守护进程（daemon ）是用C写的，但是客户端可以用任何语言来编写，并通过memcached协议与守护进程通信。memcached在实现">
 <meta name="keywords" content="memcached">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python访问memcached">
 <meta property="og:url" content="https://rosinelan.github.io/2018/05/18/python访问memcached/index.html">
 <meta property="og:site_name" content="持续不断">
-<meta property="og:description" content="memcached介绍memcached安装cd /usr/local/srcwget http://memcached.org/latesttar zxf memcached-1.5.7.tar.gzmv memcached-1.5.7 memcachedcd memcached/./configure &amp;amp;&amp;amp; make &amp;amp;&amp;amp; make install memcac">
-<meta property="og:updated_time" content="2018-05-18T17:25:46.396Z">
+<meta property="og:description" content="memcached介绍Memcached 是一个高性能的分布式内存对象缓存系统，用于动态Web应用以减轻数据库负载。它通过在内存中缓存数据和对象来减少读取数据库的次数，从而提高动态、数据库驱动网站的速度。Memcached基于一个存储键/值对的hashmap。其守护进程（daemon ）是用C写的，但是客户端可以用任何语言来编写，并通过memcached协议与守护进程通信。memcached在实现">
+<meta property="og:updated_time" content="2018-05-19T00:59:14.236Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python访问memcached">
-<meta name="twitter:description" content="memcached介绍memcached安装cd /usr/local/srcwget http://memcached.org/latesttar zxf memcached-1.5.7.tar.gzmv memcached-1.5.7 memcachedcd memcached/./configure &amp;amp;&amp;amp; make &amp;amp;&amp;amp; make install memcac">
+<meta name="twitter:description" content="memcached介绍Memcached 是一个高性能的分布式内存对象缓存系统，用于动态Web应用以减轻数据库负载。它通过在内存中缓存数据和对象来减少读取数据库的次数，从而提高动态、数据库驱动网站的速度。Memcached基于一个存储键/值对的hashmap。其守护进程（daemon ）是用C写的，但是客户端可以用任何语言来编写，并通过memcached协议与守护进程通信。memcached在实现">
   
     <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
   
@@ -42,7 +42,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -100,12 +100,50 @@
       
         <!-- Table of Contents -->
         
-        <h3 id="memcached介绍"><a href="#memcached介绍" class="headerlink" title="memcached介绍"></a>memcached介绍</h3><h3 id="memcached安装"><a href="#memcached安装" class="headerlink" title="memcached安装"></a>memcached安装</h3><p>cd /usr/local/src<br>wget <a href="http://memcached.org/latest" target="_blank" rel="noopener">http://memcached.org/latest</a><br>tar zxf memcached-1.5.7.tar.gz<br>mv memcached-1.5.7 memcached<br>cd memcached/<br>./configure &amp;&amp; make &amp;&amp; make install</p>
-<h3 id="memcached操作"><a href="#memcached操作" class="headerlink" title="memcached操作"></a>memcached操作</h3>
+        <h3 id="memcached介绍"><a href="#memcached介绍" class="headerlink" title="memcached介绍"></a>memcached介绍</h3><p>Memcached 是一个高性能的分布式内存对象缓存系统，用于动态Web应用以减轻数据库负载。它通过在内存中缓存数据和对象来减少读取数据库的次数，从而提高动态、数据库驱动网站的速度。Memcached基于一个存储键/值对的hashmap。其守护进程（daemon ）是用C写的，但是客户端可以用任何语言来编写，并通过memcached协议与守护进程通信。<br>memcached在实现分布式群集部署时，memcached服务之间是不能进行通讯的，分布式也是通过客户端的算法把数据保存在不同的memcached中。magent是一款开源的代理服务软件，我们可以通过它来实现缓存数据的同步。magent还可以使用keepalived来实现高可用。</p>
+<h3 id="memcached安装"><a href="#memcached安装" class="headerlink" title="memcached安装"></a>memcached安装</h3><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>在linux下安装</p>
+<ul>
+<li><p>安装libevent<br>Libevent 是一个异步事件处理软件函式库，以 BSD 许可证释出。Memcached 依赖 Libevent，因此必须先安装 Libevent。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install libevent-devel</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装memcached</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/src</span><br><span class="line">wget http://memcached.org/latest</span><br><span class="line">tar zxf memcached-1.5.7.tar.gz</span><br><span class="line">mv memcached-1.5.7 memcached</span><br><span class="line"><span class="built_in">cd</span> memcached/</span><br><span class="line">./configure &amp;&amp; make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">memcached -d -u root</span><br></pre></td></tr></table></figure>
+<p><strong>启动参数说明</strong><br><code>memcached -d -m 10 -u root -l 127.0.0.1 -p 12000 -c 256 -P /tmp/memcache/logs/memcache.pid</code><br>-p 指定端口号（默认11211）<br>-m 指定最大使用内存大小（默认64MB）<br>-t 线程数（默认4）<br>-l 连接的IP地址, 默认是本机<br>-d 以后台守护进程的方式启动<br>-c 最大同时连接数，默认是1024<br>-P 制定memecache的pid文件<br>-h  打印帮助信息<br><strong>启动确认</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@VM_0_4_centos memcached]<span class="comment"># ps aux|grep memcache</span></span><br><span class="line">root     24421  0.0  0.0 413792  1080 ?        Ssl  07:45   0:00 memcached -d -u root</span><br><span class="line">root     24436  0.0  0.0 112644   964 pts/0    R+   07:45   0:00 grep --color=auto memcache</span><br><span class="line">[root@VM_0_4_centos memcached]<span class="comment"># netstat -lntp|grep memcached</span></span><br><span class="line">tcp        0      0 0.0.0.0:11211           0.0.0.0:*               LISTEN      24421/memcached     </span><br><span class="line">tcp6       0      0 :::11211                :::*                    LISTEN      24421/memcached</span><br></pre></td></tr></table></figure></p>
+<h3 id="python访问memcached"><a href="#python访问memcached" class="headerlink" title="python访问memcached"></a>python访问memcached</h3><p>python访问memcached需要安装python-memcached模块。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install python-memcached</span><br></pre></td></tr></table></figure></p>
+<p>操作实例<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> memcache</span><br><span class="line"></span><br><span class="line">mem = memcache.Client([<span class="string">"118.24.18.158:11211"</span>])</span><br><span class="line">mem.set(<span class="string">"db"</span>, <span class="string">"oracle"</span>)</span><br><span class="line">print(mem.get(<span class="string">"db"</span>))    <span class="comment">#输出结果：oracle</span></span><br></pre></td></tr></table></figure></p>
+<p>另外，python-memcached模块原生支持集群操作，其原理是在内存中维护一个主机列表，且集群中主机的权重值和主机在列表中重复出现的次数成正比。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">主机IP        权重</span><br><span class="line"><span class="number">1.1</span><span class="number">.1</span><span class="number">.1</span>        <span class="number">1</span></span><br><span class="line"><span class="number">1.1</span><span class="number">.1</span><span class="number">.2</span>        <span class="number">2</span></span><br><span class="line"><span class="number">1.1</span><span class="number">.1</span><span class="number">.3</span>        <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<p>那么内存中主机列表为：host_list = [“1.1.1.1”, “1.1.1.2”,”1.1.1.2”,”1.1.1.3”,]<br>用户如果要在内存中创建一个键值对（如：k1 = “value1”），那么要执行以下步骤：<br>根据算法将k1转换成一个数字<br>将数字和主机列表长度求余数，得到一个值N（0 &lt;= N &lt; 长度）<br>在主机列表中根据第二步得到的值为索引获取主机，例如: host_list[N]<br>连接将第三步中获取的主机，将k1 = “value1” 放置在该服务器的内存中<br>代码如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="comment">#coding:utf8</span></span><br><span class="line"><span class="keyword">import</span> memcache</span><br><span class="line">mc = memcache.Client([(<span class="string">'1.1.1.1:11211'</span>, <span class="number">1</span>), (<span class="string">'1.1.1.2:11211'</span>, <span class="number">2</span>),(<span class="string">'1.1.1.3:11211'</span>,<span class="number">1</span>)])</span><br><span class="line">mc.set(<span class="string">'k1'</span>,<span class="string">'value1'</span>)</span><br><span class="line">ret = mc.get(<span class="string">'k1'</span>)</span><br><span class="line"><span class="keyword">print</span> (ret)</span><br></pre></td></tr></table></figure></p>
+<h3 id="memcached常用操作"><a href="#memcached常用操作" class="headerlink" title="memcached常用操作"></a>memcached常用操作</h3><ul>
+<li>set(key, val)<br>在memcache中设置key的值为val。若key不存在则创建，否则修改。</li>
+<li>get(key)<br>获取memcache中key对应的值或者<code>None</code>。</li>
+<li>set_multi(mapping)<br>一次设置多个key/value对。以列表方式传入。若key不存在则创建，否则修改。</li>
+<li><p>get_multi(keys)<br>一次获取多个keys</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mem.set_multi(&#123;<span class="string">"db1"</span>: <span class="string">"oracle"</span>, <span class="string">"db2"</span>: <span class="string">"mysql"</span>&#125;)</span><br><span class="line">mem.set(<span class="string">"db3"</span>, <span class="string">"memcache"</span>)</span><br><span class="line">print(mem.get(<span class="string">"db1"</span>))    <span class="comment">#输出结果：oracle</span></span><br><span class="line">print(mem.get_multi([<span class="string">"db2"</span>, <span class="string">"db3"</span>]))    <span class="comment">#输出结果：&#123;'db2': 'mysql', 'db3': 'memcache'&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>add(key, val)<br>在memcache中添加新的键值对。若已存在则返回False。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(mem.add(<span class="string">"db"</span>, <span class="string">"memcache"</span>))     <span class="comment">#输出结果：True</span></span><br><span class="line">print(mem.get(<span class="string">"db"</span>))     <span class="comment">#输出结果：memcache</span></span><br><span class="line">print(mem.add(<span class="string">"db"</span>, <span class="string">"memcache"</span>))     <span class="comment">#输出结果：False</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>replace(key, val)<br>修改key的值为val，若不存在则返回False。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mem.add(<span class="string">"db"</span>, <span class="string">"memcache"</span>)</span><br><span class="line">print(mem.replace(<span class="string">"db"</span>, <span class="string">"redis"</span>))    <span class="comment">#输出结果：True</span></span><br><span class="line">print(mem.get(<span class="string">"db"</span>))    <span class="comment">#输出结果：redis</span></span><br><span class="line">print(mem.replace(<span class="string">"db1"</span>, <span class="string">"redis"</span>))    <span class="comment">#输出结果：False</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>delete(key)<br>删除一个指定的key/value对。</p>
+</li>
+<li><p>delete_multi(keys)<br>删除多个指定的key/value对。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mem.set_multi(&#123;<span class="string">"db1"</span>: <span class="string">"oracle"</span>, <span class="string">"db2"</span>: <span class="string">"mysql"</span>, <span class="string">"db3"</span>: <span class="string">"memcache"</span>&#125;)</span><br><span class="line">mem.delete(<span class="string">"db1"</span>)</span><br><span class="line">mem.delete_multi([<span class="string">"db2"</span>, <span class="string">"db3"</span>])</span><br><span class="line">print(mem.get_multi([<span class="string">"db1"</span>, <span class="string">"db2"</span>, <span class="string">"db3"</span>]))    <span class="comment">#输出结果：&#123;&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>append(key, val)<br>在指定key对应的value<code>后面</code>追加内容。</p>
+</li>
+<li>prepend(key, val)<br>在指定key对应的额value<code>前面</code>追加内容。</li>
+<li>stats<br>查看历史操作<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mem.set(<span class="string">"db"</span>, <span class="string">"oracle"</span>)</span><br><span class="line">print(mem.get(<span class="string">"db"</span>))    <span class="comment">#输出结果：oracle</span></span><br><span class="line">mem.append(<span class="string">"db"</span>, <span class="string">" or mysql"</span>)</span><br><span class="line">print(mem.get(<span class="string">"db"</span>))    <span class="comment">#输出结果：oracle or mysql</span></span><br><span class="line">mem.prepend(<span class="string">"db"</span>, <span class="string">"redis or "</span>)</span><br><span class="line">print(mem.get(<span class="string">"db"</span>))    <span class="comment">#输出结果：redis or oracle or mysql</span></span><br><span class="line">print(mem.stats)    <span class="comment">#输出结果：&#123;'set': 1, 'get': 3, 'append': 1, 'prepend': 1&#125;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/18/python访问memcached/" data-id="cjhc5eaic002uscq6tpv4vusi" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/05/18/python访问memcached/" data-id="cjhc5eaic002uscq6tpv4vusi" class="article-share-link">Delen</a>
       
       
       
@@ -161,7 +199,7 @@
   
   
     <a href="/2018/05/18/python访问redis-二/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
+      <strong class="article-nav-caption">Ouder</strong>
       <div class="article-nav-title">python访问redis(二)</div>
     </a>
   
@@ -193,7 +231,7 @@
       
         <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#memcached介绍"><span class="toc-number">1.</span> <span class="toc-text">memcached介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#memcached安装"><span class="toc-number">2.</span> <span class="toc-text">memcached安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#memcached操作"><span class="toc-number">3.</span> <span class="toc-text">memcached操作</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#memcached介绍"><span class="toc-number">1.</span> <span class="toc-text">memcached介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#memcached安装"><span class="toc-number">2.</span> <span class="toc-text">memcached安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#安装"><span class="toc-number">2.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#启动"><span class="toc-number">2.2.</span> <span class="toc-text">启动</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#python访问memcached"><span class="toc-number">3.</span> <span class="toc-text">python访问memcached</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#memcached常用操作"><span class="toc-number">4.</span> <span class="toc-text">memcached常用操作</span></a></li></ol>
           </div>
       </div>
     </div>
@@ -219,10 +257,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
+     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>
