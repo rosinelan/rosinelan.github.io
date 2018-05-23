@@ -40,7 +40,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -71,6 +71,68 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-python多线程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/23/python多线程/" class="article-date">
+  <time datetime="2018-05-23T13:25:22.000Z" itemprop="datePublished">2018-05-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/program/">编程</a>►<a class="article-category-link" href="/categories/program/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/23/python多线程/">python多线程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h3 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h3><p>任务可以由多进程完成，也可以由一个进程内的多线程完成。<br>我们前面提到了进程是由若干线程组成的，一个进程至少有一个线程。<br>由于线程是操作系统直接支持的执行单元，因此，高级语言通常都内置多线程的支持，Python也不例外，并且，Python的线程是真正的Posix Thread，而不是模拟出来的线程。Python的标准库提供了threading模块。<br>在python中多线程的实现方法有2种。  </p>
+<ol>
+<li>将要执行的方法作为参数传递给Thread的构造方法。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">worker</span><span class="params">(args)</span>:</span></span><br><span class="line">    print(<span class="string">"开始子进程 &#123;0&#125;"</span>.format(args))</span><br><span class="line">    print(<span class="string">"结束子进程 &#123;0&#125;"</span>.format(args))</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line"></span><br><span class="line">    print(<span class="string">"start main"</span>)</span><br><span class="line">    t1 = threading.Thread(target=worker, args=(<span class="number">1</span>,))</span><br><span class="line">    t2 = threading.Thread(target=worker, args=(<span class="number">2</span>,))</span><br><span class="line">    t1.start()</span><br><span class="line">    t2.start()</span><br><span class="line">    print(<span class="string">"end main"</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>输出结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">start main</span><br><span class="line">开始子进程 <span class="number">1</span></span><br><span class="line">结束子进程 <span class="number">1</span></span><br><span class="line">开始子进程 <span class="number">2</span></span><br><span class="line">结束子进程 <span class="number">2</span></span><br><span class="line">end main</span><br><span class="line">```  </span><br><span class="line"><span class="number">2.</span> 从Thread继承，并重写run()方法。  </span><br><span class="line">``` python</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Hello</span><span class="params">(threading.Thread)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, args)</span>:</span></span><br><span class="line">        super(Hello, self).__init__()    <span class="comment">#注意：要显式的调用父类的初始化函数</span></span><br><span class="line">        self.args = args</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"开始子进程 &#123;0&#125;"</span>.format(self.args))</span><br><span class="line">        time.sleep(<span class="number">1</span>)</span><br><span class="line">        print(<span class="string">"结束子进程 &#123;0&#125;"</span>.format(self.args))</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    a = <span class="number">1</span></span><br><span class="line">    print(<span class="string">"start main"</span>)</span><br><span class="line">    t1 = Hello(<span class="number">1</span>)</span><br><span class="line">    t2 = Hello(<span class="number">2</span>)</span><br><span class="line">    t1.start()</span><br><span class="line">    t2.start()</span><br><span class="line">    print(<span class="string">"end main"</span>)</span><br></pre></td></tr></table></figure></p>
+<p>输出结果</p>
+<pre><code class="python">start main
+开始子进程 <span class="number">1</span>
+开始子进程 <span class="number">2</span>
+end main
+结束子进程 <span class="number">1</span>
+结束子进程 <span class="number">2</span>
+</code></pre>
+<h3 id="线程锁"><a href="#线程锁" class="headerlink" title="线程锁"></a>线程锁</h3><p>多线程和多进程最大的不同在于，多进程中，同一个变量，各自有一份拷贝存在于每个进程中，互不影响，而多线程中，所有变量都由所有线程共享，所以，任何一个变量都可以被任何一个线程修改，因此，线程之间共享数据最大的危险在于多个线程同时改一个变量，把内容给改乱了。</p>
+<h3 id="线程共享内存"><a href="#线程共享内存" class="headerlink" title="线程共享内存"></a>线程共享内存</h3><h3 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h3><p>更多关于<code>threading</code>的内容可以点击<a href="https://docs.python.org/3/library/threading.html" target="_blank" rel="noopener">threading — Thread-based parallelism</a>查看官方介绍。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/05/23/python多线程/" data-id="cjhj914fz000nqcq6jqsueith" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lock/">Lock</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/threading/">threading</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/threadpool/">threadpool</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
   
     <article id="post-python多进程" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -107,11 +169,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/20/python多进程/" data-id="cjhezp3f0001duwq6ldfb5ok0" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/05/20/python多进程/" data-id="cjhj914g6000yqcq61de8ymze" class="article-share-link">分享</a>
       
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/多进程/">多进程</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Array/">Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lock/">Lock</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Process/">Process</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Value/">Value</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/多进程/">多进程</a></li></ul>
 
     </footer>
   </div>
@@ -156,7 +218,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/18/python访问memcached/" data-id="cjhezp3t300d7uwq6e1ouokon" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/05/18/python访问memcached/" data-id="cjhj914hc002mqcq6ryt8lssp" class="article-share-link">分享</a>
       
       
       
@@ -207,7 +269,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/18/python访问redis-二/" data-id="cjhezp3g4002juwq6qz4ymj8v" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/05/18/python访问redis-二/" data-id="cjhj914hp0030qcq6cp0p5n10" class="article-share-link">分享</a>
       
       
       
@@ -258,7 +320,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/17/python访问redis/" data-id="cjhezp3g6002muwq61klqrp6v" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/05/17/python访问redis/" data-id="cjhj914hr0032qcq6ikenx6wo" class="article-share-link">分享</a>
       
       
       
@@ -307,7 +369,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/14/python中使用SQLAlchemy-二/" data-id="cjhezp3ef000nuwq6ah2ouc0e" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/05/14/python中使用SQLAlchemy-二/" data-id="cjhj914fw000jqcq66kkxk0gu" class="article-share-link">分享</a>
       
       
       
@@ -357,7 +419,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/11/python中使用SQLAlchemy/" data-id="cjhezp3ed000muwq69hkrkcmu" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/05/11/python中使用SQLAlchemy/" data-id="cjhj914g90012qcq6bjwmbep0" class="article-share-link">分享</a>
       
       
       
@@ -407,7 +469,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/09/python访问mysql-二/" data-id="cjhezp3g9002nuwq6thno4g6x" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/05/09/python访问mysql-二/" data-id="cjhj914h9002iqcq6imv82pi1" class="article-share-link">分享</a>
       
       
       
@@ -456,7 +518,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/06/python访问mysql/" data-id="cjhezp3gl002xuwq6121ffjbx" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/05/06/python访问mysql/" data-id="cjhj914hf002oqcq67lswninr" class="article-share-link">分享</a>
       
       
       
@@ -508,7 +570,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/04/python正则表达式练习题/" data-id="cjhezp3fd001vuwq63as2dz9v" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/05/04/python正则表达式练习题/" data-id="cjhj914hn002yqcq6xdrfhtd6" class="article-share-link">分享</a>
       
       
       
@@ -522,60 +584,10 @@
 
 
   
-    <article id="post-python内置模块-四" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/29/python内置模块-四/" class="article-date">
-  <time datetime="2018-04-29T13:44:57.000Z" itemprop="datePublished">2018-04-29</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/program/">编程</a>►<a class="article-category-link" href="/categories/program/python/">python</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/29/python内置模块-四/">python内置模块(四)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>内置模块<code>datetime</code>、<code>time</code>、<code>commands</code>相关内容点击<a href="https://rosinelan.coding.me/2018/04/23/python%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97/" target="_blank" rel="noopener">python内置模块</a>查看。<br>内置模块<code>subprocess</code>、<code>os</code>、<code>random</code>、<code>sys</code>、<code>logging</code>相关内容点击<a href="https://rosinelan.coding.me/2018/04/25/python%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97-%E4%BA%8C/" target="_blank" rel="noopener">python内置模块(二)</a>查看。<br>内置模块<code>hashlib</code>、<code>StringIO</code>、<code>BytesIO</code>、<code>Json</code>相关内容点击<a href="https://rosinelan.coding.me/2018/04/27/python%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97-%E4%B8%89/" target="_blank" rel="noopener">python内置模块(三)</a>查看。  </p>
-<h3 id="re"><a href="#re" class="headerlink" title="re"></a>re</h3><p><code>re</code>模块是python中处理正则表达式的一个模块，通过re模块的方法，把正则表达式编译成正则对象，以便使用正则对象的方法。<br>
-        
-          <p class="article-more-link">
-            <a href="/2018/04/29/python内置模块-四/#more">继续阅读全文 »</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/04/29/python内置模块-四/" data-id="cjhezp3ex001auwq65k7sfnf8" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/re/">re</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
 
 
   <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next&raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">下一页&raquo;</a>
   </nav>
 </section>
            
@@ -585,9 +597,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title categories">Categories</h3>
+    <h3 class="widget-title categories">分类</h3>
     <div class="widget" id="categories">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/system/">系统管理</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/system/LINUX/">LINUX</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/system/WINDOWS/">WINDOWS</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/program/">编程</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/program/python/">python</a><span class="category-list-count">28</span></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/system/">系统管理</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/system/LINUX/">LINUX</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/system/WINDOWS/">WINDOWS</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/program/">编程</a><span class="category-list-count">29</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/program/python/">python</a><span class="category-list-count">29</span></li></ul></li></ul>
     </div>
   </div>
 
@@ -595,18 +607,22 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title tagcloud">Tag Cloud</h3>
+    <h3 class="widget-title tagcloud">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/BONDING/" style="font-size: 14px;">BONDING</a> <a href="/tags/BytesIO/" style="font-size: 14px;">BytesIO</a> <a href="/tags/CENTOS7/" style="font-size: 14px;">CENTOS7</a> <a href="/tags/EMC/" style="font-size: 14px;">EMC</a> <a href="/tags/FORFILES/" style="font-size: 14px;">FORFILES</a> <a href="/tags/HBA/" style="font-size: 14px;">HBA</a> <a href="/tags/HP-UNIX/" style="font-size: 14px;">HP-UNIX</a> <a href="/tags/JUNCTION/" style="font-size: 14px;">JUNCTION</a> <a href="/tags/Json/" style="font-size: 14px;">Json</a> <a href="/tags/LINUX/" style="font-size: 22.25px;">LINUX</a> <a href="/tags/MAC/" style="font-size: 14px;">MAC</a> <a href="/tags/MKLINK/" style="font-size: 14px;">MKLINK</a> <a href="/tags/OOP/" style="font-size: 14px;">OOP</a> <a href="/tags/OPENSSH/" style="font-size: 14px;">OPENSSH</a> <a href="/tags/OPENSSL/" style="font-size: 14px;">OPENSSL</a> <a href="/tags/ORM/" style="font-size: 14px;">ORM</a> <a href="/tags/POWERPATH/" style="font-size: 14px;">POWERPATH</a> <a href="/tags/Popen/" style="font-size: 14px;">Popen</a> <a href="/tags/SQLAIchemy/" style="font-size: 14px;">SQLAIchemy</a> <a href="/tags/SSH/" style="font-size: 14px;">SSH</a> <a href="/tags/StringIO/" style="font-size: 14px;">StringIO</a> <a href="/tags/UBUNTU/" style="font-size: 16.75px;">UBUNTU</a> <a href="/tags/WINDOWS/" style="font-size: 19.5px;">WINDOWS</a> <a href="/tags/WINODWS/" style="font-size: 14px;">WINODWS</a> <a href="/tags/WWW/" style="font-size: 14px;">WWW</a> <a href="/tags/XSHELL/" style="font-size: 14px;">XSHELL</a> <a href="/tags/XTERM/" style="font-size: 14px;">XTERM</a> <a href="/tags/ZLIB/" style="font-size: 14px;">ZLIB</a> <a href="/tags/args/" style="font-size: 14px;">args</a> <a href="/tags/bonding/" style="font-size: 14px;">bonding</a> <a href="/tags/close/" style="font-size: 14px;">close</a> <a href="/tags/commands/" style="font-size: 14px;">commands</a> <a href="/tags/count/" style="font-size: 14px;">count</a> <a href="/tags/cursor/" style="font-size: 14px;">cursor</a> <a href="/tags/datetime/" style="font-size: 14px;">datetime</a> <a href="/tags/decode/" style="font-size: 14px;">decode</a> <a href="/tags/decorator/" style="font-size: 14px;">decorator</a> <a href="/tags/delete/" style="font-size: 16.75px;">delete</a> <a href="/tags/drop/" style="font-size: 14px;">drop</a> <a href="/tags/encode/" style="font-size: 14px;">encode</a> <a href="/tags/except/" style="font-size: 14px;">except</a> <a href="/tags/finally/" style="font-size: 14px;">finally</a> <a href="/tags/for/" style="font-size: 14px;">for</a> <a href="/tags/get/" style="font-size: 14px;">get</a> <a href="/tags/groupby/" style="font-size: 14px;">groupby</a> <a href="/tags/hashlib/" style="font-size: 14px;">hashlib</a> <a href="/tags/if/" style="font-size: 14px;">if</a> <a href="/tags/insert/" style="font-size: 14px;">insert</a> <a href="/tags/kw/" style="font-size: 14px;">kw</a> <a href="/tags/libXaw/" style="font-size: 14px;">libXaw</a> <a href="/tags/libXpm/" style="font-size: 14px;">libXpm</a> <a href="/tags/log/" style="font-size: 14px;">log</a> <a href="/tags/machinekey/" style="font-size: 14px;">machinekey</a> <a href="/tags/memcached/" style="font-size: 14px;">memcached</a> <a href="/tags/mysql/" style="font-size: 14px;">mysql</a> <a href="/tags/nosql/" style="font-size: 14px;">nosql</a> <a href="/tags/open/" style="font-size: 14px;">open</a> <a href="/tags/orderby/" style="font-size: 14px;">orderby</a> <a href="/tags/os/" style="font-size: 14px;">os</a> <a href="/tags/pycharm/" style="font-size: 14px;">pycharm</a> <a href="/tags/pymysql/" style="font-size: 14px;">pymysql</a> <a href="/tags/python/" style="font-size: 25px;">python</a> <a href="/tags/raise/" style="font-size: 14px;">raise</a> <a href="/tags/re/" style="font-size: 16.75px;">re</a> <a href="/tags/read/" style="font-size: 14px;">read</a> <a href="/tags/redis/" style="font-size: 16.75px;">redis</a> <a href="/tags/return/" style="font-size: 14px;">return</a> <a href="/tags/select/" style="font-size: 14px;">select</a> <a href="/tags/set/" style="font-size: 14px;">set</a> <a href="/tags/ssh-copy-id/" style="font-size: 14px;">ssh-copy-id</a> <a href="/tags/ssh-keygen/" style="font-size: 14px;">ssh-keygen</a> <a href="/tags/subprocess/" style="font-size: 14px;">subprocess</a> <a href="/tags/sys/" style="font-size: 14px;">sys</a> <a href="/tags/timedelta/" style="font-size: 14px;">timedelta</a> <a href="/tags/times/" style="font-size: 14px;">times</a> <a href="/tags/try/" style="font-size: 14px;">try</a> <a href="/tags/update/" style="font-size: 16.75px;">update</a> <a href="/tags/while/" style="font-size: 14px;">while</a> <a href="/tags/windows/" style="font-size: 14px;">windows</a> <a href="/tags/乘法/" style="font-size: 14px;">乘法</a> <a href="/tags/九宫格/" style="font-size: 14px;">九宫格</a> <a href="/tags/事务/" style="font-size: 14px;">事务</a> <a href="/tags/元组/" style="font-size: 14px;">元组</a> <a href="/tags/函数/" style="font-size: 14px;">函数</a> <a href="/tags/分组/" style="font-size: 14px;">分组</a> <a href="/tags/列表/" style="font-size: 16.75px;">列表</a> <a href="/tags/参数/" style="font-size: 14px;">参数</a> <a href="/tags/双网卡/" style="font-size: 14px;">双网卡</a> <a href="/tags/可变参数/" style="font-size: 14px;">可变参数</a> <a href="/tags/多个公钥/" style="font-size: 14px;">多个公钥</a> <a href="/tags/多态/" style="font-size: 14px;">多态</a> <a href="/tags/多进程/" style="font-size: 14px;">多进程</a> <a href="/tags/字典/" style="font-size: 14px;">字典</a> <a href="/tags/字符/" style="font-size: 14px;">字符</a> <a href="/tags/字符串/" style="font-size: 14px;">字符串</a> <a href="/tags/密钥/" style="font-size: 16.75px;">密钥</a> <a href="/tags/循环/" style="font-size: 14px;">循环</a> <a href="/tags/排序/" style="font-size: 14px;">排序</a> <a href="/tags/数字/" style="font-size: 16.75px;">数字</a> <a href="/tags/数据类型/" style="font-size: 16.75px;">数据类型</a> <a href="/tags/文件/" style="font-size: 14px;">文件</a> <a href="/tags/斐波那契数列/" style="font-size: 14px;">斐波那契数列</a> <a href="/tags/条件判断/" style="font-size: 14px;">条件判断</a> <a href="/tags/杨辉三角/" style="font-size: 14px;">杨辉三角</a> <a href="/tags/构造器/" style="font-size: 14px;">构造器</a> <a href="/tags/正则/" style="font-size: 14px;">正则</a> <a href="/tags/汉诺塔/" style="font-size: 14px;">汉诺塔</a> <a href="/tags/游标/" style="font-size: 14px;">游标</a> <a href="/tags/爬虫/" style="font-size: 14px;">爬虫</a> <a href="/tags/生成器/" style="font-size: 14px;">生成器</a> <a href="/tags/目录/" style="font-size: 14px;">目录</a> <a href="/tags/类/" style="font-size: 14px;">类</a> <a href="/tags/统计/" style="font-size: 14px;">统计</a> <a href="/tags/继承/" style="font-size: 14px;">继承</a> <a href="/tags/编码/" style="font-size: 14px;">编码</a> <a href="/tags/网络/" style="font-size: 14px;">网络</a> <a href="/tags/装饰器/" style="font-size: 14px;">装饰器</a> <a href="/tags/视图状态/" style="font-size: 14px;">视图状态</a> <a href="/tags/计算/" style="font-size: 14px;">计算</a> <a href="/tags/负载均衡/" style="font-size: 14px;">负载均衡</a> <a href="/tags/递归/" style="font-size: 14px;">递归</a> <a href="/tags/阶乘/" style="font-size: 14px;">阶乘</a> <a href="/tags/面向对象/" style="font-size: 14px;">面向对象</a>
+      <a href="/tags/Array/" style="font-size: 14px;">Array</a> <a href="/tags/BONDING/" style="font-size: 14px;">BONDING</a> <a href="/tags/BytesIO/" style="font-size: 14px;">BytesIO</a> <a href="/tags/CENTOS7/" style="font-size: 14px;">CENTOS7</a> <a href="/tags/EMC/" style="font-size: 14px;">EMC</a> <a href="/tags/FORFILES/" style="font-size: 14px;">FORFILES</a> <a href="/tags/HBA/" style="font-size: 14px;">HBA</a> <a href="/tags/HP-UNIX/" style="font-size: 14px;">HP-UNIX</a> <a href="/tags/JUNCTION/" style="font-size: 14px;">JUNCTION</a> <a href="/tags/Json/" style="font-size: 14px;">Json</a> <a href="/tags/LINUX/" style="font-size: 22.25px;">LINUX</a> <a href="/tags/Lock/" style="font-size: 16.75px;">Lock</a> <a href="/tags/MAC/" style="font-size: 14px;">MAC</a> <a href="/tags/MKLINK/" style="font-size: 14px;">MKLINK</a> <a href="/tags/OOP/" style="font-size: 14px;">OOP</a> <a href="/tags/OPENSSH/" style="font-size: 14px;">OPENSSH</a> <a href="/tags/OPENSSL/" style="font-size: 14px;">OPENSSL</a> <a href="/tags/ORM/" style="font-size: 14px;">ORM</a> <a href="/tags/POWERPATH/" style="font-size: 14px;">POWERPATH</a> <a href="/tags/Popen/" style="font-size: 14px;">Popen</a> <a href="/tags/Process/" style="font-size: 14px;">Process</a> <a href="/tags/SQLAIchemy/" style="font-size: 14px;">SQLAIchemy</a> <a href="/tags/SSH/" style="font-size: 14px;">SSH</a> <a href="/tags/StringIO/" style="font-size: 14px;">StringIO</a> <a href="/tags/UBUNTU/" style="font-size: 16.75px;">UBUNTU</a> <a href="/tags/Value/" style="font-size: 14px;">Value</a> <a href="/tags/WINDOWS/" style="font-size: 19.5px;">WINDOWS</a> <a href="/tags/WINODWS/" style="font-size: 14px;">WINODWS</a> <a href="/tags/WWW/" style="font-size: 14px;">WWW</a> <a href="/tags/XSHELL/" style="font-size: 14px;">XSHELL</a> <a href="/tags/XTERM/" style="font-size: 14px;">XTERM</a> <a href="/tags/ZLIB/" style="font-size: 14px;">ZLIB</a> <a href="/tags/args/" style="font-size: 14px;">args</a> <a href="/tags/bonding/" style="font-size: 14px;">bonding</a> <a href="/tags/close/" style="font-size: 14px;">close</a> <a href="/tags/commands/" style="font-size: 14px;">commands</a> <a href="/tags/count/" style="font-size: 14px;">count</a> <a href="/tags/cursor/" style="font-size: 14px;">cursor</a> <a href="/tags/datetime/" style="font-size: 14px;">datetime</a> <a href="/tags/decode/" style="font-size: 14px;">decode</a> <a href="/tags/decorator/" style="font-size: 14px;">decorator</a> <a href="/tags/delete/" style="font-size: 16.75px;">delete</a> <a href="/tags/drop/" style="font-size: 14px;">drop</a> <a href="/tags/encode/" style="font-size: 14px;">encode</a> <a href="/tags/except/" style="font-size: 14px;">except</a> <a href="/tags/finally/" style="font-size: 14px;">finally</a> <a href="/tags/for/" style="font-size: 14px;">for</a> <a href="/tags/get/" style="font-size: 14px;">get</a> <a href="/tags/groupby/" style="font-size: 14px;">groupby</a> <a href="/tags/hashlib/" style="font-size: 14px;">hashlib</a> <a href="/tags/if/" style="font-size: 14px;">if</a> <a href="/tags/insert/" style="font-size: 14px;">insert</a> <a href="/tags/kw/" style="font-size: 14px;">kw</a> <a href="/tags/libXaw/" style="font-size: 14px;">libXaw</a> <a href="/tags/libXpm/" style="font-size: 14px;">libXpm</a> <a href="/tags/log/" style="font-size: 14px;">log</a> <a href="/tags/machinekey/" style="font-size: 14px;">machinekey</a> <a href="/tags/memcached/" style="font-size: 14px;">memcached</a> <a href="/tags/mysql/" style="font-size: 14px;">mysql</a> <a href="/tags/nosql/" style="font-size: 14px;">nosql</a> <a href="/tags/open/" style="font-size: 14px;">open</a> <a href="/tags/orderby/" style="font-size: 14px;">orderby</a> <a href="/tags/os/" style="font-size: 14px;">os</a> <a href="/tags/pycharm/" style="font-size: 14px;">pycharm</a> <a href="/tags/pymysql/" style="font-size: 14px;">pymysql</a> <a href="/tags/python/" style="font-size: 25px;">python</a> <a href="/tags/raise/" style="font-size: 14px;">raise</a> <a href="/tags/re/" style="font-size: 16.75px;">re</a> <a href="/tags/read/" style="font-size: 14px;">read</a> <a href="/tags/redis/" style="font-size: 16.75px;">redis</a> <a href="/tags/return/" style="font-size: 14px;">return</a> <a href="/tags/select/" style="font-size: 14px;">select</a> <a href="/tags/set/" style="font-size: 14px;">set</a> <a href="/tags/ssh-copy-id/" style="font-size: 14px;">ssh-copy-id</a> <a href="/tags/ssh-keygen/" style="font-size: 14px;">ssh-keygen</a> <a href="/tags/subprocess/" style="font-size: 14px;">subprocess</a> <a href="/tags/sys/" style="font-size: 14px;">sys</a> <a href="/tags/threading/" style="font-size: 14px;">threading</a> <a href="/tags/threadpool/" style="font-size: 14px;">threadpool</a> <a href="/tags/timedelta/" style="font-size: 14px;">timedelta</a> <a href="/tags/times/" style="font-size: 14px;">times</a> <a href="/tags/try/" style="font-size: 14px;">try</a> <a href="/tags/update/" style="font-size: 16.75px;">update</a> <a href="/tags/while/" style="font-size: 14px;">while</a> <a href="/tags/windows/" style="font-size: 14px;">windows</a> <a href="/tags/乘法/" style="font-size: 14px;">乘法</a> <a href="/tags/九宫格/" style="font-size: 14px;">九宫格</a> <a href="/tags/事务/" style="font-size: 14px;">事务</a> <a href="/tags/元组/" style="font-size: 14px;">元组</a> <a href="/tags/函数/" style="font-size: 14px;">函数</a> <a href="/tags/分组/" style="font-size: 14px;">分组</a> <a href="/tags/列表/" style="font-size: 16.75px;">列表</a> <a href="/tags/参数/" style="font-size: 14px;">参数</a> <a href="/tags/双网卡/" style="font-size: 14px;">双网卡</a> <a href="/tags/可变参数/" style="font-size: 14px;">可变参数</a> <a href="/tags/多个公钥/" style="font-size: 14px;">多个公钥</a> <a href="/tags/多态/" style="font-size: 14px;">多态</a> <a href="/tags/多进程/" style="font-size: 14px;">多进程</a> <a href="/tags/字典/" style="font-size: 14px;">字典</a> <a href="/tags/字符/" style="font-size: 14px;">字符</a> <a href="/tags/字符串/" style="font-size: 14px;">字符串</a> <a href="/tags/密钥/" style="font-size: 16.75px;">密钥</a> <a href="/tags/循环/" style="font-size: 14px;">循环</a> <a href="/tags/排序/" style="font-size: 14px;">排序</a> <a href="/tags/数字/" style="font-size: 16.75px;">数字</a> <a href="/tags/数据类型/" style="font-size: 16.75px;">数据类型</a> <a href="/tags/文件/" style="font-size: 14px;">文件</a> <a href="/tags/斐波那契数列/" style="font-size: 14px;">斐波那契数列</a> <a href="/tags/条件判断/" style="font-size: 14px;">条件判断</a> <a href="/tags/杨辉三角/" style="font-size: 14px;">杨辉三角</a> <a href="/tags/构造器/" style="font-size: 14px;">构造器</a> <a href="/tags/正则/" style="font-size: 14px;">正则</a> <a href="/tags/汉诺塔/" style="font-size: 14px;">汉诺塔</a> <a href="/tags/游标/" style="font-size: 14px;">游标</a> <a href="/tags/爬虫/" style="font-size: 14px;">爬虫</a> <a href="/tags/生成器/" style="font-size: 14px;">生成器</a> <a href="/tags/目录/" style="font-size: 14px;">目录</a> <a href="/tags/类/" style="font-size: 14px;">类</a> <a href="/tags/统计/" style="font-size: 14px;">统计</a> <a href="/tags/继承/" style="font-size: 14px;">继承</a> <a href="/tags/编码/" style="font-size: 14px;">编码</a> <a href="/tags/网络/" style="font-size: 14px;">网络</a> <a href="/tags/装饰器/" style="font-size: 14px;">装饰器</a> <a href="/tags/视图状态/" style="font-size: 14px;">视图状态</a> <a href="/tags/计算/" style="font-size: 14px;">计算</a> <a href="/tags/负载均衡/" style="font-size: 14px;">负载均衡</a> <a href="/tags/递归/" style="font-size: 14px;">递归</a> <a href="/tags/阶乘/" style="font-size: 14px;">阶乘</a> <a href="/tags/面向对象/" style="font-size: 14px;">面向对象</a>
     </div>
   </div>
 
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title recent-posts">Recent Posts</h3>
+    <h3 class="widget-title recent-posts">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/05/23/python多线程/">python多线程</a>
+          </li>
         
           <li>
             <a href="/2018/05/20/python多进程/">python多进程</a>
@@ -624,10 +640,6 @@
             <a href="/2018/05/17/python访问redis/">python访问redis</a>
           </li>
         
-          <li>
-            <a href="/2018/05/14/python中使用SQLAlchemy-二/">python中使用SQLAlchemy(二)</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -635,9 +647,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title archive">Archives</h3>
+    <h3 class="widget-title archive">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 
@@ -666,10 +678,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
+     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>
