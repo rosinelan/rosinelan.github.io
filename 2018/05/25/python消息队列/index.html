@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>python消息队列 | 持续不断</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="消息队列简介消息队列”是在消息的传输过程中保存消息的容器。消息队列最经典的用法就是消费者和生成者之间通过消息管道来传递消息，消费者和生成者是不通的进程。生产者往管道中写消息，消费者从管道中读消息。   消息队列在multiprocessing的实现操作系统提供了很多机制来实现进程间的通信 ，multiprocessing模块就提供了Queue和Pipe两种方法来实现。">
+<meta name="keywords" content="queue,pipe,消息队列">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python消息队列">
+<meta property="og:url" content="https://rosinelan.github.io/2018/05/25/python消息队列/index.html">
+<meta property="og:site_name" content="持续不断">
+<meta property="og:description" content="消息队列简介消息队列”是在消息的传输过程中保存消息的容器。消息队列最经典的用法就是消费者和生成者之间通过消息管道来传递消息，消费者和生成者是不通的进程。生产者往管道中写消息，消费者从管道中读消息。   消息队列在multiprocessing的实现操作系统提供了很多机制来实现进程间的通信 ，multiprocessing模块就提供了Queue和Pipe两种方法来实现。">
+<meta property="og:updated_time" content="2018-05-25T14:19:07.884Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python消息队列">
+<meta name="twitter:description" content="消息队列简介消息队列”是在消息的传输过程中保存消息的容器。消息队列最经典的用法就是消费者和生成者之间通过消息管道来传递消息，消费者和生成者是不通的进程。生产者往管道中写消息，消费者从管道中读消息。   消息队列在multiprocessing的实现操作系统提供了很多机制来实现进程间的通信 ，multiprocessing模块就提供了Queue和Pipe两种方法来实现。">
+  
+    <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">持续不断</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">要松懈的时候再坚持一下</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-python消息队列" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/25/python消息队列/" class="article-date">
+  <time datetime="2018-05-25T13:13:35.000Z" itemprop="datePublished">2018-05-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/program/">编程</a>►<a class="article-category-link" href="/categories/program/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      python消息队列
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h3 id="消息队列简介"><a href="#消息队列简介" class="headerlink" title="消息队列简介"></a>消息队列简介</h3><p>消息队列”是在消息的传输过程中保存消息的容器。<br>消息队列最经典的用法就是消费者和生成者之间通过消息管道来传递消息，消费者和生成者是不通的进程。生产者往管道中写消息，消费者从管道中读消息。  </p>
+<h3 id="消息队列在multiprocessing的实现"><a href="#消息队列在multiprocessing的实现" class="headerlink" title="消息队列在multiprocessing的实现"></a>消息队列在multiprocessing的实现</h3><p>操作系统提供了很多机制来实现进程间的通信 ，multiprocessing模块就提供了Queue和Pipe两种方法来实现。<br><a id="more"></a></p>
+<h4 id="Queue实现"><a href="#Queue实现" class="headerlink" title="Queue实现"></a>Queue实现</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Process, Queue</span><br><span class="line"><span class="keyword">import</span> os, time, random</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">write</span><span class="params">(q)</span>:</span></span><br><span class="line">    print(<span class="string">'Process to write: %s'</span> % os.getpid())</span><br><span class="line">    <span class="keyword">for</span> value <span class="keyword">in</span> [<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>]:</span><br><span class="line">        print(<span class="string">'Put %s to queue...'</span> % value)</span><br><span class="line">        q.put(value)</span><br><span class="line">        time.sleep(random.random())</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read</span><span class="params">(q)</span>:</span></span><br><span class="line">    print(<span class="string">'Process to read: %s'</span> % os.getpid())</span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">        value = q.get(<span class="keyword">True</span>)</span><br><span class="line">        print(<span class="string">'Get %s from queue.'</span> % value)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:</span><br><span class="line">    <span class="comment"># 父进程创建Queue，并传给各个子进程</span></span><br><span class="line">    q = Queue()</span><br><span class="line">    pw = Process(target=write, args=(q,))</span><br><span class="line">    pr = Process(target=read, args=(q,))</span><br><span class="line">    <span class="comment"># 启动子进程pw，写入</span></span><br><span class="line">    pw.start()</span><br><span class="line">    <span class="comment"># 启动子进程pr，读取</span></span><br><span class="line">    pr.start()</span><br><span class="line">    <span class="comment"># 等待pw结束:</span></span><br><span class="line">    pw.join()</span><br><span class="line">    <span class="comment"># pr进程里是死循环，无法等待其结束，只能强行终止:</span></span><br><span class="line">    r.terminate()</span><br></pre></td></tr></table></figure>
+<p>输出结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Process to write: <span class="number">32532</span></span><br><span class="line">Process to read: <span class="number">28588</span></span><br><span class="line">Put A to queue...</span><br><span class="line">Get A <span class="keyword">from</span> queue.</span><br><span class="line">Put B to queue...</span><br><span class="line">Get B <span class="keyword">from</span> queue.</span><br><span class="line">Put C to queue...</span><br><span class="line">Get C <span class="keyword">from</span> queue.</span><br></pre></td></tr></table></figure></p>
+<h4 id="Pipe实现"><a href="#Pipe实现" class="headerlink" title="Pipe实现"></a>Pipe实现</h4><p>Pipe方法返回(conn1, conn2)代表一个管道的两个端。<br>Pipe方法有duplex参数，如果duplex参数为True(默认值)，那么这个管道是全双工模式，也就是说conn1和conn2均可收发。duplex为False，conn1只负责接受消息，conn2只负责发送消息。<br>send和recv方法分别是发送和接受消息的方法。close方法表示关闭管道，当消息接受结束以后，关闭管道。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> multiprocessing</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">proc1</span><span class="params">(pipe)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</span><br><span class="line">        print(<span class="string">"send: %s"</span> %(i))</span><br><span class="line">        pipe.send(i)</span><br><span class="line">        <span class="comment"># print(dir(pipe))</span></span><br><span class="line">        time.sleep(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">proc2</span><span class="params">(pipe)</span>:</span></span><br><span class="line">    n = <span class="number">5</span></span><br><span class="line">    <span class="keyword">while</span> n:</span><br><span class="line">        print(<span class="string">"proc2 rev:"</span>, pipe.recv())</span><br><span class="line">        time.sleep(<span class="number">1</span>)</span><br><span class="line">        n -= <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    pipe = multiprocessing.Pipe(duplex=<span class="keyword">False</span>)</span><br><span class="line">    p1 = multiprocessing.Process(target=proc1, args=(pipe[<span class="number">1</span>],))</span><br><span class="line">    p2 = multiprocessing.Process(target=proc2, args=(pipe[<span class="number">0</span>],))</span><br><span class="line">    p1.start()</span><br><span class="line">    p2.start()</span><br><span class="line">    p1.join()</span><br><span class="line">    p2.join()</span><br><span class="line">    pipe[<span class="number">0</span>].close()</span><br><span class="line">    pipe[<span class="number">1</span>].close()</span><br></pre></td></tr></table></figure></p>
+<p>输出结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">send: <span class="number">0</span></span><br><span class="line">proc2 rev: <span class="number">0</span></span><br><span class="line">send: <span class="number">1</span></span><br><span class="line">proc2 rev: <span class="number">1</span></span><br><span class="line">send: <span class="number">2</span></span><br><span class="line">proc2 rev: <span class="number">2</span></span><br><span class="line">send: <span class="number">3</span></span><br><span class="line">proc2 rev: <span class="number">3</span></span><br><span class="line">send: <span class="number">4</span></span><br><span class="line">proc2 rev: <span class="number">4</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="queue模块实现消息队列"><a href="#queue模块实现消息队列" class="headerlink" title="queue模块实现消息队列"></a>queue模块实现消息队列</h3><p>在python中还可以直接使用queue模块专门实现消息队列。<br>queue对象实现一个fifo队列（其他的还有lifo、priority队列，这里不再介绍）。queue只有maxsize一个构造参数，用来指定队列容量，指定为0的时候代表容量无限。主要有以下成员函数  </p>
+<ul>
+<li>queue.qsize()<br>返回消息队列的当前空间。返回的值不一定可靠。  </li>
+<li>queue.empty()<br>判断消息队列是否为空，返回True或False。同样不可靠。  </li>
+<li>queue.full()<br>类似上边，判断消息队列是否满。  </li>
+<li>queue.put(item, block=True, timeout=None)<br>往消息队列中存放消息。block可以控制是否阻塞，timeout指定阻塞时候的等待时间。如果不阻塞或者超时，会引起一个full exception。  </li>
+<li>queue.put_nowait(item)<br>相当于put(item, False)。  </li>
+<li>queue.get(block=True, timeout=None)<br>获取一个消息，其他同put。<br>以下两个函数用来判断消息对应的任务是否完成。  </li>
+<li>queue.task_done()<br>接受消息的线程通过调用这个函数来说明消息对应的任务已完成。  </li>
+<li>queue.join()<br>实际上意味着等到队列为空，再执行别的操作。  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> threading, time</span><br><span class="line"><span class="keyword">from</span> queue <span class="keyword">import</span> Queue</span><br><span class="line"></span><br><span class="line"><span class="comment"># Producer thread</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Producer</span><span class="params">(threading.Thread)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, t_name, queue)</span>:</span></span><br><span class="line">        threading.Thread.__init__(self, name=t_name)</span><br><span class="line">        self.data = queue</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):  <span class="comment"># 随机产生10个数字 ，可以修改为任意大小</span></span><br><span class="line">            print(<span class="string">"%s: %s is producing %d to the queue!"</span> % (time.ctime(), self.getName(), i))</span><br><span class="line">            self.data.put(i)  <span class="comment"># 将数据依次存入队列</span></span><br><span class="line">        print(<span class="string">"%s: %s finished!"</span> % (time.ctime(), self.getName()))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Consumer thread</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Consumer_even</span><span class="params">(threading.Thread)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, t_name, queue)</span>:</span></span><br><span class="line">        threading.Thread.__init__(self, name=t_name)</span><br><span class="line">        self.data = queue</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                val_even = self.data.get(<span class="number">1</span>, <span class="number">5</span>)  <span class="comment"># get(self, block=True, timeout=None) ,1就是阻塞等待,5是超时5秒</span></span><br><span class="line">                <span class="keyword">if</span> val_even % <span class="number">2</span> == <span class="number">0</span>:</span><br><span class="line">                    print(<span class="string">"%s: %s is consuming. %d in the queue is consumed!"</span> % (time.ctime(), self.getName(), val_even))</span><br><span class="line">                    time.sleep(<span class="number">2</span>)</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    self.data.put(val_even)</span><br><span class="line">                    time.sleep(<span class="number">2</span>)</span><br><span class="line">            <span class="keyword">except</span>:  <span class="comment"># 等待输入，超过5秒  就报异常</span></span><br><span class="line">                print(<span class="string">"%s: %s finished!"</span> % (time.ctime(), self.getName()))</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Consumer_odd</span><span class="params">(threading.Thread)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, t_name, queue)</span>:</span></span><br><span class="line">        threading.Thread.__init__(self, name=t_name)</span><br><span class="line">        self.data = queue</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                val_odd = self.data.get(<span class="number">1</span>, <span class="number">5</span>)</span><br><span class="line">                <span class="keyword">if</span> val_odd % <span class="number">2</span> != <span class="number">0</span>:</span><br><span class="line">                    print(<span class="string">"%s: %s is consuming. %d in the queue is consumed!"</span> % (time.ctime(), self.getName(), val_odd))</span><br><span class="line">                    time.sleep(<span class="number">2</span>)</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    self.data.put(val_odd)</span><br><span class="line">                    time.sleep(<span class="number">2</span>)</span><br><span class="line">            <span class="keyword">except</span>:</span><br><span class="line">                print(<span class="string">"%s: %s finished!"</span> % (time.ctime(), self.getName()))</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Main thread</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    queue = Queue()</span><br><span class="line">    producer = Producer(<span class="string">'Pro.'</span>, queue)</span><br><span class="line">    consumer_even = Consumer_even(<span class="string">'Con_even.'</span>, queue)</span><br><span class="line">    consumer_odd = Consumer_odd(<span class="string">'Con_odd.'</span>, queue)</span><br><span class="line">    producer.start()</span><br><span class="line">    consumer_even.start()</span><br><span class="line">    consumer_odd.start()</span><br><span class="line">    producer.join()</span><br><span class="line">    consumer_even.join()</span><br><span class="line">    consumer_odd.join()</span><br><span class="line">    print(<span class="string">'All threads terminate!'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>输出结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Fri May <span class="number">25</span> <span class="number">22</span>:<span class="number">10</span>:<span class="number">01</span> <span class="number">2018</span>: Pro. <span class="keyword">is</span> producing <span class="number">0</span> to the queue!</span><br><span class="line">Fri May <span class="number">25</span> <span class="number">22</span>:<span class="number">10</span>:<span class="number">01</span> <span class="number">2018</span>: Pro. <span class="keyword">is</span> producing <span class="number">1</span> to the queue!</span><br><span class="line">Fri May <span class="number">25</span> <span class="number">22</span>:<span class="number">10</span>:<span class="number">01</span> <span class="number">2018</span>: Pro. <span class="keyword">is</span> producing <span class="number">2</span> to the queue!</span><br><span class="line">Fri May <span class="number">25</span> <span class="number">22</span>:<span class="number">10</span>:<span class="number">01</span> <span class="number">2018</span>: Pro. <span class="keyword">is</span> producing <span class="number">3</span> to the queue!</span><br><span class="line">Fri May <span class="number">25</span> <span class="number">22</span>:<span class="number">10</span>:<span class="number">01</span> <span class="number">2018</span>: Pro. <span class="keyword">is</span> producing <span class="number">4</span> to the queue!</span><br><span class="line">Fri May <span class="number">25</span> <span class="number">22</span>:<span class="number">10</span>:<span class="number">01</span> <span class="number">2018</span>: Pro. finished!</span><br><span class="line">Fri May <span class="number">25</span> <span class="number">22</span>:<span class="number">10</span>:<span class="number">01</span> <span class="number">2018</span>: Con_even. <span class="keyword">is</span> consuming. <span class="number">0</span> <span class="keyword">in</span> the queue <span class="keyword">is</span> consumed!</span><br><span class="line">Fri May <span class="number">25</span> <span class="number">22</span>:<span class="number">10</span>:<span class="number">01</span> <span class="number">2018</span>: Con_odd. <span class="keyword">is</span> consuming. <span class="number">1</span> <span class="keyword">in</span> the queue <span class="keyword">is</span> consumed!</span><br><span class="line">Fri May <span class="number">25</span> <span class="number">22</span>:<span class="number">10</span>:<span class="number">05</span> <span class="number">2018</span>: Con_even. <span class="keyword">is</span> consuming. <span class="number">4</span> <span class="keyword">in</span> the queue <span class="keyword">is</span> consumed!</span><br><span class="line">Fri May <span class="number">25</span> <span class="number">22</span>:<span class="number">10</span>:<span class="number">13</span> <span class="number">2018</span>: Con_odd. <span class="keyword">is</span> consuming. <span class="number">3</span> <span class="keyword">in</span> the queue <span class="keyword">is</span> consumed!</span><br><span class="line">Fri May <span class="number">25</span> <span class="number">22</span>:<span class="number">10</span>:<span class="number">13</span> <span class="number">2018</span>: Con_even. <span class="keyword">is</span> consuming. <span class="number">2</span> <span class="keyword">in</span> the queue <span class="keyword">is</span> consumed!</span><br><span class="line">Fri May <span class="number">25</span> <span class="number">22</span>:<span class="number">10</span>:<span class="number">20</span> <span class="number">2018</span>: Con_even. finished!</span><br><span class="line">Fri May <span class="number">25</span> <span class="number">22</span>:<span class="number">10</span>:<span class="number">20</span> <span class="number">2018</span>: Con_odd. finished!</span><br><span class="line">All threads terminate!</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/05/25/python消息队列/" data-id="cjhm4d1js0029qoq6xut98rgm" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pipe/">pipe</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/queue/">queue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/消息队列/">消息队列</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2018/05/25/python任务调度模块celery/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          python任务调度模块celery
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/05/23/python多线程/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">python多线程</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#消息队列简介"><span class="toc-number">1.</span> <span class="toc-text">消息队列简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#消息队列在multiprocessing的实现"><span class="toc-number">2.</span> <span class="toc-text">消息队列在multiprocessing的实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Queue实现"><span class="toc-number">2.1.</span> <span class="toc-text">Queue实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Pipe实现"><span class="toc-number">2.2.</span> <span class="toc-text">Pipe实现</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#queue模块实现消息队列"><span class="toc-number">3.</span> <span class="toc-text">queue模块实现消息队列</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>
