@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="持续不断">
 <meta property="og:description" content="celery简介Celery是一个python开发的异步分布式任务调度模块。Celery本身并不提供消息服务，使用第三方服务，也就是borker来传递任务，一般使用rabbitMQ或者Redis。    Celery特点简单：一单熟悉了celery的工作流程后，配置和使用还是比较简单的。高可用：当任务执行失败或执行过程中发生连接中断，celery 会自动尝试重新执行任务。快速：一个单进程的cele">
 <meta property="og:image" content="http://cdn.rosinelan.com/blog/program/python-Celery.png">
-<meta property="og:updated_time" content="2018-05-25T15:26:30.072Z">
+<meta property="og:updated_time" content="2018-05-25T15:28:55.303Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python任务调度模块celery">
 <meta name="twitter:description" content="celery简介Celery是一个python开发的异步分布式任务调度模块。Celery本身并不提供消息服务，使用第三方服务，也就是borker来传递任务，一般使用rabbitMQ或者Redis。    Celery特点简单：一单熟悉了celery的工作流程后，配置和使用还是比较简单的。高可用：当任务执行失败或执行过程中发生连接中断，celery 会自动尝试重新执行任务。快速：一个单进程的cele">
@@ -44,7 +44,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -127,12 +127,12 @@
 </li>
 </ul>
 <p>启动Celery Worker开始监听并执行任务<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">celery -A celery1 worker --loglevel=info</span><br></pre></td></tr></table></figure></p>
-<p>调用任务<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> celery1 <span class="keyword">import</span> add</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">re = add.delay(<span class="number">10</span>, <span class="number">20</span>)</span><br><span class="line">print(re)</span><br><span class="line">print(re.status)</span><br><span class="line">time.sleep(<span class="number">8</span>)</span><br><span class="line">print(re.status)</span><br><span class="line">print(re.result)</span><br></pre></td></tr></table></figure></p>
+<p>调用任务<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> celery1 <span class="keyword">import</span> add</span><br><span class="line"></span><br><span class="line">re = add.delay(<span class="number">10</span>, <span class="number">20</span>)</span><br><span class="line">print(re)</span><br><span class="line">print(re.status)</span><br><span class="line">time.sleep(<span class="number">8</span>)</span><br><span class="line">print(re.status)</span><br><span class="line">print(re.result)</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/25/python任务调度模块celery/" data-id="cjhm4d1i2000gqoq6kmjlaqx9" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/05/25/python任务调度模块celery/" data-id="cjhovzi8n000rzoq6y26ho9jc" class="article-share-link">Delen</a>
       
       
       
@@ -186,9 +186,18 @@
     
 <nav id="article-nav">
   
+    <a href="/2018/05/27/python多线程练习题/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Nieuwer</strong>
+      <div class="article-nav-title">
+        
+          python多线程练习题
+        
+      </div>
+    </a>
+  
   
     <a href="/2018/05/25/python消息队列/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
+      <strong class="article-nav-caption">Ouder</strong>
       <div class="article-nav-title">python消息队列</div>
     </a>
   
@@ -246,10 +255,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
+     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>
