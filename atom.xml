@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rosinelan.github.io/"/>
-  <updated>2018-05-27T14:23:50.497Z</updated>
+  <updated>2018-05-27T14:39:29.531Z</updated>
   <id>https://rosinelan.github.io/</id>
   
   <author>
@@ -21,12 +21,22 @@
     <link href="https://rosinelan.github.io/2018/05/27/python%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9D%97celery-%E4%BA%8C/"/>
     <id>https://rosinelan.github.io/2018/05/27/python任务调度模块celery-二/</id>
     <published>2018-05-27T14:23:50.000Z</published>
-    <updated>2018-05-27T14:23:50.497Z</updated>
+    <updated>2018-05-27T14:39:29.531Z</updated>
     
     <summary type="html">
     
     </summary>
     
+      <category term="编程" scheme="https://rosinelan.github.io/categories/program/"/>
+    
+      <category term="python" scheme="https://rosinelan.github.io/categories/program/python/"/>
+    
+    
+      <category term="celery" scheme="https://rosinelan.github.io/tags/celery/"/>
+    
+      <category term="定时任务" scheme="https://rosinelan.github.io/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/"/>
+    
+      <category term="多线程" scheme="https://rosinelan.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
     
   </entry>
   
