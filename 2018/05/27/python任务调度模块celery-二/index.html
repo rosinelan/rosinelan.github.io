@@ -5,17 +5,19 @@
   
   <title>python任务调度模块celery(二) | 持续不断</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="DB">
+  <meta name="description" content="关于celery的的基础介绍及安装使用参见python任务调度模块celery。   多worker和多队列首先是多worker和多队列的原理及流程图。一般情况下对于多worker和多队列的配置文件单独写在一个配置文件，方便管理和配置。   定义任务列表multique.py12345678910111213141516from celery import Celeryapp = Celery()">
 <meta name="keywords" content="celery,定时任务,多线程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python任务调度模块celery(二)">
 <meta property="og:url" content="https://rosinelan.github.io/2018/05/27/python任务调度模块celery-二/index.html">
 <meta property="og:site_name" content="持续不断">
-<meta property="og:description" content="DB">
-<meta property="og:updated_time" content="2018-05-27T14:39:29.531Z">
+<meta property="og:description" content="关于celery的的基础介绍及安装使用参见python任务调度模块celery。   多worker和多队列首先是多worker和多队列的原理及流程图。一般情况下对于多worker和多队列的配置文件单独写在一个配置文件，方便管理和配置。   定义任务列表multique.py12345678910111213141516from celery import Celeryapp = Celery()">
+<meta property="og:image" content="http://cdn.rosinelan.com/blog/program/celery-multi-queue.png">
+<meta property="og:updated_time" content="2018-05-28T02:26:50.388Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python任务调度模块celery(二)">
-<meta name="twitter:description" content="DB">
+<meta name="twitter:description" content="关于celery的的基础介绍及安装使用参见python任务调度模块celery。   多worker和多队列首先是多worker和多队列的原理及流程图。一般情况下对于多worker和多队列的配置文件单独写在一个配置文件，方便管理和配置。   定义任务列表multique.py12345678910111213141516from celery import Celeryapp = Celery()">
+<meta name="twitter:image" content="http://cdn.rosinelan.com/blog/program/celery-multi-queue.png">
   
     <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
   
@@ -42,7 +44,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -100,11 +102,19 @@
       
         <!-- Table of Contents -->
         
-        
+        <p>关于celery的的基础介绍及安装使用参见<a href="https://rosinelan.coding.me/2018/05/25/python%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9D%97celery/" target="_blank" rel="noopener">python任务调度模块celery</a>。  </p>
+<h3 id="多worker和多队列"><a href="#多worker和多队列" class="headerlink" title="多worker和多队列"></a>多worker和多队列</h3><p>首先是多worker和多队列的原理及流程图。<br><img src="http://cdn.rosinelan.com/blog/program/celery-multi-queue.png" alt="celery-multi-queue" title="celery-multi-queue"><br>一般情况下对于多worker和多队列的配置文件单独写在一个配置文件，方便管理和配置。  </p>
+<h4 id="定义任务列表"><a href="#定义任务列表" class="headerlink" title="定义任务列表"></a>定义任务列表</h4><p><code>multique.py</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> celery <span class="keyword">import</span> Celery</span><br><span class="line"></span><br><span class="line">app = Celery()</span><br><span class="line">app.config_from_object(<span class="string">"celeryconfig"</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.task</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">taskA</span><span class="params">(x, y)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> x*y</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.task</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">taskB</span><span class="params">(x, y, z)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> x+y+z</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.task</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(x, y)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> x+y</span><br></pre></td></tr></table></figure></p>
+<h4 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h4><p><code>celeryconfig.py</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> kombu <span class="keyword">import</span> Queue, Exchange</span><br><span class="line"></span><br><span class="line">BROKER_URL = <span class="string">"redis://118.24.18.158:6380/1"</span></span><br><span class="line">CELERY_RESULT_BACKEND = <span class="string">"redis://118.24.18.158:6380/2"</span></span><br><span class="line"></span><br><span class="line">CELERY_QUEUES = &#123;</span><br><span class="line">    Queue(<span class="string">"default"</span>, Exchange(<span class="string">"default"</span>), routing_key=<span class="string">"default"</span>),</span><br><span class="line">    Queue(<span class="string">"for_task_A"</span>, Exchange(<span class="string">"for_task_A"</span>), routing_key=<span class="string">"for_task_A"</span>),</span><br><span class="line">    Queue(<span class="string">"for_task_B"</span>, Exchange(<span class="string">"for_task_B"</span>), routing_key=<span class="string">"for_task_B"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">CELERY_ROUTES = &#123;</span><br><span class="line">    <span class="string">"multique.taskA"</span>: &#123;<span class="string">"queue"</span>: <span class="string">"for_task_A"</span>, <span class="string">"routing_key"</span>: <span class="string">"for_task_A"</span>&#125;,</span><br><span class="line">    <span class="string">"multique.taskB"</span>: &#123;<span class="string">"queue"</span>: <span class="string">"for_task_B"</span>, <span class="string">"routing_key"</span>: <span class="string">"for_task_B"</span>&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="启动celery-worker监听"><a href="#启动celery-worker监听" class="headerlink" title="启动celery worker监听"></a>启动celery worker监听</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">celery -A multique worker -l=info -n workerA.%h -Q for_task_A</span><br><span class="line"> celery -A multique worker -l=info -n workerB.%h -Q for_task_B</span><br></pre></td></tr></table></figure>
+<h4 id="调用任务"><a href="#调用任务" class="headerlink" title="调用任务"></a>调用任务</h4><p><code>multicelery.py</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> queue1.multique <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">re1 = taskA.delay(<span class="number">10</span>, <span class="number">20</span>)</span><br><span class="line">re2 = taskB.delay(<span class="number">100</span>, <span class="number">200</span>, <span class="number">300</span>)</span><br><span class="line">re3 = add.delay(<span class="number">1000</span>, <span class="number">2000</span>)</span><br><span class="line">time.sleep(<span class="number">2</span>)</span><br><span class="line">print(re1.result) <span class="comment">#输出结果：200</span></span><br><span class="line">print(re2.result) <span class="comment">#输出结果：600</span></span><br><span class="line">print(re3.status) <span class="comment">#输出结果：PENDING</span></span><br><span class="line">print(re3.result) <span class="comment">#输出结果：None</span></span><br></pre></td></tr></table></figure></p>
+<p>我们看到状态是PENDING，表示没有执行，这个是因为没有celeryconfig.py文件中指定改route到哪一个Queue中，所以会被发动到默认的名字celery的Queue中，但是我们还没有启动worker执行celery中的任务。下面，我们来启动一个worker来执行celery队列中的任务。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">celery -A multique worker -l info -n worker.%h -Q celery</span><br></pre></td></tr></table></figure></p>
+<p>再次调用任务，状态应该为SUCCESS,结果为3000。</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/27/python任务调度模块celery-二/" data-id="cjhox04wo000u5kq61afph7jw" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/05/27/python任务调度模块celery-二/" data-id="cjhox04wo000u5kq61afph7jw" class="article-share-link">Share</a>
       
       
       
@@ -116,7 +126,7 @@
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>推荐文章</h2>
+    <h2>Recommended Posts</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =4
@@ -160,7 +170,7 @@
   
   
     <a href="/2018/05/27/python多线程练习题/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">python多线程练习题</div>
     </a>
   
@@ -186,42 +196,24 @@
     <aside id="sidebar">
   
     
-  
+    <div class="widget-wrap">
     
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title recent-posts">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2018/05/27/python任务调度模块celery-二/">python任务调度模块celery(二)</a>
-          </li>
-        
-          <li>
-            <a href="/2018/05/27/python多线程练习题/">python多线程练习题</a>
-          </li>
-        
-          <li>
-            <a href="/2018/05/25/python任务调度模块celery/">python任务调度模块celery</a>
-          </li>
-        
-          <li>
-            <a href="/2018/05/25/python消息队列/">python消息队列</a>
-          </li>
-        
-          <li>
-            <a href="/2018/05/23/python多线程/">python多线程</a>
-          </li>
-        
-      </ul>
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">Content</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#多worker和多队列"><span class="toc-number">1.</span> <span class="toc-text">多worker和多队列</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#定义任务列表"><span class="toc-number">1.1.</span> <span class="toc-text">定义任务列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置文件"><span class="toc-number">1.2.</span> <span class="toc-text">配置文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#启动celery-worker监听"><span class="toc-number">1.3.</span> <span class="toc-text">启动celery worker监听</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#调用任务"><span class="toc-number">1.4.</span> <span class="toc-text">调用任务</span></a></li></ol></li></ol>
+          </div>
+      </div>
     </div>
-  </div>
 
+  
+    
+
+  
+    
+  
+    
   
     
 
@@ -236,10 +228,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
+     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>
