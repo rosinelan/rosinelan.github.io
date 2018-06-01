@@ -13,8 +13,10 @@
 <meta property="og:site_name" content="持续不断">
 <meta property="og:description" content="网络编程，肯定就会涉及到网络中进程的通信，那么网络中进程如何通信呢？   知识点网络中的进程通信首先需要标识一个进程。本地可以通过进程PID来唯一标识一个进程，但在网络中不可行。TCP/IP协议中，在网络层用IP地址唯一标识网络中的主机，传输层中用协议+端口唯一标识主机中的应用程序(进程)，这样利用三元组(IP地址，协议，端口)就可以标识网络的进程，网络中的进程通信就可以利用这个标识与其它进程进行">
 <meta property="og:image" content="http://cdn.rosinelan.com/blog/program/python-socket-module.png">
+<meta property="og:image" content="http://cdn.rosinelan.com/blog/program/python-tcp-establish.png">
+<meta property="og:image" content="http://cdn.rosinelan.com/blog/program/python-tcp-close.png">
 <meta property="og:image" content="http://cdn.rosinelan.com/blog/program/python-socket-axiom.png">
-<meta property="og:updated_time" content="2018-06-01T15:38:08.679Z">
+<meta property="og:updated_time" content="2018-06-01T15:54:53.716Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python网络编程之socket">
 <meta name="twitter:description" content="网络编程，肯定就会涉及到网络中进程的通信，那么网络中进程如何通信呢？   知识点网络中的进程通信首先需要标识一个进程。本地可以通过进程PID来唯一标识一个进程，但在网络中不可行。TCP/IP协议中，在网络层用IP地址唯一标识网络中的主机，传输层中用协议+端口唯一标识主机中的应用程序(进程)，这样利用三元组(IP地址，协议，端口)就可以标识网络的进程，网络中的进程通信就可以利用这个标识与其它进程进行">
@@ -45,7 +47,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -104,11 +106,14 @@
         <!-- Table of Contents -->
         
         <p>网络编程，肯定就会涉及到网络中进程的通信，那么网络中进程如何通信呢？  </p>
-<h3 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h3><h4 id="网络中的进程通信"><a href="#网络中的进程通信" class="headerlink" title="网络中的进程通信"></a>网络中的进程通信</h4><p>首先需要标识一个进程。本地可以通过进程PID来唯一标识一个进程，但在网络中不可行。TCP/IP协议中，在网络层用<code>IP地址</code>唯一标识网络中的主机，传输层中用<code>协议+端口</code>唯一标识主机中的应用程序(进程)，这样利用三元组(IP地址，协议，端口)就可以标识网络的进程，网络中的进程通信就可以利用这个标识与其它进程进行交互。<br>使用TCP/IP协议的应用程序通常采用引用编程接口:UNIX BSD的套接字(socket)来实现网络进程之间的通信。<br><img src="http://cdn.rosinelan.com/blog/program/python-socket-module.png" alt="python-socket-module" title="python-socket-module"></p>
-<h4 id="tcp"><a href="#tcp" class="headerlink" title="tcp"></a>tcp</h4><p>TCP是<code>Transmission Control Protocol</code>(传输控制协议)的简写。<br>TCP是一种面向连接的，提供可靠交付服务和全双工通信的，基于字节流的端到端的传输层通信协议。<br>TCP在传输数据之前必须先建立连接，数据传输结束后要释放连接。<br>每一条TCP连接只能有2个端点，故TCP不提供广播或多播服务。<br>TCP提供可靠交付，通过TCP连接传输的数据，无差错、不丢失、不重复、并且按序到达。<br>TCP是面向字节流的。虽然应用进程和TCP的交互是一次一个数据块(大小不等），但TCP把英语程序交下来的数据看成仅仅是一连串的无结构的字节流。TCP并不知道所传输的字节流的含义。<br><code>TCP三次握手</code><br>第一次握手：建立连接时，客户端A发送SYN包(SYN=j)到服务器B，并进入SYN_SEND状态，等待服务器B确认。<br>第二次握手：服务器B收到SYN包，必须确认客户A的SYN(ACK=j+1)，同时自己也发送一个SYN包(SYN=k)，即SYN+ACK包，此时服务器B进入SYN_RECV状态。<br>第三次握手：客户端A收到服务器B的SYN＋ACK包，向服务器B发送确认包ACK(ACK=k+1)，此包发送完毕，客户端A和服务器B进入ESTABLISHED状态，完成三次握手。<br>完成三次握手，客户端与服务器开始传送数据。<br><code>TCP四次挥手</code><br>由于TCP连接是全双工的，因此每个方向都必须单独进行关闭。这个原则是当一方完成它的数据发送任务后就能发送一个FIN来终止这个方向的连接。收到一个 FIN只意味着这一方向上没有数据流动，一个TCP连接在收到一个FIN后仍能发送数据。首先进行关闭的一方将执行主动关闭，而另一方执行被动关闭。<br>客户端A发送一个FIN，用来关闭客户A到服务器B的数据传送(报文段4)。<br>服务器B收到这个FIN，它发回一个ACK，确认序号为收到的序号加1(报文段5)。和SYN一样，一个FIN将占用一个序号。<br>服务器B关闭与客户端A的连接，发送一个FIN给客户端A(报文段6)。<br>客户端A发回ACK报文确认，并将确认序号设置为收到序号加1(报文段7)。  </p>
-<h4 id="udp"><a href="#udp" class="headerlink" title="udp"></a>udp</h4><p>UDP是<code>User Datagram Protocol</code>(用户数据报协议)的简写。<br>UDP是一种无连接的，尽最大努力交付的，基于报文的端到端的传输层通信协议。<br>UDP在发送数据之前不需要建立连接；UDP不保证可靠交付，主机不需要位置复杂的连接状态。<br>UDP是面向报文的。UDP对应用层交下来的报文，既不合并，也不拆分，而是保留这些报文的的边界，即应用层交给UDP多长的报文，UDP就照样发送，即一次发送一个报文。在接收端，UDP一次交付一个完整的报文。<br>UDP没有拥塞控制，网络出现的拥塞不会使源主机的发送速率降低。<br>UDP支持一对一、一对多、多对一和多对多的交互通信。<br>UDP的首部开销小，只有8个字节，比TCP的20个字节的首部要短。  </p>
-<h3 id="socket"><a href="#socket" class="headerlink" title="socket"></a>socket</h3><p>套接字的格式<br>socket(family,type[,protocal])<br>使用给定的地址族、套接字类型、协议编号（默认为0）来创建套接字。</p>
-<h4 id="socket类型"><a href="#socket类型" class="headerlink" title="socket类型"></a>socket类型</h4><ul>
+<h3 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h3><h4 id="网络中的进程通信"><a href="#网络中的进程通信" class="headerlink" title="网络中的进程通信"></a>网络中的进程通信</h4><p>首先需要标识一个进程。本地可以通过进程PID来唯一标识一个进程，但在网络中不可行。TCP/IP协议中，在网络层用<code>IP地址</code>唯一标识网络中的主机，传输层中用<code>协议+端口</code>唯一标识主机中的应用程序(进程)，这样利用三元组(IP地址，协议，端口)就可以标识网络的进程，网络中的进程通信就可以利用这个标识与其它进程进行交互。<br>使用TCP/IP协议的应用程序通常采用引用编程接口:UNIX BSD的套接字(socket)来实现网络进程之间的通信。<br><a id="more"></a><br><img src="http://cdn.rosinelan.com/blog/program/python-socket-module.png" alt="python-socket-module" title="python-socket-module"></p>
+<h4 id="tcp"><a href="#tcp" class="headerlink" title="tcp"></a>tcp</h4><p>TCP是<code>Transmission Control Protocol</code>(传输控制协议)的简写。<br>TCP是一种面向连接的，提供可靠交付服务和全双工通信的，基于字节流的端到端的传输层通信协议。<br>TCP在传输数据之前必须先建立连接，数据传输结束后要释放连接。<br>每一条TCP连接只能有2个端点，故TCP不提供广播或多播服务。<br>TCP提供可靠交付，通过TCP连接传输的数据，无差错、不丢失、不重复、并且按序到达。<br>TCP是面向字节流的。虽然应用进程和TCP的交互是一次一个数据块(大小不等），但TCP把英语程序交下来的数据看成仅仅是一连串的无结构的字节流。TCP并不知道所传输的字节流的含义。<br><code>TCP三次握手</code><br>状态说明<br><code>SYN</code>表示建立连接，<code>FIN</code>表示关闭连接，<code>ACK</code>表示响应，<code>PSH</code>表示有DATA数据传输，<code>RST</code>表示连接重置。    </p>
+<ol>
+<li>客户端向服务器发送一个SYN J。</li>
+<li>服务器向客户端响应一个SYN K，并对SYN J进行确认ACK J+1。</li>
+<li>客户端再向服务器发一个确认ACK K+1。<br>至此连接建立完成。<br><img src="http://cdn.rosinelan.com/blog/program/python-tcp-establish.png" alt="python-tcp-establish" title="python-tcp-establish"><br><code>TCP四次挥手</code><br>由于TCP连接是全双工的，因此每个方向都必须单独进行关闭。这个原则是当一方完成它的数据发送任务后就能发送一个FIN来终止这个方向的连接。收到一个 FIN只意味着这一方向上没有数据流动，一个TCP连接在收到一个FIN后仍能发送数据。首先进行关闭的一方将执行主动关闭，而另一方执行被动关闭。<br>客户端A发送一个FIN，用来关闭客户A到服务器B的数据传送(M)。<br>服务器B收到这个FIN，它发回一个ACK，确认序号为收到的序号加1(M+1)。和SYN一样，一个FIN将占用一个序号。<br>服务器B关闭与客户端A的连接，发送一个FIN给客户端A(N)。<br>客户端A发回ACK报文确认，并将确认序号设置为收到序号加1(N+1)。<br><img src="http://cdn.rosinelan.com/blog/program/python-tcp-close.png" alt="python-tcp-close" title="python-tcp-close"><h4 id="udp"><a href="#udp" class="headerlink" title="udp"></a>udp</h4>UDP是<code>User Datagram Protocol</code>(用户数据报协议)的简写。<br>UDP是一种无连接的，尽最大努力交付的，基于报文的端到端的传输层通信协议。<br>UDP在发送数据之前不需要建立连接；UDP不保证可靠交付，主机不需要位置复杂的连接状态。<br>UDP是面向报文的。UDP对应用层交下来的报文，既不合并，也不拆分，而是保留这些报文的的边界，即应用层交给UDP多长的报文，UDP就照样发送，即一次发送一个报文。在接收端，UDP一次交付一个完整的报文。<br>UDP没有拥塞控制，网络出现的拥塞不会使源主机的发送速率降低。<br>UDP支持一对一、一对多、多对一和多对多的交互通信。<br>UDP的首部开销小，只有8个字节，比TCP的20个字节的首部要短。  <h3 id="socket"><a href="#socket" class="headerlink" title="socket"></a>socket</h3>套接字的格式<br>socket(family,type[,protocal])<br>使用给定的地址族、套接字类型、协议编号（默认为0）来创建套接字。<h4 id="socket类型"><a href="#socket类型" class="headerlink" title="socket类型"></a>socket类型</h4></li>
+</ol>
+<ul>
 <li>socket.AF_UNIX<br>只能够用于单一的Unix系统进程间通信。  </li>
 <li>socket.AF_INET<br>服务器之间网络通信。  </li>
 <li>socket.AF_INET6<br>IPv6</li>
@@ -178,7 +183,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/06/01/python网络编程之socket/" data-id="cjhw4v621003958q6yy1t707l" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/06/01/python网络编程之socket/" data-id="cjhw4v621003958q6yy1t707l" class="article-share-link">Share</a>
       
       
       
@@ -190,7 +195,7 @@
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>推荐文章</h2>
+    <h2>Recommended Posts</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =4
@@ -234,7 +239,7 @@
   
   
     <a href="/2018/05/30/python单词查找练习题/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">python单词查找练习题</div>
     </a>
   
@@ -264,7 +269,7 @@
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">文章目录</strong>
+        <strong class="toc-title">Content</strong>
         <div class="toc-widget-list">
               <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#知识点"><span class="toc-number">1.</span> <span class="toc-text">知识点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#网络中的进程通信"><span class="toc-number">1.1.</span> <span class="toc-text">网络中的进程通信</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#tcp"><span class="toc-number">1.2.</span> <span class="toc-text">tcp</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#udp"><span class="toc-number">1.3.</span> <span class="toc-text">udp</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#socket"><span class="toc-number">2.</span> <span class="toc-text">socket</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#socket类型"><span class="toc-number">2.1.</span> <span class="toc-text">socket类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#socket函数"><span class="toc-number">2.2.</span> <span class="toc-text">socket函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#python中socket编程步骤"><span class="toc-number">3.</span> <span class="toc-text">python中socket编程步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP服务端"><span class="toc-number">3.1.</span> <span class="toc-text">TCP服务端</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP客户端"><span class="toc-number">3.2.</span> <span class="toc-text">TCP客户端:</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例"><span class="toc-number">4.</span> <span class="toc-text">示例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP服务端-1"><span class="toc-number">4.1.</span> <span class="toc-text">TCP服务端</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP客户端-1"><span class="toc-number">4.2.</span> <span class="toc-text">TCP客户端</span></a></li></ol></li></ol>
           </div>
@@ -292,10 +297,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
+     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>
