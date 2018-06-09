@@ -5,17 +5,17 @@
   
   <title>python数据处理 | 持续不断</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="csv数据处理pdf数据处理">
+  <meta name="description" content="csv数据处理csv表示”Comma-Separated Values(逗号分隔的值)”，csv文件时简化的电子表格，保存为纯文本文件。python中解析csv文件可以使用csv模块。注意：csv是文本文件，通过打开文件的操作，将其内容读入一个字符串，然后通过字符串的split()方法处理每行文本取得值。需要注意csv文件中也有自己的转义字符，允许逗号或者其他字符作为值的一部分，split()方法">
 <meta name="keywords" content="excel,csv">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python数据处理">
 <meta property="og:url" content="https://rosinelan.github.io/2018/06/08/python数据处理/index.html">
 <meta property="og:site_name" content="持续不断">
-<meta property="og:description" content="csv数据处理pdf数据处理">
-<meta property="og:updated_time" content="2018-06-08T13:46:16.053Z">
+<meta property="og:description" content="csv数据处理csv表示”Comma-Separated Values(逗号分隔的值)”，csv文件时简化的电子表格，保存为纯文本文件。python中解析csv文件可以使用csv模块。注意：csv是文本文件，通过打开文件的操作，将其内容读入一个字符串，然后通过字符串的split()方法处理每行文本取得值。需要注意csv文件中也有自己的转义字符，允许逗号或者其他字符作为值的一部分，split()方法">
+<meta property="og:updated_time" content="2018-06-09T00:45:40.928Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python数据处理">
-<meta name="twitter:description" content="csv数据处理pdf数据处理">
+<meta name="twitter:description" content="csv数据处理csv表示”Comma-Separated Values(逗号分隔的值)”，csv文件时简化的电子表格，保存为纯文本文件。python中解析csv文件可以使用csv模块。注意：csv是文本文件，通过打开文件的操作，将其内容读入一个字符串，然后通过字符串的split()方法处理每行文本取得值。需要注意csv文件中也有自己的转义字符，允许逗号或者其他字符作为值的一部分，split()方法">
   
     <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
   
@@ -42,7 +42,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -100,11 +100,32 @@
       
         <!-- Table of Contents -->
         
-        <h3 id="csv数据处理"><a href="#csv数据处理" class="headerlink" title="csv数据处理"></a>csv数据处理</h3><h3 id="pdf数据处理"><a href="#pdf数据处理" class="headerlink" title="pdf数据处理"></a>pdf数据处理</h3>
+        <h3 id="csv数据处理"><a href="#csv数据处理" class="headerlink" title="csv数据处理"></a>csv数据处理</h3><p>csv表示”Comma-Separated Values(逗号分隔的值)”，csv文件时简化的电子表格，保存为纯文本文件。<br>python中解析csv文件可以使用csv模块。<br>注意：csv是文本文件，通过打开文件的操作，将其内容读入一个字符串，然后通过字符串的<code>split()</code>方法处理每行文本取得值。需要注意csv文件中也有自己的转义字符，允许逗号或者其他字符作为值的一部分，<code>split()</code>方法无法处理这部分转义字符。所以处理csv文件时为避免这些潜在的问题，建议使用csv模块处理csv文件。</p>
+<h4 id="Reader"><a href="#Reader" class="headerlink" title="Reader"></a>Reader</h4><p>使用csv模块从csv文件中读取数据，需要创建一个<code>Reader</code>对象，可以通过Reader对象迭代遍历csv文件中的每一行。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"example.csv"</span>, encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> dataObject:</span><br><span class="line">    dataReader = csv.reader(dataObject)</span><br><span class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> dataReader:</span><br><span class="line">        print(<span class="string">"第&#123;0&#125;行:&#123;1&#125;"</span>.format(dataReader.line_num, row))</span><br></pre></td></tr></table></figure></p>
+<p>Reader对象的<code>line_num</code>变量是当前的行号。<br>输出结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">第<span class="number">1</span>行:[<span class="string">'2018/06/09'</span>, <span class="string">'Apples'</span>, <span class="string">'73'</span>]</span><br><span class="line">第<span class="number">2</span>行:[<span class="string">'2018/06/10'</span>, <span class="string">'Cherries'</span>, <span class="string">'85'</span>]</span><br><span class="line">第<span class="number">3</span>行:[<span class="string">'2018/06/11'</span>, <span class="string">'Pears'</span>, <span class="string">'14'</span>]</span><br></pre></td></tr></table></figure></p>
+<h4 id="Writer"><a href="#Writer" class="headerlink" title="Writer"></a>Writer</h4><p>Write对象可以将数据写入到csv文件中。<br>首先调用<code>open()</code>并传入<code>w</code>，以写模式打开一个文件。这时会创建一个对象。<br>然后将创建的对象传递给<code>csv.writer()</code>，创建一个Writer对象。<br>接下来调用Writer对象的<code>writerow()</code>方法写入文件。该方法接受参数为列表，返回值为写入文件这一行中的字符数(包括换行符)。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"test.csv"</span>, <span class="string">'w'</span>, encoding=<span class="string">'utf-8'</span>, newline=<span class="string">''</span>) <span class="keyword">as</span> outputFile:</span><br><span class="line">    dataWriter = csv.writer(outputFile)</span><br><span class="line">    dataWriter.writerow([<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>])</span><br><span class="line">    dataWriter.writerow([<span class="string">'啊'</span>, <span class="string">'吧'</span>, <span class="string">'次'</span>])</span><br><span class="line">    dataWriter.writerow([<span class="string">'A'</span>, <span class="string">'Hello,World!'</span>, <span class="string">'C'</span>])</span><br></pre></td></tr></table></figure></p>
+<p>最后输出结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a,b,c</span><br><span class="line">啊,吧,次</span><br><span class="line">A,&quot;Hello,World!&quot;,C</span><br></pre></td></tr></table></figure></p>
+<p>此处的<code>Hello,Wrold!</code>中的逗号自动转义，使用双引号处理了。<br>在windows中<code>open()</code>需加上<code>newline=&#39;&#39;</code>参数，否则将出现2倍行距的情况。<br>写入的文件必须已经存在。  </p>
+<ul>
+<li>delimiter 指定分隔符，默认为逗号</li>
+<li>lineterminator 行距，默认为单倍行距<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dataWriter = csv.writer(outputFile, delimiter=<span class="string">'\t'</span>, lineterminator=<span class="string">'\n\n'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>上面表示使用制表符作为分隔符，两倍行距(也就是行之间字符变为2个换行符)。  </p>
+<h3 id="excel数据处理"><a href="#excel数据处理" class="headerlink" title="excel数据处理"></a>excel数据处理</h3><p>excel的操作都是通过第三方库来进行。常用的有<code>xlrd</code>、<code>xlwt</code>、<code>xluntils</code>、<code>pyExcelerator</code>、<code>openpyxl</code>。  </p>
+<ul>
+<li>xlrd只能进行读取excel文件，没法进行写入文件。</li>
+<li>xlwt可以写入文件，但是不能在已有的excel的文件上进行修改。  </li>
+<li>xluntils可以对文件进行复制和修改，该模块功能实现依赖于<code>xlrd</code>和<code>xlwt</code>。  </li>
+<li>pyExcelerator模块与xlwt类似，也可以用来生成excel文件，同时支持单元格合并、冻结等操作。  </li>
+<li>openpyxl也支持文件的读取、写入、创建和删除工作表、设置字体格式、单元格合并、冻结等操作。  <h4 id="xlrd"><a href="#xlrd" class="headerlink" title="xlrd"></a>xlrd</h4></li>
+</ul>
+<h4 id="xlwt"><a href="#xlwt" class="headerlink" title="xlwt"></a>xlwt</h4><h4 id="openpyxl"><a href="#openpyxl" class="headerlink" title="openpyxl"></a>openpyxl</h4><p>关于<code>openpyxl</code>模块的更多介绍，可以点击<a href="https://openpyxl.readthedocs.io/en/stable/" target="_blank" rel="noopener">openpyxl - A Python library to read/write Excel 2010 xlsx/xlsm files</a>查看官方文档。</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/06/08/python数据处理/" data-id="cji60yw09003kb8q66ehd2s9g" class="article-share-link">Delen</a>
+      <a data-url="https://rosinelan.github.io/2018/06/08/python数据处理/" data-id="cji60yw09003kb8q66ehd2s9g" class="article-share-link">分享</a>
       
       
       
@@ -116,7 +137,7 @@
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =4
@@ -160,7 +181,7 @@
   
   
     <a href="/2018/06/06/python邮件发送/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Ouder</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">python邮件发送</div>
     </a>
   
@@ -190,9 +211,9 @@
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#csv数据处理"><span class="toc-number">1.</span> <span class="toc-text">csv数据处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pdf数据处理"><span class="toc-number">2.</span> <span class="toc-text">pdf数据处理</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#csv数据处理"><span class="toc-number">1.</span> <span class="toc-text">csv数据处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Reader"><span class="toc-number">1.1.</span> <span class="toc-text">Reader</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Writer"><span class="toc-number">1.2.</span> <span class="toc-text">Writer</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#excel数据处理"><span class="toc-number">2.</span> <span class="toc-text">excel数据处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#xlrd"><span class="toc-number">2.1.</span> <span class="toc-text">xlrd</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#xlwt"><span class="toc-number">2.2.</span> <span class="toc-text">xlwt</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#openpyxl"><span class="toc-number">2.3.</span> <span class="toc-text">openpyxl</span></a></li></ol></li></ol>
           </div>
       </div>
     </div>
@@ -218,10 +239,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
+     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>
