@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="持续不断">
 <meta property="og:description" content="csv数据处理csv表示”Comma-Separated Values(逗号分隔的值)”，csv文件时简化的电子表格，保存为纯文本文件。python中解析csv文件可以使用csv模块。注意：csv是文本文件，通过打开文件的操作，将其内容读入一个字符串，然后通过字符串的split()方法处理每行文本取得值。需要注意csv文件中也有自己的转义字符，允许逗号或者其他字符作为值的一部分，split()方法">
 <meta property="og:image" content="http://cdn.rosinelan.com/blog/program/python_data_xlrd.png">
-<meta property="og:updated_time" content="2018-06-11T15:18:45.871Z">
+<meta property="og:updated_time" content="2018-06-12T09:33:23.954Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python数据处理">
 <meta name="twitter:description" content="csv数据处理csv表示”Comma-Separated Values(逗号分隔的值)”，csv文件时简化的电子表格，保存为纯文本文件。python中解析csv文件可以使用csv模块。注意：csv是文本文件，通过打开文件的操作，将其内容读入一个字符串，然后通过字符串的split()方法处理每行文本取得值。需要注意csv文件中也有自己的转义字符，允许逗号或者其他字符作为值的一部分，split()方法">
@@ -44,7 +44,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Søk"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -175,16 +175,70 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">style = xlwt.XFStyle()</span><br><span class="line">font = style.font</span><br><span class="line">font.name = <span class="string">"Times New Roman"</span></span><br><span class="line">font.bold = <span class="keyword">True</span></span><br><span class="line">sheet3.write(<span class="number">0</span>, <span class="number">0</span>, <span class="string">"WHAT"</span>, style)</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>保存文件</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">workbook.save(<span class="string">"test1.xls"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">workbook.save(<span class="string">"test1.xls"</span>)    <span class="comment">#此处保存为xls格式，xlsx格式无法打开</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>关于<code>xlwt</code>模块更多介绍，可以点击<a href="http://xlwt.readthedocs.io/en/latest/" target="_blank" rel="noopener">xlwt documentation</a>查看官方文档介绍。 </p>
-<h4 id="openpyxl"><a href="#openpyxl" class="headerlink" title="openpyxl"></a>openpyxl</h4><p>关于<code>openpyxl</code>模块的更多介绍，可以点击<a href="https://openpyxl.readthedocs.io/en/stable/" target="_blank" rel="noopener">openpyxl - A Python library to read/write Excel 2010 xlsx/xlsm files</a>查看官方文档。</p>
+<h4 id="openpyxl"><a href="#openpyxl" class="headerlink" title="openpyxl"></a>openpyxl</h4><p>继续以上面的excel为例进行示例操作。  </p>
+<h5 id="worksheet操作"><a href="#worksheet操作" class="headerlink" title="worksheet操作"></a>worksheet操作</h5><ul>
+<li>加载工作表并打印当前所有sheet<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> openpyxl <span class="keyword">import</span> Workbook, load_workbook</span><br><span class="line"></span><br><span class="line">wb1 = load_workbook(<span class="string">'test.xlsx'</span>)</span><br><span class="line">print(wb1.sheetnames) <span class="comment">#输出结果：['物理机', '虚拟机']</span></span><br><span class="line">print(wb1.active)    <span class="comment">#输出结果：&lt;Worksheet "物理机"&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><code>active</code>调用的是<code>_active_sheet_index</code>属性，默认情况为0.所以得到的都是第一个worksheet。</p>
+<ul>
+<li>创建sheet页<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ws1 = wb1.create_sheet(<span class="string">"sheet1"</span>)</span><br><span class="line">ws2 = wb1.create_sheet(<span class="string">"sheet2"</span>, <span class="number">0</span>)</span><br><span class="line">print(wb1.sheetnames) <span class="comment">#输出结果：['sheet2', '物理机', '虚拟机', 'sheet1']</span></span><br><span class="line">print(wb1.active) <span class="comment">#输出结果：&lt;Worksheet "sheet2"&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><code>create_sheet()</code>默认情况下插入在最后，当传入index参数时，插入至指定位置，例如0表示插入至最前面。  </p>
+<ul>
+<li>sheet页属性修改<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ws1.title = <span class="string">"new sheet"</span> <span class="comment">#修改标题</span></span><br><span class="line">ws1.sheet_properties.tabColor = <span class="string">"1072BA"</span> <span class="comment">#修改工作表标签颜色</span></span><br><span class="line">print(wb1.sheetnames) <span class="comment">#输出结果：['sheet2', '物理机', '虚拟机', 'new sheet']</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>也可以通过循环的方式得到所有sheet页名称<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> sheet <span class="keyword">in</span> wb1:</span><br><span class="line">    print(sheet.title, end=<span class="string">' '</span>) <span class="comment">#输出结果：sheet2 物理机 虚拟机 new sheet</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>sheet页复制<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">source = wb1.active</span><br><span class="line">target = wb1.copy_worksheet(source)</span><br><span class="line">print(wb1.sheetnames) <span class="comment">#输出结果：['sheet2', '物理机', '虚拟机', 'new sheet', 'sheet2 Copy']</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="cell操作"><a href="#cell操作" class="headerlink" title="cell操作"></a>cell操作</h5><ul>
+<li>获取及修改指定cell内容<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ws4 = wb1[<span class="string">"物理机"</span>]</span><br><span class="line">print(ws4[<span class="string">"A4"</span>].value) <span class="comment">#输出结果：192.168.0.3</span></span><br><span class="line">print(ws4[<span class="string">"G4"</span>].value) <span class="comment">#输出结果：2018-06-03 00:00:00</span></span><br><span class="line">ws4[<span class="string">'A4'</span>] = <span class="number">4</span> <span class="comment">#可直接修改指定单元格内容</span></span><br><span class="line">print(ws4[<span class="string">"A4"</span>].value) <span class="comment">#输出结果：4</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>对于日期格式可直接正确输出。<br>修改指定单元格的内容也可以使用<code>cell()</code>方法传入行、列和值的方式<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">d = ws4.cell(column=<span class="number">1</span>, row=<span class="number">4</span>, value=<span class="number">10</span>)</span><br><span class="line">print(ws4[<span class="string">"A4"</span>].value) <span class="comment">#输出结果：10</span></span><br></pre></td></tr></table></figure></p>
+<p>当一个sheet页被创建时无单元格。单元格在首次被访问的时候创建，无论是否有值。<br>对于下面的操作,将会在内存中创建100*100的单元格，即使未分配值。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">101</span>):</span><br><span class="line"><span class="meta">... </span>       <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">101</span>):</span><br><span class="line"><span class="meta">... </span>           ws.cell(row=i, column=j)</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>访问多个单元格或行或列<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cell_range = ws4[<span class="string">'A1'</span>:<span class="string">'B2'</span>] <span class="comment">#多个单元格</span></span><br><span class="line">print(cell_range)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>输出结果：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">((&lt;Cell <span class="string">'物理机'</span>.A1&gt;, &lt;Cell <span class="string">'物理机'</span>.B1&gt;), (&lt;Cell <span class="string">'物理机'</span>.A2&gt;, &lt;Cell <span class="string">'物理机'</span>.B2&gt;))</span><br></pre></td></tr></table></figure></p>
+<p>输出结果为包含<code>2个元组的元组</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">colC = ws4[<span class="string">'C'</span>] <span class="comment">#指定单行</span></span><br><span class="line">print(colC)</span><br></pre></td></tr></table></figure></p>
+<p>输出结果：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(&lt;Cell <span class="string">'物理机'</span>.C1&gt;... &lt;Cell <span class="string">'物理机'</span>.C15&gt;, &lt;Cell <span class="string">'物理机'</span>.C16&gt;)</span><br></pre></td></tr></table></figure></p>
+<p>输出结果为<code>元组</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">col_range = ws4[<span class="string">'C:D'</span>] <span class="comment">#指定多行</span></span><br><span class="line">print(col_range)</span><br></pre></td></tr></table></figure></p>
+<p>输出结果：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">((&lt;Cell <span class="string">'物理机'</span>.C1&gt;, ... &lt;Cell <span class="string">'物理机'</span>.C16&gt;), (&lt;Cell <span class="string">'物理机'</span>.D1&gt;,... &lt;Cell <span class="string">'物理机'</span>.D16&gt;))</span><br></pre></td></tr></table></figure></p>
+<p>输出结果为包含<code>2个元组的元组</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">row10 = ws4[<span class="number">10</span>] <span class="comment">#指定单列</span></span><br><span class="line">print(row10)</span><br></pre></td></tr></table></figure></p>
+<p>输出结果：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(&lt;Cell <span class="string">'物理机'</span>.A10&gt;, &lt;Cell <span class="string">'物理机'</span>.B10&gt;,...&lt;Cell <span class="string">'物理机'</span>.L10&gt;)</span><br></pre></td></tr></table></figure></p>
+<p>输出结果为<code>元组</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">row_range = ws4[<span class="number">5</span>:<span class="number">6</span>] <span class="comment">#指定多列</span></span><br><span class="line">print(row_range)</span><br></pre></td></tr></table></figure></p>
+<p>输出结果：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">((&lt;Cell <span class="string">'物理机'</span>.A5&gt;, &lt;Cell <span class="string">'物理机'</span>.B5&gt;,... &lt;Cell <span class="string">'物理机'</span>.L5&gt;), (&lt;Cell <span class="string">'物理机'</span>.A6&gt;, &lt;Cell <span class="string">'物理机'</span>.B6&gt;,... &lt;Cell <span class="string">'物理机'</span>.L6&gt;))</span><br></pre></td></tr></table></figure></p>
+<p>输出结果为包含<code>2个元组的元组</code><br>也可以通过<code>iter_rows()</code>、<code>iter_cols()</code>、<code>rows()</code>、<code>columns()</code>方法<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># iter_rows()</span></span><br><span class="line"><span class="keyword">for</span> row <span class="keyword">in</span> ws4.iter_rows(min_row=<span class="number">1</span>, max_col=<span class="number">3</span>, max_row=<span class="number">2</span>):</span><br><span class="line">    <span class="keyword">for</span> cell <span class="keyword">in</span> row:</span><br><span class="line">        print(cell)</span><br><span class="line"><span class="comment"># iter_cols()</span></span><br><span class="line"><span class="keyword">for</span> col <span class="keyword">in</span> ws4.iter_cols(min_row=<span class="number">1</span>, max_col=<span class="number">3</span>, max_row=<span class="number">2</span>):</span><br><span class="line">    <span class="keyword">for</span> cell <span class="keyword">in</span> col:</span><br><span class="line">        print(cell)</span><br><span class="line"><span class="comment"># rows()</span></span><br><span class="line">print(tuple(ws4.rows))</span><br><span class="line"><span class="comment"># columns()</span></span><br><span class="line">print(tuple(ws4.columns))</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>数据存储</li>
+</ul>
+<p>直接赋值<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> openpyxl <span class="keyword">import</span> load_workbook</span><br><span class="line">wb1 = load_workbook(<span class="string">'test.xlsx'</span>)</span><br><span class="line">ws = wb1[<span class="string">"sheet2"</span>]</span><br><span class="line">c = ws[<span class="string">"A1"</span>]</span><br><span class="line">c.value = <span class="string">"hello, world"</span></span><br><span class="line">print(c.value) <span class="comment">#输出结果：hello, world</span></span><br><span class="line">d = ws[<span class="string">"B1"</span>]</span><br><span class="line">d.value = <span class="number">3.14</span></span><br><span class="line">print(d.value) <span class="comment">#输出结果：3.14</span></span><br></pre></td></tr></table></figure></p>
+<p>启用格式和类型推断<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">wb = load_workbook(<span class="string">'test.xlsx'</span>, guess_types=<span class="keyword">True</span>)</span><br><span class="line">ws = wb.create_sheet(<span class="string">"sheet2"</span>)</span><br><span class="line">c = ws[<span class="string">"B1"</span>]</span><br><span class="line">c.value = <span class="string">'12%'</span></span><br><span class="line">print(c.value)    <span class="comment">#输出结果：0.12</span></span><br><span class="line">d = ws[<span class="string">"B2"</span>]</span><br><span class="line">d.value = datetime.now()</span><br><span class="line">print(d.value)    <span class="comment">#输出结果：2018-06-12 17:19:10.700439</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>文件保存<br>直接调用<code>save()</code>方法即可。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wb.save(<span class="string">"test.xlsx"</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>注意</p>
+<ol>
+<li>当文件存在时会直接覆盖，不会给出提示或警告信息。  </li>
+<li>当在操作系统中打开excel文件时调用保存方法，会出现<code>PermissionError</code>的错误，关闭即可。  </li>
+<li><code>save()</code>提供另一个文件名，相当于另存为操作，不会影响原文件的内容。  <h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4>使用<code>openpyxl</code>进行excel的操作，主要是<code>Workbook</code>(excel文件)、<code>sheet</code>(excel中的sheet页)、<code>cell</code>(一个单元格)进行操作。<br>读写操作主要步骤：打开Workbook，定位sheet，操作cell。<br>关于<code>openpyxl</code>模块的更多介绍，可以点击<a href="https://openpyxl.readthedocs.io/en/stable/" target="_blank" rel="noopener">openpyxl - A Python library to read/write Excel 2010 xlsx/xlsm files</a>查看官方文档。</li>
+</ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/06/08/python数据处理/" data-id="cjiaeo3vw001vncq6ef8s0vf8" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/06/08/python数据处理/" data-id="cjiaeo3vw001vncq6ef8s0vf8" class="article-share-link">Delen</a>
       
       
       
@@ -196,7 +250,7 @@
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =4
@@ -239,7 +293,7 @@
 <nav id="article-nav">
   
     <a href="/2018/06/11/python数据处理-二/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">Nieuwer</strong>
       <div class="article-nav-title">
         
           python数据处理(二)
@@ -249,7 +303,7 @@
   
   
     <a href="/2018/06/06/python邮件发送/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">Ouder</strong>
       <div class="article-nav-title">python邮件发送</div>
     </a>
   
@@ -279,9 +333,9 @@
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#csv数据处理"><span class="toc-number">1.</span> <span class="toc-text">csv数据处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Reader"><span class="toc-number">1.1.</span> <span class="toc-text">Reader</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Writer"><span class="toc-number">1.2.</span> <span class="toc-text">Writer</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#excel数据处理"><span class="toc-number">2.</span> <span class="toc-text">excel数据处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#xlrd"><span class="toc-number">2.1.</span> <span class="toc-text">xlrd</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#xlwt"><span class="toc-number">2.2.</span> <span class="toc-text">xlwt</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#openpyxl"><span class="toc-number">2.3.</span> <span class="toc-text">openpyxl</span></a></li></ol></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#csv数据处理"><span class="toc-number">1.</span> <span class="toc-text">csv数据处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Reader"><span class="toc-number">1.1.</span> <span class="toc-text">Reader</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Writer"><span class="toc-number">1.2.</span> <span class="toc-text">Writer</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#excel数据处理"><span class="toc-number">2.</span> <span class="toc-text">excel数据处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#xlrd"><span class="toc-number">2.1.</span> <span class="toc-text">xlrd</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#xlwt"><span class="toc-number">2.2.</span> <span class="toc-text">xlwt</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#openpyxl"><span class="toc-number">2.3.</span> <span class="toc-text">openpyxl</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#worksheet操作"><span class="toc-number">2.3.1.</span> <span class="toc-text">worksheet操作</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#cell操作"><span class="toc-number">2.3.2.</span> <span class="toc-text">cell操作</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#总结"><span class="toc-number">2.4.</span> <span class="toc-text">总结</span></a></li></ol></li></ol>
           </div>
       </div>
     </div>
