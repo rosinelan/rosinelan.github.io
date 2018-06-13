@@ -72,6 +72,76 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-python爬虫" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/13/python爬虫/" class="article-date">
+  <time datetime="2018-06-13T10:02:18.000Z" itemprop="datePublished">2018-06-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/program/">编程</a>►<a class="article-category-link" href="/categories/program/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/13/python爬虫/">python爬虫</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h3 id="爬虫介绍"><a href="#爬虫介绍" class="headerlink" title="爬虫介绍"></a>爬虫介绍</h3><h4 id="爬虫定义"><a href="#爬虫定义" class="headerlink" title="爬虫定义"></a>爬虫定义</h4><p>爬虫是请求网站并提取自己所需要数据的过程。通过我们的程序，可以代替我们向服务器发送请求，然后进行批量的数据下载。  </p>
+<h4 id="爬虫基本流程"><a href="#爬虫基本流程" class="headerlink" title="爬虫基本流程"></a>爬虫基本流程</h4><ol>
+<li>发起请求<br>通过url向服务器发送requests请求，请求可以包含额外的header信息。</li>
+<li>获取响应内容<br>如果服务器正常响应，那么将受到一个response，response即为我们所请求的网页内容，可能包含html\json\二进制数据(图片、视频)等。</li>
+<li>解析内容<br>如果是html代码则可以使用网页解析器进行解析；如果是json数据则可以转换成json对象进行解析；如果是二进制数据则可以保存到文件进行进一步的处理。</li>
+<li>保存数据<br>可以保存到本地文件，也可以保存到数据库(mysql\redis\mongodb等)。<h4 id="requests请求"><a href="#requests请求" class="headerlink" title="requests请求"></a>requests请求</h4>当我们通过浏览器向服务器发送requests请求时，这个request包含什么内容？可以通过chrome浏览器的开发人员工具(F12)查看。  </li>
+<li>请求方式<br>最常用的请求方式包括get请求和post请求。<br>post请求在开发中最常见的是通过表单进行提交，从用户角度来讲最常见的就是登陆验证。当你需要输入一些信息进行登陆的时候，这次请求就是post请求。<br>get请求最常见的就是搜索回车之后，信息将以?间隔添加在url后面。类似于<code>https://www.baidu.com/s?wd=python3%20requests</code>。而且get请求是用来获取数据，是幂等的。<br>其他还包括put请求(向服务端发送信息从而改变内容)和delete请求(删除资源)。<br>对于资源的操作，其实都可以通过post/get完成，不需要用到put/delete，实际中put/delete也很少用。    </li>
+<li>uri统一资源定位符<br>一个网址、一个视频、一个图片都可以用uri去定义</li>
+<li>requests headers<br>请求头，包括这次请求的类型，cookie信息以及浏览器类型等。<br>请求头在我们进行网页抓取的时候，服务器会通过解析请求头来进行信息的审核，判断请求是否为合法请求。所以当我们通过程序伪装浏览器进行请求的时候可以设置请求头的信息。  </li>
+<li>请求体<br>post请求会把用户信息包装在form-data里面进行提交，因此相比于get请求，post请求的Headers标签的内容会多出Form Data这个信息包。<h4 id="response"><a href="#response" class="headerlink" title="response"></a>response</h4></li>
+<li>响应状态<br>通过Headers中的General可以看到<code>status code</code>，使用数字代码表示对于状态，200表示成功，301跳转，404找不到网页，502服务器错误等。</li>
+<li>响应头<br>包括内容的类型，cookie信息等。</li>
+<li>响应体<br>请求的目的就是为了得到响应体，包括html代码，json及二进制数据等。<h3 id="requests模块"><a href="#requests模块" class="headerlink" title="requests模块"></a>requests模块</h3>安装使用<code>pip install requests</code>即可。  </li>
+</ol>
+<ul>
+<li>通过requests进行网页请求<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests  </span><br><span class="line">response = requests.get(<span class="string">'https://www.baidu.com'</span>)  </span><br><span class="line">print(response.text)  <span class="comment">#输出结果为html，中文乱码</span></span><br><span class="line">response.encoding = <span class="string">'utf-8'</span>  <span class="comment">#修改编码</span></span><br><span class="line">print(response.text)  <span class="comment">#输出中文正常</span></span><br><span class="line">print(response.status_code) <span class="comment">#输出状态码，200</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>返回的response为文本时通过<code>response.text</code>读取；图片和视频等二进制文件通过<code>response.content</code>读取。</p>
+<ul>
+<li>通过添加请求头信息<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">headers = &#123;<span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.75 Safari/537.36'</span>&#125;</span><br><span class="line"> response1 = requests.get(<span class="string">'https://www.baidu.com'</span>, headers=headers)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>可以通过定义一个列表，然后通过random模块随机取一个header信息进行访问，防止一些反爬虫的操作。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/06/13/python爬虫/" data-id="cjid0hhog002jrwq6hi8snu0a" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/requests/">requests</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/爬虫/">爬虫</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
     <article id="post-python数据处理-二" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/06/11/python数据处理-二/" class="article-date">
@@ -112,7 +182,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/06/11/python数据处理-二/" data-id="cjiaeo3vl001fncq6g6frib94" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/06/11/python数据处理-二/" data-id="cjid0hho2001xrwq6u6vzxmhr" class="article-share-link">分享</a>
       
       
       
@@ -161,7 +231,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/06/08/python数据处理/" data-id="cjiaeo3vw001vncq6ef8s0vf8" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/06/08/python数据处理/" data-id="cjid0hho40020rwq66iq08uin" class="article-share-link">分享</a>
       
       
       
@@ -211,7 +281,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/06/06/python邮件发送/" data-id="cjiaeo3yp004oncq6ecr3heoz" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/06/06/python邮件发送/" data-id="cjid0hhps0040rwq6szffld94" class="article-share-link">分享</a>
       
       
       
@@ -261,7 +331,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/06/05/python网络编程之socketserver/" data-id="cjiaeo3y50042ncq672pgxn6c" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/06/05/python网络编程之socketserver/" data-id="cjid0hhpb003frwq6c423171l" class="article-share-link">分享</a>
       
       
       
@@ -311,7 +381,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/06/01/python网络编程之socket/" data-id="cjiaeo3xt003pncq6kmk0dqp8" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/06/01/python网络编程之socket/" data-id="cjid0hhot002vrwq6yowssv64" class="article-share-link">分享</a>
       
       
       
@@ -361,7 +431,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/30/python单词查找练习题/" data-id="cjiaeo3vu001rncq62c5yn0oy" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/05/30/python单词查找练习题/" data-id="cjid0hhoe002grwq6dzxroaqn" class="article-share-link">分享</a>
       
       
       
@@ -411,7 +481,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/27/python任务调度模块celery-二/" data-id="cjiaeo3v5000yncq6mpjbmftt" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/05/27/python任务调度模块celery-二/" data-id="cjid0hhmy000lrwq6v4awa5x6" class="article-share-link">分享</a>
       
       
       
@@ -462,7 +532,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/27/python多线程练习题/" data-id="cjiaeo3vz001zncq66km9ne6w" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/05/27/python多线程练习题/" data-id="cjid0hhnr001irwq6l1xhg2r3" class="article-share-link">分享</a>
       
       
       
@@ -513,61 +583,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/25/python任务调度模块celery/" data-id="cjiaeo3v3000wncq6pbl1lr58" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/05/25/python任务调度模块celery/" data-id="cjid0hhn9000vrwq6sju6ffrr" class="article-share-link">分享</a>
       
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/celery/">celery</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
-    <article id="post-python消息队列" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/05/25/python消息队列/" class="article-date">
-  <time datetime="2018-05-25T13:13:35.000Z" itemprop="datePublished">2018-05-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/program/">编程</a>►<a class="article-category-link" href="/categories/program/python/">python</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/25/python消息队列/">python消息队列</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="消息队列简介"><a href="#消息队列简介" class="headerlink" title="消息队列简介"></a>消息队列简介</h3><p>消息队列”是在消息的传输过程中保存消息的容器。<br>消息队列最经典的用法就是消费者和生成者之间通过消息管道来传递消息，消费者和生成者是不通的进程。生产者往管道中写消息，消费者从管道中读消息。  </p>
-<h3 id="消息队列在multiprocessing的实现"><a href="#消息队列在multiprocessing的实现" class="headerlink" title="消息队列在multiprocessing的实现"></a>消息队列在multiprocessing的实现</h3><p>操作系统提供了很多机制来实现进程间的通信 ，multiprocessing模块就提供了Queue和Pipe两种方法来实现。<br>
-        
-          <p class="article-more-link">
-            <a href="/2018/05/25/python消息队列/#more">继续阅读全文 »</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/25/python消息队列/" data-id="cjiaeo3x1002xncq6jou5m152" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pipe/">pipe</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/queue/">queue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/消息队列/">消息队列</a></li></ul>
 
     </footer>
   </div>
@@ -592,7 +612,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title categories">分类</h3>
     <div class="widget" id="categories">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/system/">系统管理</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/system/LINUX/">LINUX</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/system/WINDOWS/">WINDOWS</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/program/">编程</a><span class="category-list-count">39</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/program/python/">python</a><span class="category-list-count">39</span></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/system/">系统管理</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/system/LINUX/">LINUX</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/system/WINDOWS/">WINDOWS</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/program/">编程</a><span class="category-list-count">40</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/program/python/">python</a><span class="category-list-count">40</span></li></ul></li></ul>
     </div>
   </div>
 
@@ -602,7 +622,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title tagcloud">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Array/" style="font-size: 14px;">Array</a> <a href="/tags/BONDING/" style="font-size: 14px;">BONDING</a> <a href="/tags/BytesIO/" style="font-size: 14px;">BytesIO</a> <a href="/tags/CENTOS7/" style="font-size: 14px;">CENTOS7</a> <a href="/tags/EMC/" style="font-size: 14px;">EMC</a> <a href="/tags/FORFILES/" style="font-size: 14px;">FORFILES</a> <a href="/tags/HBA/" style="font-size: 14px;">HBA</a> <a href="/tags/HP-UNIX/" style="font-size: 14px;">HP-UNIX</a> <a href="/tags/JUNCTION/" style="font-size: 14px;">JUNCTION</a> <a href="/tags/Json/" style="font-size: 14px;">Json</a> <a href="/tags/LINUX/" style="font-size: 22.25px;">LINUX</a> <a href="/tags/Lock/" style="font-size: 16.75px;">Lock</a> <a href="/tags/MAC/" style="font-size: 14px;">MAC</a> <a href="/tags/MKLINK/" style="font-size: 14px;">MKLINK</a> <a href="/tags/OOP/" style="font-size: 14px;">OOP</a> <a href="/tags/OPENSSH/" style="font-size: 14px;">OPENSSH</a> <a href="/tags/OPENSSL/" style="font-size: 14px;">OPENSSL</a> <a href="/tags/ORM/" style="font-size: 14px;">ORM</a> <a href="/tags/POWERPATH/" style="font-size: 14px;">POWERPATH</a> <a href="/tags/Popen/" style="font-size: 14px;">Popen</a> <a href="/tags/Process/" style="font-size: 14px;">Process</a> <a href="/tags/SQLAIchemy/" style="font-size: 14px;">SQLAIchemy</a> <a href="/tags/SSH/" style="font-size: 14px;">SSH</a> <a href="/tags/StringIO/" style="font-size: 14px;">StringIO</a> <a href="/tags/TCPServer/" style="font-size: 14px;">TCPServer</a> <a href="/tags/UBUNTU/" style="font-size: 16.75px;">UBUNTU</a> <a href="/tags/UDPServer/" style="font-size: 14px;">UDPServer</a> <a href="/tags/Value/" style="font-size: 14px;">Value</a> <a href="/tags/WINDOWS/" style="font-size: 19.5px;">WINDOWS</a> <a href="/tags/WINODWS/" style="font-size: 14px;">WINODWS</a> <a href="/tags/WWW/" style="font-size: 14px;">WWW</a> <a href="/tags/XSHELL/" style="font-size: 14px;">XSHELL</a> <a href="/tags/XTERM/" style="font-size: 14px;">XTERM</a> <a href="/tags/ZLIB/" style="font-size: 14px;">ZLIB</a> <a href="/tags/args/" style="font-size: 14px;">args</a> <a href="/tags/bind/" style="font-size: 14px;">bind</a> <a href="/tags/bonding/" style="font-size: 14px;">bonding</a> <a href="/tags/celery/" style="font-size: 16.75px;">celery</a> <a href="/tags/close/" style="font-size: 14px;">close</a> <a href="/tags/commands/" style="font-size: 14px;">commands</a> <a href="/tags/count/" style="font-size: 14px;">count</a> <a href="/tags/csv/" style="font-size: 14px;">csv</a> <a href="/tags/cursor/" style="font-size: 14px;">cursor</a> <a href="/tags/datetime/" style="font-size: 14px;">datetime</a> <a href="/tags/decode/" style="font-size: 14px;">decode</a> <a href="/tags/decorator/" style="font-size: 14px;">decorator</a> <a href="/tags/delete/" style="font-size: 16.75px;">delete</a> <a href="/tags/drop/" style="font-size: 14px;">drop</a> <a href="/tags/email/" style="font-size: 14px;">email</a> <a href="/tags/encode/" style="font-size: 14px;">encode</a> <a href="/tags/excel/" style="font-size: 14px;">excel</a> <a href="/tags/except/" style="font-size: 14px;">except</a> <a href="/tags/finally/" style="font-size: 14px;">finally</a> <a href="/tags/for/" style="font-size: 14px;">for</a> <a href="/tags/get/" style="font-size: 14px;">get</a> <a href="/tags/groupby/" style="font-size: 14px;">groupby</a> <a href="/tags/handle/" style="font-size: 14px;">handle</a> <a href="/tags/hashlib/" style="font-size: 14px;">hashlib</a> <a href="/tags/if/" style="font-size: 14px;">if</a> <a href="/tags/image/" style="font-size: 14px;">image</a> <a href="/tags/insert/" style="font-size: 14px;">insert</a> <a href="/tags/kw/" style="font-size: 14px;">kw</a> <a href="/tags/libXaw/" style="font-size: 14px;">libXaw</a> <a href="/tags/libXpm/" style="font-size: 14px;">libXpm</a> <a href="/tags/log/" style="font-size: 16.75px;">log</a> <a href="/tags/machinekey/" style="font-size: 14px;">machinekey</a> <a href="/tags/memcached/" style="font-size: 14px;">memcached</a> <a href="/tags/mime/" style="font-size: 14px;">mime</a> <a href="/tags/mysql/" style="font-size: 16.75px;">mysql</a> <a href="/tags/nosql/" style="font-size: 14px;">nosql</a> <a href="/tags/open/" style="font-size: 14px;">open</a> <a href="/tags/orderby/" style="font-size: 14px;">orderby</a> <a href="/tags/orm/" style="font-size: 14px;">orm</a> <a href="/tags/os/" style="font-size: 16.75px;">os</a> <a href="/tags/pdf/" style="font-size: 14px;">pdf</a> <a href="/tags/pdfkit/" style="font-size: 14px;">pdfkit</a> <a href="/tags/pipe/" style="font-size: 14px;">pipe</a> <a href="/tags/pycharm/" style="font-size: 14px;">pycharm</a> <a href="/tags/pymysql/" style="font-size: 14px;">pymysql</a> <a href="/tags/python/" style="font-size: 25px;">python</a> <a href="/tags/queue/" style="font-size: 14px;">queue</a> <a href="/tags/raise/" style="font-size: 14px;">raise</a> <a href="/tags/re/" style="font-size: 16.75px;">re</a> <a href="/tags/read/" style="font-size: 14px;">read</a> <a href="/tags/redis/" style="font-size: 16.75px;">redis</a> <a href="/tags/return/" style="font-size: 14px;">return</a> <a href="/tags/select/" style="font-size: 14px;">select</a> <a href="/tags/session/" style="font-size: 14px;">session</a> <a href="/tags/set/" style="font-size: 14px;">set</a> <a href="/tags/smtp/" style="font-size: 14px;">smtp</a> <a href="/tags/socket/" style="font-size: 14px;">socket</a> <a href="/tags/socketserver/" style="font-size: 14px;">socketserver</a> <a href="/tags/sql/" style="font-size: 14px;">sql</a> <a href="/tags/ssh-copy-id/" style="font-size: 14px;">ssh-copy-id</a> <a href="/tags/ssh-keygen/" style="font-size: 14px;">ssh-keygen</a> <a href="/tags/subprocess/" style="font-size: 14px;">subprocess</a> <a href="/tags/sys/" style="font-size: 16.75px;">sys</a> <a href="/tags/tcp/" style="font-size: 14px;">tcp</a> <a href="/tags/threading/" style="font-size: 16.75px;">threading</a> <a href="/tags/threadpool/" style="font-size: 14px;">threadpool</a> <a href="/tags/timedelta/" style="font-size: 14px;">timedelta</a> <a href="/tags/times/" style="font-size: 14px;">times</a> <a href="/tags/try/" style="font-size: 14px;">try</a> <a href="/tags/udp/" style="font-size: 14px;">udp</a> <a href="/tags/update/" style="font-size: 16.75px;">update</a> <a href="/tags/while/" style="font-size: 14px;">while</a> <a href="/tags/windows/" style="font-size: 14px;">windows</a> <a href="/tags/write/" style="font-size: 14px;">write</a> <a href="/tags/yagmail/" style="font-size: 14px;">yagmail</a> <a href="/tags/乘法/" style="font-size: 14px;">乘法</a> <a href="/tags/九宫格/" style="font-size: 14px;">九宫格</a> <a href="/tags/事务/" style="font-size: 14px;">事务</a> <a href="/tags/元组/" style="font-size: 14px;">元组</a> <a href="/tags/函数/" style="font-size: 14px;">函数</a> <a href="/tags/分组/" style="font-size: 14px;">分组</a> <a href="/tags/列表/" style="font-size: 16.75px;">列表</a> <a href="/tags/参数/" style="font-size: 14px;">参数</a> <a href="/tags/双网卡/" style="font-size: 14px;">双网卡</a> <a href="/tags/可变参数/" style="font-size: 14px;">可变参数</a> <a href="/tags/图片/" style="font-size: 14px;">图片</a> <a href="/tags/多个公钥/" style="font-size: 14px;">多个公钥</a> <a href="/tags/多态/" style="font-size: 14px;">多态</a> <a href="/tags/多线程/" style="font-size: 14px;">多线程</a> <a href="/tags/多进程/" style="font-size: 14px;">多进程</a> <a href="/tags/字典/" style="font-size: 14px;">字典</a> <a href="/tags/字符/" style="font-size: 14px;">字符</a> <a href="/tags/字符串/" style="font-size: 14px;">字符串</a> <a href="/tags/定时任务/" style="font-size: 14px;">定时任务</a> <a href="/tags/密钥/" style="font-size: 16.75px;">密钥</a> <a href="/tags/循环/" style="font-size: 14px;">循环</a> <a href="/tags/排序/" style="font-size: 14px;">排序</a> <a href="/tags/数字/" style="font-size: 16.75px;">数字</a> <a href="/tags/数据类型/" style="font-size: 16.75px;">数据类型</a> <a href="/tags/文件/" style="font-size: 14px;">文件</a> <a href="/tags/斐波那契数列/" style="font-size: 14px;">斐波那契数列</a> <a href="/tags/条件判断/" style="font-size: 14px;">条件判断</a> <a href="/tags/杨辉三角/" style="font-size: 14px;">杨辉三角</a> <a href="/tags/构造器/" style="font-size: 14px;">构造器</a> <a href="/tags/正则/" style="font-size: 14px;">正则</a> <a href="/tags/汉诺塔/" style="font-size: 14px;">汉诺塔</a> <a href="/tags/消息队列/" style="font-size: 14px;">消息队列</a> <a href="/tags/游标/" style="font-size: 14px;">游标</a> <a href="/tags/爬虫/" style="font-size: 14px;">爬虫</a> <a href="/tags/生成器/" style="font-size: 14px;">生成器</a> <a href="/tags/目录/" style="font-size: 14px;">目录</a> <a href="/tags/类/" style="font-size: 14px;">类</a> <a href="/tags/统计/" style="font-size: 14px;">统计</a> <a href="/tags/继承/" style="font-size: 14px;">继承</a> <a href="/tags/编码/" style="font-size: 14px;">编码</a> <a href="/tags/网络/" style="font-size: 14px;">网络</a> <a href="/tags/装饰器/" style="font-size: 14px;">装饰器</a> <a href="/tags/视图状态/" style="font-size: 14px;">视图状态</a> <a href="/tags/计算/" style="font-size: 14px;">计算</a> <a href="/tags/负载均衡/" style="font-size: 14px;">负载均衡</a> <a href="/tags/递归/" style="font-size: 14px;">递归</a> <a href="/tags/阶乘/" style="font-size: 14px;">阶乘</a> <a href="/tags/面向对象/" style="font-size: 14px;">面向对象</a>
+      <a href="/tags/Array/" style="font-size: 14px;">Array</a> <a href="/tags/BONDING/" style="font-size: 14px;">BONDING</a> <a href="/tags/BytesIO/" style="font-size: 14px;">BytesIO</a> <a href="/tags/CENTOS7/" style="font-size: 14px;">CENTOS7</a> <a href="/tags/EMC/" style="font-size: 14px;">EMC</a> <a href="/tags/FORFILES/" style="font-size: 14px;">FORFILES</a> <a href="/tags/HBA/" style="font-size: 14px;">HBA</a> <a href="/tags/HP-UNIX/" style="font-size: 14px;">HP-UNIX</a> <a href="/tags/JUNCTION/" style="font-size: 14px;">JUNCTION</a> <a href="/tags/Json/" style="font-size: 14px;">Json</a> <a href="/tags/LINUX/" style="font-size: 22.25px;">LINUX</a> <a href="/tags/Lock/" style="font-size: 16.75px;">Lock</a> <a href="/tags/MAC/" style="font-size: 14px;">MAC</a> <a href="/tags/MKLINK/" style="font-size: 14px;">MKLINK</a> <a href="/tags/OOP/" style="font-size: 14px;">OOP</a> <a href="/tags/OPENSSH/" style="font-size: 14px;">OPENSSH</a> <a href="/tags/OPENSSL/" style="font-size: 14px;">OPENSSL</a> <a href="/tags/ORM/" style="font-size: 14px;">ORM</a> <a href="/tags/POWERPATH/" style="font-size: 14px;">POWERPATH</a> <a href="/tags/Popen/" style="font-size: 14px;">Popen</a> <a href="/tags/Process/" style="font-size: 14px;">Process</a> <a href="/tags/SQLAIchemy/" style="font-size: 14px;">SQLAIchemy</a> <a href="/tags/SSH/" style="font-size: 14px;">SSH</a> <a href="/tags/StringIO/" style="font-size: 14px;">StringIO</a> <a href="/tags/TCPServer/" style="font-size: 14px;">TCPServer</a> <a href="/tags/UBUNTU/" style="font-size: 16.75px;">UBUNTU</a> <a href="/tags/UDPServer/" style="font-size: 14px;">UDPServer</a> <a href="/tags/Value/" style="font-size: 14px;">Value</a> <a href="/tags/WINDOWS/" style="font-size: 19.5px;">WINDOWS</a> <a href="/tags/WINODWS/" style="font-size: 14px;">WINODWS</a> <a href="/tags/WWW/" style="font-size: 14px;">WWW</a> <a href="/tags/XSHELL/" style="font-size: 14px;">XSHELL</a> <a href="/tags/XTERM/" style="font-size: 14px;">XTERM</a> <a href="/tags/ZLIB/" style="font-size: 14px;">ZLIB</a> <a href="/tags/args/" style="font-size: 14px;">args</a> <a href="/tags/bind/" style="font-size: 14px;">bind</a> <a href="/tags/bonding/" style="font-size: 14px;">bonding</a> <a href="/tags/celery/" style="font-size: 16.75px;">celery</a> <a href="/tags/close/" style="font-size: 14px;">close</a> <a href="/tags/commands/" style="font-size: 14px;">commands</a> <a href="/tags/count/" style="font-size: 14px;">count</a> <a href="/tags/csv/" style="font-size: 14px;">csv</a> <a href="/tags/cursor/" style="font-size: 14px;">cursor</a> <a href="/tags/datetime/" style="font-size: 14px;">datetime</a> <a href="/tags/decode/" style="font-size: 14px;">decode</a> <a href="/tags/decorator/" style="font-size: 14px;">decorator</a> <a href="/tags/delete/" style="font-size: 16.75px;">delete</a> <a href="/tags/drop/" style="font-size: 14px;">drop</a> <a href="/tags/email/" style="font-size: 14px;">email</a> <a href="/tags/encode/" style="font-size: 14px;">encode</a> <a href="/tags/excel/" style="font-size: 14px;">excel</a> <a href="/tags/except/" style="font-size: 14px;">except</a> <a href="/tags/finally/" style="font-size: 14px;">finally</a> <a href="/tags/for/" style="font-size: 14px;">for</a> <a href="/tags/get/" style="font-size: 14px;">get</a> <a href="/tags/groupby/" style="font-size: 14px;">groupby</a> <a href="/tags/handle/" style="font-size: 14px;">handle</a> <a href="/tags/hashlib/" style="font-size: 14px;">hashlib</a> <a href="/tags/if/" style="font-size: 14px;">if</a> <a href="/tags/image/" style="font-size: 14px;">image</a> <a href="/tags/insert/" style="font-size: 14px;">insert</a> <a href="/tags/kw/" style="font-size: 14px;">kw</a> <a href="/tags/libXaw/" style="font-size: 14px;">libXaw</a> <a href="/tags/libXpm/" style="font-size: 14px;">libXpm</a> <a href="/tags/log/" style="font-size: 16.75px;">log</a> <a href="/tags/machinekey/" style="font-size: 14px;">machinekey</a> <a href="/tags/memcached/" style="font-size: 14px;">memcached</a> <a href="/tags/mime/" style="font-size: 14px;">mime</a> <a href="/tags/mysql/" style="font-size: 16.75px;">mysql</a> <a href="/tags/nosql/" style="font-size: 14px;">nosql</a> <a href="/tags/open/" style="font-size: 14px;">open</a> <a href="/tags/orderby/" style="font-size: 14px;">orderby</a> <a href="/tags/orm/" style="font-size: 14px;">orm</a> <a href="/tags/os/" style="font-size: 16.75px;">os</a> <a href="/tags/pdf/" style="font-size: 14px;">pdf</a> <a href="/tags/pdfkit/" style="font-size: 14px;">pdfkit</a> <a href="/tags/pipe/" style="font-size: 14px;">pipe</a> <a href="/tags/pycharm/" style="font-size: 14px;">pycharm</a> <a href="/tags/pymysql/" style="font-size: 14px;">pymysql</a> <a href="/tags/python/" style="font-size: 25px;">python</a> <a href="/tags/queue/" style="font-size: 14px;">queue</a> <a href="/tags/raise/" style="font-size: 14px;">raise</a> <a href="/tags/re/" style="font-size: 16.75px;">re</a> <a href="/tags/read/" style="font-size: 14px;">read</a> <a href="/tags/redis/" style="font-size: 16.75px;">redis</a> <a href="/tags/requests/" style="font-size: 14px;">requests</a> <a href="/tags/return/" style="font-size: 14px;">return</a> <a href="/tags/select/" style="font-size: 14px;">select</a> <a href="/tags/session/" style="font-size: 14px;">session</a> <a href="/tags/set/" style="font-size: 14px;">set</a> <a href="/tags/smtp/" style="font-size: 14px;">smtp</a> <a href="/tags/socket/" style="font-size: 14px;">socket</a> <a href="/tags/socketserver/" style="font-size: 14px;">socketserver</a> <a href="/tags/sql/" style="font-size: 14px;">sql</a> <a href="/tags/ssh-copy-id/" style="font-size: 14px;">ssh-copy-id</a> <a href="/tags/ssh-keygen/" style="font-size: 14px;">ssh-keygen</a> <a href="/tags/subprocess/" style="font-size: 14px;">subprocess</a> <a href="/tags/sys/" style="font-size: 16.75px;">sys</a> <a href="/tags/tcp/" style="font-size: 14px;">tcp</a> <a href="/tags/threading/" style="font-size: 16.75px;">threading</a> <a href="/tags/threadpool/" style="font-size: 14px;">threadpool</a> <a href="/tags/timedelta/" style="font-size: 14px;">timedelta</a> <a href="/tags/times/" style="font-size: 14px;">times</a> <a href="/tags/try/" style="font-size: 14px;">try</a> <a href="/tags/udp/" style="font-size: 14px;">udp</a> <a href="/tags/update/" style="font-size: 16.75px;">update</a> <a href="/tags/while/" style="font-size: 14px;">while</a> <a href="/tags/windows/" style="font-size: 14px;">windows</a> <a href="/tags/write/" style="font-size: 14px;">write</a> <a href="/tags/yagmail/" style="font-size: 14px;">yagmail</a> <a href="/tags/乘法/" style="font-size: 14px;">乘法</a> <a href="/tags/九宫格/" style="font-size: 14px;">九宫格</a> <a href="/tags/事务/" style="font-size: 14px;">事务</a> <a href="/tags/元组/" style="font-size: 14px;">元组</a> <a href="/tags/函数/" style="font-size: 14px;">函数</a> <a href="/tags/分组/" style="font-size: 14px;">分组</a> <a href="/tags/列表/" style="font-size: 16.75px;">列表</a> <a href="/tags/参数/" style="font-size: 14px;">参数</a> <a href="/tags/双网卡/" style="font-size: 14px;">双网卡</a> <a href="/tags/可变参数/" style="font-size: 14px;">可变参数</a> <a href="/tags/图片/" style="font-size: 14px;">图片</a> <a href="/tags/多个公钥/" style="font-size: 14px;">多个公钥</a> <a href="/tags/多态/" style="font-size: 14px;">多态</a> <a href="/tags/多线程/" style="font-size: 14px;">多线程</a> <a href="/tags/多进程/" style="font-size: 14px;">多进程</a> <a href="/tags/字典/" style="font-size: 14px;">字典</a> <a href="/tags/字符/" style="font-size: 14px;">字符</a> <a href="/tags/字符串/" style="font-size: 14px;">字符串</a> <a href="/tags/定时任务/" style="font-size: 14px;">定时任务</a> <a href="/tags/密钥/" style="font-size: 16.75px;">密钥</a> <a href="/tags/循环/" style="font-size: 14px;">循环</a> <a href="/tags/排序/" style="font-size: 14px;">排序</a> <a href="/tags/数字/" style="font-size: 16.75px;">数字</a> <a href="/tags/数据类型/" style="font-size: 16.75px;">数据类型</a> <a href="/tags/文件/" style="font-size: 14px;">文件</a> <a href="/tags/斐波那契数列/" style="font-size: 14px;">斐波那契数列</a> <a href="/tags/条件判断/" style="font-size: 14px;">条件判断</a> <a href="/tags/杨辉三角/" style="font-size: 14px;">杨辉三角</a> <a href="/tags/构造器/" style="font-size: 14px;">构造器</a> <a href="/tags/正则/" style="font-size: 14px;">正则</a> <a href="/tags/汉诺塔/" style="font-size: 14px;">汉诺塔</a> <a href="/tags/消息队列/" style="font-size: 14px;">消息队列</a> <a href="/tags/游标/" style="font-size: 14px;">游标</a> <a href="/tags/爬虫/" style="font-size: 16.75px;">爬虫</a> <a href="/tags/生成器/" style="font-size: 14px;">生成器</a> <a href="/tags/目录/" style="font-size: 14px;">目录</a> <a href="/tags/类/" style="font-size: 14px;">类</a> <a href="/tags/统计/" style="font-size: 14px;">统计</a> <a href="/tags/继承/" style="font-size: 14px;">继承</a> <a href="/tags/编码/" style="font-size: 14px;">编码</a> <a href="/tags/网络/" style="font-size: 14px;">网络</a> <a href="/tags/装饰器/" style="font-size: 14px;">装饰器</a> <a href="/tags/视图状态/" style="font-size: 14px;">视图状态</a> <a href="/tags/计算/" style="font-size: 14px;">计算</a> <a href="/tags/负载均衡/" style="font-size: 14px;">负载均衡</a> <a href="/tags/递归/" style="font-size: 14px;">递归</a> <a href="/tags/阶乘/" style="font-size: 14px;">阶乘</a> <a href="/tags/面向对象/" style="font-size: 14px;">面向对象</a>
     </div>
   </div>
 
@@ -612,6 +632,10 @@
     <h3 class="widget-title recent-posts">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/06/13/python爬虫/">python爬虫</a>
+          </li>
         
           <li>
             <a href="/2018/06/11/python数据处理-二/">python数据处理(二)</a>
@@ -629,10 +653,6 @@
             <a href="/2018/06/05/python网络编程之socketserver/">python网络编程之socketserver</a>
           </li>
         
-          <li>
-            <a href="/2018/06/01/python网络编程之socket/">python网络编程之socket</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -642,7 +662,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title archive">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 
