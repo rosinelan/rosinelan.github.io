@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://rosinelan.github.io/2018/06/13/python爬虫/index.html">
 <meta property="og:site_name" content="持续不断">
 <meta property="og:description" content="爬虫介绍爬虫定义爬虫是请求网站并提取自己所需要数据的过程。通过我们的程序，可以代替我们向服务器发送请求，然后进行批量的数据下载。   爬虫基本流程 发起请求通过url向服务器发送requests请求，请求可以包含额外的header信息。">
-<meta property="og:updated_time" content="2018-06-19T12:00:35.399Z">
+<meta property="og:updated_time" content="2018-06-19T12:37:13.517Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python爬虫">
 <meta name="twitter:description" content="爬虫介绍爬虫定义爬虫是请求网站并提取自己所需要数据的过程。通过我们的程序，可以代替我们向服务器发送请求，然后进行批量的数据下载。   爬虫基本流程 发起请求通过url向服务器发送requests请求，请求可以包含额外的header信息。">
@@ -42,7 +42,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -135,12 +135,12 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">"http://2018.ip138.com/ic.asp"</span></span><br><span class="line">proxy = &#123;<span class="string">"http"</span>: <span class="string">"http://221.228.17.172:8181"</span>&#125;</span><br><span class="line">res1 = requests.get(url=url, proxies=proxy)</span><br><span class="line">res2 = requests.get(url=url)</span><br><span class="line">res1.encoding = res1.apparent_encoding</span><br><span class="line">res2.encoding = res2.apparent_encoding</span><br><span class="line">print(res1.text)    <span class="comment">#输出结果为代理IP信息</span></span><br><span class="line">print(<span class="string">"###"</span>*<span class="number">10</span>)</span><br><span class="line">print(res2.text)    <span class="comment">#输出结果为本机IP信息</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p><strong>总结</strong><br>requests模块提供的接口，在传输数据的时候，都可以以<code>key:value</code>的形式进行传输，方便数据处理。<br>关于requests中文乱码的问题，可以参考<a href="http://xiaorui.cc/2016/02/19/%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90python-requests%E5%BA%93%E4%B8%AD%E6%96%87%E7%BC%96%E7%A0%81%E9%97%AE%E9%A2%98/" target="_blank" rel="noopener">Python requests库中文编码问题</a></p>
+<p><strong>总结</strong><br>requests模块提供的接口，在传输数据的时候，都可以以<code>key:value</code>的形式进行传输，方便数据处理。<br>关于requests中文乱码的问题，可以参考<a href="http://xiaorui.cc/2016/02/19/%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90python-requests%E5%BA%93%E4%B8%AD%E6%96%87%E7%BC%96%E7%A0%81%E9%97%AE%E9%A2%98/" target="_blank" rel="noopener">Python requests库中文编码问题</a><br>更多关于<code>Requests</code>模块的介绍可以点击<a href="http://docs.python-requests.org/zh_CN/latest/user/quickstart.html" target="_blank" rel="noopener">Requests快速上手</a>查看介绍</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/06/13/python爬虫/" data-id="cjiln0q4g002gg4q6l82gb6be" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/06/13/python爬虫/" data-id="cjiln0q4g002gg4q6l82gb6be" class="article-share-link">Delen</a>
       
       
       
@@ -152,7 +152,7 @@
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =4
@@ -195,7 +195,7 @@
 <nav id="article-nav">
   
     <a href="/2018/06/19/python爬虫-二/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">Nieuwer</strong>
       <div class="article-nav-title">
         
           python爬虫(二)
@@ -205,7 +205,7 @@
   
   
     <a href="/2018/06/11/python数据处理-二/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">Ouder</strong>
       <div class="article-nav-title">python数据处理(二)</div>
     </a>
   
@@ -235,7 +235,7 @@
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
               <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#爬虫介绍"><span class="toc-number">1.</span> <span class="toc-text">爬虫介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#爬虫定义"><span class="toc-number">1.1.</span> <span class="toc-text">爬虫定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#爬虫基本流程"><span class="toc-number">1.2.</span> <span class="toc-text">爬虫基本流程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#requests请求"><span class="toc-number">1.3.</span> <span class="toc-text">requests请求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#response"><span class="toc-number">1.4.</span> <span class="toc-text">response</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#requests模块"><span class="toc-number">2.</span> <span class="toc-text">requests模块</span></a></li></ol>
           </div>
