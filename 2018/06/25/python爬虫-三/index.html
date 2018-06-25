@@ -5,17 +5,17 @@
   
   <title>python爬虫(三) | 持续不断</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Beautiful Soup简介Beautiful Soup是python的一个库，主要功能是从网页抓取数据。它是一个可以从HTML或XML文件中提取数据的Python库.它能够通过你喜欢的转换器实现惯用的文档导航,查找,修改文档的方式.Beautiful Soup会帮你节省数小时甚至数天的工作时间。通过使用该库，可以不编写正则就可以方便的实现网页信息的抓取。   安装Beautiful Soup">
+  <meta name="description" content="Beautiful Soup简介Beautiful Soup是python的一个库，主要功能是从网页抓取数据。它是一个可以从HTML或XML文件中提取数据的Python库.它能够通过你喜欢的转换器实现惯用的文档导航,查找,修改文档的方式.Beautiful Soup会帮你节省数小时甚至数天的工作时间。通过使用该库，可以不编写正则就可以方便的实现网页信息的抓取。">
 <meta name="keywords" content="webdriver">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python爬虫(三)">
 <meta property="og:url" content="https://rosinelan.github.io/2018/06/25/python爬虫-三/index.html">
 <meta property="og:site_name" content="持续不断">
-<meta property="og:description" content="Beautiful Soup简介Beautiful Soup是python的一个库，主要功能是从网页抓取数据。它是一个可以从HTML或XML文件中提取数据的Python库.它能够通过你喜欢的转换器实现惯用的文档导航,查找,修改文档的方式.Beautiful Soup会帮你节省数小时甚至数天的工作时间。通过使用该库，可以不编写正则就可以方便的实现网页信息的抓取。   安装Beautiful Soup">
-<meta property="og:updated_time" content="2018-06-25T12:39:37.907Z">
+<meta property="og:description" content="Beautiful Soup简介Beautiful Soup是python的一个库，主要功能是从网页抓取数据。它是一个可以从HTML或XML文件中提取数据的Python库.它能够通过你喜欢的转换器实现惯用的文档导航,查找,修改文档的方式.Beautiful Soup会帮你节省数小时甚至数天的工作时间。通过使用该库，可以不编写正则就可以方便的实现网页信息的抓取。">
+<meta property="og:updated_time" content="2018-06-25T12:50:39.593Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python爬虫(三)">
-<meta name="twitter:description" content="Beautiful Soup简介Beautiful Soup是python的一个库，主要功能是从网页抓取数据。它是一个可以从HTML或XML文件中提取数据的Python库.它能够通过你喜欢的转换器实现惯用的文档导航,查找,修改文档的方式.Beautiful Soup会帮你节省数小时甚至数天的工作时间。通过使用该库，可以不编写正则就可以方便的实现网页信息的抓取。   安装Beautiful Soup">
+<meta name="twitter:description" content="Beautiful Soup简介Beautiful Soup是python的一个库，主要功能是从网页抓取数据。它是一个可以从HTML或XML文件中提取数据的Python库.它能够通过你喜欢的转换器实现惯用的文档导航,查找,修改文档的方式.Beautiful Soup会帮你节省数小时甚至数天的工作时间。通过使用该库，可以不编写正则就可以方便的实现网页信息的抓取。">
   
     <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
   
@@ -42,7 +42,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -100,9 +100,46 @@
       
         <!-- Table of Contents -->
         
-        <h3 id="Beautiful-Soup"><a href="#Beautiful-Soup" class="headerlink" title="Beautiful Soup"></a>Beautiful Soup</h3><h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p><code>Beautiful Soup</code>是python的一个库，主要功能是从网页抓取数据。<br>它是一个可以从HTML或XML文件中提取数据的Python库.它能够通过你喜欢的转换器实现惯用的文档导航,查找,修改文档的方式.Beautiful Soup会帮你节省数小时甚至数天的工作时间。<br>通过使用该库，可以不编写正则就可以方便的实现网页信息的抓取。  </p>
+        <h3 id="Beautiful-Soup"><a href="#Beautiful-Soup" class="headerlink" title="Beautiful Soup"></a>Beautiful Soup</h3><h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p><code>Beautiful Soup</code>是python的一个库，主要功能是从网页抓取数据。<br>它是一个可以从HTML或XML文件中提取数据的Python库.它能够通过你喜欢的转换器实现惯用的文档导航,查找,修改文档的方式.Beautiful Soup会帮你节省数小时甚至数天的工作时间。<br>通过使用该库，可以不编写正则就可以方便的实现网页信息的抓取。<br><a id="more"></a></p>
 <h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><h5 id="Beautiful-Soup安装"><a href="#Beautiful-Soup安装" class="headerlink" title="Beautiful Soup安装"></a>Beautiful Soup安装</h5><p><code>Beautiful Soup</code>安装很简单，直接<code>pip install beautifulsoup4</code>即可安装。  </p>
-<h5 id="解析器安装"><a href="#解析器安装" class="headerlink" title="解析器安装"></a>解析器安装</h5><p>Beautiful Soup支持Python标准库中的HTML解析器,还支持一些第三方的解析器，如果我们不安装它，则 Python 会使用 Python默认的解析器，lxml 解析器更加强大，速度更快，推荐安装。<br>|解析器|使用方法|优势|劣势|<br>|-|:-|:-|:-|<br>|Python标准库|<code>BeautifulSoup(markup, &quot;html.parser&quot;)</code>|ython的内置标准库<br>执行速度适中<br>文档容错能力强|ython 2.7.3 or 3.2.2)前 的版本中文档容错能力差<br>|lxml HTML 解析器|<code>BeautifulSoup(markup, &quot;lxml&quot;)</code>|速度快<br>文档容错能力强|需要安装C语言库<br>|lxml XML 解析器|<code>BeautifulSoup(markup, [&quot;lxml&quot;, &quot;xml&quot;])</code> <code>BeautifulSoup(markup, &quot;xml&quot;)</code>|速度快<br>唯一支持XML的解析器|需要安装C语言库<br>|html5lib|<code>BeautifulSoup(markup, &quot;html5lib&quot;)</code>|最好的容错性<br>以浏览器的方式解析文档<br>生成HTML5格式的文档|速度慢<br>不依赖外部扩展<br>lxml安装<code>pip install lxml</code><br>html5lib安装<code>pip install html5lib</code>  </p>
+<h5 id="解析器安装"><a href="#解析器安装" class="headerlink" title="解析器安装"></a>解析器安装</h5><p>Beautiful Soup支持Python标准库中的HTML解析器,还支持一些第三方的解析器，如果我们不安装它，则 Python 会使用 Python默认的解析器，lxml 解析器更加强大，速度更快，推荐安装。  </p>
+<table>
+<thead>
+<tr>
+<th>解析器</th>
+<th style="text-align:left">使用方法</th>
+<th style="text-align:left">优势</th>
+<th style="text-align:left">劣势</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python标准库</td>
+<td style="text-align:left"><code>BeautifulSoup(markup, &quot;html.parser&quot;)</code></td>
+<td style="text-align:left">ython的内置标准库<br>执行速度适中<br>文档容错能力强</td>
+<td style="text-align:left">ython 2.7.3 or 3.2.2)前 的版本中文档容错能力差</td>
+</tr>
+<tr>
+<td>lxml HTML 解析器</td>
+<td style="text-align:left"><code>BeautifulSoup(markup, &quot;lxml&quot;)</code></td>
+<td style="text-align:left">速度快<br>文档容错能力强</td>
+<td style="text-align:left">需要安装C语言库</td>
+</tr>
+<tr>
+<td>lxml XML 解析器</td>
+<td style="text-align:left"><code>BeautifulSoup(markup, [&quot;lxml&quot;, &quot;xml&quot;])</code> <code>BeautifulSoup(markup, &quot;xml&quot;)</code></td>
+<td style="text-align:left">速度快<br>唯一支持XML的解析器</td>
+<td style="text-align:left">需要安装C语言库</td>
+</tr>
+<tr>
+<td>html5lib</td>
+<td style="text-align:left"><code>BeautifulSoup(markup, &quot;html5lib&quot;)</code></td>
+<td style="text-align:left">最好的容错性<br>以浏览器的方式解析文档<br>生成HTML5格式的文档</td>
+<td style="text-align:left">速度慢<br>不依赖外部扩展</td>
+</tr>
+</tbody>
+</table>
+<p>lxml安装<code>pip install lxml</code><br>html5lib安装<code>pip install html5lib</code>  </p>
 <h4 id="快速使用"><a href="#快速使用" class="headerlink" title="快速使用"></a>快速使用</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"></span><br><span class="line">html = <span class="string">'''</span></span><br><span class="line"><span class="string">&lt;html&gt;&lt;head&gt;&lt;title&gt;The Dormouse's story&lt;/title&gt;&lt;/head&gt;</span></span><br><span class="line"><span class="string">&lt;body&gt;</span></span><br><span class="line"><span class="string">&lt;p class="title"&gt;&lt;b&gt;The Dormouse's story&lt;/b&gt;&lt;/p&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;p class="story"&gt;Once upon a time there were three little sisters; and their names were</span></span><br><span class="line"><span class="string">&lt;a href="http://example.com/elsie" class="sister" id="link1"&gt;Elsie&lt;/a&gt;,</span></span><br><span class="line"><span class="string">&lt;a href="http://example.com/lacie" class="sister" id="link2"&gt;Lacie&lt;/a&gt; and</span></span><br><span class="line"><span class="string">&lt;a href="http://example.com/tillie" class="sister" id="link3"&gt;Tillie&lt;/a&gt;;</span></span><br><span class="line"><span class="string">and they lived at the bottom of a well.&lt;/p&gt;</span></span><br><span class="line"><span class="string">&lt;p class="story"&gt;...&lt;/p&gt;</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line">soup = BeautifulSoup(html, <span class="string">'lxml'</span>)</span><br><span class="line">print(soup.prettify())</span><br><span class="line">print(soup.title)</span><br><span class="line">print(soup.title.name)</span><br><span class="line">print(soup.title.string)</span><br><span class="line">print(soup.title.parent.name)</span><br><span class="line">print(soup.p)</span><br><span class="line">print(soup.p[<span class="string">"class"</span>])</span><br><span class="line">print(soup.a)</span><br><span class="line">print(soup.find_all(<span class="string">'a'</span>))</span><br><span class="line">print(soup.find(id=<span class="string">'link3'</span>))</span><br></pre></td></tr></table></figure>
 <p>输出结果<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line"> &lt;head&gt;</span><br><span class="line">  &lt;title&gt;</span><br><span class="line">   The Dormouse<span class="string">'s story</span></span><br><span class="line"><span class="string">  &lt;/title&gt;</span></span><br><span class="line"><span class="string"> &lt;/head&gt;</span></span><br><span class="line"><span class="string"> &lt;body&gt;</span></span><br><span class="line"><span class="string">  &lt;p class="title"&gt;</span></span><br><span class="line"><span class="string">   &lt;b&gt;</span></span><br><span class="line"><span class="string">    The Dormouse'</span>s story</span><br><span class="line">   &lt;/b&gt;</span><br><span class="line">  &lt;/p&gt;</span><br><span class="line">  &lt;p class="story"&gt;</span><br><span class="line">   Once upon a time there were three little sisters; <span class="keyword">and</span> their names were</span><br><span class="line">   &lt;a class="sister" href="http://example.com/elsie" id="link1"&gt;</span><br><span class="line">    Elsie</span><br><span class="line">   &lt;/a&gt;</span><br><span class="line">   ,</span><br><span class="line">   &lt;a class="sister" href="http://example.com/lacie" id="link2"&gt;</span><br><span class="line">    Lacie</span><br><span class="line">   &lt;/a&gt;</span><br><span class="line">   <span class="keyword">and</span></span><br><span class="line">   &lt;a class="sister" href="http://example.com/tillie" id="link3"&gt;</span><br><span class="line">    Tillie</span><br><span class="line">   &lt;/a&gt;</span><br><span class="line">   ;</span><br><span class="line"><span class="keyword">and</span> they lived at the bottom of a well.</span><br><span class="line">  &lt;/p&gt;</span><br><span class="line">  &lt;p class="story"&gt;</span><br><span class="line">   ...</span><br><span class="line">  &lt;/p&gt;</span><br><span class="line"> &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line">&lt;title&gt;The Dormouse<span class="string">'s story&lt;/title&gt;</span></span><br><span class="line"><span class="string">title</span></span><br><span class="line"><span class="string">The Dormouse'</span>s story</span><br><span class="line">head</span><br><span class="line">&lt;p class="title"&gt;&lt;b&gt;The Dormouse's story&lt;/b&gt;&lt;/p&gt;</span><br><span class="line">[<span class="string">'title'</span>]</span><br><span class="line">&lt;a class="sister" href="http://example.com/elsie" id="link1"&gt;Elsie&lt;/a&gt;</span><br><span class="line">[&lt;a class="sister" href="http://example.com/elsie" id="link1"&gt;Elsie&lt;/a&gt;, &lt;a class="sister" href="http://example.com/lacie" id="link2"&gt;Lacie&lt;/a&gt;, &lt;a class="sister" href="http://example.com/tillie" id="link3"&gt;Tillie&lt;/a&gt;]</span><br><span class="line">&lt;a class="sister" href="http://example.com/tillie" id="link3"&gt;Tillie&lt;/a&gt;</span><br></pre></td></tr></table></figure></p>
 <p>注意，此处使用解析器为<code>lxml</code>，需要提前安装。<br>使用BeautifulSoup解析这段代码,能够得到一个 BeautifulSoup 的对象,并能按照标准的缩进格式的结构输出。<br>同时我们通过下面代码可以分别获取所有的链接，以及文字内容<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> link <span class="keyword">in</span> soup.find_all(<span class="string">'a'</span>):</span><br><span class="line">    print(link.get(<span class="string">'href'</span>))</span><br><span class="line"></span><br><span class="line">print(soup.get_text())</span><br></pre></td></tr></table></figure></p>
@@ -129,12 +166,12 @@
 </ul>
 <p><strong>获取内容</strong><br>通过<code>get_text()</code>获取文本内容<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> li <span class="keyword">in</span> soup.select(<span class="string">'li'</span>):</span><br><span class="line">    print(li.get_text())</span><br></pre></td></tr></table></figure></p>
 <p><strong>获取属性</strong><br>通过[属性名]或者attrs[属性名]获取属性<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> ul <span class="keyword">in</span> soup.select(<span class="string">'ul'</span>):</span><br><span class="line">    print(ul[<span class="string">'id'</span>])</span><br><span class="line">    print(ul.attrs[<span class="string">'id'</span>])</span><br></pre></td></tr></table></figure></p>
-<p>更多关于<code>Beautiful Soup</code>内容可以点击<a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc.zh/" target="_blank" rel="noopener">Beautiful Soup 4.2.0 文档</a>查看官方文档介绍。<br>博客内容参考<a href="https://cuiqingcai.com/1319.html" target="_blank" rel="noopener">Python爬虫利器二之Beautiful Soup的用法</a></p>
+<p>更多关于<code>Beautiful Soup</code>内容可以点击<a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc.zh/" target="_blank" rel="noopener">Beautiful Soup 4.2.0 文档</a>查看官方文档介绍。<br>点击<a href="https://cuiqingcai.com/1319.html" target="_blank" rel="noopener">Python爬虫利器二之Beautiful Soup的用法</a>查看更多总结。<br>点击<a href="http://www.cnblogs.com/zhaof/" target="_blank" rel="noopener"> python修行路</a>查看更多内容。  </p>
 <h3 id="webdriver"><a href="#webdriver" class="headerlink" title="webdriver"></a>webdriver</h3>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/06/25/python爬虫-三/" data-id="cjiu92cjl005ntoq6gc8tnuux" class="article-share-link">Delen</a>
+      <a data-url="https://rosinelan.github.io/2018/06/25/python爬虫-三/" data-id="cjiu92cjl005ntoq6gc8tnuux" class="article-share-link">分享</a>
       
       
       
@@ -190,7 +227,7 @@
   
   
     <a href="/2018/06/19/python爬虫-二/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Ouder</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">python爬虫(二)</div>
     </a>
   
@@ -248,10 +285,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
+     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>
