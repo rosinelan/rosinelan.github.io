@@ -72,6 +72,170 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-saltstack-二" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/07/02/saltstack-二/" class="article-date">
+  <time datetime="2018-07-02T07:24:35.000Z" itemprop="datePublished">2018-07-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/program/">编程</a>►<a class="article-category-link" href="/categories/program/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/02/saltstack-二/">saltstack(二)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h3 id="saltstack-api"><a href="#saltstack-api" class="headerlink" title="saltstack-api"></a>saltstack-api</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/07/02/saltstack-二/" data-id="cjj4fxt4u00ddxoq696ij9du3" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/API/">API</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/saltstack/">saltstack</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
+    <article id="post-saltstack" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/27/saltstack/" class="article-date">
+  <time datetime="2018-06-27T02:00:09.000Z" itemprop="datePublished">2018-06-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/program/">编程</a>►<a class="article-category-link" href="/categories/program/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/27/saltstack/">saltstack</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>saltstack是一个新的基础平台管理工具，只需要花费几分钟即可运行起来，可以支撑管理上万台服务器的规模，数秒钟即可完成数据的传递。<br>saltstack能够维护预定义状态的远程节点，也可以在远程节点执行命令和查询数据；开发的目的是为远程执行提供孔的解决方案，并使远程执行变得更好、更快、更简单。<br>saltstack使用python开发，同时也支持restAPI，方便二次开发以及和其它普通集成，同时官方也发布了一个web管理界面halite。  </p>
+<h4 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h4><ol>
+<li>速度快，saltstack使用消息队列zeroMQ传输数据，比ansible快大约40倍。  </li>
+<li>C/S架构，执行信息比较稳定，不同意丢失信息或出现主机失联的情况。  </li>
+<li>python开发，方便理解和自定义模块。  <h4 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h4>saltstack中服务端叫做<code>master</code>，客户端叫做<code>minion</code>，都是以demon模式运行，一直监听配置文件中定义的<code>ret_port</code>(saltstack客户端与服务端通信的端口，负责接收客户端发送过来的结果，默认4506端口)和<code>publish_port</code>(saltstack的消息发布系统，默认4505端口)的端口。当minion运行时会自动连接到配置文件中定义的master地址ret_port端口进行连接认证。<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3>以<code>centos7.3.1611</code>为例，使用yum安装。也可以通过源码编译、pip、salt-bootstrap等方式安装。    <h4 id="关闭防火墙"><a href="#关闭防火墙" class="headerlink" title="关闭防火墙"></a>关闭防火墙</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld</span><br><span class="line">systemctl disable firewalld</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="epel源配置"><a href="#epel源配置" class="headerlink" title="epel源配置"></a>epel源配置</h4><p>yum安装salstack使用epel源。<br><code>yum install epel-release</code>  </p>
+<h4 id="安装master"><a href="#安装master" class="headerlink" title="安装master"></a>安装master</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install salt-master</span><br></pre></td></tr></table></figure>
+<h4 id="安装minion"><a href="#安装minion" class="headerlink" title="安装minion"></a>安装minion</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install salt-minion</span><br></pre></td></tr></table></figure>
+<p>客户端中配置master地址<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/salt/minion +16</span><br><span class="line">master: 192.168.145.129</span><br></pre></td></tr></table></figure></p>
+<p>也可以使用sed命令实现<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i &apos;s@#manster:.*@manster: 192.168.145.219@&apos; /etc/salt/minion</span><br></pre></td></tr></table></figure></p>
+<h4 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h4><p>master<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable salt-master</span><br><span class="line">systemctl start salt-master</span><br></pre></td></tr></table></figure></p>
+<p>minion<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable salt-minion</span><br><span class="line">systemctl start salt-minion</span><br></pre></td></tr></table></figure></p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>启动服务之后，客户端的/etc/salt下面产生一个<code>minion_id</code>文件(minion配置文件中id，不配置默认为主机名)同时还会产生一个pki文件，里面存放minion的公钥和私钥。<br>master<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# tree -L 3 /etc/salt</span><br><span class="line">/etc/salt</span><br><span class="line">├── master</span><br><span class="line">└── pki</span><br><span class="line">    └── master</span><br><span class="line">        ├── master.pem</span><br><span class="line">        ├── master.pub</span><br><span class="line">        ├── minions</span><br><span class="line">        ├── minions_autosign</span><br><span class="line">        ├── minions_denied</span><br><span class="line">        ├── minions_pre</span><br><span class="line">        └── minions_rejected</span><br></pre></td></tr></table></figure></p>
+<p>minion<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@slave ~]# tree -L 3 /etc/salt</span><br><span class="line">/etc/salt</span><br><span class="line">├── minion</span><br><span class="line">├── minion.d</span><br><span class="line">├── minion_id</span><br><span class="line">└── pki</span><br><span class="line">    └── minion</span><br><span class="line">        ├── minion.pem</span><br><span class="line">        └── minion.pub</span><br></pre></td></tr></table></figure></p>
+<h4 id="master与minion认证"><a href="#master与minion认证" class="headerlink" title="master与minion认证"></a>master与minion认证</h4><p>minion在第一次启动时，会在/etc/salt/pki/minion/（该路径在/etc/salt/minion里面设置）下自动生成minion.pem（private key）和 minion.pub（public key），然后将 minion.pub发送给master。master在接收到minion的public key后，通过salt-key命令accept minion public key，这样在master的/etc/salt/pki/master/minions下的将会存放以minion id命名的 public key，然后master就能对minion发送指令了。<br>认证命令使用<code>salt-key --help</code>可以看到详细使用方法。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]<span class="comment"># salt-key -L  #查看当前证书签证情况</span></span><br><span class="line">Accepted Keys:</span><br><span class="line">Denied Keys:</span><br><span class="line">Unaccepted Keys:</span><br><span class="line">slave</span><br><span class="line">Rejected Keys:</span><br><span class="line">[root@master ~]<span class="comment"># salt-key -A -y #接受所有证书</span></span><br><span class="line">The following keys are going to be accepted:</span><br><span class="line">Unaccepted Keys:</span><br><span class="line">slave</span><br><span class="line">Key <span class="keyword">for</span> minion slave accepted.</span><br><span class="line">[root@master ~]<span class="comment"># salt-key -L</span></span><br><span class="line">Accepted Keys:</span><br><span class="line">slave</span><br><span class="line">Denied Keys:</span><br><span class="line">Unaccepted Keys:</span><br><span class="line">Rejected Keys:</span><br></pre></td></tr></table></figure></p>
+<p>其他用法<br><code>salt-key -D</code> 删除所有认证主机证书<br><code>salt-key -d id -y</code> 删除指定id的证书<br><code>salt-key -a id</code> 接受指定id的证书</p>
+<h4 id="远程执行"><a href="#远程执行" class="headerlink" title="远程执行"></a>远程执行</h4><ol>
+<li>-E， –pcre，通过正则表达式进行匹配<br><code>salt -E &#39;web(9|10)*&#39; test.ping -t 1</code></li>
+<li>-L, –list, 主机id进行过滤<br><code>salt -L &quot;*app*&quot; cmd.run &quot;df -h&quot;</code></li>
+<li>-G, –grain, 根据被控主机的grains信息进行过滤<br><code>salt -G &#39;role:nginx&#39; cmd.run &quot;ls /export&quot;</code></li>
+<li>-I, –pillar， 根据被控主机的pillar信息进行过滤<br><code>salt -I &#39;myname:xiang&#39; test.ping -t 5</code></li>
+<li>-S, –ipcidr, 根据minion的ip地址进行匹配<br><code>salt -S 192.168.1.1 test.ping</code><br><code>salt -S 192.168.1.0/24 test.ping</code><br><code>salt -S 192.168.0.0/16 test.ping</code><br><code>salt -S 192.0.0.0/8 test.ping</code></li>
+<li>检查客户端是否挂掉<br><code>salt-run manage.status |head</code><br><code>salt-run manage.down</code><h4 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h4>master和minion配置文件分别为<code>/etc/salt/master</code>和<code>/etc/salt/minion</code>，内容基本一致，主要配置项说明。  </li>
+</ol>
+<ul>
+<li>interface<br>默认是0.0.0.0(所有网络接口都可以访问)。<br>绑定本地接口<br><code>interface: 192.168.0.1</code></li>
+<li>publish_port<br>默认4505，提供服务的端口。<br><code>publish_port: 4505</code></li>
+<li>user<br>默认是root<br><code>user: root</code></li>
+<li>ret_port<br>默认是4506，返回服务器使用的端口。<br>返回服务器指salt接收执行返回结果和命令执行状况的服务器。<br><code>ret_port: 4506</code>  </li>
+<li>auto_accept<br>默认是False。设置为<code>True</code>之后master将会自动接收所有来自minion端的公钥请求。<br><code>auto_accept: False</code><h4 id="模块介绍"><a href="#模块介绍" class="headerlink" title="模块介绍"></a>模块介绍</h4></li>
+<li>Runner模块<br>在master端执行<code>salt-run</code>。<br>使用案例<br>检测各minion端是否在线 <code>salt-run manage.status</code></li>
+<li>Module模块<br>通过master同步到minion端，在minion端执行<code>salt-call saltutil.sync_modules</code>。<br><code>salt-call saltutil.sync_all</code>：包括beacons\clouds\engines\grains\log_handler\modiles\output\proxymodules\renderers\returners\sdb\states\utils。</li>
+<li>cmd模块<br><code>salt &#39;*&#39; cmd.run &quot;df -h&quot;</code></li>
+<li>ping模块<br><code>salt &#39;*&#39; test.ping -t 5</code></li>
+<li>cp模块<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">file_roots:  </span><br><span class="line">    base:  </span><br><span class="line">    - /export/salt/root</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>salt根目录：在master中file_roots定义的路径，salt://test.txt相当于/export/salt/root/test.txt<br><code>salt &#39;wms5test1.app.172.17.23.176&#39; cp.get_file salt://nscd.conf /tmp/aaa.txt</code>  </p>
+<ul>
+<li><p>cron模块</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">salt &apos;*&apos; cron.raw_cron root     （查看定时任务）</span><br><span class="line">salt &apos;*&apos; cron.set_job root &apos;*&apos; &apos;*&apos; &apos;*&apos; &apos;*&apos; 1 /export/scripts/rm_log.sh </span><br><span class="line">salt &apos;*&apos; cron.rm_job root /export/scripts/rm_log.sh</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>dnsutil模块</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">salt &apos;*&apos; dnsutil.hosts_append /etc/hosts 127.0.0.1 aaa.com</span><br><span class="line">salt &apos;*&apos; dnsutil.hosts_remove /etc/hosts aaa.com</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>file模块</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">salt &apos;*&apos; file.chown /etc/passwd root root</span><br><span class="line">salt &apos;*&apos; file.copy /path/to/src /path/to/dst</span><br><span class="line">salt &apos;*&apos; file.file_exists /etc/hosts</span><br><span class="line">salt &apos;*&apos; file.directory_exists /etc/</span><br><span class="line">salt &apos;*&apos; file.get_mod /etc/passwd</span><br><span class="line">salt &apos;*&apos; file.set_mod /etc/passwd 0644</span><br><span class="line">salt &apos;*&apos; file.mkdir /tmp/test</span><br><span class="line">salt &apos;*&apos; file.sed /export/servers/nginx/conf/nginx.conf &apos;debug&apos; &apos;warn&apos;</span><br><span class="line">salt &apos;*&apos; file.append /tmp/test.txt &quot;welcome xiang&quot;</span><br><span class="line">salt &apos;*&apos; file.remove /tmp/1.txt</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>network模块</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">salt &apos;*&apos; network.dig www.qq.com</span><br><span class="line">salt &apos;*&apos; network.ping www.qq.com</span><br><span class="line">salt &apos;*&apos; network.ip_addrs</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>pkg包管理模块<br>管理yum， apt-get等</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">salt &apos;*&apos; pkg.install php</span><br><span class="line">salt &apos;*&apos; pkg.remove php</span><br><span class="line">salt &apos;*&apos; pkg.upgrade    （升级所有的软件包）</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>service模块</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">salt &apos;*&apos; service.enable nginx</span><br><span class="line">salt &apos;*&apos; service.disable nginx</span><br><span class="line">salt &apos;*&apos; service.restart nginx</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Grains模块<br><code>Grains</code>在minion上定义的。<br>它是在minion启动时搜集一些信息，如操作系统类型，网卡，内核版本，cpu架构等。<br><code>salt &quot;*&quot; grains.ls</code>    列出所有grains项目名字<br><code>salt &quot;*app.*&quot; grains.items</code>  列出所有grains项目以及值<br>grains的信息并不是动态的，并不会实时变化，它只是在minion启动时收集到的。<br>我们可以根据grains收集到的一些信息，做一些配置管理工作<br>在minion上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/salt/grains</span><br><span class="line">role: nginx</span><br><span class="line">env: test</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>重启service<br><code>systemctl restart salt-minion</code><br>获取grians：<br><code>salt &quot;*&quot; grains.item role env</code><br>或者：<br><code>salt -G &quot;*&quot; role:nginx cmd.run &quot;hostname“</code><br><code>salt ‘*’grains.items</code><br>上面使用的是在minion端进行配置，但是机器多了配置起来比较麻烦。<br>下面在master端进行配置，然后分发给minion端。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">mkdir /srv/salt/_grains</span><br><span class="line">cd /srv/salt/_grains/</span><br><span class="line">vi mytest.py</span><br><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># _*_ coding:utf-8 _*_</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">my_test</span><span class="params">()</span>:</span></span><br><span class="line">    grains = &#123;&#125;</span><br><span class="line">    grains[<span class="string">'say'</span>] = <span class="string">'hello world'</span></span><br><span class="line">    <span class="keyword">return</span> grains</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">my_test1</span><span class="params">()</span>:</span></span><br><span class="line">    grains = &#123;&#125;</span><br><span class="line">    <span class="keyword">with</span> os.popen(<span class="string">'free -m'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        grains[<span class="string">'mem_usage'</span>] = f.read()</span><br><span class="line">    <span class="keyword">return</span> grains</span><br></pre></td></tr></table></figure></p>
+<p>同步至客户端<br><code>salt &#39;*&#39; saltutil.sync_all</code><br>master端刷新模块<br><code>salt &#39;*&#39; sys.reload_modules</code><br>master查看客户端自定义的监控项<br><code>salt &quot;*&quot; grains.item say</code><br><code>salt &quot;*&quot; grains.item mem_usage</code></p>
+<ul>
+<li>Pillar模块<br>pillar 和 grains 不一样，是在 master 上定义的，并且是针对 minion 定义的一些信息。像一些比较重要的数据（密码）可以存在 pillar 里，还可以定义变量等。<br>首先我们查看master端pillars组件是否在开启状态<br>查看/etc/salt/master pillar_ops: True 就代表pillars在开启状态，否则我们手动修改。<br>新的版本默认已经开启。<br>查看minion端的pillar信息  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@master minions]# salt &apos;*&apos; pillar.items</span><br><span class="line">slave:</span><br><span class="line">    ----------</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>master端自定义配置pillar<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# vi /etc/salt/master +529    // 找到如下内容，去掉#号</span><br><span class="line">pillar_roots:</span><br><span class="line">  base:</span><br><span class="line">    - /srv/pillar</span><br><span class="line">[root@master ~]#  mkdir /srv/pillar</span><br><span class="line">[root@master ~]# vi /srv/pillar/test.sls    // 自定义配置文件，内容如下</span><br><span class="line">conf: /etc/mum.conf</span><br><span class="line">myname: primum est</span><br><span class="line">[root@master ~]# vi /srv/pillar/top.sls    // 总入口文件，内容如下</span><br><span class="line">base:</span><br><span class="line">  &apos;client1&apos;:</span><br><span class="line">    - test</span><br></pre></td></tr></table></figure></p>
+<p>重启master<br><code>systemctl restart salt-master</code><br>注意：当更改完 pillar 配置文件后，我们可以通过刷新 pillar 配置来获取新的 pillar 状态。<br><code>salt &#39;*&#39; saltutil.refresh_pillar</code><br>验证<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@master pillar]# salt &apos;slave&apos; pillar.items</span><br><span class="line">slave:</span><br><span class="line">    ----------</span><br><span class="line">    conf:</span><br><span class="line">        /etc/mum.conf</span><br><span class="line">    myname:</span><br><span class="line">        primum est</span><br></pre></td></tr></table></figure></p>
+<p>上述简单介绍了一部分模块的内容，更多更详细可以点击<a href="https://docs.saltstack.com/en/latest/contents.html" target="_blank" rel="noopener">SALTSTACK</a>查看官方文档介绍。  </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/06/27/saltstack/" data-id="cjj4fxt4p00d8xoq6k4q2jf1o" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grains/">grains</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/master/">master</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pillar/">pillar</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/saltstack/">saltstack</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
     <article id="post-python爬虫-三" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/06/25/python爬虫-三/" class="article-date">
@@ -107,7 +271,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/06/25/python爬虫-三/" data-id="cjiu92cjl005ntoq6gc8tnuux" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/06/25/python爬虫-三/" data-id="cjj4fxt3i00cbxoq6nwyv58h1" class="article-share-link">分享</a>
       
       
       
@@ -157,7 +321,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/06/19/python爬虫-二/" data-id="cjiu92ck00067toq66lyw8qpf" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/06/19/python爬虫-二/" data-id="cjj4fxsw6002ixoq6txpxdt9b" class="article-share-link">分享</a>
       
       
       
@@ -208,7 +372,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/06/13/python爬虫/" data-id="cjiu92ckt0079toq6dez55zha" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/06/13/python爬虫/" data-id="cjj4fxswh002sxoq60880hst4" class="article-share-link">分享</a>
       
       
       
@@ -262,7 +426,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/06/11/python数据处理-二/" data-id="cjiu92cjh005htoq6n0g22i7u" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/06/11/python数据处理-二/" data-id="cjj4fxt3q00cfxoq6z53elo4t" class="article-share-link">分享</a>
       
       
       
@@ -311,7 +475,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/06/08/python数据处理/" data-id="cjiu92cjd005atoq63nc8q3no" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/06/08/python数据处理/" data-id="cjj4fxsvx0025xoq6r60w58ju" class="article-share-link">分享</a>
       
       
       
@@ -361,7 +525,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/06/06/python邮件发送/" data-id="cjiu92cl2007mtoq6rywp93fj" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/06/06/python邮件发送/" data-id="cjj4fxt5400dnxoq6sj0ymjde" class="article-share-link">分享</a>
       
       
       
@@ -411,7 +575,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/06/05/python网络编程之socketserver/" data-id="cjiu92ckk0070toq6q2agwfe3" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/06/05/python网络编程之socketserver/" data-id="cjj4fxt4f00d1xoq6oacbvjia" class="article-share-link">分享</a>
       
       
       
@@ -461,111 +625,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/06/01/python网络编程之socket/" data-id="cjiu92ckm0072toq6v7mmh14p" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/06/01/python网络编程之socket/" data-id="cjj4fxswl002xxoq6axfaf3v9" class="article-share-link">分享</a>
       
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bind/">bind</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/socket/">socket</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tcp/">tcp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/udp/">udp</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
-    <article id="post-python单词查找练习题" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/05/30/python单词查找练习题/" class="article-date">
-  <time datetime="2018-05-30T15:38:30.000Z" itemprop="datePublished">2018-05-30</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/program/">编程</a>►<a class="article-category-link" href="/categories/program/python/">python</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/30/python单词查找练习题/">python单词查找练习题</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h3><p>现有一个文件<code>dictionary.txt</code>，要求对数据进行处理，分别将英文单词和中文解释保存到mysql数据库，并且可通过输入关键字进行模糊匹配查询。<br><code>dictionary.txt</code>文件格式<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">abandon   v.抛弃，放弃</span><br><span class="line">abandonment   n.放弃</span><br><span class="line">abbreviation   n.缩写</span><br><span class="line">abeyance   n.缓办，中止</span><br><span class="line">abide   v.遵守</span><br><span class="line">ability   n.能力</span><br></pre></td></tr></table></figure></p>
-<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3>
-        
-          <p class="article-more-link">
-            <a href="/2018/05/30/python单词查找练习题/#more">继续阅读全文 »</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/30/python单词查找练习题/" data-id="cjiu92cjf005dtoq60cxntjaw" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/orm/">orm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/session/">session</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql/">sql</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
-    <article id="post-python任务调度模块celery-二" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/05/27/python任务调度模块celery-二/" class="article-date">
-  <time datetime="2018-05-27T14:23:50.000Z" itemprop="datePublished">2018-05-27</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/program/">编程</a>►<a class="article-category-link" href="/categories/program/python/">python</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/27/python任务调度模块celery-二/">python任务调度模块celery(二)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>关于celery的的基础介绍及安装使用参见<a href="https://rosinelan.coding.me/2018/05/25/python%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E6%A8%A1%E5%9D%97celery/" target="_blank" rel="noopener">python任务调度模块celery</a>。  </p>
-<h3 id="多worker和多队列"><a href="#多worker和多队列" class="headerlink" title="多worker和多队列"></a>多worker和多队列</h3><p>首先是多worker和多队列的原理及流程图。<br>
-        
-          <p class="article-more-link">
-            <a href="/2018/05/27/python任务调度模块celery-二/#more">继续阅读全文 »</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/27/python任务调度模块celery-二/" data-id="cjiu92cgc000rtoq6nqa8lc4u" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/celery/">celery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/多线程/">多线程</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/定时任务/">定时任务</a></li></ul>
 
     </footer>
   </div>
@@ -590,7 +654,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title categories">分类</h3>
     <div class="widget" id="categories">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/system/">系统管理</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/system/LINUX/">LINUX</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/system/WINDOWS/">WINDOWS</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/program/">编程</a><span class="category-list-count">42</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/program/python/">python</a><span class="category-list-count">42</span></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/system/">系统管理</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/system/LINUX/">LINUX</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/system/WINDOWS/">WINDOWS</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/program/">编程</a><span class="category-list-count">44</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/program/python/">python</a><span class="category-list-count">44</span></li></ul></li></ul>
     </div>
   </div>
 
@@ -600,7 +664,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title tagcloud">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Array/" style="font-size: 14px;">Array</a> <a href="/tags/BONDING/" style="font-size: 14px;">BONDING</a> <a href="/tags/BytesIO/" style="font-size: 14px;">BytesIO</a> <a href="/tags/CENTOS7/" style="font-size: 14px;">CENTOS7</a> <a href="/tags/EMC/" style="font-size: 14px;">EMC</a> <a href="/tags/FORFILES/" style="font-size: 14px;">FORFILES</a> <a href="/tags/HBA/" style="font-size: 14px;">HBA</a> <a href="/tags/HP-UNIX/" style="font-size: 14px;">HP-UNIX</a> <a href="/tags/JUNCTION/" style="font-size: 14px;">JUNCTION</a> <a href="/tags/Json/" style="font-size: 14px;">Json</a> <a href="/tags/LINUX/" style="font-size: 22.25px;">LINUX</a> <a href="/tags/Lock/" style="font-size: 16.75px;">Lock</a> <a href="/tags/MAC/" style="font-size: 14px;">MAC</a> <a href="/tags/MKLINK/" style="font-size: 14px;">MKLINK</a> <a href="/tags/OOP/" style="font-size: 14px;">OOP</a> <a href="/tags/OPENSSH/" style="font-size: 14px;">OPENSSH</a> <a href="/tags/OPENSSL/" style="font-size: 14px;">OPENSSL</a> <a href="/tags/ORM/" style="font-size: 14px;">ORM</a> <a href="/tags/POWERPATH/" style="font-size: 14px;">POWERPATH</a> <a href="/tags/Popen/" style="font-size: 14px;">Popen</a> <a href="/tags/Process/" style="font-size: 14px;">Process</a> <a href="/tags/SQLAIchemy/" style="font-size: 14px;">SQLAIchemy</a> <a href="/tags/SSH/" style="font-size: 14px;">SSH</a> <a href="/tags/StringIO/" style="font-size: 14px;">StringIO</a> <a href="/tags/TCPServer/" style="font-size: 14px;">TCPServer</a> <a href="/tags/UBUNTU/" style="font-size: 16.75px;">UBUNTU</a> <a href="/tags/UDPServer/" style="font-size: 14px;">UDPServer</a> <a href="/tags/Value/" style="font-size: 14px;">Value</a> <a href="/tags/WINDOWS/" style="font-size: 19.5px;">WINDOWS</a> <a href="/tags/WINODWS/" style="font-size: 14px;">WINODWS</a> <a href="/tags/WWW/" style="font-size: 14px;">WWW</a> <a href="/tags/XSHELL/" style="font-size: 14px;">XSHELL</a> <a href="/tags/XTERM/" style="font-size: 14px;">XTERM</a> <a href="/tags/ZLIB/" style="font-size: 14px;">ZLIB</a> <a href="/tags/args/" style="font-size: 14px;">args</a> <a href="/tags/bind/" style="font-size: 14px;">bind</a> <a href="/tags/bonding/" style="font-size: 14px;">bonding</a> <a href="/tags/celery/" style="font-size: 16.75px;">celery</a> <a href="/tags/close/" style="font-size: 14px;">close</a> <a href="/tags/commands/" style="font-size: 14px;">commands</a> <a href="/tags/count/" style="font-size: 14px;">count</a> <a href="/tags/csv/" style="font-size: 14px;">csv</a> <a href="/tags/cursor/" style="font-size: 14px;">cursor</a> <a href="/tags/datetime/" style="font-size: 14px;">datetime</a> <a href="/tags/decode/" style="font-size: 14px;">decode</a> <a href="/tags/decorator/" style="font-size: 14px;">decorator</a> <a href="/tags/delete/" style="font-size: 16.75px;">delete</a> <a href="/tags/drop/" style="font-size: 14px;">drop</a> <a href="/tags/email/" style="font-size: 14px;">email</a> <a href="/tags/encode/" style="font-size: 14px;">encode</a> <a href="/tags/excel/" style="font-size: 14px;">excel</a> <a href="/tags/except/" style="font-size: 14px;">except</a> <a href="/tags/finally/" style="font-size: 14px;">finally</a> <a href="/tags/for/" style="font-size: 14px;">for</a> <a href="/tags/get/" style="font-size: 14px;">get</a> <a href="/tags/groupby/" style="font-size: 14px;">groupby</a> <a href="/tags/handle/" style="font-size: 14px;">handle</a> <a href="/tags/hashlib/" style="font-size: 14px;">hashlib</a> <a href="/tags/if/" style="font-size: 14px;">if</a> <a href="/tags/image/" style="font-size: 14px;">image</a> <a href="/tags/insert/" style="font-size: 14px;">insert</a> <a href="/tags/kw/" style="font-size: 14px;">kw</a> <a href="/tags/libXaw/" style="font-size: 14px;">libXaw</a> <a href="/tags/libXpm/" style="font-size: 14px;">libXpm</a> <a href="/tags/log/" style="font-size: 16.75px;">log</a> <a href="/tags/machinekey/" style="font-size: 14px;">machinekey</a> <a href="/tags/memcached/" style="font-size: 14px;">memcached</a> <a href="/tags/mime/" style="font-size: 14px;">mime</a> <a href="/tags/mysql/" style="font-size: 16.75px;">mysql</a> <a href="/tags/nosql/" style="font-size: 14px;">nosql</a> <a href="/tags/open/" style="font-size: 14px;">open</a> <a href="/tags/orderby/" style="font-size: 14px;">orderby</a> <a href="/tags/orm/" style="font-size: 14px;">orm</a> <a href="/tags/os/" style="font-size: 16.75px;">os</a> <a href="/tags/pdf/" style="font-size: 14px;">pdf</a> <a href="/tags/pdfkit/" style="font-size: 14px;">pdfkit</a> <a href="/tags/pipe/" style="font-size: 14px;">pipe</a> <a href="/tags/pycharm/" style="font-size: 14px;">pycharm</a> <a href="/tags/pymysql/" style="font-size: 14px;">pymysql</a> <a href="/tags/python/" style="font-size: 25px;">python</a> <a href="/tags/queue/" style="font-size: 14px;">queue</a> <a href="/tags/raise/" style="font-size: 14px;">raise</a> <a href="/tags/re/" style="font-size: 16.75px;">re</a> <a href="/tags/read/" style="font-size: 14px;">read</a> <a href="/tags/redis/" style="font-size: 16.75px;">redis</a> <a href="/tags/requests/" style="font-size: 14px;">requests</a> <a href="/tags/return/" style="font-size: 14px;">return</a> <a href="/tags/select/" style="font-size: 14px;">select</a> <a href="/tags/session/" style="font-size: 14px;">session</a> <a href="/tags/set/" style="font-size: 14px;">set</a> <a href="/tags/smtp/" style="font-size: 14px;">smtp</a> <a href="/tags/socket/" style="font-size: 14px;">socket</a> <a href="/tags/socketserver/" style="font-size: 14px;">socketserver</a> <a href="/tags/sql/" style="font-size: 14px;">sql</a> <a href="/tags/ssh-copy-id/" style="font-size: 14px;">ssh-copy-id</a> <a href="/tags/ssh-keygen/" style="font-size: 14px;">ssh-keygen</a> <a href="/tags/subprocess/" style="font-size: 14px;">subprocess</a> <a href="/tags/sys/" style="font-size: 16.75px;">sys</a> <a href="/tags/tcp/" style="font-size: 14px;">tcp</a> <a href="/tags/threading/" style="font-size: 16.75px;">threading</a> <a href="/tags/threadpool/" style="font-size: 14px;">threadpool</a> <a href="/tags/timedelta/" style="font-size: 14px;">timedelta</a> <a href="/tags/times/" style="font-size: 14px;">times</a> <a href="/tags/try/" style="font-size: 14px;">try</a> <a href="/tags/udp/" style="font-size: 14px;">udp</a> <a href="/tags/update/" style="font-size: 16.75px;">update</a> <a href="/tags/urllib/" style="font-size: 14px;">urllib</a> <a href="/tags/webdriver/" style="font-size: 14px;">webdriver</a> <a href="/tags/while/" style="font-size: 14px;">while</a> <a href="/tags/windows/" style="font-size: 14px;">windows</a> <a href="/tags/write/" style="font-size: 14px;">write</a> <a href="/tags/yagmail/" style="font-size: 14px;">yagmail</a> <a href="/tags/乘法/" style="font-size: 14px;">乘法</a> <a href="/tags/九宫格/" style="font-size: 14px;">九宫格</a> <a href="/tags/事务/" style="font-size: 14px;">事务</a> <a href="/tags/元组/" style="font-size: 14px;">元组</a> <a href="/tags/函数/" style="font-size: 14px;">函数</a> <a href="/tags/分组/" style="font-size: 14px;">分组</a> <a href="/tags/列表/" style="font-size: 16.75px;">列表</a> <a href="/tags/参数/" style="font-size: 14px;">参数</a> <a href="/tags/双网卡/" style="font-size: 14px;">双网卡</a> <a href="/tags/可变参数/" style="font-size: 14px;">可变参数</a> <a href="/tags/图片/" style="font-size: 14px;">图片</a> <a href="/tags/多个公钥/" style="font-size: 14px;">多个公钥</a> <a href="/tags/多态/" style="font-size: 14px;">多态</a> <a href="/tags/多线程/" style="font-size: 14px;">多线程</a> <a href="/tags/多进程/" style="font-size: 14px;">多进程</a> <a href="/tags/字典/" style="font-size: 14px;">字典</a> <a href="/tags/字符/" style="font-size: 14px;">字符</a> <a href="/tags/字符串/" style="font-size: 14px;">字符串</a> <a href="/tags/定时任务/" style="font-size: 14px;">定时任务</a> <a href="/tags/密钥/" style="font-size: 16.75px;">密钥</a> <a href="/tags/循环/" style="font-size: 14px;">循环</a> <a href="/tags/排序/" style="font-size: 14px;">排序</a> <a href="/tags/数字/" style="font-size: 16.75px;">数字</a> <a href="/tags/数据类型/" style="font-size: 16.75px;">数据类型</a> <a href="/tags/文件/" style="font-size: 14px;">文件</a> <a href="/tags/斐波那契数列/" style="font-size: 14px;">斐波那契数列</a> <a href="/tags/条件判断/" style="font-size: 14px;">条件判断</a> <a href="/tags/杨辉三角/" style="font-size: 14px;">杨辉三角</a> <a href="/tags/构造器/" style="font-size: 14px;">构造器</a> <a href="/tags/正则/" style="font-size: 14px;">正则</a> <a href="/tags/汉诺塔/" style="font-size: 14px;">汉诺塔</a> <a href="/tags/消息队列/" style="font-size: 14px;">消息队列</a> <a href="/tags/游标/" style="font-size: 14px;">游标</a> <a href="/tags/爬虫/" style="font-size: 19.5px;">爬虫</a> <a href="/tags/生成器/" style="font-size: 14px;">生成器</a> <a href="/tags/目录/" style="font-size: 14px;">目录</a> <a href="/tags/类/" style="font-size: 14px;">类</a> <a href="/tags/统计/" style="font-size: 14px;">统计</a> <a href="/tags/继承/" style="font-size: 14px;">继承</a> <a href="/tags/编码/" style="font-size: 14px;">编码</a> <a href="/tags/网络/" style="font-size: 14px;">网络</a> <a href="/tags/装饰器/" style="font-size: 14px;">装饰器</a> <a href="/tags/视图状态/" style="font-size: 14px;">视图状态</a> <a href="/tags/计算/" style="font-size: 14px;">计算</a> <a href="/tags/负载均衡/" style="font-size: 14px;">负载均衡</a> <a href="/tags/递归/" style="font-size: 14px;">递归</a> <a href="/tags/阶乘/" style="font-size: 14px;">阶乘</a> <a href="/tags/面向对象/" style="font-size: 14px;">面向对象</a>
+      <a href="/tags/API/" style="font-size: 14px;">API</a> <a href="/tags/Array/" style="font-size: 14px;">Array</a> <a href="/tags/BONDING/" style="font-size: 14px;">BONDING</a> <a href="/tags/BytesIO/" style="font-size: 14px;">BytesIO</a> <a href="/tags/CENTOS7/" style="font-size: 14px;">CENTOS7</a> <a href="/tags/EMC/" style="font-size: 14px;">EMC</a> <a href="/tags/FORFILES/" style="font-size: 14px;">FORFILES</a> <a href="/tags/HBA/" style="font-size: 14px;">HBA</a> <a href="/tags/HP-UNIX/" style="font-size: 14px;">HP-UNIX</a> <a href="/tags/JUNCTION/" style="font-size: 14px;">JUNCTION</a> <a href="/tags/Json/" style="font-size: 14px;">Json</a> <a href="/tags/LINUX/" style="font-size: 22.25px;">LINUX</a> <a href="/tags/Lock/" style="font-size: 16.75px;">Lock</a> <a href="/tags/MAC/" style="font-size: 14px;">MAC</a> <a href="/tags/MKLINK/" style="font-size: 14px;">MKLINK</a> <a href="/tags/OOP/" style="font-size: 14px;">OOP</a> <a href="/tags/OPENSSH/" style="font-size: 14px;">OPENSSH</a> <a href="/tags/OPENSSL/" style="font-size: 14px;">OPENSSL</a> <a href="/tags/ORM/" style="font-size: 14px;">ORM</a> <a href="/tags/POWERPATH/" style="font-size: 14px;">POWERPATH</a> <a href="/tags/Popen/" style="font-size: 14px;">Popen</a> <a href="/tags/Process/" style="font-size: 14px;">Process</a> <a href="/tags/SQLAIchemy/" style="font-size: 14px;">SQLAIchemy</a> <a href="/tags/SSH/" style="font-size: 14px;">SSH</a> <a href="/tags/StringIO/" style="font-size: 14px;">StringIO</a> <a href="/tags/TCPServer/" style="font-size: 14px;">TCPServer</a> <a href="/tags/UBUNTU/" style="font-size: 16.75px;">UBUNTU</a> <a href="/tags/UDPServer/" style="font-size: 14px;">UDPServer</a> <a href="/tags/Value/" style="font-size: 14px;">Value</a> <a href="/tags/WINDOWS/" style="font-size: 19.5px;">WINDOWS</a> <a href="/tags/WINODWS/" style="font-size: 14px;">WINODWS</a> <a href="/tags/WWW/" style="font-size: 14px;">WWW</a> <a href="/tags/XSHELL/" style="font-size: 14px;">XSHELL</a> <a href="/tags/XTERM/" style="font-size: 14px;">XTERM</a> <a href="/tags/ZLIB/" style="font-size: 14px;">ZLIB</a> <a href="/tags/args/" style="font-size: 14px;">args</a> <a href="/tags/bind/" style="font-size: 14px;">bind</a> <a href="/tags/bonding/" style="font-size: 14px;">bonding</a> <a href="/tags/celery/" style="font-size: 16.75px;">celery</a> <a href="/tags/close/" style="font-size: 14px;">close</a> <a href="/tags/commands/" style="font-size: 14px;">commands</a> <a href="/tags/count/" style="font-size: 14px;">count</a> <a href="/tags/csv/" style="font-size: 14px;">csv</a> <a href="/tags/cursor/" style="font-size: 14px;">cursor</a> <a href="/tags/datetime/" style="font-size: 14px;">datetime</a> <a href="/tags/decode/" style="font-size: 14px;">decode</a> <a href="/tags/decorator/" style="font-size: 14px;">decorator</a> <a href="/tags/delete/" style="font-size: 16.75px;">delete</a> <a href="/tags/drop/" style="font-size: 14px;">drop</a> <a href="/tags/email/" style="font-size: 14px;">email</a> <a href="/tags/encode/" style="font-size: 14px;">encode</a> <a href="/tags/excel/" style="font-size: 14px;">excel</a> <a href="/tags/except/" style="font-size: 14px;">except</a> <a href="/tags/finally/" style="font-size: 14px;">finally</a> <a href="/tags/for/" style="font-size: 14px;">for</a> <a href="/tags/get/" style="font-size: 14px;">get</a> <a href="/tags/grains/" style="font-size: 14px;">grains</a> <a href="/tags/groupby/" style="font-size: 14px;">groupby</a> <a href="/tags/handle/" style="font-size: 14px;">handle</a> <a href="/tags/hashlib/" style="font-size: 14px;">hashlib</a> <a href="/tags/if/" style="font-size: 14px;">if</a> <a href="/tags/image/" style="font-size: 14px;">image</a> <a href="/tags/insert/" style="font-size: 14px;">insert</a> <a href="/tags/kw/" style="font-size: 14px;">kw</a> <a href="/tags/libXaw/" style="font-size: 14px;">libXaw</a> <a href="/tags/libXpm/" style="font-size: 14px;">libXpm</a> <a href="/tags/log/" style="font-size: 16.75px;">log</a> <a href="/tags/machinekey/" style="font-size: 14px;">machinekey</a> <a href="/tags/master/" style="font-size: 14px;">master</a> <a href="/tags/memcached/" style="font-size: 14px;">memcached</a> <a href="/tags/mime/" style="font-size: 14px;">mime</a> <a href="/tags/mysql/" style="font-size: 16.75px;">mysql</a> <a href="/tags/nosql/" style="font-size: 14px;">nosql</a> <a href="/tags/open/" style="font-size: 14px;">open</a> <a href="/tags/orderby/" style="font-size: 14px;">orderby</a> <a href="/tags/orm/" style="font-size: 14px;">orm</a> <a href="/tags/os/" style="font-size: 16.75px;">os</a> <a href="/tags/pdf/" style="font-size: 14px;">pdf</a> <a href="/tags/pdfkit/" style="font-size: 14px;">pdfkit</a> <a href="/tags/pillar/" style="font-size: 14px;">pillar</a> <a href="/tags/pipe/" style="font-size: 14px;">pipe</a> <a href="/tags/pycharm/" style="font-size: 14px;">pycharm</a> <a href="/tags/pymysql/" style="font-size: 14px;">pymysql</a> <a href="/tags/python/" style="font-size: 25px;">python</a> <a href="/tags/queue/" style="font-size: 14px;">queue</a> <a href="/tags/raise/" style="font-size: 14px;">raise</a> <a href="/tags/re/" style="font-size: 16.75px;">re</a> <a href="/tags/read/" style="font-size: 14px;">read</a> <a href="/tags/redis/" style="font-size: 16.75px;">redis</a> <a href="/tags/requests/" style="font-size: 14px;">requests</a> <a href="/tags/return/" style="font-size: 14px;">return</a> <a href="/tags/saltstack/" style="font-size: 16.75px;">saltstack</a> <a href="/tags/select/" style="font-size: 14px;">select</a> <a href="/tags/session/" style="font-size: 14px;">session</a> <a href="/tags/set/" style="font-size: 14px;">set</a> <a href="/tags/smtp/" style="font-size: 14px;">smtp</a> <a href="/tags/socket/" style="font-size: 14px;">socket</a> <a href="/tags/socketserver/" style="font-size: 14px;">socketserver</a> <a href="/tags/sql/" style="font-size: 14px;">sql</a> <a href="/tags/ssh-copy-id/" style="font-size: 14px;">ssh-copy-id</a> <a href="/tags/ssh-keygen/" style="font-size: 14px;">ssh-keygen</a> <a href="/tags/subprocess/" style="font-size: 14px;">subprocess</a> <a href="/tags/sys/" style="font-size: 16.75px;">sys</a> <a href="/tags/tcp/" style="font-size: 14px;">tcp</a> <a href="/tags/threading/" style="font-size: 16.75px;">threading</a> <a href="/tags/threadpool/" style="font-size: 14px;">threadpool</a> <a href="/tags/timedelta/" style="font-size: 14px;">timedelta</a> <a href="/tags/times/" style="font-size: 14px;">times</a> <a href="/tags/try/" style="font-size: 14px;">try</a> <a href="/tags/udp/" style="font-size: 14px;">udp</a> <a href="/tags/update/" style="font-size: 16.75px;">update</a> <a href="/tags/urllib/" style="font-size: 14px;">urllib</a> <a href="/tags/webdriver/" style="font-size: 14px;">webdriver</a> <a href="/tags/while/" style="font-size: 14px;">while</a> <a href="/tags/windows/" style="font-size: 14px;">windows</a> <a href="/tags/write/" style="font-size: 14px;">write</a> <a href="/tags/yagmail/" style="font-size: 14px;">yagmail</a> <a href="/tags/乘法/" style="font-size: 14px;">乘法</a> <a href="/tags/九宫格/" style="font-size: 14px;">九宫格</a> <a href="/tags/事务/" style="font-size: 14px;">事务</a> <a href="/tags/元组/" style="font-size: 14px;">元组</a> <a href="/tags/函数/" style="font-size: 14px;">函数</a> <a href="/tags/分组/" style="font-size: 14px;">分组</a> <a href="/tags/列表/" style="font-size: 16.75px;">列表</a> <a href="/tags/参数/" style="font-size: 14px;">参数</a> <a href="/tags/双网卡/" style="font-size: 14px;">双网卡</a> <a href="/tags/可变参数/" style="font-size: 14px;">可变参数</a> <a href="/tags/图片/" style="font-size: 14px;">图片</a> <a href="/tags/多个公钥/" style="font-size: 14px;">多个公钥</a> <a href="/tags/多态/" style="font-size: 14px;">多态</a> <a href="/tags/多线程/" style="font-size: 14px;">多线程</a> <a href="/tags/多进程/" style="font-size: 14px;">多进程</a> <a href="/tags/字典/" style="font-size: 14px;">字典</a> <a href="/tags/字符/" style="font-size: 14px;">字符</a> <a href="/tags/字符串/" style="font-size: 14px;">字符串</a> <a href="/tags/定时任务/" style="font-size: 14px;">定时任务</a> <a href="/tags/密钥/" style="font-size: 16.75px;">密钥</a> <a href="/tags/循环/" style="font-size: 14px;">循环</a> <a href="/tags/排序/" style="font-size: 14px;">排序</a> <a href="/tags/数字/" style="font-size: 16.75px;">数字</a> <a href="/tags/数据类型/" style="font-size: 16.75px;">数据类型</a> <a href="/tags/文件/" style="font-size: 14px;">文件</a> <a href="/tags/斐波那契数列/" style="font-size: 14px;">斐波那契数列</a> <a href="/tags/条件判断/" style="font-size: 14px;">条件判断</a> <a href="/tags/杨辉三角/" style="font-size: 14px;">杨辉三角</a> <a href="/tags/构造器/" style="font-size: 14px;">构造器</a> <a href="/tags/正则/" style="font-size: 14px;">正则</a> <a href="/tags/汉诺塔/" style="font-size: 14px;">汉诺塔</a> <a href="/tags/消息队列/" style="font-size: 14px;">消息队列</a> <a href="/tags/游标/" style="font-size: 14px;">游标</a> <a href="/tags/爬虫/" style="font-size: 19.5px;">爬虫</a> <a href="/tags/生成器/" style="font-size: 14px;">生成器</a> <a href="/tags/目录/" style="font-size: 14px;">目录</a> <a href="/tags/类/" style="font-size: 14px;">类</a> <a href="/tags/统计/" style="font-size: 14px;">统计</a> <a href="/tags/继承/" style="font-size: 14px;">继承</a> <a href="/tags/编码/" style="font-size: 14px;">编码</a> <a href="/tags/网络/" style="font-size: 14px;">网络</a> <a href="/tags/装饰器/" style="font-size: 14px;">装饰器</a> <a href="/tags/视图状态/" style="font-size: 14px;">视图状态</a> <a href="/tags/计算/" style="font-size: 14px;">计算</a> <a href="/tags/负载均衡/" style="font-size: 14px;">负载均衡</a> <a href="/tags/递归/" style="font-size: 14px;">递归</a> <a href="/tags/阶乘/" style="font-size: 14px;">阶乘</a> <a href="/tags/面向对象/" style="font-size: 14px;">面向对象</a>
     </div>
   </div>
 
@@ -610,6 +674,14 @@
     <h3 class="widget-title recent-posts">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/07/02/saltstack-二/">saltstack(二)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/27/saltstack/">saltstack</a>
+          </li>
         
           <li>
             <a href="/2018/06/25/python爬虫-三/">python爬虫(三)</a>
@@ -623,14 +695,6 @@
             <a href="/2018/06/13/python爬虫/">python爬虫</a>
           </li>
         
-          <li>
-            <a href="/2018/06/11/python数据处理-二/">python数据处理(二)</a>
-          </li>
-        
-          <li>
-            <a href="/2018/06/08/python数据处理/">python数据处理</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -640,7 +704,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title archive">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 
