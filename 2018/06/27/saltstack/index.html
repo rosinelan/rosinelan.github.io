@@ -5,17 +5,17 @@
   
   <title>saltstack | 持续不断</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="简介saltstack是一个新的基础平台管理工具，只需要花费几分钟即可运行起来，可以支撑管理上万台服务器的规模，数秒钟即可完成数据的传递。saltstack能够维护预定义状态的远程节点，也可以在远程节点执行命令和查询数据；开发的目的是为远程执行提供孔的解决方案，并使远程执行变得更好、更快、更简单。saltstack使用python开发，同时也支持restAPI，方便二次开发以及和其它普通集成，同时">
+  <meta name="description" content="简介saltstack是一个新的基础平台管理工具，只需要花费几分钟即可运行起来，可以支撑管理上万台服务器的规模，数秒钟即可完成数据的传递。">
 <meta name="keywords" content="saltstack,master,grains,pillar">
 <meta property="og:type" content="article">
 <meta property="og:title" content="saltstack">
 <meta property="og:url" content="https://rosinelan.github.io/2018/06/27/saltstack/index.html">
 <meta property="og:site_name" content="持续不断">
-<meta property="og:description" content="简介saltstack是一个新的基础平台管理工具，只需要花费几分钟即可运行起来，可以支撑管理上万台服务器的规模，数秒钟即可完成数据的传递。saltstack能够维护预定义状态的远程节点，也可以在远程节点执行命令和查询数据；开发的目的是为远程执行提供孔的解决方案，并使远程执行变得更好、更快、更简单。saltstack使用python开发，同时也支持restAPI，方便二次开发以及和其它普通集成，同时">
-<meta property="og:updated_time" content="2018-07-02T15:49:45.461Z">
+<meta property="og:description" content="简介saltstack是一个新的基础平台管理工具，只需要花费几分钟即可运行起来，可以支撑管理上万台服务器的规模，数秒钟即可完成数据的传递。">
+<meta property="og:updated_time" content="2018-07-03T08:41:54.568Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="saltstack">
-<meta name="twitter:description" content="简介saltstack是一个新的基础平台管理工具，只需要花费几分钟即可运行起来，可以支撑管理上万台服务器的规模，数秒钟即可完成数据的传递。saltstack能够维护预定义状态的远程节点，也可以在远程节点执行命令和查询数据；开发的目的是为远程执行提供孔的解决方案，并使远程执行变得更好、更快、更简单。saltstack使用python开发，同时也支持restAPI，方便二次开发以及和其它普通集成，同时">
+<meta name="twitter:description" content="简介saltstack是一个新的基础平台管理工具，只需要花费几分钟即可运行起来，可以支撑管理上万台服务器的规模，数秒钟即可完成数据的传递。">
   
     <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
   
@@ -100,7 +100,7 @@
       
         <!-- Table of Contents -->
         
-        <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>saltstack是一个新的基础平台管理工具，只需要花费几分钟即可运行起来，可以支撑管理上万台服务器的规模，数秒钟即可完成数据的传递。<br>saltstack能够维护预定义状态的远程节点，也可以在远程节点执行命令和查询数据；开发的目的是为远程执行提供孔的解决方案，并使远程执行变得更好、更快、更简单。<br>saltstack使用python开发，同时也支持restAPI，方便二次开发以及和其它普通集成，同时官方也发布了一个web管理界面halite。  </p>
+        <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>saltstack是一个新的基础平台管理工具，只需要花费几分钟即可运行起来，可以支撑管理上万台服务器的规模，数秒钟即可完成数据的传递。<br><a id="more"></a><br>saltstack能够维护预定义状态的远程节点，也可以在远程节点执行命令和查询数据；开发的目的是为远程执行提供孔的解决方案，并使远程执行变得更好、更快、更简单。<br>saltstack使用python开发，同时也支持restAPI，方便二次开发以及和其它普通集成，同时官方也发布了一个web管理界面halite。  </p>
 <h4 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h4><ol>
 <li>速度快，saltstack使用消息队列zeroMQ传输数据，比ansible快大约40倍。  </li>
 <li>C/S架构，执行信息比较稳定，不同意丢失信息或出现主机失联的情况。  </li>
@@ -124,39 +124,39 @@
 <li>-G, –grain, 根据被控主机的grains信息进行过滤<br><code>salt -G &#39;role:nginx&#39; cmd.run &quot;ls /export&quot;</code></li>
 <li>-I, –pillar， 根据被控主机的pillar信息进行过滤<br><code>salt -I &#39;myname:xiang&#39; test.ping -t 5</code></li>
 <li>-S, –ipcidr, 根据minion的ip地址进行匹配<br><code>salt -S 192.168.1.1 test.ping</code><br><code>salt -S 192.168.1.0/24 test.ping</code><br><code>salt -S 192.168.0.0/16 test.ping</code><br><code>salt -S 192.0.0.0/8 test.ping</code></li>
-<li>检查客户端是否挂掉<br><code>salt-run manage.status |head</code><br><code>salt-run manage.down</code><h4 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h4>master和minion配置文件分别为<code>/etc/salt/master</code>和<code>/etc/salt/minion</code>，内容基本一致，主要配置项说明。  </li>
+<li>检查客户端是否挂掉<br><code>salt-run manage.status |head</code><br><code>salt-run manage.down</code><h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3>master和minion配置文件分别为<code>/etc/salt/master</code>和<code>/etc/salt/minion</code>，内容基本一致，主要配置项说明。  </li>
 </ol>
 <ul>
 <li>interface<br>默认是0.0.0.0(所有网络接口都可以访问)。<br>绑定本地接口<br><code>interface: 192.168.0.1</code></li>
 <li>publish_port<br>默认4505，提供服务的端口。<br><code>publish_port: 4505</code></li>
 <li>user<br>默认是root<br><code>user: root</code></li>
 <li>ret_port<br>默认是4506，返回服务器使用的端口。<br>返回服务器指salt接收执行返回结果和命令执行状况的服务器。<br><code>ret_port: 4506</code>  </li>
-<li>auto_accept<br>默认是False。设置为<code>True</code>之后master将会自动接收所有来自minion端的公钥请求。<br><code>auto_accept: False</code><h4 id="模块介绍"><a href="#模块介绍" class="headerlink" title="模块介绍"></a>模块介绍</h4></li>
+<li>auto_accept<br>默认是False。设置为<code>True</code>之后master将会自动接收所有来自minion端的公钥请求。<br><code>auto_accept: False</code><h3 id="模块介绍"><a href="#模块介绍" class="headerlink" title="模块介绍"></a>模块介绍</h3></li>
 <li>Runner模块<br>在master端执行<code>salt-run</code>。<br>使用案例<br>检测各minion端是否在线 <code>salt-run manage.status</code></li>
 <li>Module模块<br>通过master同步到minion端，在minion端执行<code>salt-call saltutil.sync_modules</code>。<br><code>salt-call saltutil.sync_all</code>：包括beacons\clouds\engines\grains\log_handler\modiles\output\proxymodules\renderers\returners\sdb\states\utils。</li>
-<li>cmd模块<br><code>salt &#39;*&#39; cmd.run &quot;df -h&quot;</code></li>
+<li>cmd模块<br>功能：实现远程的命令行调用执行（默认具备root操作权限）<br>示例：<br><code>salt &#39;*&#39; cmd.run &quot;df -h&quot;</code></li>
 <li>ping模块<br><code>salt &#39;*&#39; test.ping -t 5</code></li>
-<li>cp模块<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">file_roots:  </span><br><span class="line">    base:  </span><br><span class="line">    - /export/salt/root</span><br></pre></td></tr></table></figure>
+<li>cp模块<br>功能：实现远程文件、目录的复制，以及下载URL文件等操作<br>示例：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">file_roots:  </span><br><span class="line">    base:  </span><br><span class="line">    - /export/salt/root</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>salt根目录：在master中file_roots定义的路径，salt://test.txt相当于/export/salt/root/test.txt<br><code>salt &#39;wms5test1.app.172.17.23.176&#39; cp.get_file salt://nscd.conf /tmp/aaa.txt</code>  </p>
 <ul>
-<li><p>cron模块</p>
+<li><p>cron模块<br>功能：实现minion端主机的crontab操作<br>示例：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">salt &apos;*&apos; cron.raw_cron root     （查看定时任务）</span><br><span class="line">salt &apos;*&apos; cron.set_job root &apos;*&apos; &apos;*&apos; &apos;*&apos; &apos;*&apos; 1 /export/scripts/rm_log.sh </span><br><span class="line">salt &apos;*&apos; cron.rm_job root /export/scripts/rm_log.sh</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>dnsutil模块</p>
+<li><p>dnsutil模块<br>功能：实现minion端主机通用的DNS操作<br>示例：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">salt &apos;*&apos; dnsutil.hosts_append /etc/hosts 127.0.0.1 aaa.com</span><br><span class="line">salt &apos;*&apos; dnsutil.hosts_remove /etc/hosts aaa.com</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>file模块</p>
+<li><p>file模块<br>功能：实现minion端主机常见的文件操作，包括文件读写、权限、查找、校验<br>示例：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">salt &apos;*&apos; file.chown /etc/passwd root root</span><br><span class="line">salt &apos;*&apos; file.copy /path/to/src /path/to/dst</span><br><span class="line">salt &apos;*&apos; file.file_exists /etc/hosts</span><br><span class="line">salt &apos;*&apos; file.directory_exists /etc/</span><br><span class="line">salt &apos;*&apos; file.get_mod /etc/passwd</span><br><span class="line">salt &apos;*&apos; file.set_mod /etc/passwd 0644</span><br><span class="line">salt &apos;*&apos; file.mkdir /tmp/test</span><br><span class="line">salt &apos;*&apos; file.sed /export/servers/nginx/conf/nginx.conf &apos;debug&apos; &apos;warn&apos;</span><br><span class="line">salt &apos;*&apos; file.append /tmp/test.txt &quot;welcome xiang&quot;</span><br><span class="line">salt &apos;*&apos; file.remove /tmp/1.txt</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>network模块</p>
+<li><p>network模块<br>功能：实现minion端主机网络信息查看<br>示例：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">salt &apos;*&apos; network.dig www.qq.com</span><br><span class="line">salt &apos;*&apos; network.ping www.qq.com</span><br><span class="line">salt &apos;*&apos; network.ip_addrs</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>pkg包管理模块<br>管理yum， apt-get等</p>
+<li><p>pkg包管理模块<br>功能：实现minion端主机程序包管理，如：yum等<br>示例：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">salt &apos;*&apos; pkg.install php</span><br><span class="line">salt &apos;*&apos; pkg.remove php</span><br><span class="line">salt &apos;*&apos; pkg.upgrade    （升级所有的软件包）</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>service模块</p>
+<li><p>service模块<br>功能：实现minion端主机服务管理<br>示例：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">salt &apos;*&apos; service.enable nginx</span><br><span class="line">salt &apos;*&apos; service.disable nginx</span><br><span class="line">salt &apos;*&apos; service.restart nginx</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>Grains模块<br><code>Grains</code>在minion上定义的。<br>它是在minion启动时搜集一些信息，如操作系统类型，网卡，内核版本，cpu架构等。<br><code>salt &quot;*&quot; grains.ls</code>    列出所有grains项目名字<br><code>salt &quot;*app.*&quot; grains.items</code>  列出所有grains项目以及值<br>grains的信息并不是动态的，并不会实时变化，它只是在minion启动时收集到的。<br>我们可以根据grains收集到的一些信息，做一些配置管理工作<br>在minion上</p>
@@ -273,7 +273,7 @@
       
         <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#优势"><span class="toc-number">1.1.</span> <span class="toc-text">优势</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#架构"><span class="toc-number">1.2.</span> <span class="toc-text">架构</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装"><span class="toc-number">2.</span> <span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#关闭防火墙"><span class="toc-number">2.1.</span> <span class="toc-text">关闭防火墙</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#epel源配置"><span class="toc-number">2.2.</span> <span class="toc-text">epel源配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装master"><span class="toc-number">2.3.</span> <span class="toc-text">安装master</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装minion"><span class="toc-number">2.4.</span> <span class="toc-text">安装minion</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#启动服务"><span class="toc-number">2.5.</span> <span class="toc-text">启动服务</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置"><span class="toc-number">3.</span> <span class="toc-text">配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#master与minion认证"><span class="toc-number">3.1.</span> <span class="toc-text">master与minion认证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#远程执行"><span class="toc-number">3.2.</span> <span class="toc-text">远程执行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置文件"><span class="toc-number">3.3.</span> <span class="toc-text">配置文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#模块介绍"><span class="toc-number">3.4.</span> <span class="toc-text">模块介绍</span></a></li></ol></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#优势"><span class="toc-number">1.1.</span> <span class="toc-text">优势</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#架构"><span class="toc-number">1.2.</span> <span class="toc-text">架构</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装"><span class="toc-number">2.</span> <span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#关闭防火墙"><span class="toc-number">2.1.</span> <span class="toc-text">关闭防火墙</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#epel源配置"><span class="toc-number">2.2.</span> <span class="toc-text">epel源配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装master"><span class="toc-number">2.3.</span> <span class="toc-text">安装master</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装minion"><span class="toc-number">2.4.</span> <span class="toc-text">安装minion</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#启动服务"><span class="toc-number">2.5.</span> <span class="toc-text">启动服务</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置"><span class="toc-number">3.</span> <span class="toc-text">配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#master与minion认证"><span class="toc-number">3.1.</span> <span class="toc-text">master与minion认证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#远程执行"><span class="toc-number">3.2.</span> <span class="toc-text">远程执行</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置文件"><span class="toc-number">4.</span> <span class="toc-text">配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模块介绍"><span class="toc-number">5.</span> <span class="toc-text">模块介绍</span></a></li></ol>
           </div>
       </div>
     </div>
