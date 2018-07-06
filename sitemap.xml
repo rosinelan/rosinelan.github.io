@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://rosinelan.github.io/2018/07/06/ansible/</loc>
+    
+    <lastmod>2018-07-06T14:43:18.632Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://rosinelan.github.io/2018/07/04/saltstack%E5%AE%9E%E4%BE%8B/</loc>
     
-    <lastmod>2018-07-04T11:33:54.965Z</lastmod>
+    <lastmod>2018-07-06T02:57:50.381Z</lastmod>
     
   </url>
   

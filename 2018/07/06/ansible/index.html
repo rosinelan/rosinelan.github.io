@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>ansible | 持续不断</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="简介ansible是自动化运维工具，基于Python开发，集合了众多运维工具（puppet、cfengine、chef、func、fabric）的优点，实现了批量系统配置、批量程序部署、批量运行命令等功能。github地址为https://github.com/ansible/ansible。">
+<meta name="keywords" content="ansible,ping,shell,copy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ansible">
+<meta property="og:url" content="https://rosinelan.github.io/2018/07/06/ansible/index.html">
+<meta property="og:site_name" content="持续不断">
+<meta property="og:description" content="简介ansible是自动化运维工具，基于Python开发，集合了众多运维工具（puppet、cfengine、chef、func、fabric）的优点，实现了批量系统配置、批量程序部署、批量运行命令等功能。github地址为https://github.com/ansible/ansible。">
+<meta property="og:updated_time" content="2018-07-06T14:43:18.632Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ansible">
+<meta name="twitter:description" content="简介ansible是自动化运维工具，基于Python开发，集合了众多运维工具（puppet、cfengine、chef、func、fabric）的优点，实现了批量系统配置、批量程序部署、批量运行命令等功能。github地址为https://github.com/ansible/ansible。">
+  
+    <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">持续不断</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">要松懈的时候再坚持一下</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ansible" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/07/06/ansible/" class="article-date">
+  <time datetime="2018-07-06T02:57:00.000Z" itemprop="datePublished">2018-07-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/program/">编程</a>►<a class="article-category-link" href="/categories/program/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ansible
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>ansible是自动化运维工具，基于Python开发，集合了众多运维工具（puppet、cfengine、chef、func、fabric）的优点，实现了批量系统配置、批量程序部署、批量运行命令等功能。github地址为<a href="https://github.com/ansible/ansible" target="_blank" rel="noopener">https://github.com/ansible/ansible</a>。<br><a id="more"></a><br>ansible是基于模块工作的，本身没有批量部署的能力。真正具有批量部署的是ansible所运行的模块，ansible只是提供一种框架。  </p>
+<h4 id="框架组成部分"><a href="#框架组成部分" class="headerlink" title="框架组成部分"></a>框架组成部分</h4><p>ansible框架主要包括：  </p>
+<ol>
+<li>连接插件connection plugins：负责和被监控端实现通信；</li>
+<li>host inventory：指定操作的主机，是一个配置文件里面定义监控的主机；</li>
+<li>各种模块核心模块、command模块、自定义模块；</li>
+<li>借助于插件完成记录日志邮件等功能；</li>
+<li>playbook：剧本执行多个任务时，非必需可以让节点一次性运行多个任务。<h4 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h4></li>
+<li>no agents：不需要在被管控主机上安装任何客户端；</li>
+<li>no server：无服务器端，使用时直接运行命令即可；</li>
+<li>modules in any languages：基于模块工作，可使用任意语言开发模块；</li>
+<li>yaml，not code：使用yaml语言定制剧本playbook；</li>
+<li>ssh by default：基于SSH工作；</li>
+<li>strong multi-tier solution：可实现多级指挥。<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4></li>
+<li>轻量级，无需在客户端安装agent，更新时，只需在操作机上进行一次更新即可；</li>
+<li>批量任务执行可以写成脚本，而且不用分发到远程就可以执行；</li>
+<li>使用python编写，维护更简单，ruby语法过于复杂；</li>
+<li>支持sudo。<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3></li>
+</ol>
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>ansible读取配置文件的顺序如下  </p>
+<ol>
+<li>ansible.cfg(位于当前位置)</li>
+<li>ANSIBLE_CONFIG          一个环境变量</li>
+<li>.ansible.cfg                    位于家目录下</li>
+<li>/etc/ansible/ansible.cfg  </li>
+</ol>
+<p>一般情况下使用配置文件为<code>/etc/ansible/ansible.cfg</code>。<br>配置文件中主要参数如下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">inventory = /etc/ansible/hosts <span class="comment">#指定inventory配置文件</span></span><br><span class="line">forks = 5 <span class="comment">#子进程数量，推荐设置为cpu核心数</span></span><br><span class="line">sudo_user = root <span class="comment">#sudo用户</span></span><br><span class="line">remote_port = 22 <span class="comment">#远程端口</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h3><h4 id="ping模块"><a href="#ping模块" class="headerlink" title="ping模块"></a>ping模块</h4><h4 id="command模块"><a href="#command模块" class="headerlink" title="command模块"></a>command模块</h4><h4 id="shell模块"><a href="#shell模块" class="headerlink" title="shell模块"></a>shell模块</h4><h4 id="copy模块"><a href="#copy模块" class="headerlink" title="copy模块"></a>copy模块</h4><h4 id="script模块"><a href="#script模块" class="headerlink" title="script模块"></a>script模块</h4>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/07/06/ansible/" data-id="cjja3biww000eyoq64j3j422d" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ansible/">ansible</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/copy/">copy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ping/">ping</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell/">shell</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>Recommended Posts</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/07/04/saltstack实例/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">saltstack实例</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">Content</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#框架组成部分"><span class="toc-number">1.1.</span> <span class="toc-text">框架组成部分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特性"><span class="toc-number">1.2.</span> <span class="toc-text">特性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#优点"><span class="toc-number">1.3.</span> <span class="toc-text">优点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装"><span class="toc-number">2.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置文件"><span class="toc-number">3.</span> <span class="toc-text">配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模块"><span class="toc-number">4.</span> <span class="toc-text">模块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ping模块"><span class="toc-number">4.1.</span> <span class="toc-text">ping模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#command模块"><span class="toc-number">4.2.</span> <span class="toc-text">command模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#shell模块"><span class="toc-number">4.3.</span> <span class="toc-text">shell模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#copy模块"><span class="toc-number">4.4.</span> <span class="toc-text">copy模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#script模块"><span class="toc-number">4.5.</span> <span class="toc-text">script模块</span></a></li></ol></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>
