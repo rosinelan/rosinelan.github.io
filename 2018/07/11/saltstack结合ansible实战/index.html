@@ -5,17 +5,17 @@
   
   <title>saltstack结合ansible实战 | 持续不断</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="通过saltstack模块调用，结合ansible实现2台服务器之间免密钥登录，同时安装minion端。适用场景：已存在安装saltstack的master端，新上线服务器，需安装minion端加入至master。在master端事先生成密钥对，写好免密钥登录和安装minion端脚本。脚本统一放在/srv/salt/_shell。    免密钥配置脚本12345cat /srv/salt/_she">
+  <meta name="description" content="通过saltstack模块调用，结合ansible实现2台服务器之间免密钥登录，同时安装minion端。适用场景：已存在安装saltstack的master端，新上线服务器，需安装minion端加入至master。">
 <meta name="keywords" content="ansible,saltstack,minion">
 <meta property="og:type" content="article">
 <meta property="og:title" content="saltstack结合ansible实战">
 <meta property="og:url" content="https://rosinelan.github.io/2018/07/11/saltstack结合ansible实战/index.html">
 <meta property="og:site_name" content="持续不断">
-<meta property="og:description" content="通过saltstack模块调用，结合ansible实现2台服务器之间免密钥登录，同时安装minion端。适用场景：已存在安装saltstack的master端，新上线服务器，需安装minion端加入至master。在master端事先生成密钥对，写好免密钥登录和安装minion端脚本。脚本统一放在/srv/salt/_shell。    免密钥配置脚本12345cat /srv/salt/_she">
-<meta property="og:updated_time" content="2018-07-11T10:52:10.814Z">
+<meta property="og:description" content="通过saltstack模块调用，结合ansible实现2台服务器之间免密钥登录，同时安装minion端。适用场景：已存在安装saltstack的master端，新上线服务器，需安装minion端加入至master。">
+<meta property="og:updated_time" content="2018-07-11T11:18:12.044Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="saltstack结合ansible实战">
-<meta name="twitter:description" content="通过saltstack模块调用，结合ansible实现2台服务器之间免密钥登录，同时安装minion端。适用场景：已存在安装saltstack的master端，新上线服务器，需安装minion端加入至master。在master端事先生成密钥对，写好免密钥登录和安装minion端脚本。脚本统一放在/srv/salt/_shell。    免密钥配置脚本12345cat /srv/salt/_she">
+<meta name="twitter:description" content="通过saltstack模块调用，结合ansible实现2台服务器之间免密钥登录，同时安装minion端。适用场景：已存在安装saltstack的master端，新上线服务器，需安装minion端加入至master。">
   
     <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
   
@@ -42,7 +42,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -100,7 +100,7 @@
       
         <!-- Table of Contents -->
         
-        <p>通过<code>saltstack</code>模块调用，结合<code>ansible</code>实现2台服务器之间免密钥登录，同时安装<code>minion</code>端。<br>适用场景：已存在安装<code>saltstack</code>的<code>master</code>端，新上线服务器，需安装<code>minion</code>端加入至<code>master</code>。<br>在master端事先生成密钥对，写好免密钥登录和安装<code>minion</code>端脚本。脚本统一放在<code>/srv/salt/_shell</code>。  </p>
+        <p>通过<code>saltstack</code>模块调用，结合<code>ansible</code>实现2台服务器之间免密钥登录，同时安装<code>minion</code>端。<br>适用场景：已存在安装<code>saltstack</code>的<code>master</code>端，新上线服务器，需安装<code>minion</code>端加入至<code>master</code>。<br><a id="more"></a><br>在master端事先生成密钥对，写好免密钥登录和安装<code>minion</code>端脚本。脚本统一放在<code>/srv/salt/_shell</code>。  </p>
 <ol>
 <li>免密钥配置脚本<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cat /srv/salt/_shell/installpub.sh   </span><br><span class="line"><span class="built_in">cd</span> /root/</span><br><span class="line"><span class="built_in">umask</span> 077</span><br><span class="line"><span class="built_in">test</span> -d .ssh || mkdir .ssh</span><br><span class="line"><span class="built_in">echo</span> <span class="string">'xxxx'</span> &gt;&gt; .ssh/authorized_keys</span><br></pre></td></tr></table></figure>
 </li>
@@ -122,7 +122,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/07/11/saltstack结合ansible实战/" data-id="cjjh13h8w004yloq64w52z096" class="article-share-link">Delen</a>
+      <a data-url="https://rosinelan.github.io/2018/07/11/saltstack结合ansible实战/" data-id="cjjh13h8w004yloq64w52z096" class="article-share-link">分享</a>
       
       
       
@@ -134,7 +134,7 @@
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =4
@@ -178,7 +178,7 @@
   
   
     <a href="/2018/07/11/html基础/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Ouder</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">html基础</div>
     </a>
   
@@ -212,7 +212,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title recent-posts">Recente berichten</h3>
+    <h3 class="widget-title recent-posts">最新文章</h3>
     <div class="widget">
       <ul>
         
@@ -254,10 +254,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
+     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>
