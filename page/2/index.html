@@ -72,6 +72,111 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-python爬虫" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/13/python爬虫/" class="article-date">
+  <time datetime="2018-06-13T10:02:18.000Z" itemprop="datePublished">2018-06-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/program/">编程</a>►<a class="article-category-link" href="/categories/program/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/13/python爬虫/">python爬虫</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="爬虫介绍"><a href="#爬虫介绍" class="headerlink" title="爬虫介绍"></a>爬虫介绍</h3><h4 id="爬虫定义"><a href="#爬虫定义" class="headerlink" title="爬虫定义"></a>爬虫定义</h4><p>爬虫是请求网站并提取自己所需要数据的过程。通过我们的程序，可以代替我们向服务器发送请求，然后进行批量的数据下载。  </p>
+<h4 id="爬虫基本流程"><a href="#爬虫基本流程" class="headerlink" title="爬虫基本流程"></a>爬虫基本流程</h4><ol>
+<li>发起请求<br>通过url向服务器发送requests请求，请求可以包含额外的header信息。
+        
+          <p class="article-more-link">
+            <a href="/2018/06/13/python爬虫/#more">继续阅读全文 »</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/06/13/python爬虫/" data-id="cjjpqcwqj003r2gq6vgynlb5y" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/requests/">requests</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/爬虫/">爬虫</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
+    <article id="post-python数据处理-二" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/11/python数据处理-二/" class="article-date">
+  <time datetime="2018-06-11T15:19:55.000Z" itemprop="datePublished">2018-06-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/program/">编程</a>►<a class="article-category-link" href="/categories/program/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/11/python数据处理-二/">python数据处理(二)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="pdf处理"><a href="#pdf处理" class="headerlink" title="pdf处理"></a>pdf处理</h3><p>pdf是二进制文件，使用<code>PyPDF2</code>模块进行处理，安装方法<code>pip install PyPDF2</code>。  </p>
+<h4 id="提取文本"><a href="#提取文本" class="headerlink" title="提取文本"></a>提取文本</h4><ol>
+<li>导入PyPDF2模块，然后以读二进制模式打开pdf文件，并将其保存到对象pdfFileObj。</li>
+<li>调用pdfFileReader()并传入pdfFileObj，将PdfFileReader对象保存到pdfReader。</li>
+<li>获取pdf文件总页数调用PdfFileReader对象的<code>numPages</code>属性。</li>
+<li>从某页中提取文本，首先通过PdfFileReader对象的<code>getPage()</code>方法得到Page对象，然后调用Page对象的<code>extractText()</code>方法得到文本字符串。
+        
+          <p class="article-more-link">
+            <a href="/2018/06/11/python数据处理-二/#more">继续阅读全文 »</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/06/11/python数据处理-二/" data-id="cjjpqcwp1002l2gq6fjgfcmnm" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/image/">image</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pdf/">pdf</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pdfkit/">pdfkit</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图片/">图片</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
     <article id="post-python数据处理" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/06/08/python数据处理/" class="article-date">
@@ -107,7 +212,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/06/08/python数据处理/" data-id="cjjh13h780030loq6gisbaar9" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/06/08/python数据处理/" data-id="cjjpqcwpa002t2gq6j7jjondl" class="article-share-link">分享</a>
       
       
       
@@ -157,7 +262,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/06/06/python邮件发送/" data-id="cjjh13h8l004lloq62uwi6xza" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/06/06/python邮件发送/" data-id="cjjpqcwrg004m2gq6i2t6l9up" class="article-share-link">分享</a>
       
       
       
@@ -207,7 +312,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/06/05/python网络编程之socketserver/" data-id="cjjh13h860041loq6iu2c2nck" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/06/05/python网络编程之socketserver/" data-id="cjjpqcwqp003y2gq690igf4zc" class="article-share-link">分享</a>
       
       
       
@@ -257,7 +362,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/06/01/python网络编程之socket/" data-id="cjjh13h84003yloq69vo62ttn" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/06/01/python网络编程之socket/" data-id="cjjpqcwrd004j2gq6zl2l9ape" class="article-share-link">分享</a>
       
       
       
@@ -307,7 +412,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/30/python单词查找练习题/" data-id="cjjh13h6a001wloq6trs4zw0l" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/05/30/python单词查找练习题/" data-id="cjjpqcwo9001x2gq6jlpoh5fx" class="article-share-link">分享</a>
       
       
       
@@ -357,7 +462,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/27/python任务调度模块celery-二/" data-id="cjjh13h5s0017loq683b3bzpn" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/05/27/python任务调度模块celery-二/" data-id="cjjpqcwng00142gq6jy1dg6s6" class="article-share-link">分享</a>
       
       
       
@@ -408,7 +513,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/27/python多线程练习题/" data-id="cjjh13h6g0027loq6ottcyox7" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/05/27/python多线程练习题/" data-id="cjjpqcwom00282gq6e91h6nx3" class="article-share-link">分享</a>
       
       
       
@@ -459,110 +564,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/25/python任务调度模块celery/" data-id="cjjh13h5x001eloq647ke8ebf" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/05/25/python任务调度模块celery/" data-id="cjjpqcwnk00182gq6ndecltsq" class="article-share-link">分享</a>
       
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/celery/">celery</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
-    <article id="post-python消息队列" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/05/25/python消息队列/" class="article-date">
-  <time datetime="2018-05-25T13:13:35.000Z" itemprop="datePublished">2018-05-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/program/">编程</a>►<a class="article-category-link" href="/categories/program/python/">python</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/25/python消息队列/">python消息队列</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="消息队列简介"><a href="#消息队列简介" class="headerlink" title="消息队列简介"></a>消息队列简介</h3><p>消息队列”是在消息的传输过程中保存消息的容器。<br>消息队列最经典的用法就是消费者和生成者之间通过消息管道来传递消息，消费者和生成者是不通的进程。生产者往管道中写消息，消费者从管道中读消息。  </p>
-<h3 id="消息队列在multiprocessing的实现"><a href="#消息队列在multiprocessing的实现" class="headerlink" title="消息队列在multiprocessing的实现"></a>消息队列在multiprocessing的实现</h3><p>操作系统提供了很多机制来实现进程间的通信 ，multiprocessing模块就提供了Queue和Pipe两种方法来实现。<br>
-        
-          <p class="article-more-link">
-            <a href="/2018/05/25/python消息队列/#more">继续阅读全文 »</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/25/python消息队列/" data-id="cjjh13h7k003cloq60r2fjzdq" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pipe/">pipe</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/queue/">queue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/消息队列/">消息队列</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
-    <article id="post-python多线程" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/05/23/python多线程/" class="article-date">
-  <time datetime="2018-05-23T13:25:22.000Z" itemprop="datePublished">2018-05-23</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/program/">编程</a>►<a class="article-category-link" href="/categories/program/python/">python</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/23/python多线程/">python多线程</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h3><p>任务可以由多进程完成，也可以由一个进程内的多线程完成。<br>我们前面提到了进程是由若干线程组成的，一个进程至少有一个线程。<br>由于线程是操作系统直接支持的执行单元，因此，高级语言通常都内置多线程的支持，Python也不例外，并且，Python的线程是真正的Posix Thread，而不是模拟出来的线程。Python的标准库提供了threading模块。<br>
-        
-          <p class="article-more-link">
-            <a href="/2018/05/23/python多线程/#more">继续阅读全文 »</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/23/python多线程/" data-id="cjjh13h6m002eloq6j4bh8e5b" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lock/">Lock</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/threading/">threading</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/threadpool/">threadpool</a></li></ul>
 
     </footer>
   </div>
@@ -595,6 +601,14 @@
       <ul>
         
           <li>
+            <a href="/2018/07/17/css基础/">css基础</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/17/html基础-二/">html基础(二)</a>
+          </li>
+        
+          <li>
             <a href="/2018/07/11/saltstack结合ansible实战/">saltstack结合ansible实战</a>
           </li>
         
@@ -604,14 +618,6 @@
         
           <li>
             <a href="/2018/07/06/ansible/">ansible</a>
-          </li>
-        
-          <li>
-            <a href="/2018/07/04/saltstack实例/">saltstack实例</a>
-          </li>
-        
-          <li>
-            <a href="/2018/07/02/saltstack-二/">saltstack(二)</a>
           </li>
         
       </ul>

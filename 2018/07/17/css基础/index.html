@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>css基础 | 持续不断</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="CSS概述CSS指层叠样式表，是Cascading Style Sheets的缩写。样式定义了如何显示HTML元素，通常存储在样式表中，使用样式解决了内容和表扬分离的问题。使用外部样式表可以极大提高工作效率，通常存储在CSS文件中，多个样式定义可层叠为一。同一个元素被多个样式定义时的优先级(其中数字4拥有最高的优先权)：    浏览器缺省设置 外部样式表 内部样式表(位于&amp;lt;head&amp;gt;标">
+<meta name="keywords" content="css,语法,选择器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="css基础">
+<meta property="og:url" content="https://rosinelan.github.io/2018/07/17/css基础/index.html">
+<meta property="og:site_name" content="持续不断">
+<meta property="og:description" content="CSS概述CSS指层叠样式表，是Cascading Style Sheets的缩写。样式定义了如何显示HTML元素，通常存储在样式表中，使用样式解决了内容和表扬分离的问题。使用外部样式表可以极大提高工作效率，通常存储在CSS文件中，多个样式定义可层叠为一。同一个元素被多个样式定义时的优先级(其中数字4拥有最高的优先权)：    浏览器缺省设置 外部样式表 内部样式表(位于&amp;lt;head&amp;gt;标">
+<meta property="og:updated_time" content="2018-07-17T10:31:14.760Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="css基础">
+<meta name="twitter:description" content="CSS概述CSS指层叠样式表，是Cascading Style Sheets的缩写。样式定义了如何显示HTML元素，通常存储在样式表中，使用样式解决了内容和表扬分离的问题。使用外部样式表可以极大提高工作效率，通常存储在CSS文件中，多个样式定义可层叠为一。同一个元素被多个样式定义时的优先级(其中数字4拥有最高的优先权)：    浏览器缺省设置 外部样式表 内部样式表(位于&amp;lt;head&amp;gt;标">
+  
+    <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">持续不断</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">要松懈的时候再坚持一下</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-css基础" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/07/17/css基础/" class="article-date">
+  <time datetime="2018-07-17T07:52:14.000Z" itemprop="datePublished">2018-07-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/program/">编程</a>►<a class="article-category-link" href="/categories/program/web/">web</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      css基础
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h3 id="CSS概述"><a href="#CSS概述" class="headerlink" title="CSS概述"></a>CSS概述</h3><p>CSS指层叠样式表，是<code>Cascading Style Sheets</code>的缩写。<br>样式定义了如何显示HTML元素，通常存储在样式表中，使用样式解决了内容和表扬分离的问题。<br>使用外部样式表可以极大提高工作效率，通常存储在CSS文件中，多个样式定义可层叠为一。<br>同一个元素被多个样式定义时的优先级(其中数字4拥有最高的优先权)：  </p>
+<ol>
+<li>浏览器缺省设置</li>
+<li>外部样式表</li>
+<li>内部样式表(位于<code>&lt;head&gt;</code>标签内部)</li>
+<li>内联样式(在HTML元素内部)<h3 id="CSS语法"><a href="#CSS语法" class="headerlink" title="CSS语法"></a>CSS语法</h3><h4 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h4>CSS规则主要由2个部分构成：选择器以及一条或多条声明。  <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">selector &#123;declaration1; declaration2;... declarationN&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>选择器通常是需要改变样式的HTML元素。<br>每条元素由一个属性和一个值组成。属性是希望设置的样式属性，每个属性有一个值，属性和值使用冒号分开。<br>下面代码的作用是将h1元素内的文字颜色定义为红色，字体大小设置为14px。选择器是<code>h1</code>，属性是<code>color</code> <code>font-size</code> 值是<code>red</code> <code>14px</code>。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h1</span> &#123;<span class="attribute">color</span>:red; <span class="attribute">font-size</span>:<span class="number">14px</span>;&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="选择器分组"><a href="#选择器分组" class="headerlink" title="选择器分组"></a>选择器分组</h4><p>对选择器进行分组，这样被分组的选择器可以分享相同的声明。用逗号将需要分组的选择器分开。<br>下面代码对所有标签元素进行分组，所有标题元素都是绿色的。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h1</span>,<span class="selector-tag">h2</span>,<span class="selector-tag">h3</span>,<span class="selector-tag">h4</span>,<span class="selector-tag">h5</span>,<span class="selector-tag">h6</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>: green;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="CSS选择器"><a href="#CSS选择器" class="headerlink" title="CSS选择器"></a>CSS选择器</h3><ul>
+<li>派生选择器<br>通过依据元素在其位置的上下文关系类定义样式。<br>例如：假如希望列表中的strong元素变为斜体，可以这样定义一个派生选择器<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">li</span> <span class="selector-tag">strong</span> &#123;</span><br><span class="line">    <span class="attribute">font-style</span>: italic;</span><br><span class="line">    <span class="attribute">font-weight</span>: normal;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">strong</span>&gt;</span>我是粗体字，不是斜体字，因为我不在列表当中，所以这个规则对我不起作用<span class="tag">&lt;/<span class="name">strong</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">strong</span>&gt;</span>我是斜体字。这是因为 strong 元素位于 li 元素内。<span class="tag">&lt;/<span class="name">strong</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span>我是正常的字体。<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>只有<code>li</code>元素中的<code>strong</code>元素样式为斜体，无需为strong元素定义特别的class或id，代码更加整洁。  </p>
+<ul>
+<li>id选择器<br>id选择器可以为标有特定id的HTML元素指定特定的样式。id选择器以<code>#</code>定义。<br>下面示例中的id选择器，第一个定义元素颜色为红色，第二个定义元素颜色为绿色。  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#red</span> &#123;<span class="attribute">color</span>:red;&#125;</span><br><span class="line"><span class="selector-id">#green</span> &#123;<span class="attribute">color</span>:green;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>在下面的HTML代码中，id属性为red的p元素显示为红色，id属性为green的p元素显示为绿色。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"red"</span>&gt;</span>这个段落是红色。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"green"</span>&gt;</span>这个段落是绿色。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>类选择器<br>类选择器以<code>.</code>定义。  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.center</span> &#123;<span class="attribute">text-align</span>: center&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>上面的示例表示所有用于center类的HTML元素均为居中。<br>下面的示例中，h1和p元素都有center类，豆浆遵守<code>.center</code>选择器的规则。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">"center"</span>&gt;</span></span><br><span class="line">This heading will be center-aligned</span><br><span class="line"><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"center"</span>&gt;</span></span><br><span class="line">This paragraph will also be center-aligned.</span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>属性选择器<br>对带有指定属性的HTML元素设置样式，不仅仅限于class和id属性。<br>下面示例为带有title属性的所有元素设置样式。  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-attr">[title]</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="attribute">color</span>:red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>也可以指定属性的值。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-attr">[title=hello]</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="attribute">border</span>:<span class="number">5px</span> solid blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>还包括下面一些属性和值的对一个关系。<br>|选择器|描述|<br>|-|:-|<br>[attribute]|用于选取带有指定属性的元素<br>[attribute=value]|用于选取带有指定属性和值的元素<br>[attribute~=value]|用于选取属性值中包含指定词汇的元素<br>[attribute|=value]|用于选取带有以指定值开头的属性值的元素，该值必须是整个单词<br>[attribute^=value]|匹配属性值以指定值开头的每个元素<br>[attribute$=value]|匹配属性值以指定值结尾的每个元素<br>[attribute*=value]|匹配属性值中包含指定值的每个元素</p>
+<h3 id="CSS样式"><a href="#CSS样式" class="headerlink" title="CSS样式"></a>CSS样式</h3><h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>使用<code>background-color</code>属性为元素设置背景色。可为所有元素设置背景色，但是不能继承，其默认值为<code>transparent</code>，也就是透明。<br>下面的示例将元素背景色设置为灰色<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;<span class="attribute">background-color</span>: gray;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>使用<code>background-image</code>属性将图像放入背景。默认值为none。不能继承。<br>下面示例为段落应用了一个背景<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span><span class="selector-class">.flower</span> &#123;<span class="attribute">background-image</span>: <span class="built_in">url</span>(/i/eg_bg_03.gif);&#125;</span><br></pre></td></tr></table></figure></p>
+<p>使用<code>background-repeat</code>属性对背景图像进行平铺。<br>属性值 repeat 导致图像在水平垂直方向上都平铺，就像以往背景图像的通常做法一样。repeat-x 和 repeat-y 分别导致图像只在水平或垂直方向上重复，no-repeat 则不允许图像在任何方向上平铺。<br>默认将从一个元素的左上角开始。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">    <span class="attribute">background-image</span>: <span class="built_in">url</span>(/i/eg_bg_03.gif);</span><br><span class="line">    <span class="attribute">background-repeat</span>: repeat-y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>使用<code>background-position</code>属性改变图像在背景中的位置。该属性对应的值有多种。  </p>
+<ol>
+<li>关键字，top/bottom/left/right/center。</li>
+<li>长度值，100px/5cm</li>
+<li>百分数，50%/70%<br>示例：<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">    background-position: center;    居中</span><br><span class="line">    <span class="selector-tag">background-position</span><span class="selector-pseudo">:50</span>% 50%;    居中</span><br><span class="line">    <span class="selector-tag">background-position</span><span class="selector-pseudo">:50px</span> 100<span class="selector-tag">px</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>最后一个表示图像的左上角将在元素内边距区左上角向右 50 像素、向下 100 像素的位置上。<br>使用<code>background-attachment</code>属性表示图像是否随着文档滚动而滚动，属性值有<code>fixed</code> <code>scroll</code>。其中<code>scroll</code>为默认值。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> </span><br><span class="line">  &#123;</span><br><span class="line">  <span class="attribute">background-image</span>:<span class="built_in">url</span>(/i/eg_bg_02.gif);</span><br><span class="line">  <span class="attribute">background-repeat</span>:no-repeat;</span><br><span class="line">  <span class="attribute">background-attachment</span>:fixed</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h4><h4 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h4><h4 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h4><h4 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h4><h4 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h4><h3 id="CSS框模型"><a href="#CSS框模型" class="headerlink" title="CSS框模型"></a>CSS框模型</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/07/17/css基础/" data-id="cjjpqcwnz001n2gq6omb911e9" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/语法/">语法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/选择器/">选择器</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/07/17/html基础-二/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">html基础(二)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS概述"><span class="toc-number">1.</span> <span class="toc-text">CSS概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS语法"><span class="toc-number">2.</span> <span class="toc-text">CSS语法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基础"><span class="toc-number">2.1.</span> <span class="toc-text">基础</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#选择器分组"><span class="toc-number">2.2.</span> <span class="toc-text">选择器分组</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS选择器"><span class="toc-number">3.</span> <span class="toc-text">CSS选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS样式"><span class="toc-number">4.</span> <span class="toc-text">CSS样式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#背景"><span class="toc-number">4.1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#文本"><span class="toc-number">4.2.</span> <span class="toc-text">文本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#字体"><span class="toc-number">4.3.</span> <span class="toc-text">字体</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#链接"><span class="toc-number">4.4.</span> <span class="toc-text">链接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#列表"><span class="toc-number">4.5.</span> <span class="toc-text">列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#表格"><span class="toc-number">4.6.</span> <span class="toc-text">表格</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS框模型"><span class="toc-number">5.</span> <span class="toc-text">CSS框模型</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>
