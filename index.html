@@ -40,7 +40,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -71,6 +71,100 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-jquery基础" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/07/18/jquery基础/" class="article-date">
+  <time datetime="2018-07-18T03:32:58.000Z" itemprop="datePublished">2018-07-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/program/">编程</a>►<a class="article-category-link" href="/categories/program/web/">web</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/18/jquery基础/">jquery基础</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h3 id="jQuery简介"><a href="#jQuery简介" class="headerlink" title="jQuery简介"></a>jQuery简介</h3><p>jQuery是一个JavaScript函数库，它可以完成以下操作：</p>
+<ul>
+<li>HTML元素选取</li>
+<li>HTML元素操作</li>
+<li>CSS操作</li>
+<li>HTML事件函数</li>
+<li>JavaScript特效和动画</li>
+<li>HTML DOM 遍历和修改</li>
+<li>AJAX</li>
+<li>Utilities</li>
+</ul>
+<p>那么如何使用jQuery库呢？<br>jQuery库其实就在一个JavaScript文件中，其中包含了所有的jQuery函数。通过下面的标记就可以将jQuery添加到网页。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"jquery.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>jQuery的下载可以点击<a href="http://jquery.com/download/" target="_blank" rel="noopener">jQuery</a>从官网下载。<br>要是不想在本地计算机存放Jquery库，也可以从Google或者Microsoft加载CDN jQuery文件，具体使用方式如下。<br>使用Google的CDN<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"http://ajax.googleapis.com/ajax/libs</span></span></span><br><span class="line"><span class="tag"><span class="string">/jquery/1.4.0/jquery.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>使用Microsoft的CDN<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"http://ajax.microsoft.com/ajax/jquery</span></span></span><br><span class="line"><span class="tag"><span class="string">/jquery-1.4.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="jQuery语法"><a href="#jQuery语法" class="headerlink" title="jQuery语法"></a>jQuery语法</h3><h4 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h4><p>基础语法是<code>$(selector).action()</code>。  </p>
+<ul>
+<li><code>$</code>符号定义jQuery</li>
+<li><code>selector</code>查询或查找HTML元素</li>
+<li><code>action()</code>执行对元素的操作</li>
+</ul>
+<p>示例<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="keyword">this</span>).hide() <span class="comment">//隐藏当前元素</span></span><br><span class="line">$(<span class="string">"p"</span>).hide()  <span class="comment">//隐藏所有段落</span></span><br><span class="line">$(<span class="string">".test"</span>).hide()  <span class="comment">//隐藏所有class="test”的元素</span></span><br><span class="line">$(<span class="string">"#test"</span>).hide()  <span class="comment">//隐藏所有id="test"的元素</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h4><p>jQuery元素选择器和属性选择器允许通过标签名、属性名或内容对HTML元素进行选择。<br>选择器允许对HTML单个元素进行操作。  </p>
+<ul>
+<li><p>jQuery元素选择器<br>jQuery使用呢CSS选择器来选取HTML元素。<br>示例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"p"</span>)  <span class="comment">//选取&lt;p&gt;元素</span></span><br><span class="line">$(<span class="string">"p.intro"</span>)  <span class="comment">//选取所有class="intro"的&lt;p&gt;元素</span></span><br><span class="line">$(<span class="string">"p#demo"</span>)  <span class="comment">//选取所有id="demo"的&lt;p&gt;元素</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>jQuery属性选择器<br>jQuery使用XPath表达式选择带有给定属性的元素。<br>示例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"[href]"</span>)  <span class="comment">//选取所有带有href属性的元素</span></span><br><span class="line">$(<span class="string">"[href='#']"</span>)  <span class="comment">//选取所有带有href值等于"#"的元素</span></span><br><span class="line">$(<span class="string">"[href!='#']"</span>)  <span class="comment">//选取所有带有href值不等于"#"的元素</span></span><br><span class="line">$(<span class="string">"[href='.jpg']"</span>)  <span class="comment">//选取所有href值以.jpg结尾的元素</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>jQuery CSS选择器<br>jQuery CSS选择器可用于改变HTML元素的CSS属性。<br>示例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"p"</span>).css(<span class="string">"background-color"</span>,<span class="string">"red"</span>);  <span class="comment">//所有p元素的背景颜色修改为红色</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>关于选择器有更多的内容，可以点击<a href="http://www.w3school.com.cn/jquery/jquery_ref_selectors.asp" target="_blank" rel="noopener">jQuery 参考手册 - 选择器</a>查看。</p>
+<h4 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h4><ul>
+<li>jQuery 事件函数<br>jQuery事件处理方法是jQuery中的核心函数。<br>通常会把jQuery代码放到<code>&lt;head&gt;</code>部分的事件处理方法中。<br>示例<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"jquery.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">$(<span class="built_in">document</span>).read(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">    $(<span class="string">"button"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>))</span>&#123;</span></span><br><span class="line"><span class="javascript">        $(<span class="string">"p"</span>).hide();</span></span><br><span class="line"><span class="undefined">    &#125;);</span></span><br><span class="line"><span class="undefined">&#125;);</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>This is a heading<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>This is a paragraph.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>This is another paragraph.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>Click me<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>当按钮的点击事件被触发时会调用一个函数，该方法隐藏所有的<code>&lt;p&gt;</code>元素。  </p>
+<ul>
+<li>常用的事件方法<br><code>$(document).ready()</code><br>允许在文档完全加载完成后执行函数。  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(docunment).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//jQuery代码</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>上述写法简化为<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//jQuery代码</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p><code>click()</code><br>当按钮点击事件被触发时调用一个函数。<br>示例<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"p"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="keyword">this</span>).hide();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>当点击事件在某个<code>&lt;p&gt;</code>元素出发时，隐藏当前的<code>&lt;p&gt;</code>元素。<br><code>dbclick()</code><br>双击元素时，会发生dbclick事件。此时将调用对应函数。<br>示例<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"p"</span>).dbclick(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="keyword">this</span>).hide();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p><code>focus()</code><br>当元素获得焦点时，发生focus事件。<br>focus()方法出发focus事件，或规定发生focus事件时运行的函数。<br>示例<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"input"</span>).foucs(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="keyword">this</span>).css(<span class="string">"background-color"</span>,<span class="string">"#cccccc"</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>更多关于jQuery事件可以点击<a href="http://www.w3school.com.cn/jquery/jquery_ref_events.asp" target="_blank" rel="noopener">jQuery 参考手册 - 事件</a>查看介绍。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/07/18/jquery基础/" data-id="cjjsn786p000ro8q6l58v2xv8" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jquery/">jquery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/操作/">操作</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/查询/">查询</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
   
     <article id="post-css基础" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -147,7 +241,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/07/17/css基础/" data-id="cjjpqcwnz001n2gq6omb911e9" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/07/17/css基础/" data-id="cjjsn786n000po8q6z1y6r0kt" class="article-share-link">分享</a>
       
       
       
@@ -233,7 +327,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/07/17/html基础-二/" data-id="cjjpqcwn8000w2gq6hxxol5on" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/07/17/html基础-二/" data-id="cjjsn787g000xo8q60v9ipn23" class="article-share-link">分享</a>
       
       
       
@@ -282,7 +376,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/07/11/saltstack结合ansible实战/" data-id="cjjpqcws300592gq6xkfkwbqh" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/07/11/saltstack结合ansible实战/" data-id="cjjsn78ct004eo8q6tlwzo2iz" class="article-share-link">分享</a>
       
       
       
@@ -331,7 +425,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/07/11/html基础/" data-id="cjjpqcwnn001b2gq6cmylsjgx" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/07/11/html基础/" data-id="cjjsn788b001io8q6mu7mjp5y" class="article-share-link">分享</a>
       
       
       
@@ -380,7 +474,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/07/06/ansible/" data-id="cjjpqcwn4000t2gq6ezfyoofl" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/07/06/ansible/" data-id="cjjsn7878000vo8q6jkn841z1" class="article-share-link">分享</a>
       
       
       
@@ -429,7 +523,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/07/04/saltstack实例/" data-id="cjjpqcwrq004w2gq6gf2t0rup" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/07/04/saltstack实例/" data-id="cjjsn78co004ao8q6df1l4cyq" class="article-share-link">分享</a>
       
       
       
@@ -478,7 +572,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/07/02/saltstack-二/" data-id="cjjpqcwrl004p2gq6jyfjf4cs" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/07/02/saltstack-二/" data-id="cjjsn78c8003yo8q658lmi3j7" class="article-share-link">分享</a>
       
       
       
@@ -527,7 +621,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/06/27/saltstack/" data-id="cjjpqcwrn004s2gq66zqn7prc" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/06/27/saltstack/" data-id="cjjsn78ci0045o8q6qridegsp" class="article-share-link">分享</a>
       
       
       
@@ -576,7 +670,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/06/25/python爬虫-三/" data-id="cjjpqcwqg003o2gq6e3hsxkyl" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/06/25/python爬虫-三/" data-id="cjjsn78au002zo8q6oh7et29p" class="article-share-link">分享</a>
       
       
       
@@ -590,60 +684,10 @@
 
 
   
-    <article id="post-python爬虫-二" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/06/19/python爬虫-二/" class="article-date">
-  <time datetime="2018-06-19T07:34:06.000Z" itemprop="datePublished">2018-06-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/program/">编程</a>►<a class="article-category-link" href="/categories/program/python/">python</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/19/python爬虫-二/">python爬虫(二)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="urllib模块"><a href="#urllib模块" class="headerlink" title="urllib模块"></a>urllib模块</h3><p>python2中有<code>urllib</code>和<code>urllib2</code>2个模块，虽然<code>urllib2</code>是升级版，但是依然不能替代<code>urllib</code>，各有所长。<br>python3中全部封装成一个<code>urllib</code>。  </p>
-<h4 id="python2中的ubllib和urllib2"><a href="#python2中的ubllib和urllib2" class="headerlink" title="python2中的ubllib和urllib2"></a>python2中的ubllib和urllib2</h4><p>urllib 和urllib2都是接受URL请求的相关模块，但是urllib2可以接受一个Request类的实例来设置URL请求的headers，urllib仅可以接受URL。这意味着，urllib不可以伪装你的User Agent字符串等。<br>urllib提供urlencode方法用来GET查询字符串的产生，而urllib2没有。这是为何urllib常和urllib2一起使用的原因。<br>
-        
-          <p class="article-more-link">
-            <a href="/2018/06/19/python爬虫-二/#more">继续阅读全文 »</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/06/19/python爬虫-二/" data-id="cjjpqcwqr00402gq6a2r4jb2z" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/urllib/">urllib</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/爬虫/">爬虫</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
 
 
   <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">Next&raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">下一页&raquo;</a>
   </nav>
 </section>
            
@@ -653,9 +697,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title categories">Categories</h3>
+    <h3 class="widget-title categories">分类</h3>
     <div class="widget" id="categories">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/system/">系统管理</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/system/LINUX/">LINUX</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/system/WINDOWS/">WINDOWS</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/program/">编程</a><span class="category-list-count">50</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/program/python/">python</a><span class="category-list-count">47</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/program/web/">web</a><span class="category-list-count">3</span></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/system/">系统管理</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/system/LINUX/">LINUX</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/system/WINDOWS/">WINDOWS</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/program/">编程</a><span class="category-list-count">51</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/program/python/">python</a><span class="category-list-count">47</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/program/web/">web</a><span class="category-list-count">4</span></li></ul></li></ul>
     </div>
   </div>
 
@@ -663,18 +707,22 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title tagcloud">Tag Cloud</h3>
+    <h3 class="widget-title tagcloud">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/API/" style="font-size: 16.2px;">API</a> <a href="/tags/Array/" style="font-size: 14px;">Array</a> <a href="/tags/BONDING/" style="font-size: 14px;">BONDING</a> <a href="/tags/BytesIO/" style="font-size: 14px;">BytesIO</a> <a href="/tags/CENTOS7/" style="font-size: 14px;">CENTOS7</a> <a href="/tags/EMC/" style="font-size: 14px;">EMC</a> <a href="/tags/FORFILES/" style="font-size: 14px;">FORFILES</a> <a href="/tags/HBA/" style="font-size: 14px;">HBA</a> <a href="/tags/HP-UNIX/" style="font-size: 14px;">HP-UNIX</a> <a href="/tags/JUNCTION/" style="font-size: 14px;">JUNCTION</a> <a href="/tags/Json/" style="font-size: 14px;">Json</a> <a href="/tags/LINUX/" style="font-size: 22.8px;">LINUX</a> <a href="/tags/Lock/" style="font-size: 16.2px;">Lock</a> <a href="/tags/MAC/" style="font-size: 14px;">MAC</a> <a href="/tags/MKLINK/" style="font-size: 14px;">MKLINK</a> <a href="/tags/OOP/" style="font-size: 14px;">OOP</a> <a href="/tags/OPENSSH/" style="font-size: 14px;">OPENSSH</a> <a href="/tags/OPENSSL/" style="font-size: 14px;">OPENSSL</a> <a href="/tags/ORM/" style="font-size: 14px;">ORM</a> <a href="/tags/POWERPATH/" style="font-size: 14px;">POWERPATH</a> <a href="/tags/Popen/" style="font-size: 14px;">Popen</a> <a href="/tags/Process/" style="font-size: 14px;">Process</a> <a href="/tags/SQLAIchemy/" style="font-size: 14px;">SQLAIchemy</a> <a href="/tags/SSH/" style="font-size: 14px;">SSH</a> <a href="/tags/StringIO/" style="font-size: 14px;">StringIO</a> <a href="/tags/TCPServer/" style="font-size: 14px;">TCPServer</a> <a href="/tags/UBUNTU/" style="font-size: 16.2px;">UBUNTU</a> <a href="/tags/UDPServer/" style="font-size: 14px;">UDPServer</a> <a href="/tags/Value/" style="font-size: 14px;">Value</a> <a href="/tags/WINDOWS/" style="font-size: 18.4px;">WINDOWS</a> <a href="/tags/WINODWS/" style="font-size: 14px;">WINODWS</a> <a href="/tags/WWW/" style="font-size: 14px;">WWW</a> <a href="/tags/XSHELL/" style="font-size: 14px;">XSHELL</a> <a href="/tags/XTERM/" style="font-size: 14px;">XTERM</a> <a href="/tags/ZLIB/" style="font-size: 14px;">ZLIB</a> <a href="/tags/ansible/" style="font-size: 16.2px;">ansible</a> <a href="/tags/args/" style="font-size: 14px;">args</a> <a href="/tags/bind/" style="font-size: 14px;">bind</a> <a href="/tags/bonding/" style="font-size: 14px;">bonding</a> <a href="/tags/celery/" style="font-size: 16.2px;">celery</a> <a href="/tags/close/" style="font-size: 14px;">close</a> <a href="/tags/commands/" style="font-size: 14px;">commands</a> <a href="/tags/copy/" style="font-size: 14px;">copy</a> <a href="/tags/count/" style="font-size: 14px;">count</a> <a href="/tags/css/" style="font-size: 16.2px;">css</a> <a href="/tags/csv/" style="font-size: 14px;">csv</a> <a href="/tags/cursor/" style="font-size: 14px;">cursor</a> <a href="/tags/datetime/" style="font-size: 14px;">datetime</a> <a href="/tags/decode/" style="font-size: 14px;">decode</a> <a href="/tags/decorator/" style="font-size: 14px;">decorator</a> <a href="/tags/delete/" style="font-size: 16.2px;">delete</a> <a href="/tags/drop/" style="font-size: 14px;">drop</a> <a href="/tags/email/" style="font-size: 14px;">email</a> <a href="/tags/encode/" style="font-size: 14px;">encode</a> <a href="/tags/excel/" style="font-size: 14px;">excel</a> <a href="/tags/except/" style="font-size: 14px;">except</a> <a href="/tags/finally/" style="font-size: 14px;">finally</a> <a href="/tags/for/" style="font-size: 14px;">for</a> <a href="/tags/get/" style="font-size: 14px;">get</a> <a href="/tags/grains/" style="font-size: 14px;">grains</a> <a href="/tags/groupby/" style="font-size: 14px;">groupby</a> <a href="/tags/handle/" style="font-size: 14px;">handle</a> <a href="/tags/hashlib/" style="font-size: 14px;">hashlib</a> <a href="/tags/html/" style="font-size: 16.2px;">html</a> <a href="/tags/http调用/" style="font-size: 14px;">http调用</a> <a href="/tags/if/" style="font-size: 14px;">if</a> <a href="/tags/image/" style="font-size: 14px;">image</a> <a href="/tags/insert/" style="font-size: 14px;">insert</a> <a href="/tags/kw/" style="font-size: 14px;">kw</a> <a href="/tags/libXaw/" style="font-size: 14px;">libXaw</a> <a href="/tags/libXpm/" style="font-size: 14px;">libXpm</a> <a href="/tags/log/" style="font-size: 16.2px;">log</a> <a href="/tags/machinekey/" style="font-size: 14px;">machinekey</a> <a href="/tags/master/" style="font-size: 14px;">master</a> <a href="/tags/memcached/" style="font-size: 14px;">memcached</a> <a href="/tags/mime/" style="font-size: 14px;">mime</a> <a href="/tags/minion/" style="font-size: 14px;">minion</a> <a href="/tags/mysql/" style="font-size: 16.2px;">mysql</a> <a href="/tags/nosql/" style="font-size: 14px;">nosql</a> <a href="/tags/open/" style="font-size: 14px;">open</a> <a href="/tags/orderby/" style="font-size: 14px;">orderby</a> <a href="/tags/orm/" style="font-size: 14px;">orm</a> <a href="/tags/os/" style="font-size: 16.2px;">os</a> <a href="/tags/pdf/" style="font-size: 14px;">pdf</a> <a href="/tags/pdfkit/" style="font-size: 14px;">pdfkit</a> <a href="/tags/pillar/" style="font-size: 14px;">pillar</a> <a href="/tags/ping/" style="font-size: 14px;">ping</a> <a href="/tags/pipe/" style="font-size: 14px;">pipe</a> <a href="/tags/pycharm/" style="font-size: 14px;">pycharm</a> <a href="/tags/pymysql/" style="font-size: 14px;">pymysql</a> <a href="/tags/python/" style="font-size: 25px;">python</a> <a href="/tags/queue/" style="font-size: 14px;">queue</a> <a href="/tags/raise/" style="font-size: 14px;">raise</a> <a href="/tags/re/" style="font-size: 16.2px;">re</a> <a href="/tags/read/" style="font-size: 14px;">read</a> <a href="/tags/redis/" style="font-size: 16.2px;">redis</a> <a href="/tags/requests/" style="font-size: 14px;">requests</a> <a href="/tags/return/" style="font-size: 14px;">return</a> <a href="/tags/saltstack/" style="font-size: 20.6px;">saltstack</a> <a href="/tags/select/" style="font-size: 14px;">select</a> <a href="/tags/session/" style="font-size: 14px;">session</a> <a href="/tags/set/" style="font-size: 14px;">set</a> <a href="/tags/shell/" style="font-size: 14px;">shell</a> <a href="/tags/smtp/" style="font-size: 14px;">smtp</a> <a href="/tags/socket/" style="font-size: 14px;">socket</a> <a href="/tags/socketserver/" style="font-size: 14px;">socketserver</a> <a href="/tags/sql/" style="font-size: 14px;">sql</a> <a href="/tags/ssh-copy-id/" style="font-size: 14px;">ssh-copy-id</a> <a href="/tags/ssh-keygen/" style="font-size: 14px;">ssh-keygen</a> <a href="/tags/subprocess/" style="font-size: 14px;">subprocess</a> <a href="/tags/sys/" style="font-size: 16.2px;">sys</a> <a href="/tags/tcp/" style="font-size: 14px;">tcp</a> <a href="/tags/threading/" style="font-size: 16.2px;">threading</a> <a href="/tags/threadpool/" style="font-size: 14px;">threadpool</a> <a href="/tags/timedelta/" style="font-size: 14px;">timedelta</a> <a href="/tags/times/" style="font-size: 14px;">times</a> <a href="/tags/try/" style="font-size: 14px;">try</a> <a href="/tags/udp/" style="font-size: 14px;">udp</a> <a href="/tags/update/" style="font-size: 16.2px;">update</a> <a href="/tags/urllib/" style="font-size: 14px;">urllib</a> <a href="/tags/webdriver/" style="font-size: 14px;">webdriver</a> <a href="/tags/while/" style="font-size: 14px;">while</a> <a href="/tags/windows/" style="font-size: 14px;">windows</a> <a href="/tags/write/" style="font-size: 14px;">write</a> <a href="/tags/yagmail/" style="font-size: 14px;">yagmail</a> <a href="/tags/乘法/" style="font-size: 14px;">乘法</a> <a href="/tags/九宫格/" style="font-size: 14px;">九宫格</a> <a href="/tags/事务/" style="font-size: 14px;">事务</a> <a href="/tags/元组/" style="font-size: 14px;">元组</a> <a href="/tags/函数/" style="font-size: 14px;">函数</a> <a href="/tags/分组/" style="font-size: 14px;">分组</a> <a href="/tags/列表/" style="font-size: 18.4px;">列表</a> <a href="/tags/参数/" style="font-size: 14px;">参数</a> <a href="/tags/双网卡/" style="font-size: 14px;">双网卡</a> <a href="/tags/可变参数/" style="font-size: 14px;">可变参数</a> <a href="/tags/图片/" style="font-size: 14px;">图片</a> <a href="/tags/多个公钥/" style="font-size: 14px;">多个公钥</a> <a href="/tags/多态/" style="font-size: 14px;">多态</a> <a href="/tags/多线程/" style="font-size: 14px;">多线程</a> <a href="/tags/多进程/" style="font-size: 14px;">多进程</a> <a href="/tags/字典/" style="font-size: 14px;">字典</a> <a href="/tags/字符/" style="font-size: 14px;">字符</a> <a href="/tags/字符串/" style="font-size: 14px;">字符串</a> <a href="/tags/定时任务/" style="font-size: 14px;">定时任务</a> <a href="/tags/密钥/" style="font-size: 16.2px;">密钥</a> <a href="/tags/循环/" style="font-size: 14px;">循环</a> <a href="/tags/排序/" style="font-size: 14px;">排序</a> <a href="/tags/数字/" style="font-size: 16.2px;">数字</a> <a href="/tags/数据类型/" style="font-size: 16.2px;">数据类型</a> <a href="/tags/文件/" style="font-size: 14px;">文件</a> <a href="/tags/斐波那契数列/" style="font-size: 14px;">斐波那契数列</a> <a href="/tags/条件判断/" style="font-size: 14px;">条件判断</a> <a href="/tags/杨辉三角/" style="font-size: 14px;">杨辉三角</a> <a href="/tags/构造器/" style="font-size: 14px;">构造器</a> <a href="/tags/正则/" style="font-size: 14px;">正则</a> <a href="/tags/汉诺塔/" style="font-size: 14px;">汉诺塔</a> <a href="/tags/消息队列/" style="font-size: 14px;">消息队列</a> <a href="/tags/游标/" style="font-size: 14px;">游标</a> <a href="/tags/爬虫/" style="font-size: 18.4px;">爬虫</a> <a href="/tags/生成器/" style="font-size: 14px;">生成器</a> <a href="/tags/目录/" style="font-size: 14px;">目录</a> <a href="/tags/类/" style="font-size: 14px;">类</a> <a href="/tags/统计/" style="font-size: 14px;">统计</a> <a href="/tags/继承/" style="font-size: 14px;">继承</a> <a href="/tags/编码/" style="font-size: 14px;">编码</a> <a href="/tags/网络/" style="font-size: 14px;">网络</a> <a href="/tags/表格/" style="font-size: 14px;">表格</a> <a href="/tags/装饰器/" style="font-size: 14px;">装饰器</a> <a href="/tags/视图状态/" style="font-size: 14px;">视图状态</a> <a href="/tags/计算/" style="font-size: 14px;">计算</a> <a href="/tags/语法/" style="font-size: 14px;">语法</a> <a href="/tags/负载均衡/" style="font-size: 14px;">负载均衡</a> <a href="/tags/选择器/" style="font-size: 14px;">选择器</a> <a href="/tags/递归/" style="font-size: 14px;">递归</a> <a href="/tags/阶乘/" style="font-size: 14px;">阶乘</a> <a href="/tags/面向对象/" style="font-size: 14px;">面向对象</a>
+      <a href="/tags/API/" style="font-size: 16.2px;">API</a> <a href="/tags/Array/" style="font-size: 14px;">Array</a> <a href="/tags/BONDING/" style="font-size: 14px;">BONDING</a> <a href="/tags/BytesIO/" style="font-size: 14px;">BytesIO</a> <a href="/tags/CENTOS7/" style="font-size: 14px;">CENTOS7</a> <a href="/tags/EMC/" style="font-size: 14px;">EMC</a> <a href="/tags/FORFILES/" style="font-size: 14px;">FORFILES</a> <a href="/tags/HBA/" style="font-size: 14px;">HBA</a> <a href="/tags/HP-UNIX/" style="font-size: 14px;">HP-UNIX</a> <a href="/tags/JUNCTION/" style="font-size: 14px;">JUNCTION</a> <a href="/tags/Json/" style="font-size: 14px;">Json</a> <a href="/tags/LINUX/" style="font-size: 22.8px;">LINUX</a> <a href="/tags/Lock/" style="font-size: 16.2px;">Lock</a> <a href="/tags/MAC/" style="font-size: 14px;">MAC</a> <a href="/tags/MKLINK/" style="font-size: 14px;">MKLINK</a> <a href="/tags/OOP/" style="font-size: 14px;">OOP</a> <a href="/tags/OPENSSH/" style="font-size: 14px;">OPENSSH</a> <a href="/tags/OPENSSL/" style="font-size: 14px;">OPENSSL</a> <a href="/tags/ORM/" style="font-size: 14px;">ORM</a> <a href="/tags/POWERPATH/" style="font-size: 14px;">POWERPATH</a> <a href="/tags/Popen/" style="font-size: 14px;">Popen</a> <a href="/tags/Process/" style="font-size: 14px;">Process</a> <a href="/tags/SQLAIchemy/" style="font-size: 14px;">SQLAIchemy</a> <a href="/tags/SSH/" style="font-size: 14px;">SSH</a> <a href="/tags/StringIO/" style="font-size: 14px;">StringIO</a> <a href="/tags/TCPServer/" style="font-size: 14px;">TCPServer</a> <a href="/tags/UBUNTU/" style="font-size: 16.2px;">UBUNTU</a> <a href="/tags/UDPServer/" style="font-size: 14px;">UDPServer</a> <a href="/tags/Value/" style="font-size: 14px;">Value</a> <a href="/tags/WINDOWS/" style="font-size: 18.4px;">WINDOWS</a> <a href="/tags/WINODWS/" style="font-size: 14px;">WINODWS</a> <a href="/tags/WWW/" style="font-size: 14px;">WWW</a> <a href="/tags/XSHELL/" style="font-size: 14px;">XSHELL</a> <a href="/tags/XTERM/" style="font-size: 14px;">XTERM</a> <a href="/tags/ZLIB/" style="font-size: 14px;">ZLIB</a> <a href="/tags/ansible/" style="font-size: 16.2px;">ansible</a> <a href="/tags/args/" style="font-size: 14px;">args</a> <a href="/tags/bind/" style="font-size: 14px;">bind</a> <a href="/tags/bonding/" style="font-size: 14px;">bonding</a> <a href="/tags/celery/" style="font-size: 16.2px;">celery</a> <a href="/tags/close/" style="font-size: 14px;">close</a> <a href="/tags/commands/" style="font-size: 14px;">commands</a> <a href="/tags/copy/" style="font-size: 14px;">copy</a> <a href="/tags/count/" style="font-size: 14px;">count</a> <a href="/tags/css/" style="font-size: 16.2px;">css</a> <a href="/tags/csv/" style="font-size: 14px;">csv</a> <a href="/tags/cursor/" style="font-size: 14px;">cursor</a> <a href="/tags/datetime/" style="font-size: 14px;">datetime</a> <a href="/tags/decode/" style="font-size: 14px;">decode</a> <a href="/tags/decorator/" style="font-size: 14px;">decorator</a> <a href="/tags/delete/" style="font-size: 16.2px;">delete</a> <a href="/tags/drop/" style="font-size: 14px;">drop</a> <a href="/tags/email/" style="font-size: 14px;">email</a> <a href="/tags/encode/" style="font-size: 14px;">encode</a> <a href="/tags/excel/" style="font-size: 14px;">excel</a> <a href="/tags/except/" style="font-size: 14px;">except</a> <a href="/tags/finally/" style="font-size: 14px;">finally</a> <a href="/tags/for/" style="font-size: 14px;">for</a> <a href="/tags/get/" style="font-size: 14px;">get</a> <a href="/tags/grains/" style="font-size: 14px;">grains</a> <a href="/tags/groupby/" style="font-size: 14px;">groupby</a> <a href="/tags/handle/" style="font-size: 14px;">handle</a> <a href="/tags/hashlib/" style="font-size: 14px;">hashlib</a> <a href="/tags/html/" style="font-size: 16.2px;">html</a> <a href="/tags/http调用/" style="font-size: 14px;">http调用</a> <a href="/tags/if/" style="font-size: 14px;">if</a> <a href="/tags/image/" style="font-size: 14px;">image</a> <a href="/tags/insert/" style="font-size: 14px;">insert</a> <a href="/tags/jquery/" style="font-size: 14px;">jquery</a> <a href="/tags/kw/" style="font-size: 14px;">kw</a> <a href="/tags/libXaw/" style="font-size: 14px;">libXaw</a> <a href="/tags/libXpm/" style="font-size: 14px;">libXpm</a> <a href="/tags/log/" style="font-size: 16.2px;">log</a> <a href="/tags/machinekey/" style="font-size: 14px;">machinekey</a> <a href="/tags/master/" style="font-size: 14px;">master</a> <a href="/tags/memcached/" style="font-size: 14px;">memcached</a> <a href="/tags/mime/" style="font-size: 14px;">mime</a> <a href="/tags/minion/" style="font-size: 14px;">minion</a> <a href="/tags/mysql/" style="font-size: 16.2px;">mysql</a> <a href="/tags/nosql/" style="font-size: 14px;">nosql</a> <a href="/tags/open/" style="font-size: 14px;">open</a> <a href="/tags/orderby/" style="font-size: 14px;">orderby</a> <a href="/tags/orm/" style="font-size: 14px;">orm</a> <a href="/tags/os/" style="font-size: 16.2px;">os</a> <a href="/tags/pdf/" style="font-size: 14px;">pdf</a> <a href="/tags/pdfkit/" style="font-size: 14px;">pdfkit</a> <a href="/tags/pillar/" style="font-size: 14px;">pillar</a> <a href="/tags/ping/" style="font-size: 14px;">ping</a> <a href="/tags/pipe/" style="font-size: 14px;">pipe</a> <a href="/tags/pycharm/" style="font-size: 14px;">pycharm</a> <a href="/tags/pymysql/" style="font-size: 14px;">pymysql</a> <a href="/tags/python/" style="font-size: 25px;">python</a> <a href="/tags/queue/" style="font-size: 14px;">queue</a> <a href="/tags/raise/" style="font-size: 14px;">raise</a> <a href="/tags/re/" style="font-size: 16.2px;">re</a> <a href="/tags/read/" style="font-size: 14px;">read</a> <a href="/tags/redis/" style="font-size: 16.2px;">redis</a> <a href="/tags/requests/" style="font-size: 14px;">requests</a> <a href="/tags/return/" style="font-size: 14px;">return</a> <a href="/tags/saltstack/" style="font-size: 20.6px;">saltstack</a> <a href="/tags/select/" style="font-size: 14px;">select</a> <a href="/tags/session/" style="font-size: 14px;">session</a> <a href="/tags/set/" style="font-size: 14px;">set</a> <a href="/tags/shell/" style="font-size: 14px;">shell</a> <a href="/tags/smtp/" style="font-size: 14px;">smtp</a> <a href="/tags/socket/" style="font-size: 14px;">socket</a> <a href="/tags/socketserver/" style="font-size: 14px;">socketserver</a> <a href="/tags/sql/" style="font-size: 14px;">sql</a> <a href="/tags/ssh-copy-id/" style="font-size: 14px;">ssh-copy-id</a> <a href="/tags/ssh-keygen/" style="font-size: 14px;">ssh-keygen</a> <a href="/tags/subprocess/" style="font-size: 14px;">subprocess</a> <a href="/tags/sys/" style="font-size: 16.2px;">sys</a> <a href="/tags/tcp/" style="font-size: 14px;">tcp</a> <a href="/tags/threading/" style="font-size: 16.2px;">threading</a> <a href="/tags/threadpool/" style="font-size: 14px;">threadpool</a> <a href="/tags/timedelta/" style="font-size: 14px;">timedelta</a> <a href="/tags/times/" style="font-size: 14px;">times</a> <a href="/tags/try/" style="font-size: 14px;">try</a> <a href="/tags/udp/" style="font-size: 14px;">udp</a> <a href="/tags/update/" style="font-size: 16.2px;">update</a> <a href="/tags/urllib/" style="font-size: 14px;">urllib</a> <a href="/tags/webdriver/" style="font-size: 14px;">webdriver</a> <a href="/tags/while/" style="font-size: 14px;">while</a> <a href="/tags/windows/" style="font-size: 14px;">windows</a> <a href="/tags/write/" style="font-size: 14px;">write</a> <a href="/tags/yagmail/" style="font-size: 14px;">yagmail</a> <a href="/tags/乘法/" style="font-size: 14px;">乘法</a> <a href="/tags/九宫格/" style="font-size: 14px;">九宫格</a> <a href="/tags/事务/" style="font-size: 14px;">事务</a> <a href="/tags/元组/" style="font-size: 14px;">元组</a> <a href="/tags/函数/" style="font-size: 14px;">函数</a> <a href="/tags/分组/" style="font-size: 14px;">分组</a> <a href="/tags/列表/" style="font-size: 18.4px;">列表</a> <a href="/tags/参数/" style="font-size: 14px;">参数</a> <a href="/tags/双网卡/" style="font-size: 14px;">双网卡</a> <a href="/tags/可变参数/" style="font-size: 14px;">可变参数</a> <a href="/tags/图片/" style="font-size: 14px;">图片</a> <a href="/tags/多个公钥/" style="font-size: 14px;">多个公钥</a> <a href="/tags/多态/" style="font-size: 14px;">多态</a> <a href="/tags/多线程/" style="font-size: 14px;">多线程</a> <a href="/tags/多进程/" style="font-size: 14px;">多进程</a> <a href="/tags/字典/" style="font-size: 14px;">字典</a> <a href="/tags/字符/" style="font-size: 14px;">字符</a> <a href="/tags/字符串/" style="font-size: 14px;">字符串</a> <a href="/tags/定时任务/" style="font-size: 14px;">定时任务</a> <a href="/tags/密钥/" style="font-size: 16.2px;">密钥</a> <a href="/tags/循环/" style="font-size: 14px;">循环</a> <a href="/tags/排序/" style="font-size: 14px;">排序</a> <a href="/tags/操作/" style="font-size: 14px;">操作</a> <a href="/tags/数字/" style="font-size: 16.2px;">数字</a> <a href="/tags/数据类型/" style="font-size: 16.2px;">数据类型</a> <a href="/tags/文件/" style="font-size: 14px;">文件</a> <a href="/tags/斐波那契数列/" style="font-size: 14px;">斐波那契数列</a> <a href="/tags/条件判断/" style="font-size: 14px;">条件判断</a> <a href="/tags/杨辉三角/" style="font-size: 14px;">杨辉三角</a> <a href="/tags/构造器/" style="font-size: 14px;">构造器</a> <a href="/tags/查询/" style="font-size: 14px;">查询</a> <a href="/tags/正则/" style="font-size: 14px;">正则</a> <a href="/tags/汉诺塔/" style="font-size: 14px;">汉诺塔</a> <a href="/tags/消息队列/" style="font-size: 14px;">消息队列</a> <a href="/tags/游标/" style="font-size: 14px;">游标</a> <a href="/tags/爬虫/" style="font-size: 18.4px;">爬虫</a> <a href="/tags/生成器/" style="font-size: 14px;">生成器</a> <a href="/tags/目录/" style="font-size: 14px;">目录</a> <a href="/tags/类/" style="font-size: 14px;">类</a> <a href="/tags/统计/" style="font-size: 14px;">统计</a> <a href="/tags/继承/" style="font-size: 14px;">继承</a> <a href="/tags/编码/" style="font-size: 14px;">编码</a> <a href="/tags/网络/" style="font-size: 14px;">网络</a> <a href="/tags/表格/" style="font-size: 14px;">表格</a> <a href="/tags/装饰器/" style="font-size: 14px;">装饰器</a> <a href="/tags/视图状态/" style="font-size: 14px;">视图状态</a> <a href="/tags/计算/" style="font-size: 14px;">计算</a> <a href="/tags/语法/" style="font-size: 14px;">语法</a> <a href="/tags/负载均衡/" style="font-size: 14px;">负载均衡</a> <a href="/tags/选择器/" style="font-size: 14px;">选择器</a> <a href="/tags/递归/" style="font-size: 14px;">递归</a> <a href="/tags/阶乘/" style="font-size: 14px;">阶乘</a> <a href="/tags/面向对象/" style="font-size: 14px;">面向对象</a>
     </div>
   </div>
 
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title recent-posts">Recent Posts</h3>
+    <h3 class="widget-title recent-posts">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/07/18/jquery基础/">jquery基础</a>
+          </li>
         
           <li>
             <a href="/2018/07/17/css基础/">css基础</a>
@@ -692,10 +740,6 @@
             <a href="/2018/07/11/html基础/">html基础</a>
           </li>
         
-          <li>
-            <a href="/2018/07/06/ansible/">ansible</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -703,9 +747,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title archive">Archives</h3>
+    <h3 class="widget-title archive">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 
@@ -713,7 +757,7 @@
   
     
 <div class="widget-wrap">
-    <h3 class="widget-title">Links</h3>
+    <h3 class="widget-title">友情链接</h3>
     <div class="widget">
         <ul>
             
@@ -734,10 +778,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
+     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>
