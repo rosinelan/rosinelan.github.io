@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>variable of python | 持续不断</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="python配置默认python的编辑器并不提供补全功能，建议安装ipython。ipython可以通过python提供的包管理工具pip安装和管理。具体步骤为    安装扩展源epel   1yum install -y epel-release  安装pip   1yum install -y python-pip  安装ipython 1pip install ipython==5.3.0">
+<meta name="keywords" content="pip,变量,文件类型,运算符">
+<meta property="og:type" content="article">
+<meta property="og:title" content="variable of python">
+<meta property="og:url" content="https://rosinelan.github.io/2018/11/14/variable-of-python/index.html">
+<meta property="og:site_name" content="持续不断">
+<meta property="og:description" content="python配置默认python的编辑器并不提供补全功能，建议安装ipython。ipython可以通过python提供的包管理工具pip安装和管理。具体步骤为    安装扩展源epel   1yum install -y epel-release  安装pip   1yum install -y python-pip  安装ipython 1pip install ipython==5.3.0">
+<meta property="og:updated_time" content="2018-11-14T10:07:17.993Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="variable of python">
+<meta name="twitter:description" content="python配置默认python的编辑器并不提供补全功能，建议安装ipython。ipython可以通过python提供的包管理工具pip安装和管理。具体步骤为    安装扩展源epel   1yum install -y epel-release  安装pip   1yum install -y python-pip  安装ipython 1pip install ipython==5.3.0">
+  
+    <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">持续不断</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">要松懈的时候再坚持一下</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-variable-of-python" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/14/variable-of-python/" class="article-date">
+  <time datetime="2018-11-14T08:51:45.000Z" itemprop="datePublished">2018-11-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/运维/">运维</a>►<a class="article-category-link" href="/categories/运维/python实战/">python实战</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      variable of python
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="python配置"><a href="#python配置" class="headerlink" title="python配置"></a>python配置</h2><p>默认python的编辑器并不提供补全功能，建议安装<code>ipython</code>。ipython可以通过python提供的包管理工具<code>pip</code>安装和管理。<br>具体步骤为  </p>
+<ol>
+<li><p>安装扩展源epel  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y epel-release</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装pip  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y python-pip</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装ipython</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install ipython==<span class="number">5.3</span><span class="number">.0</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>安装ipython的时候需要注意对应版本适配问题，例如：最新版本的ipython不适用于python2.6。  </p>
+<h3 id="pip代理设置"><a href="#pip代理设置" class="headerlink" title="pip代理设置"></a>pip代理设置</h3><p>假如机器通过代理方式上网，可以通过设置全局代理或者添加参数方式处理。  </p>
+<h4 id="全局代理设置"><a href="#全局代理设置" class="headerlink" title="全局代理设置"></a>全局代理设置</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim /root/.bash_profile</span><br><span class="line">export http_proxy=<span class="string">"http://xxxx:8888"</span></span><br><span class="line">export https_proxy=<span class="string">"https://xxxx:8888"</span></span><br></pre></td></tr></table></figure>
+<p>然后<code>source /root/.bash_profile</code>使之生效。</p>
+<h4 id="pip添加参数"><a href="#pip添加参数" class="headerlink" title="pip添加参数"></a>pip添加参数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install --proxy http://xxxx:<span class="number">8888</span> ipython</span><br></pre></td></tr></table></figure>
+<h2 id="python文件类型"><a href="#python文件类型" class="headerlink" title="python文件类型"></a>python文件类型</h2><p>文件类型有3种，分别为源代码、字节代码和优化代码。  </p>
+<h3 id="源代码"><a href="#源代码" class="headerlink" title="源代码"></a>源代码</h3><p>以<code>py</code>作为扩展名，由python程序解释，不需要编译。</p>
+<h3 id="字节代码"><a href="#字节代码" class="headerlink" title="字节代码"></a>字节代码</h3><p>源码文件编译之后生成的扩展名为<code>pyc</code>的文件。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> py_compile</span><br><span class="line">py_compile.compile(‘<span class="number">1.</span>py’)</span><br></pre></td></tr></table></figure></p>
+<h3 id="优化代码"><a href="#优化代码" class="headerlink" title="优化代码"></a>优化代码</h3><p>经过优化的源码文件，扩展名为<code>pyo</code>。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -O -m py_compile <span class="number">1.</span>py</span><br></pre></td></tr></table></figure></p>
+<p>字节代码和优化代码都可在无源码情况下直接执行；编译和优化之后的代码非文本文件，无法看到源码。  </p>
+<h2 id="python变量"><a href="#python变量" class="headerlink" title="python变量"></a>python变量</h2><h3 id="变量定义"><a href="#变量定义" class="headerlink" title="变量定义"></a>变量定义</h3><p>变量是计算机内的一块区域，可以存储规定范围内的值，而且值可以改变。<br>python下变量是对一个数据的引用。<br>变量重新赋值时，会重新指向另一个地址。</p>
+<h3 id="变量命名"><a href="#变量命名" class="headerlink" title="变量命名"></a>变量命名</h3><p>变量名由字母、数字、下划线组成，不能以数字开头，不可以使用关键字。  </p>
+<h3 id="变量赋值"><a href="#变量赋值" class="headerlink" title="变量赋值"></a>变量赋值</h3><p>赋值时变量的声明和定义的过程。<br><code>a = 1</code><br><code>id(a)</code> 内置函数，查看变量a的内存地址。<br><code>type(a)</code> 查看变量a的类型。</p>
+<h3 id="运算符和表达式"><a href="#运算符和表达式" class="headerlink" title="运算符和表达式"></a>运算符和表达式</h3><h4 id="赋值运算符"><a href="#赋值运算符" class="headerlink" title="赋值运算符"></a>赋值运算符</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">=</span><br><span class="line">+=</span><br><span class="line">-+</span><br><span class="line">*=</span><br><span class="line">/=</span><br><span class="line">%=</span><br></pre></td></tr></table></figure>
+<h4 id="算符运算符"><a href="#算符运算符" class="headerlink" title="算符运算符"></a>算符运算符</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+</span><br><span class="line">-</span><br><span class="line">*</span><br><span class="line">/  除数和被除数均为整数时为整除，含有浮点数时结果含小数</span><br><span class="line">//  整除，只取整数部分</span><br><span class="line">%  取余</span><br><span class="line">**  指数运算(<span class="number">2</span>**<span class="number">3</span>==<span class="number">8</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="关系运算符"><a href="#关系运算符" class="headerlink" title="关系运算符"></a>关系运算符</h4><p>返回结果为布尔值，<code>True</code>或者<code>False</code>。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;</span><br><span class="line">&lt;</span><br><span class="line">&gt;=</span><br><span class="line">&lt;=</span><br><span class="line">==</span><br><span class="line">!=</span><br></pre></td></tr></table></figure></p>
+<h4 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">and</span>  逻辑与</span><br><span class="line"><span class="keyword">or</span>  逻辑或</span><br><span class="line"><span class="keyword">not</span>  逻辑非</span><br></pre></td></tr></table></figure>
+<h4 id="优先级列表"><a href="#优先级列表" class="headerlink" title="优先级列表"></a>优先级列表</h4><p>从上向下优先级越高，从左向右优先级越高<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Lambda</span><br><span class="line">逻辑运算：<span class="keyword">or</span></span><br><span class="line">逻辑运算：<span class="keyword">and</span></span><br><span class="line">逻辑运算：<span class="keyword">not</span></span><br><span class="line">成员测试：<span class="keyword">in</span>，<span class="keyword">not</span> <span class="keyword">in</span></span><br><span class="line">同一性测试：<span class="keyword">is</span>，<span class="keyword">is</span> <span class="keyword">not</span></span><br><span class="line">比较：&lt;，&lt;=，&gt;，&gt;=，!=，==</span><br><span class="line">按位或：|</span><br><span class="line">按位异或：^</span><br><span class="line">按位与：&amp;</span><br><span class="line">移位：&lt;&lt;，&gt;&gt;</span><br><span class="line">加法和减法：+，-</span><br><span class="line">乘法、除法与取余：*，/，%</span><br><span class="line">正负号：+x，-x</span><br><span class="line">按位翻转：~x</span><br><span class="line">指数：**</span><br></pre></td></tr></table></figure></p>
+<p>表达式是将不同的数据用运算符按一定的规则连接起来。</p>
+<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><p>四则运算，从键盘读取输入<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"></span><br><span class="line">num1 = input(<span class="string">"Please a number:"</span>)</span><br><span class="line">num2 = input(<span class="string">"Please a number:"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="string">"%s + %s = %s"</span> %(num1,num2,num1+num2)</span><br><span class="line"><span class="keyword">print</span> <span class="string">"%s - %s = %s"</span> %(num1,num2,num1-num2)</span><br><span class="line"><span class="keyword">print</span> <span class="string">"%s * %s = %s"</span> %(num1,num2,num1*num2)</span><br><span class="line"><span class="keyword">print</span> <span class="string">"%s / %s = %s"</span> %(num1,num2,num1/num2)</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/11/14/variable-of-python/" data-id="cjoh0eib500ezroq6qlpzhp9e" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pip/">pip</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/变量/">变量</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/文件类型/">文件类型</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/运算符/">运算符</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2018/11/14/git安装和使用/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          git安装和使用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/11/14/install-of-python/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">install of python</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#python配置"><span class="toc-number">1.</span> <span class="toc-text">python配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#pip代理设置"><span class="toc-number">1.1.</span> <span class="toc-text">pip代理设置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#全局代理设置"><span class="toc-number">1.1.1.</span> <span class="toc-text">全局代理设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pip添加参数"><span class="toc-number">1.1.2.</span> <span class="toc-text">pip添加参数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python文件类型"><span class="toc-number">2.</span> <span class="toc-text">python文件类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#源代码"><span class="toc-number">2.1.</span> <span class="toc-text">源代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字节代码"><span class="toc-number">2.2.</span> <span class="toc-text">字节代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优化代码"><span class="toc-number">2.3.</span> <span class="toc-text">优化代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python变量"><span class="toc-number">3.</span> <span class="toc-text">python变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#变量定义"><span class="toc-number">3.1.</span> <span class="toc-text">变量定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#变量命名"><span class="toc-number">3.2.</span> <span class="toc-text">变量命名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#变量赋值"><span class="toc-number">3.3.</span> <span class="toc-text">变量赋值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运算符和表达式"><span class="toc-number">3.4.</span> <span class="toc-text">运算符和表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#赋值运算符"><span class="toc-number">3.4.1.</span> <span class="toc-text">赋值运算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#算符运算符"><span class="toc-number">3.4.2.</span> <span class="toc-text">算符运算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#关系运算符"><span class="toc-number">3.4.3.</span> <span class="toc-text">关系运算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#逻辑运算符"><span class="toc-number">3.4.4.</span> <span class="toc-text">逻辑运算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#优先级列表"><span class="toc-number">3.4.5.</span> <span class="toc-text">优先级列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实例"><span class="toc-number">3.4.6.</span> <span class="toc-text">实例</span></a></li></ol></li></ol></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>
