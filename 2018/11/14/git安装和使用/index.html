@@ -17,7 +17,7 @@
 <meta property="og:image" content="http://cdn.rosinelan.com/blog/system/Create%20new%20repository.png">
 <meta property="og:image" content="http://cdn.rosinelan.com/blog/system/new%20repository%20info.png">
 <meta property="og:image" content="http://cdn.rosinelan.com/blog/system/git-origin-creat.png">
-<meta property="og:updated_time" content="2018-11-15T01:00:17.527Z">
+<meta property="og:updated_time" content="2018-11-15T01:50:19.025Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git安装和使用">
 <meta name="twitter:description" content="git安装centos 7安装git很简单，直接使用yum install -y git即可。安装完成之后配置信息12git config --global user.name &quot;rosinelan&quot;git config --global user.email &quot;mqwanghui327@hotmail.com&quot;">
@@ -151,6 +151,11 @@
 <p>命令格式为<code>git push 远程主机名 本地分支名：远程分支名</code>。  </p>
 <h2 id="远程仓库克隆"><a href="#远程仓库克隆" class="headerlink" title="远程仓库克隆"></a>远程仓库克隆</h2><p>假如没有本地仓库，想要直接从github拉取文件怎么办呢？远程仓库克隆。<br>首先在github创建一个远程仓库。<br><img src="http://cdn.rosinelan.com/blog/system/git-origin-creat.png" alt="git-origin-creat" title="git-origin-creat"><br>勾选初始化<code>README.md</code>文件，此时远程仓库创建完成后可以看到该文件。<br>接下来使用<code>git clone</code>克隆本地库。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /</span><br><span class="line">git clone git@github.com:rosinelan/studypy2.git</span><br></pre></td></tr></table></figure></p>
 <p>进入本地的目录<code>/study2</code>，可以看到<code>README.md</code>文件。  </p>
+<h2 id="推荐git学习资源"><a href="#推荐git学习资源" class="headerlink" title="推荐git学习资源"></a>推荐git学习资源</h2><ol>
+<li>简明指南，快速入手 <a href="http://rogerdudler.github.io/git-guide/" target="_blank" rel="noopener">git - the simple guide</a></li>
+<li>常用命令及最佳实践 <a href="https://blog.csdn.net/xinyan233/article/details/80593091" target="_blank" rel="noopener">git cheat sheet</a></li>
+<li>进阶学习 <a href="https://git-scm.com/book/zh/v2" target="_blank" rel="noopener">Pro git book</a></li>
+</ol>
 
       
     </div>
@@ -243,7 +248,7 @@
       
         <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#git安装"><span class="toc-number">1.</span> <span class="toc-text">git安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建版本库"><span class="toc-number">2.</span> <span class="toc-text">创建版本库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加远程仓库"><span class="toc-number">3.</span> <span class="toc-text">添加远程仓库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#github配置ssh连接"><span class="toc-number">3.1.</span> <span class="toc-text">github配置ssh连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#github创建远程仓库"><span class="toc-number">3.2.</span> <span class="toc-text">github创建远程仓库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#远程仓库克隆"><span class="toc-number">4.</span> <span class="toc-text">远程仓库克隆</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#git安装"><span class="toc-number">1.</span> <span class="toc-text">git安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建版本库"><span class="toc-number">2.</span> <span class="toc-text">创建版本库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加远程仓库"><span class="toc-number">3.</span> <span class="toc-text">添加远程仓库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#github配置ssh连接"><span class="toc-number">3.1.</span> <span class="toc-text">github配置ssh连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#github创建远程仓库"><span class="toc-number">3.2.</span> <span class="toc-text">github创建远程仓库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#远程仓库克隆"><span class="toc-number">4.</span> <span class="toc-text">远程仓库克隆</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#推荐git学习资源"><span class="toc-number">5.</span> <span class="toc-text">推荐git学习资源</span></a></li></ol>
           </div>
       </div>
     </div>
