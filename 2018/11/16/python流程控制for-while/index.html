@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>python流程控制for while | 持续不断</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="if格式12if expression:    statements 缩进使用4个空格，不建议使用TAB键。 实例键盘输入数字，&amp;gt;90输出A,&amp;gt;80输出B，&amp;gt;=70输出C，&amp;lt;70输出D。1234567891011121314151617[root@linux02 ~]# cat if.py#!usr/bin/pythonscore = int(raw_input(&quot;Plea">
+<meta name="keywords" content="if,for,while">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python流程控制for while">
+<meta property="og:url" content="https://rosinelan.github.io/2018/11/16/python流程控制for-while/index.html">
+<meta property="og:site_name" content="持续不断">
+<meta property="og:description" content="if格式12if expression:    statements 缩进使用4个空格，不建议使用TAB键。 实例键盘输入数字，&amp;gt;90输出A,&amp;gt;80输出B，&amp;gt;=70输出C，&amp;lt;70输出D。1234567891011121314151617[root@linux02 ~]# cat if.py#!usr/bin/pythonscore = int(raw_input(&quot;Plea">
+<meta property="og:updated_time" content="2018-11-16T09:53:38.466Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python流程控制for while">
+<meta name="twitter:description" content="if格式12if expression:    statements 缩进使用4个空格，不建议使用TAB键。 实例键盘输入数字，&amp;gt;90输出A,&amp;gt;80输出B，&amp;gt;=70输出C，&amp;lt;70输出D。1234567891011121314151617[root@linux02 ~]# cat if.py#!usr/bin/pythonscore = int(raw_input(&quot;Plea">
+  
+    <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">持续不断</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">要松懈的时候再坚持一下</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-python流程控制for-while" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/16/python流程控制for-while/" class="article-date">
+  <time datetime="2018-11-16T09:32:01.000Z" itemprop="datePublished">2018-11-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/system/">系统管理</a>►<a class="article-category-link" href="/categories/system/python实战/">python实战</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      python流程控制for while
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="if"><a href="#if" class="headerlink" title="if"></a>if</h2><h3 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> expression:</span><br><span class="line">    statements</span><br></pre></td></tr></table></figure>
+<p>缩进使用4个空格，不建议使用TAB键。</p>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>键盘输入数字，&gt;90输出A,&gt;80输出B，&gt;=70输出C，&lt;70输出D。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[root@linux02 ~]<span class="comment"># cat if.py</span></span><br><span class="line"><span class="comment">#!usr/bin/python</span></span><br><span class="line"></span><br><span class="line">score = int(raw_input(<span class="string">"Please input a number:"</span>))</span><br><span class="line"><span class="keyword">if</span> score &gt;= <span class="number">90</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'A'</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'Very Good'</span></span><br><span class="line"><span class="keyword">elif</span> score &gt;= <span class="number">80</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'B'</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'Good'</span></span><br><span class="line"><span class="keyword">elif</span> score &gt;= <span class="number">70</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'C'</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'pass'</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'D'</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'not pass'</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">'main end'</span></span><br></pre></td></tr></table></figure></p>
+<p>逻辑值包含2个量。  </p>
+<ul>
+<li>True：表示非空的量，所有非零数。  </li>
+<li>False：表示0，none，空的量等。  <h2 id="for"><a href="#for" class="headerlink" title="for"></a>for</h2><h3 id="for-序列"><a href="#for-序列" class="headerlink" title="for 序列"></a>for 序列</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">list1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> list1:</span><br><span class="line"><span class="keyword">print</span> i</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> list1:</span><br><span class="line"><span class="keyword">print</span> i,</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>print默认输出每行都带换行符，加逗号可以抑制换行符。</p>
+<ul>
+<li><p>tange()函数，返回列表</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">11</span>):</span><br><span class="line">    <span class="keyword">if</span> i % <span class="number">2</span> == <span class="number">0</span>:</span><br><span class="line"><span class="keyword">print</span> i</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>列表重写(列表表达式)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> [i <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">11</span>)]</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> [i**<span class="number">2</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">11</span>) <span class="keyword">if</span> i % <span class="number">2</span> == <span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>实例<br>计算1+2+….+100</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sum = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">101</span>):</span><br><span class="line">    sum = sum + i</span><br><span class="line"><span class="keyword">print</span> sum</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><code>xrange()</code>函数返回对象，不占用内存资源，比<code>range()</code>更快更高效。</p>
+<h3 id="for-字典"><a href="#for-字典" class="headerlink" title="for 字典"></a>for 字典</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">7</span>]: dic1 = dict.fromkeys(<span class="string">'abcde'</span>,<span class="number">100</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">8</span>]: dic1</span><br><span class="line">Out[<span class="number">8</span>]: &#123;<span class="string">'a'</span>: <span class="number">100</span>, <span class="string">'b'</span>: <span class="number">100</span>, <span class="string">'c'</span>: <span class="number">100</span>, <span class="string">'d'</span>: <span class="number">100</span>, <span class="string">'e'</span>: <span class="number">100</span>&#125;</span><br><span class="line"></span><br><span class="line">In [<span class="number">9</span>]: <span class="keyword">for</span> i <span class="keyword">in</span> dic1:<span class="keyword">print</span> i</span><br><span class="line">a</span><br><span class="line">c</span><br><span class="line">b</span><br><span class="line">e</span><br><span class="line">d</span><br><span class="line"></span><br><span class="line">In [<span class="number">10</span>]: <span class="keyword">for</span> i <span class="keyword">in</span> dic1:<span class="keyword">print</span> i,dic1[i]</span><br><span class="line">a <span class="number">100</span></span><br><span class="line">c <span class="number">100</span></span><br><span class="line">b <span class="number">100</span></span><br><span class="line">e <span class="number">100</span></span><br><span class="line">d <span class="number">100</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">11</span>]: <span class="keyword">for</span> i <span class="keyword">in</span> dic1.items():<span class="keyword">print</span> i</span><br><span class="line">(<span class="string">'a'</span>, <span class="number">100</span>)</span><br><span class="line">(<span class="string">'c'</span>, <span class="number">100</span>)</span><br><span class="line">(<span class="string">'b'</span>, <span class="number">100</span>)</span><br><span class="line">(<span class="string">'e'</span>, <span class="number">100</span>)</span><br><span class="line">(<span class="string">'d'</span>, <span class="number">100</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">12</span>]: <span class="keyword">for</span> v,k <span class="keyword">in</span> dic1.items():<span class="keyword">print</span> v,k</span><br><span class="line">a <span class="number">100</span></span><br><span class="line">c <span class="number">100</span></span><br><span class="line">b <span class="number">100</span></span><br><span class="line">e <span class="number">100</span></span><br><span class="line">d <span class="number">100</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>乘法口诀实现<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">1</span>,<span class="number">10</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> xrange(<span class="number">1</span>,i+<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">print</span> “%sx%s” %(j, i, j*i),</span><br><span class="line">    <span class="keyword">print</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/11/16/python流程控制for-while/" data-id="cjojujkyt004t14q64kdlltmk" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/for/">for</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/if/">if</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/while/">while</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/11/16/python字典/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">python字典</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#if"><span class="toc-number">1.</span> <span class="toc-text">if</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#格式"><span class="toc-number">1.1.</span> <span class="toc-text">格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例"><span class="toc-number">1.2.</span> <span class="toc-text">实例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#for"><span class="toc-number">2.</span> <span class="toc-text">for</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#for-序列"><span class="toc-number">2.1.</span> <span class="toc-text">for 序列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#for-字典"><span class="toc-number">2.2.</span> <span class="toc-text">for 字典</span></a></li></ol></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>

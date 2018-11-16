@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>python字典 | 持续不断</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="字典的定义字典是python中唯一的映射类型(哈希表)。字典对象是可变的，但字典的键必须使用不可变对象，一个字典可以使用不同类型的键值。字典的输出是无序的。123456789In [1]: dic = &amp;#123;&amp;#125;In [2]: type(dic)Out[2]: dictIn [3]: dic = &amp;#123;&apos;a&apos;:1,1:123&amp;#125;In [4]: dicOut[4]: &amp;#">
+<meta name="keywords" content="字典,dict,items">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python字典">
+<meta property="og:url" content="https://rosinelan.github.io/2018/11/16/python字典/index.html">
+<meta property="og:site_name" content="持续不断">
+<meta property="og:description" content="字典的定义字典是python中唯一的映射类型(哈希表)。字典对象是可变的，但字典的键必须使用不可变对象，一个字典可以使用不同类型的键值。字典的输出是无序的。123456789In [1]: dic = &amp;#123;&amp;#125;In [2]: type(dic)Out[2]: dictIn [3]: dic = &amp;#123;&apos;a&apos;:1,1:123&amp;#125;In [4]: dicOut[4]: &amp;#">
+<meta property="og:updated_time" content="2018-11-16T09:41:43.127Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python字典">
+<meta name="twitter:description" content="字典的定义字典是python中唯一的映射类型(哈希表)。字典对象是可变的，但字典的键必须使用不可变对象，一个字典可以使用不同类型的键值。字典的输出是无序的。123456789In [1]: dic = &amp;#123;&amp;#125;In [2]: type(dic)Out[2]: dictIn [3]: dic = &amp;#123;&apos;a&apos;:1,1:123&amp;#125;In [4]: dicOut[4]: &amp;#">
+  
+    <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">持续不断</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">要松懈的时候再坚持一下</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-python字典" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/16/python字典/" class="article-date">
+  <time datetime="2018-11-16T09:31:49.000Z" itemprop="datePublished">2018-11-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/system/">系统管理</a>►<a class="article-category-link" href="/categories/system/python实战/">python实战</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      python字典
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="字典的定义"><a href="#字典的定义" class="headerlink" title="字典的定义"></a>字典的定义</h2><p>字典是python中唯一的映射类型(哈希表)。<br>字典对象是可变的，但字典的键必须使用不可变对象，一个字典可以使用不同类型的键值。字典的输出是无序的。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">1</span>]: dic = &#123;&#125;</span><br><span class="line"></span><br><span class="line">In [<span class="number">2</span>]: type(dic)</span><br><span class="line">Out[<span class="number">2</span>]: dict</span><br><span class="line"></span><br><span class="line">In [<span class="number">3</span>]: dic = &#123;<span class="string">'a'</span>:<span class="number">1</span>,<span class="number">1</span>:<span class="number">123</span>&#125;</span><br><span class="line"></span><br><span class="line">In [<span class="number">4</span>]: dic</span><br><span class="line">Out[<span class="number">4</span>]: &#123;<span class="number">1</span>: <span class="number">123</span>, <span class="string">'a'</span>: <span class="number">1</span>&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="字典的方法"><a href="#字典的方法" class="headerlink" title="字典的方法"></a>字典的方法</h2><ul>
+<li><p>keys()<br>返回列表，内容为字典的key。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">5</span>]: dic = &#123;<span class="string">'a'</span>:<span class="number">1</span>,<span class="number">1</span>:<span class="number">123</span>,(<span class="string">'a'</span>,<span class="string">'b'</span>):<span class="string">'hello'</span>&#125;</span><br><span class="line"></span><br><span class="line">In [<span class="number">6</span>]: dic.keys()</span><br><span class="line">Out[<span class="number">6</span>]: [<span class="string">'a'</span>, <span class="number">1</span>, (<span class="string">'a'</span>, <span class="string">'b'</span>)]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>values()<br>返回列表，内容为字典中的value。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">5</span>]: dic = &#123;<span class="string">'a'</span>:<span class="number">1</span>,<span class="number">1</span>:<span class="number">123</span>,(<span class="string">'a'</span>,<span class="string">'b'</span>):<span class="string">'hello'</span>&#125;</span><br><span class="line"></span><br><span class="line">In [<span class="number">7</span>]: dic.values()</span><br><span class="line">Out[<span class="number">7</span>]: [<span class="number">1</span>, <span class="number">123</span>, <span class="string">'hello'</span>]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>items()<br>返回列表，内容为字典的键值对。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">5</span>]: dic = &#123;<span class="string">'a'</span>:<span class="number">1</span>,<span class="number">1</span>:<span class="number">123</span>,(<span class="string">'a'</span>,<span class="string">'b'</span>):<span class="string">'hello'</span>&#125;</span><br><span class="line"></span><br><span class="line">In [<span class="number">9</span>]: dic.items()</span><br><span class="line">Out[<span class="number">9</span>]: [(<span class="string">'a'</span>, <span class="number">1</span>), (<span class="number">1</span>, <span class="number">123</span>), ((<span class="string">'a'</span>, <span class="string">'b'</span>), <span class="string">'hello'</span>)]</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="字典练习"><a href="#字典练习" class="headerlink" title="字典练习"></a>字典练习</h2><p>从键盘读取输入，存入字典，输出。</p>
+<h3 id="输出方式1"><a href="#输出方式1" class="headerlink" title="输出方式1"></a>输出方式1</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[root@linux02 ~]<span class="comment"># cat zidian.py</span></span><br><span class="line"><span class="comment">#!usr/bin/python</span></span><br><span class="line"></span><br><span class="line">info = &#123;&#125;</span><br><span class="line">name = raw_input(<span class="string">'Please input your name:'</span>)</span><br><span class="line">age = raw_input(<span class="string">'Please input your age:'</span>)</span><br><span class="line">gender = raw_input(<span class="string">'Please input your gender(M/F):'</span>)</span><br><span class="line">info[<span class="string">'name'</span>] = name</span><br><span class="line">info[<span class="string">'age'</span>] = age</span><br><span class="line">info[<span class="string">'gender'</span>] = gender</span><br><span class="line"><span class="keyword">print</span> info</span><br><span class="line">[root@linux02 ~]<span class="comment"># python zidian.py</span></span><br><span class="line">Please input your name:mike</span><br><span class="line">Please input your age:<span class="number">20</span></span><br><span class="line">Please input your gender(M/F):M</span><br><span class="line">&#123;<span class="string">'gender'</span>: <span class="string">'M'</span>, <span class="string">'age'</span>: <span class="string">'20'</span>, <span class="string">'name'</span>: <span class="string">'mike'</span>&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="输出方式2"><a href="#输出方式2" class="headerlink" title="输出方式2"></a>输出方式2</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[root@linux02 ~]<span class="comment"># cat zidian.py</span></span><br><span class="line"><span class="comment">#!usr/bin/python</span></span><br><span class="line"></span><br><span class="line">info = &#123;&#125;</span><br><span class="line">name = raw_input(<span class="string">'Please input your name:'</span>)</span><br><span class="line">age = raw_input(<span class="string">'Please input your age:'</span>)</span><br><span class="line">gender = raw_input(<span class="string">'Please input your gender(M/F):'</span>)</span><br><span class="line">info[<span class="string">'name'</span>] = name</span><br><span class="line">info[<span class="string">'age'</span>] = age</span><br><span class="line">info[<span class="string">'gender'</span>] = gender</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> info.items():</span><br><span class="line">    <span class="keyword">print</span> i</span><br><span class="line"><span class="keyword">print</span> <span class="string">'main end'</span></span><br><span class="line">[root@linux02 ~]<span class="comment"># python zidian.py</span></span><br><span class="line">Please input your name:tom</span><br><span class="line">Please input your age:<span class="number">20</span></span><br><span class="line">Please input your gender(M/F):M</span><br><span class="line">(<span class="string">'gender'</span>, <span class="string">'M'</span>)</span><br><span class="line">(<span class="string">'age'</span>, <span class="string">'20'</span>)</span><br><span class="line">(<span class="string">'name'</span>, <span class="string">'tom'</span>)</span><br><span class="line">main end</span><br></pre></td></tr></table></figure>
+<h3 id="输出方式3"><a href="#输出方式3" class="headerlink" title="输出方式3"></a>输出方式3</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[root@linux02 ~]<span class="comment"># cat zidian.py</span></span><br><span class="line"><span class="comment">#!usr/bin/python</span></span><br><span class="line"></span><br><span class="line">info = &#123;&#125;</span><br><span class="line">name = raw_input(<span class="string">'Please input your name:'</span>)</span><br><span class="line">age = raw_input(<span class="string">'Please input your age:'</span>)</span><br><span class="line">gender = raw_input(<span class="string">'Please input your gender(M/F):'</span>)</span><br><span class="line">info[<span class="string">'name'</span>] = name</span><br><span class="line">info[<span class="string">'age'</span>] = age</span><br><span class="line">info[<span class="string">'gender'</span>] = gender</span><br><span class="line"><span class="keyword">for</span> k,v <span class="keyword">in</span> info.items():</span><br><span class="line">    <span class="keyword">print</span> k,v</span><br><span class="line"><span class="keyword">print</span> <span class="string">'main end'</span></span><br><span class="line">[root@linux02 ~]<span class="comment"># python zidian.py</span></span><br><span class="line">Please input your name:Mike</span><br><span class="line">Please input your age:<span class="number">33</span></span><br><span class="line">Please input your gender(M/F):M</span><br><span class="line">gender M</span><br><span class="line">age <span class="number">33</span></span><br><span class="line">name Mike</span><br><span class="line">main end</span><br></pre></td></tr></table></figure>
+<h3 id="输出方式4"><a href="#输出方式4" class="headerlink" title="输出方式4"></a>输出方式4</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[root@linux02 ~]<span class="comment"># cat zidian.py</span></span><br><span class="line"><span class="comment">#!usr/bin/python</span></span><br><span class="line"></span><br><span class="line">info = &#123;&#125;</span><br><span class="line">name = raw_input(<span class="string">'Please input your name:'</span>)</span><br><span class="line">age = raw_input(<span class="string">'Please input your age:'</span>)</span><br><span class="line">gender = raw_input(<span class="string">'Please input your gender(M/F):'</span>)</span><br><span class="line">info[<span class="string">'name'</span>] = name</span><br><span class="line">info[<span class="string">'age'</span>] = age</span><br><span class="line">info[<span class="string">'gender'</span>] = gender</span><br><span class="line"><span class="keyword">for</span> k,v <span class="keyword">in</span> info.items():</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'%s: %s'</span> %(k,v)</span><br><span class="line"><span class="keyword">print</span> <span class="string">'main end'</span></span><br><span class="line">[root@linux02 ~]<span class="comment"># python zidian.py</span></span><br><span class="line">Please input your name:Mike</span><br><span class="line">Please input your age:<span class="number">33</span></span><br><span class="line">Please input your gender(M/F):M</span><br><span class="line">gender: M</span><br><span class="line">age: <span class="number">33</span></span><br><span class="line">name: Mike</span><br><span class="line">main end</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/11/16/python字典/" data-id="cjojujkxm003o14q6bzkrhhkv" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dict/">dict</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/items/">items</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字典/">字典</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2018/11/16/python流程控制for-while/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          python流程控制for while
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/11/15/python字符串元组列表/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">python字符串元组列表</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#字典的定义"><span class="toc-number">1.</span> <span class="toc-text">字典的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字典的方法"><span class="toc-number">2.</span> <span class="toc-text">字典的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字典练习"><span class="toc-number">3.</span> <span class="toc-text">字典练习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#输出方式1"><span class="toc-number">3.1.</span> <span class="toc-text">输出方式1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出方式2"><span class="toc-number">3.2.</span> <span class="toc-text">输出方式2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出方式3"><span class="toc-number">3.3.</span> <span class="toc-text">输出方式3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出方式4"><span class="toc-number">3.4.</span> <span class="toc-text">输出方式4</span></a></li></ol></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>
