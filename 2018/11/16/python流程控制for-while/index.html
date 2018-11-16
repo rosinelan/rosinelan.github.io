@@ -5,17 +5,17 @@
   
   <title>python流程控制for while | 持续不断</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="if格式12if expression:    statements 缩进使用4个空格，不建议使用TAB键。 实例键盘输入数字，&amp;gt;90输出A,&amp;gt;80输出B，&amp;gt;=70输出C，&amp;lt;70输出D。1234567891011121314151617[root@linux02 ~]# cat if.py#!usr/bin/pythonscore = int(raw_input(&quot;Plea">
+  <meta name="description" content="if格式12if expression:    statements 缩进使用4个空格，不建议使用TAB键。 实例键盘输入数字，&amp;gt;90输出A,&amp;gt;80输出B，&amp;gt;=70输出C，&amp;lt;70输出D。">
 <meta name="keywords" content="if,for,while">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python流程控制for while">
 <meta property="og:url" content="https://rosinelan.github.io/2018/11/16/python流程控制for-while/index.html">
 <meta property="og:site_name" content="持续不断">
-<meta property="og:description" content="if格式12if expression:    statements 缩进使用4个空格，不建议使用TAB键。 实例键盘输入数字，&amp;gt;90输出A,&amp;gt;80输出B，&amp;gt;=70输出C，&amp;lt;70输出D。1234567891011121314151617[root@linux02 ~]# cat if.py#!usr/bin/pythonscore = int(raw_input(&quot;Plea">
-<meta property="og:updated_time" content="2018-11-16T09:53:38.466Z">
+<meta property="og:description" content="if格式12if expression:    statements 缩进使用4个空格，不建议使用TAB键。 实例键盘输入数字，&amp;gt;90输出A,&amp;gt;80输出B，&amp;gt;=70输出C，&amp;lt;70输出D。">
+<meta property="og:updated_time" content="2018-11-16T09:56:09.993Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python流程控制for while">
-<meta name="twitter:description" content="if格式12if expression:    statements 缩进使用4个空格，不建议使用TAB键。 实例键盘输入数字，&amp;gt;90输出A,&amp;gt;80输出B，&amp;gt;=70输出C，&amp;lt;70输出D。1234567891011121314151617[root@linux02 ~]# cat if.py#!usr/bin/pythonscore = int(raw_input(&quot;Plea">
+<meta name="twitter:description" content="if格式12if expression:    statements 缩进使用4个空格，不建议使用TAB键。 实例键盘输入数字，&amp;gt;90输出A,&amp;gt;80输出B，&amp;gt;=70输出C，&amp;lt;70输出D。">
   
     <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
   
@@ -42,7 +42,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Søk"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -102,7 +102,7 @@
         
         <h2 id="if"><a href="#if" class="headerlink" title="if"></a>if</h2><h3 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> expression:</span><br><span class="line">    statements</span><br></pre></td></tr></table></figure>
 <p>缩进使用4个空格，不建议使用TAB键。</p>
-<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>键盘输入数字，&gt;90输出A,&gt;80输出B，&gt;=70输出C，&lt;70输出D。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[root@linux02 ~]<span class="comment"># cat if.py</span></span><br><span class="line"><span class="comment">#!usr/bin/python</span></span><br><span class="line"></span><br><span class="line">score = int(raw_input(<span class="string">"Please input a number:"</span>))</span><br><span class="line"><span class="keyword">if</span> score &gt;= <span class="number">90</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'A'</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'Very Good'</span></span><br><span class="line"><span class="keyword">elif</span> score &gt;= <span class="number">80</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'B'</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'Good'</span></span><br><span class="line"><span class="keyword">elif</span> score &gt;= <span class="number">70</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'C'</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'pass'</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'D'</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'not pass'</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">'main end'</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>键盘输入数字，&gt;90输出A,&gt;80输出B，&gt;=70输出C，&lt;70输出D。<br><a id="more"></a><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[root@linux02 ~]<span class="comment"># cat if.py</span></span><br><span class="line"><span class="comment">#!usr/bin/python</span></span><br><span class="line"></span><br><span class="line">score = int(raw_input(<span class="string">"Please input a number:"</span>))</span><br><span class="line"><span class="keyword">if</span> score &gt;= <span class="number">90</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'A'</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'Very Good'</span></span><br><span class="line"><span class="keyword">elif</span> score &gt;= <span class="number">80</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'B'</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'Good'</span></span><br><span class="line"><span class="keyword">elif</span> score &gt;= <span class="number">70</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'C'</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'pass'</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'D'</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'not pass'</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">'main end'</span></span><br></pre></td></tr></table></figure></p>
 <p>逻辑值包含2个量。  </p>
 <ul>
 <li>True：表示非空的量，所有非零数。  </li>
@@ -130,7 +130,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/11/16/python流程控制for-while/" data-id="cjojujkyt004t14q64kdlltmk" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/11/16/python流程控制for-while/" data-id="cjojujkyt004t14q64kdlltmk" class="article-share-link">Share</a>
       
       
       
@@ -142,7 +142,7 @@
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>推荐文章</h2>
+    <h2>Recommended Posts</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =4
@@ -186,7 +186,7 @@
   
   
     <a href="/2018/11/16/python字典/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">python字典</div>
     </a>
   
@@ -216,7 +216,7 @@
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">文章目录</strong>
+        <strong class="toc-title">Content</strong>
         <div class="toc-widget-list">
               <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#if"><span class="toc-number">1.</span> <span class="toc-text">if</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#格式"><span class="toc-number">1.1.</span> <span class="toc-text">格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例"><span class="toc-number">1.2.</span> <span class="toc-text">实例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#for"><span class="toc-number">2.</span> <span class="toc-text">for</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#for-序列"><span class="toc-number">2.1.</span> <span class="toc-text">for 序列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#for-字典"><span class="toc-number">2.2.</span> <span class="toc-text">for 字典</span></a></li></ol></li></ol>
           </div>
@@ -244,10 +244,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
+     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>
