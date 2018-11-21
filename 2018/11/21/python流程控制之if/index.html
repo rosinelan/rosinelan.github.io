@@ -5,17 +5,17 @@
   
   <title>python流程控制之if | 持续不断</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="if格式12if expression:    statements 缩进使用4个空格，不建议使用TAB键。 实例键盘输入数字，&amp;gt;90输出A,&amp;gt;80输出B，&amp;gt;=70输出C，&amp;lt;70输出D。">
+  <meta name="description" content="if格式12if expression:    statements">
 <meta name="keywords" content="流程控制,if">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python流程控制之if">
 <meta property="og:url" content="https://rosinelan.github.io/2018/11/21/python流程控制之if/index.html">
 <meta property="og:site_name" content="持续不断">
-<meta property="og:description" content="if格式12if expression:    statements 缩进使用4个空格，不建议使用TAB键。 实例键盘输入数字，&amp;gt;90输出A,&amp;gt;80输出B，&amp;gt;=70输出C，&amp;lt;70输出D。">
-<meta property="og:updated_time" content="2018-11-21T10:49:39.496Z">
+<meta property="og:description" content="if格式12if expression:    statements">
+<meta property="og:updated_time" content="2018-11-21T11:13:18.477Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python流程控制之if">
-<meta name="twitter:description" content="if格式12if expression:    statements 缩进使用4个空格，不建议使用TAB键。 实例键盘输入数字，&amp;gt;90输出A,&amp;gt;80输出B，&amp;gt;=70输出C，&amp;lt;70输出D。">
+<meta name="twitter:description" content="if格式12if expression:    statements">
   
     <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
   
@@ -42,7 +42,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -101,8 +101,9 @@
         <!-- Table of Contents -->
         
         <h2 id="if"><a href="#if" class="headerlink" title="if"></a>if</h2><h3 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> expression:</span><br><span class="line">    statements</span><br></pre></td></tr></table></figure>
+<a id="more"></a> 
 <p>缩进使用4个空格，不建议使用TAB键。</p>
-<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>键盘输入数字，&gt;90输出A,&gt;80输出B，&gt;=70输出C，&lt;70输出D。<br><a id="more"></a><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[root@linux02 ~]<span class="comment"># cat if.py</span></span><br><span class="line"><span class="comment">#!usr/bin/python</span></span><br><span class="line"></span><br><span class="line">score = int(raw_input(<span class="string">"Please input a number:"</span>))</span><br><span class="line"><span class="keyword">if</span> score &gt;= <span class="number">90</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'A'</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'Very Good'</span></span><br><span class="line"><span class="keyword">elif</span> score &gt;= <span class="number">80</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'B'</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'Good'</span></span><br><span class="line"><span class="keyword">elif</span> score &gt;= <span class="number">70</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'C'</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'pass'</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'D'</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'not pass'</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">'main end'</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>键盘输入数字，&gt;90输出A,&gt;80输出B，&gt;=70输出C，&lt;70输出D。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[root@linux02 ~]<span class="comment"># cat if.py</span></span><br><span class="line"><span class="comment">#!usr/bin/python</span></span><br><span class="line"></span><br><span class="line">score = int(raw_input(<span class="string">"Please input a number:"</span>))</span><br><span class="line"><span class="keyword">if</span> score &gt;= <span class="number">90</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'A'</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'Very Good'</span></span><br><span class="line"><span class="keyword">elif</span> score &gt;= <span class="number">80</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'B'</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'Good'</span></span><br><span class="line"><span class="keyword">elif</span> score &gt;= <span class="number">70</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'C'</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'pass'</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'D'</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'not pass'</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">'main end'</span></span><br></pre></td></tr></table></figure></p>
 <p>逻辑值包含2个量。  </p>
 <ul>
 <li>True：表示非空的量，所有非零数。  </li>
@@ -111,13 +112,15 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">list1 = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">3</span>):</span><br><span class="line">    list1.append(int(input(<span class="string">'&#123;&#125;:'</span>.format(i))))</span><br><span class="line">print(list1)</span><br><span class="line">x = min(list1)</span><br><span class="line">list1.remove(x)</span><br><span class="line">z = max(list1)</span><br><span class="line">y = list1[<span class="number">0</span>]</span><br><span class="line">print(x, y, z)</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>企业发放的奖金根据利润提成。利润(I)低于或等于10万元时，奖金可提10%；利润高于10万元，低于20万元时，低于10万元的部分按10%提成，高于10万元的部分，可提成7.5%；20万到40万之间时，高于20万元的部分，可提成5%；40万到60万之间时高于40万元的部分，可提成3%；60万到100万之间时，高于60万元的部分，可提成1.5%，高于100万元时，超过100万元的部分按1%提成，从键盘输入当月利润I，求应发放奖金总数？</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">I = int(input(<span class="string">'Enter the profit:'</span>))</span><br><span class="line"><span class="keyword">if</span> I &gt;= <span class="number">100</span>:</span><br><span class="line">    A = (I<span class="number">-100</span>) * <span class="number">0.01</span> + <span class="number">3.95</span></span><br><span class="line"><span class="keyword">elif</span> I &gt;= <span class="number">60</span>:</span><br><span class="line">    A = (I - <span class="number">60</span>)* <span class="number">0.015</span> + <span class="number">3.35</span></span><br><span class="line"><span class="keyword">elif</span> I &gt;= <span class="number">40</span>:</span><br><span class="line">    A = (I <span class="number">-40</span>)+<span class="number">0.03</span> + <span class="number">2.75</span></span><br><span class="line"><span class="keyword">elif</span> I &gt;= <span class="number">20</span>:</span><br><span class="line">    A = (I <span class="number">-20</span>)*<span class="number">0.05</span> + <span class="number">1.75</span></span><br><span class="line"><span class="keyword">elif</span> I &gt;= <span class="number">10</span>:</span><br><span class="line">    A = (I <span class="number">-10</span>)*<span class="number">0.075</span> + <span class="number">1</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    A = I*<span class="number">0.1</span></span><br><span class="line">print(A)</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">I = int(input(<span class="string">'Enter the profit:'</span>))</span><br><span class="line"><span class="keyword">if</span> I &gt;= <span class="number">100</span>:</span><br><span class="line">    A = (I<span class="number">-100</span>) * <span class="number">0.01</span> + <span class="number">3.95</span></span><br><span class="line"><span class="keyword">elif</span> I &gt;= <span class="number">60</span>:</span><br><span class="line">    A = (I - <span class="number">60</span>)* <span class="number">0.015</span> + <span class="number">3.35</span></span><br><span class="line"><span class="keyword">elif</span> I &gt;= <span class="number">40</span>:</span><br><span class="line">    A = (I - <span class="number">40</span>)*<span class="number">0.03</span> + <span class="number">2.75</span></span><br><span class="line"><span class="keyword">elif</span> I &gt;= <span class="number">20</span>:</span><br><span class="line">    A = (I - <span class="number">20</span>)*<span class="number">0.05</span> + <span class="number">1.75</span></span><br><span class="line"><span class="keyword">elif</span> I &gt;= <span class="number">10</span>:</span><br><span class="line">    A = (I - <span class="number">10</span>)*<span class="number">0.075</span> + <span class="number">1</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    A = I*<span class="number">0.1</span></span><br><span class="line">print(A)</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
+<p>更简洁的写法<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">I = int(input(<span class="string">'Enter the profit:'</span>))</span><br><span class="line">arr = [<span class="number">100</span>, <span class="number">60</span>, <span class="number">40</span>, <span class="number">20</span>, <span class="number">10</span>, <span class="number">0</span>]</span><br><span class="line">rat = [<span class="number">0.01</span>, <span class="number">0.015</span>, <span class="number">0.03</span>, <span class="number">0.05</span>, <span class="number">0.075</span>, <span class="number">0.1</span>]</span><br><span class="line">A = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> idx <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">6</span>):</span><br><span class="line">    <span class="keyword">if</span> I &gt; arr[idx]:</span><br><span class="line">        A += (I-arr[idx])*rat[idx]</span><br><span class="line">        I = arr[idx]</span><br><span class="line">print(A)</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/11/21/python流程控制之if/" data-id="cjor1qnug004fy8q6qdqa40qz" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/11/21/python流程控制之if/" data-id="cjor1qnug004fy8q6qdqa40qz" class="article-share-link">Delen</a>
       
       
       
@@ -129,7 +132,7 @@
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>推荐文章</h2>
+    <h2>Recommended Posts</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =4
@@ -173,7 +176,7 @@
   
   
     <a href="/2018/11/16/python流程控制for-while/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
+      <strong class="article-nav-caption">Ouder</strong>
       <div class="article-nav-title">python流程控制for while</div>
     </a>
   
@@ -203,7 +206,7 @@
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">文章目录</strong>
+        <strong class="toc-title">Content</strong>
         <div class="toc-widget-list">
               <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#if"><span class="toc-number">1.</span> <span class="toc-text">if</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#格式"><span class="toc-number">1.1.</span> <span class="toc-text">格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例"><span class="toc-number">1.2.</span> <span class="toc-text">实例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#if实例"><span class="toc-number">2.</span> <span class="toc-text">if实例</span></a></li></ol>
           </div>
@@ -231,10 +234,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
+     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>
