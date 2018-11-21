@@ -40,7 +40,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -71,6 +71,60 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-python数据处理-二" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/11/python数据处理-二/" class="article-date">
+  <time datetime="2018-06-11T15:19:55.000Z" itemprop="datePublished">2018-06-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/program/">编程</a>►<a class="article-category-link" href="/categories/program/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/11/python数据处理-二/">python数据处理(二)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="pdf处理"><a href="#pdf处理" class="headerlink" title="pdf处理"></a>pdf处理</h3><p>pdf是二进制文件，使用<code>PyPDF2</code>模块进行处理，安装方法<code>pip install PyPDF2</code>。  </p>
+<h4 id="提取文本"><a href="#提取文本" class="headerlink" title="提取文本"></a>提取文本</h4><ol>
+<li>导入PyPDF2模块，然后以读二进制模式打开pdf文件，并将其保存到对象pdfFileObj。</li>
+<li>调用pdfFileReader()并传入pdfFileObj，将PdfFileReader对象保存到pdfReader。</li>
+<li>获取pdf文件总页数调用PdfFileReader对象的<code>numPages</code>属性。</li>
+<li>从某页中提取文本，首先通过PdfFileReader对象的<code>getPage()</code>方法得到Page对象，然后调用Page对象的<code>extractText()</code>方法得到文本字符串。
+        
+          <p class="article-more-link">
+            <a href="/2018/06/11/python数据处理-二/#more">继续阅读全文 »</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/06/11/python数据处理-二/" data-id="cjor1qnu50049y8q6d7c8hfnt" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/image/">image</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pdf/">pdf</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pdfkit/">pdfkit</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图片/">图片</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
   
     <article id="post-python数据处理" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -107,7 +161,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/06/08/python数据处理/" data-id="cjojujky3004314q6uez6fhfr" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/06/08/python数据处理/" data-id="cjor1qnt80040y8q6sbt6eanl" class="article-share-link">分享</a>
       
       
       
@@ -157,7 +211,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/06/06/python邮件发送/" data-id="cjojujl03006c14q664ra0bjp" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/06/06/python邮件发送/" data-id="cjor1qnwb006ey8q6nj6y0osv" class="article-share-link">分享</a>
       
       
       
@@ -207,7 +261,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/06/05/python网络编程之socketserver/" data-id="cjojujkzc005i14q6yvk9p9mu" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/06/05/python网络编程之socketserver/" data-id="cjor1qnw00061y8q60vs0jyhq" class="article-share-link">分享</a>
       
       
       
@@ -257,7 +311,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/06/01/python网络编程之socket/" data-id="cjojujkz2005614q6cikuy1cd" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/06/01/python网络编程之socket/" data-id="cjor1qnv70054y8q6hl48dqan" class="article-share-link">分享</a>
       
       
       
@@ -307,7 +361,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/30/python单词查找练习题/" data-id="cjojujkxc003c14q6nwi8mzwf" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/05/30/python单词查找练习题/" data-id="cjor1qns40031y8q6k5ioaipm" class="article-share-link">分享</a>
       
       
       
@@ -357,7 +411,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/27/python任务调度模块celery-二/" data-id="cjojujkwi002m14q60kwihkc7" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/05/27/python任务调度模块celery-二/" data-id="cjor1qnrv002vy8q6gfmq9ukk" class="article-share-link">分享</a>
       
       
       
@@ -408,7 +462,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/27/python多线程练习题/" data-id="cjojujkxh003i14q6101cytw0" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/05/27/python多线程练习题/" data-id="cjor1qnsn003ky8q66264zox7" class="article-share-link">分享</a>
       
       
       
@@ -459,7 +513,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/25/python任务调度模块celery/" data-id="cjojujkwl002p14q676rnm4a3" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/05/25/python任务调度模块celery/" data-id="cjor1qnrk002iy8q62naxpgav" class="article-share-link">分享</a>
       
       
       
@@ -509,7 +563,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/25/python消息队列/" data-id="cjojujkyy004z14q6wg1wz0n2" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/05/25/python消息队列/" data-id="cjor1qnv90056y8q6932qaub8" class="article-share-link">分享</a>
       
       
       
@@ -523,59 +577,10 @@
 
 
   
-    <article id="post-python多线程" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/05/23/python多线程/" class="article-date">
-  <time datetime="2018-05-23T13:25:22.000Z" itemprop="datePublished">2018-05-23</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/program/">编程</a>►<a class="article-category-link" href="/categories/program/python/">python</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/23/python多线程/">python多线程</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h3><p>任务可以由多进程完成，也可以由一个进程内的多线程完成。<br>我们前面提到了进程是由若干线程组成的，一个进程至少有一个线程。<br>由于线程是操作系统直接支持的执行单元，因此，高级语言通常都内置多线程的支持，Python也不例外，并且，Python的线程是真正的Posix Thread，而不是模拟出来的线程。Python的标准库提供了threading模块。<br>
-        
-          <p class="article-more-link">
-            <a href="/2018/05/23/python多线程/#more">继续阅读全文 »</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/23/python多线程/" data-id="cjojujkxq003r14q6natx7tyt" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lock/">Lock</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/threading/">threading</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/threadpool/">threadpool</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/">Next&raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/">下一页&raquo;</a>
   </nav>
 </section>
            
@@ -590,9 +595,13 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title recent-posts">Recent Posts</h3>
+    <h3 class="widget-title recent-posts">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/11/21/python流程控制之if/">python流程控制之if</a>
+          </li>
         
           <li>
             <a href="/2018/11/16/python流程控制for-while/">python流程控制for while</a>
@@ -608,10 +617,6 @@
         
           <li>
             <a href="/2018/11/14/git安装和使用/">git安装和使用</a>
-          </li>
-        
-          <li>
-            <a href="/2018/11/14/variable-of-python/">variable of python</a>
           </li>
         
       </ul>
@@ -632,10 +637,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
+     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>
