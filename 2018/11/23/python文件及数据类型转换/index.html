@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>python文件及数据类型转换 | 持续不断</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="文件操作基本操作python内置函数open()进行文件操作，默认使用r方式打开文件。">
+<meta name="keywords" content="文件,类型转换">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python文件及数据类型转换">
+<meta property="og:url" content="https://rosinelan.github.io/2018/11/23/python文件及数据类型转换/index.html">
+<meta property="og:site_name" content="持续不断">
+<meta property="og:description" content="文件操作基本操作python内置函数open()进行文件操作，默认使用r方式打开文件。">
+<meta property="og:updated_time" content="2018-11-23T08:40:09.519Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python文件及数据类型转换">
+<meta name="twitter:description" content="文件操作基本操作python内置函数open()进行文件操作，默认使用r方式打开文件。">
+  
+    <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">持续不断</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">要松懈的时候再坚持一下</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-python文件及数据类型转换" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/23/python文件及数据类型转换/" class="article-date">
+  <time datetime="2018-11-23T08:18:45.000Z" itemprop="datePublished">2018-11-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/system/">系统管理</a>►<a class="article-category-link" href="/categories/system/python实战/">python实战</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      python文件及数据类型转换
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><p>python内置函数<code>open()</code>进行文件操作，默认使用<code>r</code>方式打开文件。<br><a id="more"></a><br>操作示例<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fd = open(‘/tmp/tmp.txt’,’w’)</span><br><span class="line">fd.write(“<span class="number">123</span>”)</span><br><span class="line">fd.close()</span><br></pre></td></tr></table></figure></p>
+<p>其他打开方式<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">r    读方式打开(文件不存在报错)</span><br><span class="line">w    写方式打开(文件不存在会新建，存在会被覆盖)</span><br><span class="line">a    追加模式(文件不存在会创建)</span><br><span class="line">r+    读写模式打开</span><br><span class="line">w+    读写模式打开</span><br><span class="line">a+    读写模式打开</span><br><span class="line">rb    二进制读模式</span><br><span class="line">wb    二进制写模式</span><br><span class="line">ab    二进制追加模式</span><br><span class="line">rb+    二进制读写模式打开</span><br><span class="line">wb+    二进制读写模式打开</span><br><span class="line">ab+    二进制读写模式打开</span><br></pre></td></tr></table></figure></p>
+<p><code>w</code>方式打开文件，原文件将被覆盖<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">11</span>]: fd = open(<span class="string">'/root/aming/tmp.txt'</span>,<span class="string">'w'</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">12</span>]: fd.write(<span class="string">'1234\n'</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">13</span>]: fd.close()</span><br></pre></td></tr></table></figure></p>
+<p><code>a</code>方式打开文件，追加<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">14</span>]: fd = open(<span class="string">'/root/aming/tmp.txt'</span>,<span class="string">'a'</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">16</span>]: fd.write(<span class="string">'5678\n'</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">17</span>]: fd.close()</span><br></pre></td></tr></table></figure></p>
+<p>文件读取方法</p>
+<ul>
+<li>fd.read()    返回字符串</li>
+<li>fd.readline()    返回字符串</li>
+<li>fd.readlines()    返回列表</li>
+</ul>
+<p><code>fd.read()</code>    返回字符串，读取文件所有内容，再次读取时返回空<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">20</span>]: fd = open(<span class="string">'/root/aming/tmp.txt'</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">21</span>]: fd.read()</span><br><span class="line">Out[<span class="number">21</span>]: <span class="string">'1234\n5678\n'</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">22</span>]: fd.read()</span><br><span class="line">Out[<span class="number">22</span>]: <span class="string">''</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">23</span>]: fd.close()</span><br></pre></td></tr></table></figure></p>
+<p><code>fd.readline()</code>    返回字符串，按行顺序读取<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">24</span>]: fd = open(<span class="string">'/root/aming/tmp.txt'</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">25</span>]: fd.readline()</span><br><span class="line">Out[<span class="number">25</span>]: <span class="string">'1234\n'</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">26</span>]: fd.readline()</span><br><span class="line">Out[<span class="number">26</span>]: <span class="string">'5678\n'</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">27</span>]: fd.readline()</span><br><span class="line">Out[<span class="number">27</span>]: <span class="string">''</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">28</span>]: fd.close()</span><br></pre></td></tr></table></figure></p>
+<p><code>fd.readlines()</code>    返回列表<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">29</span>]: fd = open(<span class="string">'/root/aming/tmp.txt'</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">30</span>]: fd.readlines()</span><br><span class="line">Out[<span class="number">30</span>]: [<span class="string">'1234\n'</span>, <span class="string">'5678\n'</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">31</span>]: fd.close()</span><br></pre></td></tr></table></figure></p>
+<h3 id="文件遍历"><a href="#文件遍历" class="headerlink" title="文件遍历"></a>文件遍历</h3><h4 id="for循环遍历文件"><a href="#for循环遍历文件" class="headerlink" title="for循环遍历文件"></a>for循环遍历文件</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fd = open(<span class="string">'/root/aming/tmp.txt'</span>)</span><br><span class="line"><span class="comment">#for line in fd.readlines():</span></span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> fd:</span><br><span class="line"><span class="keyword">print</span> line,</span><br><span class="line">fd.close()</span><br></pre></td></tr></table></figure>
+<p>读取方式有2种，分别为<br><code>for line in fd.realines()</code><br><code>for line in fd</code><br>对于大文件进行遍历，建议使用第二种方法，第一种会创建列表，需要占用大量内存；第二种则不会。</p>
+<h4 id="while循环遍历文件"><a href="#while循环遍历文件" class="headerlink" title="while循环遍历文件"></a>while循环遍历文件</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">fd = open(<span class="string">'/root/aming/tmp.txt'</span>)</span><br><span class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">    line = fd.readline()</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> line:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">print</span> line,</span><br><span class="line">fd.close()</span><br></pre></td></tr></table></figure>
+<p>执行结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1234</span></span><br><span class="line"><span class="number">5678</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="with-open-用法示例"><a href="#with-open-用法示例" class="headerlink" title="with open 用法示例"></a>with open 用法示例</h4><p>使用此方式打开文件，不用再次调用fd.close()关闭。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> open(<span class="string">'/root/aming/tmp.txt'</span>) <span class="keyword">as</span> fd:</span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">        line = fd.readline()</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> line:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">print</span> line,</span><br></pre></td></tr></table></figure></p>
+<p>执行结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1234</span></span><br><span class="line"><span class="number">5678</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>统计系统free内存和所占百分比<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> open(<span class="string">'/proc/meminfo'</span>) <span class="keyword">as</span> fd:</span><br><span class="line">    <span class="keyword">for</span> free <span class="keyword">in</span> fd:</span><br><span class="line">        <span class="keyword">if</span> free.startswith(<span class="string">'MemTotal'</span>):</span><br><span class="line">            total = free.split()[<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        <span class="keyword">if</span> free.startswith(<span class="string">'MemFree'</span>):</span><br><span class="line">            free = free.split()[<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">"%.2f"</span> %(int(free)/<span class="number">1024.0</span>)+<span class="string">'M'</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">"%.2f"</span> %(int(total)/<span class="number">1024.0</span>)+<span class="string">'M'</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">"%.2f"</span> %(int(free)/float(total))+<span class="string">'%'</span></span><br></pre></td></tr></table></figure></p>
+<p>输出结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">557.22</span>M</span><br><span class="line"><span class="number">1862.21</span>M</span><br><span class="line"><span class="number">0.30</span>%</span><br></pre></td></tr></table></figure></p>
+<h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><h3 id="数据类型转换"><a href="#数据类型转换" class="headerlink" title="数据类型转换"></a>数据类型转换</h3><p>16进制转换为10进制<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">1</span>]: int(<span class="string">'a'</span>,<span class="number">16</span>)</span><br><span class="line">Out[<span class="number">1</span>]: <span class="number">10</span></span><br></pre></td></tr></table></figure></p>
+<p>10进制转换为16进制<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">2</span>]: hex(<span class="number">10</span>)</span><br><span class="line">Out[<span class="number">2</span>]: <span class="string">'0xa'</span></span><br></pre></td></tr></table></figure></p>
+<p>10进制转换为字符串<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">3</span>]: str(<span class="number">10</span>)</span><br><span class="line">Out[<span class="number">3</span>]: <span class="string">'10'</span></span><br></pre></td></tr></table></figure></p>
+<p>字符串转换为10进制<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">4</span>]: int(<span class="string">'10'</span>)</span><br><span class="line">Out[<span class="number">4</span>]: <span class="number">10</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h3><p>计算MAC地址,已知当前MAC地址，计算下一个MAC地址<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">macaddr = <span class="string">'00:0C:29:A5:62:0A'</span></span><br><span class="line">prefix_mac = macaddr[:<span class="number">-3</span>]</span><br><span class="line">last_two = macaddr[<span class="number">-2</span>:]</span><br><span class="line">plus_one = int(last_two, <span class="number">16</span>) + <span class="number">1</span></span><br><span class="line"><span class="keyword">if</span> plus_one <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">    new_last_two = hex(plus_one)[<span class="number">2</span>:]</span><br><span class="line">    new_last_two = <span class="string">'0'</span> + new_last_two</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    new_last_two = hex(plus_one)[<span class="number">2</span>:]</span><br><span class="line">    <span class="keyword">if</span> len(new_last_two) == <span class="number">1</span>:</span><br><span class="line">        new_last_two = <span class="string">'0'</span> + new_last_two</span><br><span class="line">new_mac = prefix_mac + <span class="string">':'</span> + new_last_two</span><br><span class="line"><span class="keyword">print</span> new_mac.upper()</span><br></pre></td></tr></table></figure></p>
+<p>执行结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">00</span>:<span class="number">0</span>C:<span class="number">29</span>:A5:<span class="number">62</span>:<span class="number">0</span>B</span><br></pre></td></tr></table></figure></p>
+<h3 id="元组字典列表转换"><a href="#元组字典列表转换" class="headerlink" title="元组字典列表转换"></a>元组字典列表转换</h3><p>字符串转换为列表    list()<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">16</span>]: s = <span class="string">'abc'</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">17</span>]: l = list(s)</span><br><span class="line"></span><br><span class="line">In [<span class="number">18</span>]: l</span><br><span class="line">Out[<span class="number">18</span>]: [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]</span><br></pre></td></tr></table></figure></p>
+<p>列表转换为字符串    ‘’.join()<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">18</span>]: l</span><br><span class="line">Out[<span class="number">18</span>]: [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">19</span>]: <span class="string">''</span>.join(l)</span><br><span class="line">Out[<span class="number">19</span>]: <span class="string">'abc'</span></span><br></pre></td></tr></table></figure></p>
+<p>字符串转换为元组    tuple()<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">20</span>]: s = <span class="string">'abc'</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">21</span>]: t = tuple(s)</span><br><span class="line"></span><br><span class="line">In [<span class="number">22</span>]: t</span><br><span class="line">Out[<span class="number">22</span>]: (<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>元组转换为字符串    ‘’.join()<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">22</span>]: t</span><br><span class="line">Out[<span class="number">22</span>]: (<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">23</span>]: <span class="string">''</span>.join(t)</span><br><span class="line">Out[<span class="number">23</span>]: <span class="string">'abc'</span></span><br></pre></td></tr></table></figure></p>
+<p>列表转换为元组    tuple()<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">24</span>]: l</span><br><span class="line">Out[<span class="number">24</span>]: [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">25</span>]: tuple(l)</span><br><span class="line">Out[<span class="number">25</span>]: (<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>元组转换为列表    list()<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">26</span>]: t</span><br><span class="line">Out[<span class="number">26</span>]: (<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">27</span>]: list(t)</span><br><span class="line">Out[<span class="number">27</span>]: [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]</span><br></pre></td></tr></table></figure></p>
+<p>字典转换为列表    字典的items()方法<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">28</span>]: dic = &#123;<span class="string">'a'</span> : <span class="number">1</span>, <span class="string">'b'</span> : <span class="number">2</span>&#125;</span><br><span class="line"></span><br><span class="line">In [<span class="number">29</span>]: dic.items()</span><br><span class="line">Out[<span class="number">29</span>]: [(<span class="string">'a'</span>, <span class="number">1</span>), (<span class="string">'b'</span>, <span class="number">2</span>)]</span><br></pre></td></tr></table></figure></p>
+<p>列表转换为字典    dict()<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">32</span>]: l1</span><br><span class="line">Out[<span class="number">32</span>]: [(<span class="string">'a'</span>, <span class="number">1</span>), (<span class="string">'b'</span>, <span class="number">2</span>)]</span><br><span class="line"></span><br><span class="line">In [<span class="number">33</span>]: dict(l1)</span><br><span class="line">Out[<span class="number">33</span>]: &#123;<span class="string">'a'</span>: <span class="number">1</span>, <span class="string">'b'</span>: <span class="number">2</span>&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/11/23/python文件及数据类型转换/" data-id="cjotrznhd002s6sq6dnhg7og7" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/文件/">文件</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/类型转换/">类型转换</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/11/21/python流程控制之if/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">python流程控制之if</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#文件操作"><span class="toc-number">1.</span> <span class="toc-text">文件操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本操作"><span class="toc-number">1.1.</span> <span class="toc-text">基本操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件遍历"><span class="toc-number">1.2.</span> <span class="toc-text">文件遍历</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#for循环遍历文件"><span class="toc-number">1.2.1.</span> <span class="toc-text">for循环遍历文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#while循环遍历文件"><span class="toc-number">1.2.2.</span> <span class="toc-text">while循环遍历文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#with-open-用法示例"><span class="toc-number">1.2.3.</span> <span class="toc-text">with open 用法示例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例"><span class="toc-number">1.3.</span> <span class="toc-text">示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类型转换"><span class="toc-number">2.</span> <span class="toc-text">类型转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据类型转换"><span class="toc-number">2.1.</span> <span class="toc-text">数据类型转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例-1"><span class="toc-number">2.2.</span> <span class="toc-text">示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#元组字典列表转换"><span class="toc-number">2.3.</span> <span class="toc-text">元组字典列表转换</span></a></li></ol></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>
