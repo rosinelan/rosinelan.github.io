@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>python函数定义及默认参数 | 持续不断</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="python函数函数是完成特定功能的一个语句组，这组语句可以作为一个单位使用，并且给它取一个名字。函数调用就是通过函数名在程序的不同地方多次执行。函数分为预定义函数(可以直接使用)和自定义函数(用户自己编写)。使用函数可以降低编程难度(将大问题划分为多个小问题)；可以实现代码重用，提高效率。 定义格式def 函数名([参数列表]): 函数名首字母小写，其余单词首字母大写 调用格式函数名([参数])">
+<meta name="keywords" content="函数,参数,默认参数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python函数定义及默认参数">
+<meta property="og:url" content="https://rosinelan.github.io/2018/11/26/python函数定义及默认参数/index.html">
+<meta property="og:site_name" content="持续不断">
+<meta property="og:description" content="python函数函数是完成特定功能的一个语句组，这组语句可以作为一个单位使用，并且给它取一个名字。函数调用就是通过函数名在程序的不同地方多次执行。函数分为预定义函数(可以直接使用)和自定义函数(用户自己编写)。使用函数可以降低编程难度(将大问题划分为多个小问题)；可以实现代码重用，提高效率。 定义格式def 函数名([参数列表]): 函数名首字母小写，其余单词首字母大写 调用格式函数名([参数])">
+<meta property="og:updated_time" content="2018-11-26T10:20:17.979Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python函数定义及默认参数">
+<meta name="twitter:description" content="python函数函数是完成特定功能的一个语句组，这组语句可以作为一个单位使用，并且给它取一个名字。函数调用就是通过函数名在程序的不同地方多次执行。函数分为预定义函数(可以直接使用)和自定义函数(用户自己编写)。使用函数可以降低编程难度(将大问题划分为多个小问题)；可以实现代码重用，提高效率。 定义格式def 函数名([参数列表]): 函数名首字母小写，其余单词首字母大写 调用格式函数名([参数])">
+  
+    <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">持续不断</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">要松懈的时候再坚持一下</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-python函数定义及默认参数" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/26/python函数定义及默认参数/" class="article-date">
+  <time datetime="2018-11-26T10:11:44.000Z" itemprop="datePublished">2018-11-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/system/">系统管理</a>►<a class="article-category-link" href="/categories/system/python实战/">python实战</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      python函数定义及默认参数
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="python函数"><a href="#python函数" class="headerlink" title="python函数"></a>python函数</h2><p>函数是完成特定功能的一个语句组，这组语句可以作为一个单位使用，并且给它取一个名字。<br>函数调用就是通过函数名在程序的不同地方多次执行。<br>函数分为预定义函数(可以直接使用)和自定义函数(用户自己编写)。<br>使用函数可以降低编程难度(将大问题划分为多个小问题)；可以实现代码重用，提高效率。</p>
+<h3 id="定义格式"><a href="#定义格式" class="headerlink" title="定义格式"></a>定义格式</h3><p>def 函数名([参数列表]):</p>
+<p>函数名首字母小写，其余单词首字母大写</p>
+<h3 id="调用格式"><a href="#调用格式" class="headerlink" title="调用格式"></a>调用格式</h3><p>函数名([参数])</p>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>判断键盘输入是否为数字<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun_Is_Num</span><span class="params">()</span>:</span></span><br><span class="line">    sth = raw_input(<span class="string">"Please input something:"</span>)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">if</span> type(int(sth)) == type(<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">print</span> <span class="string">"%s is a number"</span> %sth</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"%s is not a number"</span> %sth</span><br><span class="line"></span><br><span class="line">fun_Is_Num()</span><br></pre></td></tr></table></figure></p>
+<p>输出结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@linux02 advance]<span class="comment"># python 1_1_3.py </span></span><br><span class="line">Please input something:www</span><br><span class="line">www <span class="keyword">is</span> <span class="keyword">not</span> a number</span><br><span class="line">[root@linux02 advance]<span class="comment"># python 1_1_3.py </span></span><br><span class="line">Please input something:<span class="number">12</span></span><br><span class="line"><span class="number">12</span> <span class="keyword">is</span> a number</span><br></pre></td></tr></table></figure></p>
+<h2 id="函数参数"><a href="#函数参数" class="headerlink" title="函数参数"></a>函数参数</h2><p>参数分为形式参数和实际参数。<br>在定义函数时，函数名后面括号中的变量名称叫做形式参数。<br>在调用函数时，函数名后面括号中的变量名称叫做实际参数。</p>
+<h3 id="实例1"><a href="#实例1" class="headerlink" title="实例1"></a>实例1</h3><p>判断输入是否为数字<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isNum</span><span class="params">(s)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> s:</span><br><span class="line">        <span class="keyword">if</span> i <span class="keyword">in</span> <span class="string">'0123456789'</span>:</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">           <span class="keyword">print</span> <span class="string">"%s is not a number."</span> %s</span><br><span class="line">           sys.exit()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"%s is a number."</span> %s</span><br><span class="line"></span><br><span class="line">isNum(sys.argv[<span class="number">1</span>])</span><br></pre></td></tr></table></figure></p>
+<p>输出结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@linux02 advance]<span class="comment"># python 1_2_1.py 12</span></span><br><span class="line"><span class="number">12</span> <span class="keyword">is</span> a number.</span><br><span class="line">[root@linux02 advance]<span class="comment"># python 1_2_1.py 12ffff</span></span><br><span class="line"><span class="number">12</span>ffff <span class="keyword">is</span> <span class="keyword">not</span> a number.</span><br></pre></td></tr></table></figure></p>
+<h4 id="sys-argv"><a href="#sys-argv" class="headerlink" title="sys.argv"></a>sys.argv</h4><p>返回一个列表，其中<code>argv[0]</code>表示文件路径，后面的依次为参数。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">print</span> sys.argv</span><br><span class="line"></span><br><span class="line">fun()</span><br></pre></td></tr></table></figure></p>
+<p>输出结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@linux02 advance]<span class="comment"># python 1_1_1.py</span></span><br><span class="line">[<span class="string">'1_1_1.py'</span>]</span><br><span class="line">[root@linux02 advance]<span class="comment"># python 1_1_1.py 1 b e</span></span><br><span class="line">[<span class="string">'1_1_1.py'</span>, <span class="string">'1'</span>, <span class="string">'b'</span>, <span class="string">'e'</span>]</span><br><span class="line">[root@linux02 ~]<span class="comment"># python /root/aming/advance/1_1_1.py 2</span></span><br><span class="line">[<span class="string">'/root/aming/advance/1_1_1.py'</span>, <span class="string">'2'</span>]</span><br></pre></td></tr></table></figure></p>
+<h3 id="实例2"><a href="#实例2" class="headerlink" title="实例2"></a>实例2</h3><p>打印系统所有的PID，要求从/proc读取。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isNum</span><span class="params">(s)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> s:</span><br><span class="line">        <span class="keyword">if</span> i <span class="keyword">in</span> <span class="string">'0123456789'</span>:</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line"><span class="comment">#           print "%s is not a number." %s</span></span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">print</span> s, </span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> os.listdir(<span class="string">'/proc'</span>):</span><br><span class="line">    isNum(i)</span><br></pre></td></tr></table></figure></p>
+<h3 id="默认参数"><a href="#默认参数" class="headerlink" title="默认参数"></a>默认参数</h3><p>默认参数必须连续设置，直至最后一个参数，中间不可间断。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun</span><span class="params">(x,y=<span class="number">10</span>,z)</span>:</span>    错误</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun</span><span class="params">(x=<span class="number">10</span>,y,z)</span>:</span>    错误</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun</span><span class="params">(x=<span class="number">10</span>,y,z=<span class="number">10</span>)</span>    错误</span></span><br><span class="line"><span class="function"><span class="title">def</span> <span class="title">fun</span><span class="params">(x=<span class="number">10</span>,y=<span class="number">8</span>,z=<span class="number">7</span>)</span>:</span>    正确</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun</span><span class="params">(x,y=<span class="number">8</span>,z=<span class="number">7</span>)</span>:</span>    正确</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun</span><span class="params">(x=<span class="number">10</span>,y=<span class="number">8</span>,z=<span class="number">7</span>)</span>:</span>    正确</span><br></pre></td></tr></table></figure></p>
+<p>调用函数时，对于已经给的参数从左向右进行匹配。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/11/26/python函数定义及默认参数/" data-id="cjoy5x3tn003794q6r9j22zsh" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/函数/">函数</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/参数/">参数</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/默认参数/">默认参数</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/11/23/python文件及数据类型转换/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">python文件及数据类型转换</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#python函数"><span class="toc-number">1.</span> <span class="toc-text">python函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义格式"><span class="toc-number">1.1.</span> <span class="toc-text">定义格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#调用格式"><span class="toc-number">1.2.</span> <span class="toc-text">调用格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例"><span class="toc-number">1.3.</span> <span class="toc-text">实例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数参数"><span class="toc-number">2.</span> <span class="toc-text">函数参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#实例1"><span class="toc-number">2.1.</span> <span class="toc-text">实例1</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#sys-argv"><span class="toc-number">2.1.1.</span> <span class="toc-text">sys.argv</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例2"><span class="toc-number">2.2.</span> <span class="toc-text">实例2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#默认参数"><span class="toc-number">2.3.</span> <span class="toc-text">默认参数</span></a></li></ol></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>
