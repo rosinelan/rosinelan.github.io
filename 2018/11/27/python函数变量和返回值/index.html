@@ -5,17 +5,17 @@
   
   <title>python函数变量和返回值 | 持续不断</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="函数变量函数变量分为局部变量和全局变量。任何变量都有特定作用域。在函数中定义的变量一般只能在该函数内部使用，属于局部变量。在一个文件顶部定义的变量可以供文件中的任何函数调用，属于全局变量。 变量作用域全局变量在函数内部只能print，不可进行操作；局部变量在函数外部不可见；使用global关键字声明为全局变量，则可以进行操作或者外部使用。123456789101112#!/usr/bin/pyth">
+  <meta name="description" content="函数变量函数变量分为局部变量和全局变量。任何变量都有特定作用域。在函数中定义的变量一般只能在该函数内部使用，属于局部变量。">
 <meta name="keywords" content="变量,返回值">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python函数变量和返回值">
 <meta property="og:url" content="https://rosinelan.github.io/2018/11/27/python函数变量和返回值/index.html">
 <meta property="og:site_name" content="持续不断">
-<meta property="og:description" content="函数变量函数变量分为局部变量和全局变量。任何变量都有特定作用域。在函数中定义的变量一般只能在该函数内部使用，属于局部变量。在一个文件顶部定义的变量可以供文件中的任何函数调用，属于全局变量。 变量作用域全局变量在函数内部只能print，不可进行操作；局部变量在函数外部不可见；使用global关键字声明为全局变量，则可以进行操作或者外部使用。123456789101112#!/usr/bin/pyth">
-<meta property="og:updated_time" content="2018-11-27T09:25:01.318Z">
+<meta property="og:description" content="函数变量函数变量分为局部变量和全局变量。任何变量都有特定作用域。在函数中定义的变量一般只能在该函数内部使用，属于局部变量。">
+<meta property="og:updated_time" content="2018-11-27T09:37:58.970Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python函数变量和返回值">
-<meta name="twitter:description" content="函数变量函数变量分为局部变量和全局变量。任何变量都有特定作用域。在函数中定义的变量一般只能在该函数内部使用，属于局部变量。在一个文件顶部定义的变量可以供文件中的任何函数调用，属于全局变量。 变量作用域全局变量在函数内部只能print，不可进行操作；局部变量在函数外部不可见；使用global关键字声明为全局变量，则可以进行操作或者外部使用。123456789101112#!/usr/bin/pyth">
+<meta name="twitter:description" content="函数变量函数变量分为局部变量和全局变量。任何变量都有特定作用域。在函数中定义的变量一般只能在该函数内部使用，属于局部变量。">
   
     <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
   
@@ -100,7 +100,7 @@
       
         <!-- Table of Contents -->
         
-        <h2 id="函数变量"><a href="#函数变量" class="headerlink" title="函数变量"></a>函数变量</h2><p>函数变量分为局部变量和全局变量。任何变量都有特定作用域。<br>在函数中定义的变量一般只能在该函数内部使用，属于局部变量。<br>在一个文件顶部定义的变量可以供文件中的任何函数调用，属于全局变量。</p>
+        <h2 id="函数变量"><a href="#函数变量" class="headerlink" title="函数变量"></a>函数变量</h2><p>函数变量分为局部变量和全局变量。任何变量都有特定作用域。<br>在函数中定义的变量一般只能在该函数内部使用，属于局部变量。<br><a id="more"></a><br>在一个文件顶部定义的变量可以供文件中的任何函数调用，属于全局变量。</p>
 <h3 id="变量作用域"><a href="#变量作用域" class="headerlink" title="变量作用域"></a>变量作用域</h3><p>全局变量在函数内部只能print，不可进行操作；局部变量在函数外部不可见；使用global关键字声明为全局变量，则可以进行操作或者外部使用。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"></span><br><span class="line">x = <span class="number">100</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">global</span> x</span><br><span class="line">    x += <span class="number">1</span></span><br><span class="line">    <span class="keyword">global</span> y</span><br><span class="line">    y = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">fun()</span><br><span class="line"><span class="keyword">print</span> x</span><br><span class="line"><span class="keyword">print</span> y</span><br></pre></td></tr></table></figure></p>
 <p>此处x为全局变量，若不进行global声明，x += 1报错；y为局部变量，若不进行global声明，print y报错。</p>
 <h3 id="locals-函数"><a href="#locals-函数" class="headerlink" title="locals()函数"></a>locals()函数</h3><p>返回一个字典，字典内容为当前可见的变量。</p>
@@ -118,7 +118,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/11/27/python函数变量和返回值/" data-id="cjozjt0fs0027r0q694gze4mm" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/11/27/python函数变量和返回值/" data-id="cjp10p0qa002ej4q6gmhb84ea" class="article-share-link">分享</a>
       
       
       
@@ -171,6 +171,15 @@
 
     
 <nav id="article-nav">
+  
+    <a href="/2018/11/28/python函数递归调用/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          python函数递归调用
+        
+      </div>
+    </a>
   
   
     <a href="/2018/11/26/python函数定义及默认参数/" id="article-nav-older" class="article-nav-link-wrap">
