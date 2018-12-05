@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>python类的内置方法和继承 | 持续不断</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="python内部类内部类，就是在类的内部定义的类，主要目的是为了更好的抽象现实世界。   内部类的实例化方法 方法1">
+<meta name="keywords" content="类,内置方法,继承">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python类的内置方法和继承">
+<meta property="og:url" content="https://rosinelan.github.io/2018/12/05/python类的内置方法和继承/index.html">
+<meta property="og:site_name" content="持续不断">
+<meta property="og:description" content="python内部类内部类，就是在类的内部定义的类，主要目的是为了更好的抽象现实世界。   内部类的实例化方法 方法1">
+<meta property="og:updated_time" content="2018-12-05T09:10:08.179Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python类的内置方法和继承">
+<meta name="twitter:description" content="python内部类内部类，就是在类的内部定义的类，主要目的是为了更好的抽象现实世界。   内部类的实例化方法 方法1">
+  
+    <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">持续不断</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">要松懈的时候再坚持一下</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-python类的内置方法和继承" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/05/python类的内置方法和继承/" class="article-date">
+  <time datetime="2018-12-05T08:44:47.000Z" itemprop="datePublished">2018-12-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/system/">系统管理</a>►<a class="article-category-link" href="/categories/system/python实战/">python实战</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      python类的内置方法和继承
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="python内部类"><a href="#python内部类" class="headerlink" title="python内部类"></a>python内部类</h2><p>内部类，就是在类的内部定义的类，主要目的是为了更好的抽象现实世界。  </p>
+<h3 id="内部类的实例化方法"><a href="#内部类的实例化方法" class="headerlink" title="内部类的实例化方法"></a>内部类的实例化方法</h3><ul>
+<li>方法1 <a id="more"></a>
+直接使用外部类调用内部类<br><code>object_name = outclass_name.inclass_name()</code>  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">People</span><span class="params">(object)</span>:</span></span><br><span class="line">    color = <span class="string">'yellow'</span></span><br><span class="line">    __age = <span class="number">30</span></span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Chinese</span><span class="params">(object)</span>:</span></span><br><span class="line">        name = <span class="string">"I am chinese"</span></span><br><span class="line"></span><br><span class="line">jack = People.Chinese()</span><br><span class="line"><span class="keyword">print</span> jack.name</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>执行结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">I am chinese</span><br></pre></td></tr></table></figure></p>
+<p>访问方法可以有多种<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">People</span><span class="params">(object)</span>:</span></span><br><span class="line">    color = <span class="string">'yellow'</span></span><br><span class="line">    __age = <span class="number">30</span></span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Chinese</span><span class="params">(object)</span>:</span></span><br><span class="line">        name = <span class="string">"I am chinese"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> People.Chinese.name</span><br><span class="line"><span class="keyword">print</span> People.Chinese().name</span><br></pre></td></tr></table></figure></p>
+<p>通过类的方法访问<br><code>People.Chinese.name</code><br>通过对象的方法访问<br><code>People.Chinese().name</code><br>对于公有属性，可以通过上述两种方式都可以。  </p>
+<ul>
+<li>方法2<br>先对外部类进行实例化，然后再实例化内部类。  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">out_name = outclass_name()</span><br><span class="line">in_name = out_name.inclass_name()</span><br><span class="line">in_name.method()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">People</span><span class="params">(object)</span>:</span></span><br><span class="line">    color = <span class="string">'yellow'</span></span><br><span class="line">    __age = <span class="number">30</span></span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Chinese</span><span class="params">(object)</span>:</span></span><br><span class="line">        name = <span class="string">"I am chinese"</span></span><br><span class="line"></span><br><span class="line">ren = People()</span><br><span class="line">jack = ren.Chinese()</span><br><span class="line"><span class="keyword">print</span> jack.name</span><br></pre></td></tr></table></figure>
+<p>执行结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">I am chinese</span><br></pre></td></tr></table></figure></p>
+<h3 id="类的内置方法-魔术方法"><a href="#类的内置方法-魔术方法" class="headerlink" title="类的内置方法(魔术方法)"></a>类的内置方法(魔术方法)</h3><p><code>__str__(self)</code>默认在类实例化过程中就会执行，不需要调用。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">People</span><span class="params">(object)</span>:</span></span><br><span class="line">    color = <span class="string">'yellow'</span></span><br><span class="line">    __age = <span class="number">30</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ren = People()</span><br><span class="line"><span class="keyword">print</span> ren</span><br></pre></td></tr></table></figure></p>
+<p>执行结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;__main__.People object at <span class="number">0x7f40dfcbbd90</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<p>当添加<code>__str__</code>后<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">People</span><span class="params">(object)</span>:</span></span><br><span class="line">    color = <span class="string">'yellow'</span></span><br><span class="line">    __age = <span class="number">30</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'this is a people class'</span></span><br><span class="line"></span><br><span class="line">ren = People()</span><br><span class="line"><span class="keyword">print</span> ren</span><br></pre></td></tr></table></figure></p>
+<p>执行结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this <span class="keyword">is</span> a people <span class="class"><span class="keyword">class</span></span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>构造函数<br><code>__init__()</code><br>用于初始化类的内部状态，如果不提供，python会给出一个默认的<code>__init__</code>方法。  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">People</span><span class="params">(object)</span>:</span></span><br><span class="line">    color = <span class="string">'yellow'</span></span><br><span class="line">    __age = <span class="number">30</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,c=<span class="string">'white'</span>)</span>:</span></span><br><span class="line">        self.color = c      </span><br><span class="line"></span><br><span class="line">ren = People()</span><br><span class="line"><span class="keyword">print</span> ren.color</span><br><span class="line"><span class="keyword">print</span> People.color</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>执行结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">white</span><br><span class="line">yellow</span><br></pre></td></tr></table></figure></p>
+<p>使用类访问不会发生变化。<br>使用对象访问，值会根据传入的参数发生变化。  </p>
+<ul>
+<li>析构函数<br><code>__del__()</code><br>用于释放对象占用的资源，如果不提供，python会在后台提供默认析构函数。<br>析构函数在执行完成的最后再执行。  <h3 id="垃圾回收机制"><a href="#垃圾回收机制" class="headerlink" title="垃圾回收机制"></a>垃圾回收机制</h3>python采用垃圾回收机制清理不再使用的对象：python提供gc模块释放不再使用的对象。<br>python采用“引用计数”的算法方式来处理回收，即当某个对象在其作用域内不再被其他对象引用的时候，python就自动清除对象。<br>gc模块的<code>collect()</code>可以一次性收集所有待处理的对象(gc.collect)。<h2 id="python类的继承"><a href="#python类的继承" class="headerlink" title="python类的继承"></a>python类的继承</h2><h3 id="使用继承"><a href="#使用继承" class="headerlink" title="使用继承"></a>使用继承</h3>继承可以重用已经存在的数据和行为，减少代码的重复编写。<br>python在类名后使用一堆括号来表示继承关系，括号中的类即为父类。<br><code>class Myclass(ParentClass)</code><br>如果父类定义了<code>__init__</code>方法，子类必须显式调用父类的<code>__init__</code>方法(父类的<strong>init</strong>参数&gt;=2的时候)。<br><code>ParentClass.__init__(self,[args...])</code><br>如果子类需要扩展父类的行为，可以添加<strong>init</strong>方法的参数。  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">People</span><span class="params">(object)</span>:</span></span><br><span class="line">    color = <span class="string">'yellow'</span></span><br><span class="line">    __age = <span class="number">30</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,c)</span>:</span></span><br><span class="line">        self.color = c      </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">think</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">"I am a %s"</span> % self.color</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"I am a thinker"</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Chinese</span><span class="params">(People)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        People.__init__(self,<span class="string">'red'</span>)</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">cn = Chinese()</span><br><span class="line"><span class="keyword">print</span> cn.color</span><br><span class="line">cn.think()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>输出结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">red</span><br><span class="line">I am a red</span><br><span class="line">I am a thinker</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>使用super继承父类<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">People</span><span class="params">(object)</span>:</span></span><br><span class="line">    color = <span class="string">'yellow'</span></span><br><span class="line">    __age = <span class="number">30</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,c)</span>:</span></span><br><span class="line">        self.color = c      </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">think</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">"I am a %s"</span> % self.color</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"I am a thinker"</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Chinese</span><span class="params">(People)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        super(Chinese, self).__init__(<span class="string">'red'</span>)</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">cn = Chinese()</span><br><span class="line"><span class="keyword">print</span> cn.color</span><br><span class="line">cn.think()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>执行结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">red</span><br><span class="line">I am a red</span><br></pre></td></tr></table></figure></p>
+<h3 id="多重继承"><a href="#多重继承" class="headerlink" title="多重继承"></a>多重继承</h3><p>python支持多重继承，即一个类可以继承多个父类。<br><code>class class_name(Parent_c1,Parent_c2,...)</code><br>注意：当父类中出现多个自定义的<code>__init__</code>方法时，多重继承只执行第一个类的<code>__int__</code>方法，其他不执行。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">People</span><span class="params">(object)</span>:</span></span><br><span class="line">    color = <span class="string">'yellow'</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">"init..."</span></span><br><span class="line">        self.dwell =<span class="string">'Earth'</span>       </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">think</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">"I am a %s"</span> % self.color</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"My home is %s"</span> % self.dwell</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Martian</span><span class="params">(object)</span>:</span></span><br><span class="line">    color = <span class="string">'red'</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.dwell =<span class="string">'Martian'</span>       </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Chinese</span><span class="params">(Martian,People)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">cn = Chinese()</span><br><span class="line">cn.think()</span><br></pre></td></tr></table></figure></p>
+<p>输出结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">I am a red</span><br><span class="line">My home <span class="keyword">is</span> Martian</span><br></pre></td></tr></table></figure></p>
+<p>当继承更换顺序时<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Chinese</span><span class="params">(People,Martian)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure></p>
+<p>执行结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">init...</span><br><span class="line">I am a yellow</span><br><span class="line">My home <span class="keyword">is</span> Earth</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/12/05/python类的内置方法和继承/" data-id="cjpaycmci004jhsq6peo8qj66" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/内置方法/">内置方法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/类/">类</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/继承/">继承</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/12/04/python面向对象及类的属性和方法/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">python面向对象及类的属性和方法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#python内部类"><span class="toc-number">1.</span> <span class="toc-text">python内部类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#内部类的实例化方法"><span class="toc-number">1.1.</span> <span class="toc-text">内部类的实例化方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类的内置方法-魔术方法"><span class="toc-number">1.2.</span> <span class="toc-text">类的内置方法(魔术方法)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#垃圾回收机制"><span class="toc-number">1.3.</span> <span class="toc-text">垃圾回收机制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python类的继承"><span class="toc-number">2.</span> <span class="toc-text">python类的继承</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用继承"><span class="toc-number">2.1.</span> <span class="toc-text">使用继承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多重继承"><span class="toc-number">2.2.</span> <span class="toc-text">多重继承</span></a></li></ol></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>
