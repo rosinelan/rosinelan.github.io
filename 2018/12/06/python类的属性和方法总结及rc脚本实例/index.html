@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>python类的属性和方法总结及rc脚本实例 | 持续不断</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="类的属性总结类属性相关内容如下    类的公有属性   类的私有属性">
+<meta name="keywords" content="属性,方法,rc脚本">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python类的属性和方法总结及rc脚本实例">
+<meta property="og:url" content="https://rosinelan.github.io/2018/12/06/python类的属性和方法总结及rc脚本实例/index.html">
+<meta property="og:site_name" content="持续不断">
+<meta property="og:description" content="类的属性总结类属性相关内容如下    类的公有属性   类的私有属性">
+<meta property="og:updated_time" content="2018-12-06T09:04:05.845Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python类的属性和方法总结及rc脚本实例">
+<meta name="twitter:description" content="类的属性总结类属性相关内容如下    类的公有属性   类的私有属性">
+  
+    <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">持续不断</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">要松懈的时候再坚持一下</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-python类的属性和方法总结及rc脚本实例" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/06/python类的属性和方法总结及rc脚本实例/" class="article-date">
+  <time datetime="2018-12-06T08:36:15.000Z" itemprop="datePublished">2018-12-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/system/">系统管理</a>►<a class="article-category-link" href="/categories/system/python实战/">python实战</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      python类的属性和方法总结及rc脚本实例
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="类的属性总结"><a href="#类的属性总结" class="headerlink" title="类的属性总结"></a>类的属性总结</h2><p>类属性相关内容如下  </p>
+<ul>
+<li>类的公有属性  </li>
+<li>类的私有属性  <a id="more"></a></li>
+<li>对象的公有属性  </li>
+<li>对象的私有属性  </li>
+<li>对象的内置属性  </li>
+<li>函数的局部变量  </li>
+<li>函数的全局变量  </li>
+</ul>
+<p>是否可通过对象访问？  </p>
+<ul>
+<li>类的公有属性可以实例化之后，通过对象直接访问。  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/local/python</span></span><br><span class="line"><span class="comment">#coding:utf8</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span><span class="params">(object)</span>:</span></span><br><span class="line">    var1 = <span class="string">'类属性，类的公有属性 var1'</span></span><br><span class="line">    __var2 = <span class="string">'类的私有属性 __var2'</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">func1</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.var3 = <span class="string">'对象的共有属性 var3'</span></span><br><span class="line">        self.__var4 = <span class="string">'对象的私有属性 __var4'</span></span><br><span class="line">        var5 = <span class="string">'函数的局部变量'</span></span><br><span class="line"></span><br><span class="line">mc = MyClass()</span><br><span class="line"><span class="keyword">print</span> mc.var1</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>执行结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">类属性，类的公有属性 var1</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>类的私有属性实例化之后通过对象不可直接访问，可使用<code>instance._classname__attribute</code>方式访问。  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/local/python</span></span><br><span class="line"><span class="comment">#coding:utf8</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span><span class="params">(object)</span>:</span></span><br><span class="line">    var1 = <span class="string">'类属性，类的公有属性 var1'</span></span><br><span class="line">    __var2 = <span class="string">'类的私有属性 __var2'</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">func1</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.var3 = <span class="string">'对象的共有属性 var3'</span></span><br><span class="line">        self.__var4 = <span class="string">'对象的私有属性 __var4'</span></span><br><span class="line">        var5 = <span class="string">'函数的局部变量'</span></span><br><span class="line"></span><br><span class="line">mc = MyClass()</span><br><span class="line"><span class="keyword">print</span> mc._MyClass__var2</span><br><span class="line"><span class="keyword">print</span> mc.__var2</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>执行结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">类的私有属性 __var2</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"1_9_6_3.py"</span>, line <span class="number">16</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    <span class="keyword">print</span> mc.__var2</span><br><span class="line">AttributeError: <span class="string">'MyClass'</span> object has no attribute <span class="string">'__var2'</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>对象的公有属性需要调用对应的方法之后，才可以通过对象访问。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/local/python</span></span><br><span class="line"><span class="comment">#coding:utf8</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span><span class="params">(object)</span>:</span></span><br><span class="line">    var1 = <span class="string">'类属性，类的公有属性 var1'</span></span><br><span class="line">    __var2 = <span class="string">'类的私有属性 __var2'</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">func1</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.var3 = <span class="string">'对象的共有属性 var3'</span></span><br><span class="line">        self.__var4 = <span class="string">'对象的私有属性 __var4'</span></span><br><span class="line">        var5 = <span class="string">'函数的局部变量'</span></span><br><span class="line"></span><br><span class="line">mc = MyClass()</span><br><span class="line">mc.func1()</span><br><span class="line"><span class="keyword">print</span> mc.var3</span><br><span class="line">mc1 = MyClass()</span><br><span class="line"><span class="keyword">print</span> mc1.var3</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>执行结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">对象的公有属性 var3</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"1_9_6_3.py"</span>, line <span class="number">17</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    <span class="keyword">print</span> mc1.var3</span><br><span class="line">AttributeError: <span class="string">'MyClass'</span> object has no attribute <span class="string">'var3'</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>对象的私有属性，通过对象不可访问。  </li>
+<li>函数的局部变量，通过对象不可访问。  </li>
+</ul>
+<p>是否可以通过类访问？  </p>
+<ul>
+<li>公有属性可以直接通过类访问  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/local/python</span></span><br><span class="line"><span class="comment">#coding:utf8</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span><span class="params">(object)</span>:</span></span><br><span class="line">    var1 = <span class="string">'类属性，类的公有属性 var1'</span></span><br><span class="line">    __var2 = <span class="string">'类的私有属性 __var2'</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">func1</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.var3 = <span class="string">'对象的共有属性 var3'</span></span><br><span class="line">        self.__var4 = <span class="string">'对象的私有属性 __var4'</span></span><br><span class="line">        var5 = <span class="string">'函数的局部变量'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> MyClass.var1</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>执行结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">类属性，类的公有属性 var1</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>私有属性不可通过类直接访问。  </li>
+<li>方法的公有属性和私有属性不可通过类直接访问。  </li>
+<li>方法的公有属性只能通过对象来访问。  </li>
+</ul>
+<p>方法内部是否可以调用呢？<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/local/python</span></span><br><span class="line"><span class="comment">#coding:utf8</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span><span class="params">(object)</span>:</span></span><br><span class="line">    var1 = <span class="string">'类属性，类的公有属性 var1'</span></span><br><span class="line">    __var2 = <span class="string">'类的私有属性 __var2'</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">func1</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.var3 = <span class="string">'对象的共有属性 var3'</span></span><br><span class="line">        self.__var4 = <span class="string">'对象的私有属性 __var4'</span></span><br><span class="line">        var5 = <span class="string">'函数的局部变量'</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">func2</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">print</span> self.var1</span><br><span class="line">        <span class="keyword">print</span> self.__var2</span><br><span class="line">        <span class="keyword">print</span> self.var3</span><br><span class="line">        <span class="keyword">print</span> self.__var4</span><br><span class="line"></span><br><span class="line">mc = MyClass()</span><br><span class="line">mc.func1()</span><br><span class="line">mc.func2()</span><br></pre></td></tr></table></figure></p>
+<p>执行结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">类属性，类的公有属性 var1</span><br><span class="line">类的私有属性 __var2</span><br><span class="line">对象的共有属性 var3</span><br><span class="line">对象的私有属性 __var4</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>方法内部可以直接调用类的公有属性和私有属性。  </li>
+<li>方法内部调用其它方法的公有属性和私有属性，需要先执行该方法再调用，否则无法调用。  </li>
+<li>方法内部无法调用其它方法的局部变量。  </li>
+<li>内置属性可以通过对象或类调用。  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/local/python</span></span><br><span class="line"><span class="comment">#coding:utf8</span></span><br><span class="line"></span><br><span class="line">var5 = <span class="string">'全局变量 var5'</span> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span><span class="params">(object)</span>:</span></span><br><span class="line">    var1 = <span class="string">'类属性，类的公有属性 var1'</span></span><br><span class="line">    __var2 = <span class="string">'类的私有属性 __var2'</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">func1</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.var3 = <span class="string">'对象的共有属性 var3'</span></span><br><span class="line">        self.__var4 = <span class="string">'对象的私有属性 __var4'</span></span><br><span class="line">        var5 = <span class="string">'函数的局部变量 var5'</span></span><br><span class="line">        <span class="keyword">print</span> var5</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">func2</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">print</span> self.var1</span><br><span class="line">        <span class="keyword">print</span> self.__var2</span><br><span class="line">        <span class="keyword">print</span> self.var3</span><br><span class="line">        <span class="keyword">print</span> self.__var4</span><br><span class="line">        <span class="keyword">print</span> var5</span><br><span class="line"></span><br><span class="line">mc = MyClass()</span><br><span class="line">mc.func1()</span><br><span class="line"><span class="keyword">print</span> <span class="string">'#'</span>*<span class="number">50</span></span><br><span class="line">mc.func2()</span><br><span class="line"><span class="keyword">print</span> <span class="string">'#'</span>*<span class="number">50</span></span><br><span class="line"><span class="keyword">print</span> mc.__dict__</span><br><span class="line"><span class="keyword">print</span> <span class="string">'#'</span>*<span class="number">50</span></span><br><span class="line"><span class="keyword">print</span> MyClass.__dict__</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>执行结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">函数的局部变量 var5</span><br><span class="line"><span class="comment">##################################################</span></span><br><span class="line">类属性，类的公有属性 var1</span><br><span class="line">类的私有属性 __var2</span><br><span class="line">对象的共有属性 var3</span><br><span class="line">对象的私有属性 __var4</span><br><span class="line">全局变量 var5</span><br><span class="line"><span class="comment">##################################################</span></span><br><span class="line">&#123;<span class="string">'_MyClass__var4'</span>: <span class="string">'\xe5\xaf\xb9\xe8\xb1\xa1\xe7\x9a\x84\xe7\xa7\x81\xe6\x9c\x89\xe5\xb1\x9e\xe6\x80\xa7 __var4'</span>, <span class="string">'var3'</span>: <span class="string">'\xe5\xaf\xb9\xe8\xb1\xa1\xe7\x9a\x84\xe5\x85\xb1\xe6\x9c\x89\xe5\xb1\x9e\xe6\x80\xa7 var3'</span>&#125;</span><br><span class="line"><span class="comment">##################################################</span></span><br><span class="line">&#123;<span class="string">'func2'</span>: &lt;function func2 at <span class="number">0x7fbeac51a8c0</span>&gt;, <span class="string">'__module__'</span>: <span class="string">'__main__'</span>, <span class="string">'var1'</span>: <span class="string">'\xe7\xb1\xbb\xe5\xb1\x9e\xe6\x80\xa7\xef\xbc\x8c\xe7\xb1\xbb\xe7\x9a\x84\xe5\x85\xac\xe6\x9c\x89\xe5\xb1\x9e\xe6\x80\xa7 var1'</span>, <span class="string">'__weakref__'</span>: &lt;attribute <span class="string">'__weakref__'</span> of <span class="string">'MyClass'</span> objects&gt;, <span class="string">'func1'</span>: &lt;function func1 at <span class="number">0x7fbeac51a230</span>&gt;, <span class="string">'__dict__'</span>: &lt;attribute <span class="string">'__dict__'</span> of <span class="string">'MyClass'</span> objects&gt;, <span class="string">'_MyClass__var2'</span>: <span class="string">'\xe7\xb1\xbb\xe7\x9a\x84\xe7\xa7\x81\xe6\x9c\x89\xe5\xb1\x9e\xe6\x80\xa7 __var2'</span>, <span class="string">'__doc__'</span>: <span class="keyword">None</span>&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="类的方法总结"><a href="#类的方法总结" class="headerlink" title="类的方法总结"></a>类的方法总结</h2><ul>
+<li>公有方法</li>
+<li>私有方法</li>
+<li>类方法</li>
+<li>静态方法</li>
+<li>内置方法<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="comment">#coding:utf8</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span><span class="params">(object)</span>:</span></span><br><span class="line">    name = <span class="string">'Test'</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">func1</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">print</span> self.name,</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"我是公有方法"</span></span><br><span class="line">        self.__func2()  <span class="comment">## 类的内部调用私有方法</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__func2</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">print</span> self.name,</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"我是私有方法"</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">classFun</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">print</span> self.name,</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"我是类方法"</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">staticFun</span><span class="params">()</span>:</span>    <span class="comment">## 不可添加self</span></span><br><span class="line">        <span class="keyword">print</span> MyClass.name,    <span class="comment">## 通过类名调用</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">"我是静态方法"</span></span><br><span class="line"></span><br><span class="line">mc = MyClass()</span><br><span class="line">mc.func1()</span><br><span class="line">MyClass.classFun()</span><br><span class="line">MyClass.staticFun()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>执行结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Test 我是公有方法</span><br><span class="line">Test 我是私有方法</span><br><span class="line">Test 我是类方法</span><br><span class="line">Test 我是静态方法</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>公有方法可以在类的内部和外部调用；</li>
+<li>私有方法只能在类的内部调用；</li>
+<li>类方法添加装饰器，通过类调用</li>
+</ul>
+<p>内置方法<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="comment">#coding:utf8</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span><span class="params">(object)</span>:</span></span><br><span class="line">    name = <span class="string">'Test'</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.func1() </span><br><span class="line">        self.__func2()</span><br><span class="line">        self.classFun()</span><br><span class="line">        self.staticFun()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">func1</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">print</span> self.name,</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"我是公有方法"</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__func2</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">print</span> self.name,</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"我是私有方法"</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">classFun</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">print</span> self.name,</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"我是类方法"</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">staticFun</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="keyword">print</span> MyClass.name,</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"我是静态方法"</span></span><br><span class="line"></span><br><span class="line">mc = MyClass()</span><br></pre></td></tr></table></figure></p>
+<p>执行结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Test 我是公有方法</span><br><span class="line">Test 我是私有方法</span><br><span class="line">Test 我是类方法</span><br><span class="line">Test 我是静态方法</span><br></pre></td></tr></table></figure></p>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>使用python写一个memcached的启动脚本，可以参照<code>/etc/init.d/memcached</code>脚本。<br>下面是启动脚本的大体结构，下一章节详细介绍类中方法的实现。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Process</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="string">'''memcached rc script'''</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, program, args, workdir)</span>:</span></span><br><span class="line">	    self.name = name</span><br><span class="line">		self.program = program</span><br><span class="line">		self.args = args</span><br><span class="line">		self.workdir = workdir</span><br><span class="line">		</span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">_init</span><span class="params">(self)</span>:</span></span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">start</span><span class="params">(self)</span>:</span></span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">stop</span><span class="params">(self)</span>:</span></span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">restart</span><span class="params">(self)</span>:</span></span><br><span class="line">	    self.stop()</span><br><span class="line">		self.start()</span><br><span class="line">		</span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">status</span><span class="params">(self)</span>:</span></span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">help</span><span class="params">(self)</span>:</span></span><br><span class="line">	</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    name = <span class="string">'memcached'</span></span><br><span class="line">	prog = <span class="string">'/usr/bin/memcached'</span></span><br><span class="line">	args = <span class="string">'-u nobody -p 11211 -c 1024 -m 64'</span></span><br><span class="line">	wd = <span class="string">'/var/tmp/memcached'</span></span><br><span class="line">	pm = Process(name = name,</span><br><span class="line">				 program = prog,</span><br><span class="line">				 args = args,</span><br><span class="line">				 workdir = wd)</span><br><span class="line">	<span class="keyword">try</span>:</span><br><span class="line">		cmd = sys.argv[<span class="number">1</span>]</span><br><span class="line">	<span class="keyword">except</span> IndexError, e:</span><br><span class="line">		<span class="keyword">print</span> <span class="string">"Option error"</span></span><br><span class="line">		sys.exit()</span><br><span class="line">	<span class="keyword">if</span> cmd == <span class="string">'start'</span>:</span><br><span class="line">		pm.start()</span><br><span class="line">	<span class="keyword">elif</span> cmd == <span class="string">'stop'</span>:</span><br><span class="line">		pm.stop()</span><br><span class="line">	<span class="keyword">elif</span> cmd == <span class="string">'restart'</span>:</span><br><span class="line">		pm.restart</span><br><span class="line">	<span class="keyword">elif</span> cmd == <span class="string">'status'</span>:</span><br><span class="line">		pm.status()</span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">		pm.help()</span><br><span class="line">	</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'main'</span>:</span><br><span class="line">	main()</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/12/06/python类的属性和方法总结及rc脚本实例/" data-id="cjpcdlhos004z40q68n6b4gzf" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rc脚本/">rc脚本</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/属性/">属性</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/方法/">方法</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>Recommended Posts</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/12/05/python类的内置方法和继承/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">python类的内置方法和继承</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">Content</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#类的属性总结"><span class="toc-number">1.</span> <span class="toc-text">类的属性总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类的方法总结"><span class="toc-number">2.</span> <span class="toc-text">类的方法总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实例"><span class="toc-number">3.</span> <span class="toc-text">实例</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>
