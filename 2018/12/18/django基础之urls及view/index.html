@@ -5,20 +5,21 @@
   
   <title>django基础之urls及view | 持续不断</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Django环境环境为 python 3.X + Django 1.11，若安装的 Django 版本不一致，可先卸载然后指定版本安装。1234# 卸载pip uninstall Django# 指定版本安装pip install Django==1.11 简介Django 使用 MVC/MTV 模式，其本质是为了保持各组件之间松耦合关系。    Model(模型)：负责业务对象与数据库的对象(O">
+  <meta name="description" content="Django环境环境为 python 3.X + Django 1.11，若安装的 Django 版本不一致，可先卸载然后指定版本安装。">
 <meta name="keywords" content="django,install,流程,urls">
 <meta property="og:type" content="article">
 <meta property="og:title" content="django基础之urls及view">
 <meta property="og:url" content="https://rosinelan.github.io/2018/12/18/django基础之urls及view/index.html">
 <meta property="og:site_name" content="持续不断">
-<meta property="og:description" content="Django环境环境为 python 3.X + Django 1.11，若安装的 Django 版本不一致，可先卸载然后指定版本安装。1234# 卸载pip uninstall Django# 指定版本安装pip install Django==1.11 简介Django 使用 MVC/MTV 模式，其本质是为了保持各组件之间松耦合关系。    Model(模型)：负责业务对象与数据库的对象(O">
+<meta property="og:description" content="Django环境环境为 python 3.X + Django 1.11，若安装的 Django 版本不一致，可先卸载然后指定版本安装。">
 <meta property="og:image" content="http://cdn.rosinelan.com/blog/system/django-process.png">
 <meta property="og:image" content="http://cdn.rosinelan.com/blog/system/django-create.png">
 <meta property="og:image" content="http://cdn.rosinelan.com/blog/system/django-ceontent.png">
-<meta property="og:updated_time" content="2018-12-18T01:51:51.626Z">
+<meta property="og:image" content="http://cdn.rosinelan.com/blog/system/django-result.png">
+<meta property="og:updated_time" content="2018-12-18T01:58:15.745Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="django基础之urls及view">
-<meta name="twitter:description" content="Django环境环境为 python 3.X + Django 1.11，若安装的 Django 版本不一致，可先卸载然后指定版本安装。1234# 卸载pip uninstall Django# 指定版本安装pip install Django==1.11 简介Django 使用 MVC/MTV 模式，其本质是为了保持各组件之间松耦合关系。    Model(模型)：负责业务对象与数据库的对象(O">
+<meta name="twitter:description" content="Django环境环境为 python 3.X + Django 1.11，若安装的 Django 版本不一致，可先卸载然后指定版本安装。">
 <meta name="twitter:image" content="http://cdn.rosinelan.com/blog/system/django-process.png">
   
     <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
@@ -46,7 +47,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -104,7 +105,7 @@
       
         <!-- Table of Contents -->
         
-        <h3 id="Django"><a href="#Django" class="headerlink" title="Django"></a>Django</h3><h4 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h4><p>环境为 python 3.X + Django 1.11，若安装的 Django 版本不一致，可先卸载然后指定版本安装。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 卸载</span></span><br><span class="line">pip uninstall Django</span><br><span class="line"><span class="comment"># 指定版本安装</span></span><br><span class="line">pip install Django==<span class="number">1.11</span></span><br></pre></td></tr></table></figure></p>
+        <h3 id="Django"><a href="#Django" class="headerlink" title="Django"></a>Django</h3><h4 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h4><p>环境为 python 3.X + Django 1.11，若安装的 Django 版本不一致，可先卸载然后指定版本安装。<br><a id="more"></a><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 卸载</span></span><br><span class="line">pip uninstall Django</span><br><span class="line"><span class="comment"># 指定版本安装</span></span><br><span class="line">pip install Django==<span class="number">1.11</span></span><br></pre></td></tr></table></figure></p>
 <h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>Django 使用 MVC/MTV 模式，其本质是为了保持各组件之间松耦合关系。  </p>
 <ul>
 <li>Model(模型)：负责业务对象与数据库的对象(ORM)</li>
@@ -118,12 +119,12 @@
 <h4 id="第一个实例"><a href="#第一个实例" class="headerlink" title="第一个实例"></a>第一个实例</h4><p>在 urls 中添加一个 login 登录<br>/demo/Djangotest/urls.py<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url</span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> demo <span class="keyword">import</span> views</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    url(<span class="string">r'^admin/'</span>, admin.site.urls),</span><br><span class="line">    url(<span class="string">r'^login/$'</span>, views.login),</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
 <p>此处 views.login 无此方法，需要在 views 中添加<br>/demo/views.py<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render,HttpResponse,redirect</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">login</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">        data = <span class="string">'helo demo'</span></span><br><span class="line">        msg = <span class="string">'aming pythono'</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">'login.html'</span>, &#123;<span class="string">'data'</span>:data,<span class="string">'msg'</span>:msg&#125;)</span><br><span class="line">    <span class="comment"># return render(request, 'login.html', locals())</span></span><br><span class="line">    <span class="comment"># return HttpResponse('hello demo')</span></span><br></pre></td></tr></table></figure></p>
 <p>上面代码跳转至 login.html 页面，在 /demo/templates 添加 login.html 页面<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>demo01<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">h3</span>&gt;</span>&#123;&#123; data &#125;&#125;<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">h4</span>&gt;</span>&#123;&#123; msg &#125;&#125;<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>然后运行该项目，默认访问 <a href="http://127.0.0.1:8000/login/" target="_blank" rel="noopener">http://127.0.0.1:8000/login/</a> 即可得到对应页面。<br>！<a href="http://cdn.rosinelan.com/blog/system/django-result.png" title="django-result" target="_blank" rel="noopener">django-result</a></p>
+<p>然后运行该项目，默认访问 <a href="http://127.0.0.1:8000/login/" target="_blank" rel="noopener">http://127.0.0.1:8000/login/</a> 即可得到对应页面。<br><img src="http://cdn.rosinelan.com/blog/system/django-result.png" alt="django-result" title="django-result"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/12/18/django基础之urls及view/" data-id="cjpt3fcy7000akoq68yjwwj8n" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/12/18/django基础之urls及view/" data-id="cjpt3fcy7000akoq68yjwwj8n" class="article-share-link">分享</a>
       
       
       
@@ -135,7 +136,7 @@
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =4
@@ -179,7 +180,7 @@
   
   
     <a href="/2018/12/07/python-rc脚本实例续/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">python rc脚本实例续</div>
     </a>
   
@@ -209,7 +210,7 @@
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
               <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Django"><span class="toc-number">1.</span> <span class="toc-text">Django</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#环境"><span class="toc-number">1.1.</span> <span class="toc-text">环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#简介"><span class="toc-number">1.2.</span> <span class="toc-text">简介</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Django流程"><span class="toc-number">2.</span> <span class="toc-text">Django流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#urls及view基础"><span class="toc-number">3.</span> <span class="toc-text">urls及view基础</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#创建"><span class="toc-number">3.1.</span> <span class="toc-text">创建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#第一个实例"><span class="toc-number">3.2.</span> <span class="toc-text">第一个实例</span></a></li></ol></li></ol>
           </div>
@@ -237,10 +238,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
+     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>
