@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>django从基础之models的基础使用和命令 | 持续不断</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="models的基本使用基本用法models是数据操作的API。不需要直接使用SQL语句进行对应表的创建等操作。      在settings.py中配置数据库连接相关信息，如驱动、IP地址、用户名、密码等。   在models.py中定义数据库表名称及字段信息。   在Terminal中执行下面命令执行models.py中定义的语句，在数据库中建表。   12python manage.py ma">
+<meta name="keywords" content="django,models,命令">
+<meta property="og:type" content="article">
+<meta property="og:title" content="django从基础之models的基础使用和命令">
+<meta property="og:url" content="https://rosinelan.github.io/2018/12/18/django从基础之models的基础使用和命令/index.html">
+<meta property="og:site_name" content="持续不断">
+<meta property="og:description" content="models的基本使用基本用法models是数据操作的API。不需要直接使用SQL语句进行对应表的创建等操作。      在settings.py中配置数据库连接相关信息，如驱动、IP地址、用户名、密码等。   在models.py中定义数据库表名称及字段信息。   在Terminal中执行下面命令执行models.py中定义的语句，在数据库中建表。   12python manage.py ma">
+<meta property="og:image" content="http:///">
+<meta property="og:updated_time" content="2018-12-19T01:08:28.561Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="django从基础之models的基础使用和命令">
+<meta name="twitter:description" content="models的基本使用基本用法models是数据操作的API。不需要直接使用SQL语句进行对应表的创建等操作。      在settings.py中配置数据库连接相关信息，如驱动、IP地址、用户名、密码等。   在models.py中定义数据库表名称及字段信息。   在Terminal中执行下面命令执行models.py中定义的语句，在数据库中建表。   12python manage.py ma">
+<meta name="twitter:image" content="http:///">
+  
+    <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">持续不断</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">要松懈的时候再坚持一下</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-django从基础之models的基础使用和命令" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/18/django从基础之models的基础使用和命令/" class="article-date">
+  <time datetime="2018-12-18T02:43:37.000Z" itemprop="datePublished">2018-12-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/system/">系统管理</a>►<a class="article-category-link" href="/categories/system/python实战/">python实战</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      django从基础之models的基础使用和命令
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h3 id="models的基本使用"><a href="#models的基本使用" class="headerlink" title="models的基本使用"></a>models的基本使用</h3><h4 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h4><p><code>models</code>是数据操作的API。不需要直接使用SQL语句进行对应表的创建等操作。    </p>
+<ol>
+<li>在<code>settings.py</code>中配置数据库连接相关信息，如驱动、IP地址、用户名、密码等。  </li>
+<li>在<code>models.py</code>中定义数据库表名称及字段信息。  </li>
+<li><p>在Terminal中执行下面命令执行<code>models.py</code>中定义的语句，在数据库中建表。  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python manage.py makemigrations</span><br><span class="line">python manage.y migrate</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>此时在数据库可以查看到创建的表信息。  </p>
+<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><p>django 自带 sqlite 数据库，已经在 settings.py 中配置好了，可直接使用，以使用 sqlite 为例子。  </p>
+</li>
+<li>在 models.py 中定义表及字段信息<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserInof</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    username=models.CharField(max_length=<span class="number">32</span>, null=<span class="keyword">True</span>)</span><br><span class="line">    password=models.CharField(max_length=<span class="number">32</span>, null=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>此处类名为表名，类中定义的为各个字段名及属性。  </p>
+<ol>
+<li><p>在 Terminal 中执行命令</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python manage.py makemigrations</span><br><span class="line">python manage.y migrate</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>此时在左侧将会出现 <code>db.sqlite3</code>文件，将其拖至右侧边栏的 Database ，即可看到 sqlite 数据库信息<br><img src="http://" alt="django-models-sqlite" title="django-models-sqlite"></p>
+</li>
+</ol>
+<p>以<code>demo_*</code>开头的为新建的表，<code>auth_*</code>和<code>django_*</code>为 django 自带的表。  </p>
+<ol>
+<li>使用</li>
+</ol>
+<h3 id="django基础命令"><a href="#django基础命令" class="headerlink" title="django基础命令"></a>django基础命令</h3><ul>
+<li><p>创建 django project，名称为<code>mysite</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">django-admin.py startproject mysite</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 mysite 目录下创建应用，名称为 <code>blog</code>  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py startapp blog</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动 django 项目</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py runserver <span class="number">8080</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更改数据库表或字段</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python manage.py makemigrations</span><br><span class="line">python manage.py migrate</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>django 1.7.1 以下版本使用<code>python manage.py syncdb</code>命令。</p>
+<ul>
+<li><p>清空数据库</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py flush</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建超级管理员</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python manage.py createsuperuser  <span class="comment"># 按提示输入用户名和密码，邮箱可不输入</span></span><br><span class="line">python manage.py changepassword username  <span class="comment"># 修改用户密码</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Django 项目环境终端</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py shell</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>显示数据库版本信息并在命令行下启动数据库的命令行工具</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py dbshell</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/12/18/django从基础之models的基础使用和命令/" data-id="cjpuhbr25000j90q6fko6x3b6" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/django/">django</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/models/">models</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/命令/">命令</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/12/18/django基础之urls及view/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">django基础之urls及view</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#models的基本使用"><span class="toc-number">1.</span> <span class="toc-text">models的基本使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本用法"><span class="toc-number">1.1.</span> <span class="toc-text">基本用法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实例"><span class="toc-number">1.2.</span> <span class="toc-text">实例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#django基础命令"><span class="toc-number">2.</span> <span class="toc-text">django基础命令</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>

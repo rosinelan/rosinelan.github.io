@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rosinelan.github.io/"/>
-  <updated>2018-12-18T02:29:53.202Z</updated>
+  <updated>2018-12-19T01:08:28.561Z</updated>
   <id>https://rosinelan.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>django从基础之models的基础使用和命令</title>
+    <link href="https://rosinelan.github.io/2018/12/18/django%E4%BB%8E%E5%9F%BA%E7%A1%80%E4%B9%8Bmodels%E7%9A%84%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8%E5%92%8C%E5%91%BD%E4%BB%A4/"/>
+    <id>https://rosinelan.github.io/2018/12/18/django从基础之models的基础使用和命令/</id>
+    <published>2018-12-18T02:43:37.000Z</published>
+    <updated>2018-12-19T01:08:28.561Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="models的基本使用"><a href="#models的基本使用" class="headerlink" title="models的基本使用"></a>models的基本使用</h3><h4 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h4><p><code>models</code>是数据操作的API。不需要直接使用SQL语句进行对应表的创建等操作。    </p><ol><li>在<code>settings.py</code>中配置数据库连接相关信息，如驱动、IP地址、用户名、密码等。  </li><li>在<code>models.py</code>中定义数据库表名称及字段信息。  </li><li><p>在Terminal中执行下面命令执行<code>models.py</code>中定义的语句，在数据库中建表。  </p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python manage.py makemigrations</span><br><span class="line">python manage.y migrate</span><br></pre></td></tr></table></figure></li><li><p>此时在数据库可以查看到创建的表信息。  </p><h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><p>django 自带 sqlite 数据库，已经在 settings.py 中配置好了，可直接使用，以使用 sqlite 为例子。  </p></li><li>在 models.py 中定义表及字段信息<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserInof</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    username=models.CharField(max_length=<span class="number">32</span>, null=<span class="keyword">True</span>)</span><br><span class="line">    password=models.CharField(max_length=<span class="number">32</span>, null=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure></li></ol><p>此处类名为表名，类中定义的为各个字段名及属性。  </p><ol><li><p>在 Terminal 中执行命令</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python manage.py makemigrations</span><br><span class="line">python manage.y migrate</span><br></pre></td></tr></table></figure></li><li><p>此时在左侧将会出现 <code>db.sqlite3</code>文件，将其拖至右侧边栏的 Database ，即可看到 sqlite 数据库信息<br><img src="http://" alt="django-models-sqlite" title="django-models-sqlite"></p></li></ol><p>以<code>demo_*</code>开头的为新建的表，<code>auth_*</code>和<code>django_*</code>为 django 自带的表。  </p><ol><li>使用</li></ol><h3 id="django基础命令"><a href="#django基础命令" class="headerlink" title="django基础命令"></a>django基础命令</h3><ul><li><p>创建 django project，名称为<code>mysite</code></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">django-admin.py startproject mysite</span><br></pre></td></tr></table></figure></li><li><p>在 mysite 目录下创建应用，名称为 <code>blog</code>  </p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py startapp blog</span><br></pre></td></tr></table></figure></li><li><p>启动 django 项目</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py runserver <span class="number">8080</span></span><br></pre></td></tr></table></figure></li><li><p>更改数据库表或字段</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python manage.py makemigrations</span><br><span class="line">python manage.py migrate</span><br></pre></td></tr></table></figure></li></ul><p>django 1.7.1 以下版本使用<code>python manage.py syncdb</code>命令。</p><ul><li><p>清空数据库</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py flush</span><br></pre></td></tr></table></figure></li><li><p>创建超级管理员</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python manage.py createsuperuser  <span class="comment"># 按提示输入用户名和密码，邮箱可不输入</span></span><br><span class="line">python manage.py changepassword username  <span class="comment"># 修改用户密码</span></span><br></pre></td></tr></table></figure></li><li><p>Django 项目环境终端</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py shell</span><br></pre></td></tr></table></figure></li><li><p>显示数据库版本信息并在命令行下启动数据库的命令行工具</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py dbshell</span><br></pre></td></tr></table></figure></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;models的基本使用&quot;&gt;&lt;a href=&quot;#models的基本使用&quot; class=&quot;headerlink&quot; title=&quot;models的基本使用&quot;&gt;&lt;/a&gt;models的基本使用&lt;/h3&gt;&lt;h4 id=&quot;基本用法&quot;&gt;&lt;a href=&quot;#基本用法&quot; class=&quot;
+      
+    
+    </summary>
+    
+      <category term="系统管理" scheme="https://rosinelan.github.io/categories/system/"/>
+    
+      <category term="python实战" scheme="https://rosinelan.github.io/categories/system/python%E5%AE%9E%E6%88%98/"/>
+    
+    
+      <category term="django" scheme="https://rosinelan.github.io/tags/django/"/>
+    
+      <category term="models" scheme="https://rosinelan.github.io/tags/models/"/>
+    
+      <category term="命令" scheme="https://rosinelan.github.io/tags/%E5%91%BD%E4%BB%A4/"/>
+    
+  </entry>
   
   <entry>
     <title>django基础之urls及view</title>
@@ -207,11 +238,11 @@
       <category term="python实战" scheme="https://rosinelan.github.io/categories/system/python%E5%AE%9E%E6%88%98/"/>
     
     
+      <category term="序列" scheme="https://rosinelan.github.io/tags/%E5%BA%8F%E5%88%97/"/>
+    
       <category term="类型转换" scheme="https://rosinelan.github.io/tags/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/"/>
     
       <category term="字符串处理" scheme="https://rosinelan.github.io/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86/"/>
-    
-      <category term="序列" scheme="https://rosinelan.github.io/tags/%E5%BA%8F%E5%88%97/"/>
     
       <category term="列表表达式" scheme="https://rosinelan.github.io/tags/%E5%88%97%E8%A1%A8%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
     
@@ -449,9 +480,9 @@
     
       <category term="列表" scheme="https://rosinelan.github.io/tags/%E5%88%97%E8%A1%A8/"/>
     
-      <category term="序列" scheme="https://rosinelan.github.io/tags/%E5%BA%8F%E5%88%97/"/>
-    
       <category term="字符串" scheme="https://rosinelan.github.io/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    
+      <category term="序列" scheme="https://rosinelan.github.io/tags/%E5%BA%8F%E5%88%97/"/>
     
       <category term="元组" scheme="https://rosinelan.github.io/tags/%E5%85%83%E7%BB%84/"/>
     
@@ -544,20 +575,6 @@
       <category term="python" scheme="https://rosinelan.github.io/tags/python/"/>
     
       <category term="安装" scheme="https://rosinelan.github.io/tags/%E5%AE%89%E8%A3%85/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>django基础</title>
-    <link href="https://rosinelan.github.io/2018/07/26/django%E5%9F%BA%E7%A1%80/"/>
-    <id>https://rosinelan.github.io/2018/07/26/django基础/</id>
-    <published>2018-07-26T09:20:00.000Z</published>
-    <updated>2018-07-26T09:20:00.623Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
     
   </entry>
   
