@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>django基础之urls详解 | 持续不断</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="urls基本配置urls 配置类似于网站的目录，通过 urls 的配置，告诉 Django 对于该 url 调用哪段代码。基本的语法格式">
+<meta name="keywords" content="django,urls">
+<meta property="og:type" content="article">
+<meta property="og:title" content="django基础之urls详解">
+<meta property="og:url" content="https://rosinelan.github.io/2018/12/19/django基础之urls详解/index.html">
+<meta property="og:site_name" content="持续不断">
+<meta property="og:description" content="urls基本配置urls 配置类似于网站的目录，通过 urls 的配置，告诉 Django 对于该 url 调用哪段代码。基本的语法格式">
+<meta property="og:updated_time" content="2018-12-19T10:38:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="django基础之urls详解">
+<meta name="twitter:description" content="urls基本配置urls 配置类似于网站的目录，通过 urls 的配置，告诉 Django 对于该 url 调用哪段代码。基本的语法格式">
+  
+    <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">持续不断</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">要松懈的时候再坚持一下</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-django基础之urls详解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/19/django基础之urls详解/" class="article-date">
+  <time datetime="2018-12-19T01:51:43.000Z" itemprop="datePublished">2018-12-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/system/">系统管理</a>►<a class="article-category-link" href="/categories/system/python实战/">python实战</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      django基础之urls详解
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h3 id="urls基本配置"><a href="#urls基本配置" class="headerlink" title="urls基本配置"></a>urls基本配置</h3><p><code>urls</code> 配置类似于网站的目录，通过 urls 的配置，告诉 Django 对于该 url 调用哪段代码。基本的语法格式<br><a id="more"></a><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> urlpatterns = [</span><br><span class="line">         url(正则表达式, views视图函数，参数，别名),</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>正则表达式 正则表达式字符串</li>
+<li>视图函数 可调用的对象，通常是视图函数或一个指定视图函数路径的字符串</li>
+<li>参数 可选的要传递给视图函数的默认参数</li>
+<li>别名 可选的name参数</li>
+</ul>
+<h4 id="正则字符串参数"><a href="#正则字符串参数" class="headerlink" title="正则字符串参数"></a>正则字符串参数</h4><h4 id="配置实例"><a href="#配置实例" class="headerlink" title="配置实例"></a>配置实例</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">urlpatterns = [</span><br><span class="line">    url(<span class="string">r'^articles/2003/$'</span>, views.special_case_2003),</span><br><span class="line">    url(<span class="string">r'^articles/([0-9]&#123;4&#125;)/$'</span>, views.year_archive),</span><br><span class="line">    url(<span class="string">r'^articles/([0-9]&#123;4&#125;)/([0-9]&#123;2&#125;)/$'</span>, views.month_archive),</span><br><span class="line">    url(<span class="string">r'^articles/([0-9]&#123;4&#125;)/([0-9]&#123;2&#125;)/([0-9]+)/$'</span>, views.article_detail),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<ol>
+<li>一旦匹配成功，则不再继续</li>
+<li>若要从 url 中捕获一个值，只需要在它的周围放一对圆括号</li>
+<li>不需要添加一个前置的反斜杠，例如，应该是 <code>^articles</code> 而不是 <code>^/articles</code>，因为每一个都会有  </li>
+<li>每个表达式前面的 <code>r</code> 建议都添加，正则表达式的用法</li>
+<li>是否开启 url 访问地址后面不带 / 跳转为带有 / 的路径，<code>APPEND_SLASH=True</code></li>
+</ol>
+<h4 id="include-其他urls"><a href="#include-其他urls" class="headerlink" title="include 其他urls"></a>include 其他urls</h4><p>当主 urls 中有很多匹配路由时，会比较杂乱，建议根据项目中的应用，使用 include 参数，分配到各项目的 urls 文件中。<br>对于 Djangotest 项目， demo01 应用<br><code>Djangotest/urls.py</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url,include</span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> demo <span class="keyword">import</span> views</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    url(<span class="string">r'^admin/'</span>, admin.site.urls),</span><br><span class="line">    url(<span class="string">r'^login/$'</span>, views.login),</span><br><span class="line">    url(<span class="string">r'^api/'</span>, include(<span class="string">'demo01.urls'</span>)),  <span class="comment"># include使用方法</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+<p><code>demo01/urls.py</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url</span><br><span class="line"><span class="keyword">from</span> demo01 <span class="keyword">import</span> views</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    url(<span class="string">r'^list.html'</span>, views.list),</span><br><span class="line">    url(<span class="string">r'^add.html'</span>, views.add),</span><br><span class="line">    url(<span class="string">r'^update.html'</span>, views.update),</span><br><span class="line">    url(<span class="string">r'^delete.html'</span>, views.delete),</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+<p>此时访问地址为 <code>http://127.0.0.1:8000/api/list.html</code>，将会匹配到 demo01 的 urls 文件。</p>
+<h4 id="参数传递"><a href="#参数传递" class="headerlink" title="参数传递"></a>参数传递</h4><p>当需要捕获 url 中传递的参数时候，可以采用如下的方式<br><code>demo01/urls.py</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url</span><br><span class="line"><span class="keyword">from</span> demo01 <span class="keyword">import</span> views</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    url(<span class="string">r'^list.html'</span>, views.list),</span><br><span class="line">    url(<span class="string">r'^add.html'</span>, views.add),</span><br><span class="line">    url(<span class="string">r'^(?P&lt;num&gt;[0-9]+)/update.html'</span>, views.update), <span class="comment"># 正则匹配，参数num</span></span><br><span class="line">    url(<span class="string">r'^delete.html'</span>, views.delete),</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+<p><code>/demo01/views.py</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">update</span><span class="params">(requests, num)</span>:</span></span><br><span class="line">    print(num)</span><br><span class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">'this update'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>此处使用 <code>num</code>就可以直接接受到参数。<br>另外，此处传递的参数都是字符串，不论传递的是数字还是字符串。  </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/12/19/django基础之urls详解/" data-id="cjpv1o9kd001f70q6lb8ldxl5" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/django/">django</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/urls/">urls</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>Recommended Posts</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/12/18/django从基础之models的基础使用和命令/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">django从基础之models的基础使用和命令</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">Content</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#urls基本配置"><span class="toc-number">1.</span> <span class="toc-text">urls基本配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#正则字符串参数"><span class="toc-number">1.1.</span> <span class="toc-text">正则字符串参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置实例"><span class="toc-number">1.2.</span> <span class="toc-text">配置实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#include-其他urls"><span class="toc-number">1.3.</span> <span class="toc-text">include 其他urls</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#参数传递"><span class="toc-number">1.4.</span> <span class="toc-text">参数传递</span></a></li></ol></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>
