@@ -72,6 +72,56 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-python邮件发送" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/06/python邮件发送/" class="article-date">
+  <time datetime="2018-06-06T01:12:47.000Z" itemprop="datePublished">2018-06-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/program/">编程</a>►<a class="article-category-link" href="/categories/program/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/06/python邮件发送/">python邮件发送</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>python中邮件发送可以使用<code>smtplib</code>模块，也可以使用第三方的<code>yagmail</code>模块。</p>
+<h3 id="邮件收发简介"><a href="#邮件收发简介" class="headerlink" title="邮件收发简介"></a>邮件收发简介</h3><p>假如从<code>xx@126.com</code>发送一份邮件至<code>xx@sina.com</code>。首先使用<code>Foxmail</code>等软件写好邮件发送，这些软件称为<strong>MUA</strong>(Mail User Agent，邮件用户代理)。<br>邮件从MUA发出去之后，先发到<strong>MTA</strong>(Mail Transfer Agent，邮件传输代理)，也就是邮件服务提供商。我们的邮件是从<code>126.com</code>发送的，所以先被投递到网易提供的MTA，再由网易的MTA发到对方服务商，也就是新浪的MTA。<br>邮件到达新浪的MTA后，由于对方使用的是新浪的邮箱，因此新浪的MTA会将邮件投递至最终的目的地<strong>MDA</strong>(Mail Delivery Agent，邮件投递代理)。<br>邮件到达MDA之后就会存放在某个服务器，我们将这个长期保存邮件的地方称为电子邮箱。<br>编写程序发送邮件本质就是编写MUA把邮件发送到MTA；收取邮件就是编写MUA从MDA收邮件。<br>
+        
+          <p class="article-more-link">
+            <a href="/2018/06/06/python邮件发送/#more">继续阅读全文 »</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/06/06/python邮件发送/" data-id="cjq3lwfef0081g8q6qncrhxdi" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/email/">email</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mime/">mime</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/smtp/">smtp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/yagmail/">yagmail</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
     <article id="post-python网络编程之socketserver" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/06/05/python网络编程之socketserver/" class="article-date">
@@ -108,7 +158,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/06/05/python网络编程之socketserver/" data-id="cjq256gt50066q0q611568xyd" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/06/05/python网络编程之socketserver/" data-id="cjq3lwf9k005yg8q6si0c4m4j" class="article-share-link">分享</a>
       
       
       
@@ -158,7 +208,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/06/01/python网络编程之socket/" data-id="cjq256gsi005rq0q64mmb892y" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/06/01/python网络编程之socket/" data-id="cjq3lwf8t005jg8q6oasaitsl" class="article-share-link">分享</a>
       
       
       
@@ -208,7 +258,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/30/python单词查找练习题/" data-id="cjq256gpm0033q0q6tlgf8hda" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/05/30/python单词查找练习题/" data-id="cjq3lwf4b0030g8q6in2cox4z" class="article-share-link">分享</a>
       
       
       
@@ -258,7 +308,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/27/python任务调度模块celery-二/" data-id="cjq256got002cq0q6kj9ui9vo" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/05/27/python任务调度模块celery-二/" data-id="cjq3lwf2c001ug8q6ped16157" class="article-share-link">分享</a>
       
       
       
@@ -309,7 +359,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/27/python多线程练习题/" data-id="cjq256gqv0047q0q6tn9tbzxa" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/05/27/python多线程练习题/" data-id="cjq3lwf4r0038g8q6x4xuadzh" class="article-share-link">分享</a>
       
       
       
@@ -360,7 +410,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/25/python任务调度模块celery/" data-id="cjq256gp2002jq0q6ycphuueb" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/05/25/python任务调度模块celery/" data-id="cjq3lwf2p0020g8q6ix4txfy7" class="article-share-link">分享</a>
       
       
       
@@ -410,7 +460,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/25/python消息队列/" data-id="cjq256gs5005fq0q6fot2an4j" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/05/25/python消息队列/" data-id="cjq3lwf7o004xg8q6rsf4ojlw" class="article-share-link">分享</a>
       
       
       
@@ -459,7 +509,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/23/python多线程/" data-id="cjq256gqz004dq0q6vd1vg502" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/05/23/python多线程/" data-id="cjq3lwf67003vg8q6khk946r4" class="article-share-link">分享</a>
       
       
       
@@ -508,7 +558,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/20/python多进程/" data-id="cjq256gqp0040q0q6koknb3pq" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/05/20/python多进程/" data-id="cjq3lwf7f004qg8q6gkr02i5y" class="article-share-link">分享</a>
       
       
       
@@ -522,59 +572,10 @@
 
 
   
-    <article id="post-python访问memcached" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/05/18/python访问memcached/" class="article-date">
-  <time datetime="2018-05-18T06:15:25.000Z" itemprop="datePublished">2018-05-18</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/program/">编程</a>►<a class="article-category-link" href="/categories/program/python/">python</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/18/python访问memcached/">python访问memcached</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="memcached介绍"><a href="#memcached介绍" class="headerlink" title="memcached介绍"></a>memcached介绍</h3><p>Memcached 是一个高性能的分布式内存对象缓存系统，用于动态Web应用以减轻数据库负载。它通过在内存中缓存数据和对象来减少读取数据库的次数，从而提高动态、数据库驱动网站的速度。Memcached基于一个存储键/值对的hashmap。其守护进程（daemon ）是用C写的，但是客户端可以用任何语言来编写，并通过memcached协议与守护进程通信。<br>memcached在实现分布式群集部署时，memcached服务之间是不能进行通讯的，分布式也是通过客户端的算法把数据保存在不同的memcached中。magent是一款开源的代理服务软件，我们可以通过它来实现缓存数据的同步。magent还可以使用keepalived来实现高可用。<br>
-        
-          <p class="article-more-link">
-            <a href="/2018/05/18/python访问memcached/#more">继续阅读全文 »</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/18/python访问memcached/" data-id="cjq256gtt006oq0q6ua3ln8aa" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/memcached/">memcached</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/4/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/6/">下一页&raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/4/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/6/">下一页&raquo;</a>
   </nav>
 </section>
            
@@ -594,6 +595,10 @@
       <ul>
         
           <li>
+            <a href="/2018/12/25/django进阶之ORM多表关联增删改查/">django进阶之ORM多表关联增删改查</a>
+          </li>
+        
+          <li>
             <a href="/2018/12/24/django进阶之ORM单表增删改查/">django进阶之ORM单表增删改查</a>
           </li>
         
@@ -607,10 +612,6 @@
         
           <li>
             <a href="/2018/12/19/django基础之urls详解/">django基础之urls详解</a>
-          </li>
-        
-          <li>
-            <a href="/2018/12/18/django从基础之models的基础使用和命令/">django从基础之models的基础使用和命令</a>
           </li>
         
       </ul>
