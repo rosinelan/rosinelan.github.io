@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://rosinelan.github.io/2018/12/25/django进阶之ORM多表关联增删改查/index.html">
 <meta property="og:site_name" content="持续不断">
 <meta property="og:description" content="数据库模型介绍school 和 class 之间创建的是一对多关系，通过外键对象 sch 关联">
-<meta property="og:updated_time" content="2018-12-25T10:29:24.151Z">
+<meta property="og:updated_time" content="2018-12-26T02:13:36.073Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="django进阶之ORM多表关联增删改查">
 <meta name="twitter:description" content="数据库模型介绍school 和 class 之间创建的是一对多关系，通过外键对象 sch 关联">
@@ -42,7 +42,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -119,11 +119,22 @@
 <h4 id="创建-2"><a href="#创建-2" class="headerlink" title="创建"></a>创建</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">user_obj = models.UserInfo.objects.filter(name=<span class="string">"Bob"</span>).first()</span><br><span class="line">class_obj = models.Class.objects.filter(name=<span class="string">"go_1期"</span>)</span><br><span class="line">user_obj.class_set.add(*class_obj)</span><br></pre></td></tr></table></figure>
 <h4 id="删除-2"><a href="#删除-2" class="headerlink" title="删除"></a>删除</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">user_obj = models.UserInfo.objects.filter(name=<span class="string">"Bob"</span>).first()</span><br><span class="line">class_obj = models.Class.objects.filter(name=<span class="string">"go_1期"</span>)</span><br><span class="line">user_obj.class_set.remove(*class_obj)</span><br></pre></td></tr></table></figure>
 <h4 id="更新-2"><a href="#更新-2" class="headerlink" title="更新"></a>更新</h4><p>也是先查询，然后删除，最后增加  </p>
+<h4 id="related-name"><a href="#related-name" class="headerlink" title="related_name"></a>related_name</h4><p>反向查找需要使用 <code>类名的小写_set</code> 方式比较麻烦，可以使用 <code>related_name</code> 进行简化  </p>
+<ol>
+<li><p>在 models.py 中添加 <code>related_name</code> 参数<br>变更仅涉及 ManyToManyField 的参数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Class</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    sch = models.ForeignKey(to=<span class="string">'School'</span>, default=<span class="number">1</span>)</span><br><span class="line">    name = models.CharField(max_length=<span class="number">128</span>, null=<span class="keyword">True</span>, blank=<span class="keyword">True</span>)</span><br><span class="line">    user = models.ManyToManyField(to=<span class="string">'UserInfo'</span>, related_name=<span class="string">'caluser'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更新数据库</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python manage.py makemigrations</span><br><span class="line">pyton manage.py migrate</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查找示例</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">user_obj = models.UserInfo.objects.filter(name=<span class="string">"Bob"</span>).first()</span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> user_obj.caluser.all():</span><br><span class="line">    print(item.name)</span><br></pre></td></tr></table></figure></li>
+</ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/12/25/django进阶之ORM多表关联增删改查/" data-id="cjq3lwf0g000pg8q6lxsswjww" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2018/12/25/django进阶之ORM多表关联增删改查/" data-id="cjq4kiyo0000zrwq6o0iag3ro" class="article-share-link">Share</a>
       
       
       
@@ -135,7 +146,7 @@
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>推荐文章</h2>
+    <h2>Recommended Posts</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =4
@@ -177,9 +188,18 @@
     
 <nav id="article-nav">
   
+    <a href="/2018/12/26/django进阶之条件查询FQ查询/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          django进阶之条件查询FQ查询
+        
+      </div>
+    </a>
+  
   
     <a href="/2018/12/24/django进阶之ORM单表增删改查/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">django进阶之ORM单表增删改查</div>
     </a>
   
@@ -209,9 +229,9 @@
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">文章目录</strong>
+        <strong class="toc-title">Content</strong>
         <div class="toc-widget-list">
-              <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据库模型介绍"><span class="toc-number">1.</span> <span class="toc-text">数据库模型介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一对多"><span class="toc-number">2.</span> <span class="toc-text">一对多</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#查询"><span class="toc-number">2.1.</span> <span class="toc-text">查询</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建"><span class="toc-number">2.2.</span> <span class="toc-text">创建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#删除"><span class="toc-number">2.3.</span> <span class="toc-text">删除</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#更新"><span class="toc-number">2.4.</span> <span class="toc-text">更新</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多对多"><span class="toc-number">3.</span> <span class="toc-text">多对多</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#查询-1"><span class="toc-number">3.1.</span> <span class="toc-text">查询</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建-1"><span class="toc-number">3.2.</span> <span class="toc-text">创建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#删除-1"><span class="toc-number">3.3.</span> <span class="toc-text">删除</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#更新-1"><span class="toc-number">3.4.</span> <span class="toc-text">更新</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#反向查找"><span class="toc-number">4.</span> <span class="toc-text">反向查找</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#查询-2"><span class="toc-number">4.1.</span> <span class="toc-text">查询</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建-2"><span class="toc-number">4.2.</span> <span class="toc-text">创建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#删除-2"><span class="toc-number">4.3.</span> <span class="toc-text">删除</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#更新-2"><span class="toc-number">4.4.</span> <span class="toc-text">更新</span></a></li></ol></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据库模型介绍"><span class="toc-number">1.</span> <span class="toc-text">数据库模型介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一对多"><span class="toc-number">2.</span> <span class="toc-text">一对多</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#查询"><span class="toc-number">2.1.</span> <span class="toc-text">查询</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建"><span class="toc-number">2.2.</span> <span class="toc-text">创建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#删除"><span class="toc-number">2.3.</span> <span class="toc-text">删除</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#更新"><span class="toc-number">2.4.</span> <span class="toc-text">更新</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多对多"><span class="toc-number">3.</span> <span class="toc-text">多对多</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#查询-1"><span class="toc-number">3.1.</span> <span class="toc-text">查询</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建-1"><span class="toc-number">3.2.</span> <span class="toc-text">创建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#删除-1"><span class="toc-number">3.3.</span> <span class="toc-text">删除</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#更新-1"><span class="toc-number">3.4.</span> <span class="toc-text">更新</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#反向查找"><span class="toc-number">4.</span> <span class="toc-text">反向查找</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#查询-2"><span class="toc-number">4.1.</span> <span class="toc-text">查询</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建-2"><span class="toc-number">4.2.</span> <span class="toc-text">创建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#删除-2"><span class="toc-number">4.3.</span> <span class="toc-text">删除</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#更新-2"><span class="toc-number">4.4.</span> <span class="toc-text">更新</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#related-name"><span class="toc-number">4.5.</span> <span class="toc-text">related_name</span></a></li></ol></li></ol>
           </div>
       </div>
     </div>
@@ -237,10 +257,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2018 小灰灰&nbsp;|&nbsp;
-      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
+     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>
