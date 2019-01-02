@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rosinelan.github.io/"/>
-  <updated>2018-12-29T03:20:39.981Z</updated>
+  <updated>2019-01-02T11:53:21.037Z</updated>
   <id>https://rosinelan.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CBV及CBV登录验证</title>
+    <link href="https://rosinelan.github.io/2019/01/02/CBV%E5%8F%8ACBV%E7%99%BB%E5%BD%95%E9%AA%8C%E8%AF%81/"/>
+    <id>https://rosinelan.github.io/2019/01/02/CBV及CBV登录验证/</id>
+    <published>2019-01-02T10:38:05.000Z</published>
+    <updated>2019-01-02T11:53:21.037Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="CBV实现登录验证"><a href="#CBV实现登录验证" class="headerlink" title="CBV实现登录验证"></a>CBV实现登录验证</h3><p>通过 CBV 继承的 View 源码，可以看到通过调用 as_view 中的 view 方法，最后返回的是对应类的 <code>self.dispatch(request, *, **)</code>。<br><a id="more"></a><br>那么可以在调用 dispatch 之前做一个 session 验证，实现登录验证。<br><code>urls.py</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url</span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> demo01 <span class="keyword">import</span> views</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    url(<span class="string">r'^index_demo'</span>, views.Index.as_view()),</span><br><span class="line">    url(<span class="string">r'^login_demo'</span>, views.CBV.as_view()),</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p><p><code>views.py</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Auth</span><span class="params">(View)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dispatch</span><span class="params">(self, request, *args, **kwargs)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> request.session.get(<span class="string">'login'</span>, <span class="keyword">False</span>):</span><br><span class="line">            response = super(Auth, self).dispatch(request, *args, **kwargs)</span><br><span class="line">            <span class="keyword">return</span> response</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> redirect(<span class="string">'/login'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Index</span><span class="params">(Auth)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self, request)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> HttpResponse(<span class="string">'Index'</span>)</span><br><span class="line">        </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CBV</span><span class="params">(View)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self, request)</span>:</span></span><br><span class="line">        <span class="comment"># self.dispatch()</span></span><br><span class="line">        <span class="keyword">return</span> render(request, <span class="string">'login.html'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">post</span><span class="params">(self, request)</span>:</span></span><br><span class="line">        username = request.POST.get(<span class="string">'username'</span>, <span class="keyword">False</span>)</span><br><span class="line">        password = request.POST.get(<span class="string">'password'</span>, <span class="keyword">False</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> username <span class="keyword">or</span> <span class="keyword">not</span> password:</span><br><span class="line">            <span class="keyword">return</span> HttpResponse(<span class="string">'用户名密码不能为空'</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            user_obj = models.UserInfo.objects.filter(username=username, password=password)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> user_obj.first():  <span class="comment"># 登录成功</span></span><br><span class="line">                request.session[<span class="string">'login'</span>] = user_obj.first().name  <span class="comment"># 创建session</span></span><br><span class="line">                <span class="keyword">return</span> redirect(<span class="string">'/session'</span>)</span><br><span class="line">            <span class="keyword">else</span>:  <span class="comment"># 登录失败</span></span><br><span class="line">                <span class="keyword">return</span> HttpResponse(<span class="string">'用户名密码错误'</span>)</span><br></pre></td></tr></table></figure></p><p><code>templates/login.html</code><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;form method=<span class="string">"post"</span>&gt;</span><br><span class="line">            用户名：&lt;input type=<span class="string">"text"</span> name=<span class="string">"username"</span>&gt;</span><br><span class="line">            密码：&lt;input type=<span class="string">"text"</span> name=<span class="string">"password"</span>&gt;</span><br><span class="line">            &lt;input type=<span class="string">"submit"</span> value=<span class="string">"提交"</span>&gt;</span><br><span class="line">        &lt;/form&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p><ul><li>实现效果<br>直接访问 <a href="http://127.0.0.1:8000/index_demo" target="_blank" rel="noopener">http://127.0.0.1:8000/index_demo</a> ，跳转至登录页面。<br>通过 <a href="http://127.0.0.1:8000/login_demo" target="_blank" rel="noopener">http://127.0.0.1:8000/login_demo</a> 登录成功之后再访问<a href="http://127.0.0.1:8000/index_demo，直接显示" target="_blank" rel="noopener">http://127.0.0.1:8000/index_demo，直接显示</a> Index 。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;CBV实现登录验证&quot;&gt;&lt;a href=&quot;#CBV实现登录验证&quot; class=&quot;headerlink&quot; title=&quot;CBV实现登录验证&quot;&gt;&lt;/a&gt;CBV实现登录验证&lt;/h3&gt;&lt;p&gt;通过 CBV 继承的 View 源码，可以看到通过调用 as_view 中的 view 方法，最后返回的是对应类的 &lt;code&gt;self.dispatch(request, *, **)&lt;/code&gt;。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="系统管理" scheme="https://rosinelan.github.io/categories/system/"/>
+    
+      <category term="python实战" scheme="https://rosinelan.github.io/categories/system/python%E5%AE%9E%E6%88%98/"/>
+    
+    
+      <category term="CBV" scheme="https://rosinelan.github.io/tags/CBV/"/>
+    
+      <category term="CBV登录验证" scheme="https://rosinelan.github.io/tags/CBV%E7%99%BB%E5%BD%95%E9%AA%8C%E8%AF%81/"/>
+    
+  </entry>
   
   <entry>
     <title>django FBV CBV及序列化工具</title>
@@ -36,9 +62,9 @@
       <category term="python实战" scheme="https://rosinelan.github.io/categories/system/python%E5%AE%9E%E6%88%98/"/>
     
     
-      <category term="FBV" scheme="https://rosinelan.github.io/tags/FBV/"/>
-    
       <category term="CBV" scheme="https://rosinelan.github.io/tags/CBV/"/>
+    
+      <category term="FBV" scheme="https://rosinelan.github.io/tags/FBV/"/>
     
       <category term="序列化" scheme="https://rosinelan.github.io/tags/%E5%BA%8F%E5%88%97%E5%8C%96/"/>
     
@@ -152,11 +178,11 @@
     
       <category term="ORM" scheme="https://rosinelan.github.io/tags/ORM/"/>
     
-      <category term="增删改查" scheme="https://rosinelan.github.io/tags/%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/"/>
-    
       <category term="多对多" scheme="https://rosinelan.github.io/tags/%E5%A4%9A%E5%AF%B9%E5%A4%9A/"/>
     
       <category term="一对多" scheme="https://rosinelan.github.io/tags/%E4%B8%80%E5%AF%B9%E5%A4%9A/"/>
+    
+      <category term="增删改查" scheme="https://rosinelan.github.io/tags/%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/"/>
     
   </entry>
   
@@ -180,11 +206,11 @@
       <category term="python实战" scheme="https://rosinelan.github.io/categories/system/python%E5%AE%9E%E6%88%98/"/>
     
     
-      <category term="django进阶" scheme="https://rosinelan.github.io/tags/django%E8%BF%9B%E9%98%B6/"/>
-    
       <category term="ORM" scheme="https://rosinelan.github.io/tags/ORM/"/>
     
       <category term="增删改查" scheme="https://rosinelan.github.io/tags/%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/"/>
+    
+      <category term="django进阶" scheme="https://rosinelan.github.io/tags/django%E8%BF%9B%E9%98%B6/"/>
     
   </entry>
   
@@ -434,11 +460,11 @@
       <category term="python实战" scheme="https://rosinelan.github.io/categories/system/python%E5%AE%9E%E6%88%98/"/>
     
     
-      <category term="类" scheme="https://rosinelan.github.io/tags/%E7%B1%BB/"/>
-    
       <category term="属性" scheme="https://rosinelan.github.io/tags/%E5%B1%9E%E6%80%A7/"/>
     
       <category term="方法" scheme="https://rosinelan.github.io/tags/%E6%96%B9%E6%B3%95/"/>
+    
+      <category term="类" scheme="https://rosinelan.github.io/tags/%E7%B1%BB/"/>
     
       <category term="面向对象" scheme="https://rosinelan.github.io/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"/>
     
@@ -546,32 +572,6 @@
     
     
       <category term="递归" scheme="https://rosinelan.github.io/tags/%E9%80%92%E5%BD%92/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>python函数变量和返回值</title>
-    <link href="https://rosinelan.github.io/2018/11/27/python%E5%87%BD%E6%95%B0%E5%8F%98%E9%87%8F%E5%92%8C%E8%BF%94%E5%9B%9E%E5%80%BC/"/>
-    <id>https://rosinelan.github.io/2018/11/27/python函数变量和返回值/</id>
-    <published>2018-11-27T09:16:00.000Z</published>
-    <updated>2018-11-27T09:37:58.970Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="函数变量"><a href="#函数变量" class="headerlink" title="函数变量"></a>函数变量</h2><p>函数变量分为局部变量和全局变量。任何变量都有特定作用域。<br>在函数中定义的变量一般只能在该函数内部使用，属于局部变量。<br><a id="more"></a><br>在一个文件顶部定义的变量可以供文件中的任何函数调用，属于全局变量。</p><h3 id="变量作用域"><a href="#变量作用域" class="headerlink" title="变量作用域"></a>变量作用域</h3><p>全局变量在函数内部只能print，不可进行操作；局部变量在函数外部不可见；使用global关键字声明为全局变量，则可以进行操作或者外部使用。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"></span><br><span class="line">x = <span class="number">100</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">global</span> x</span><br><span class="line">    x += <span class="number">1</span></span><br><span class="line">    <span class="keyword">global</span> y</span><br><span class="line">    y = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">fun()</span><br><span class="line"><span class="keyword">print</span> x</span><br><span class="line"><span class="keyword">print</span> y</span><br></pre></td></tr></table></figure></p><p>此处x为全局变量，若不进行global声明，x += 1报错；y为局部变量，若不进行global声明，print y报错。</p><h3 id="locals-函数"><a href="#locals-函数" class="headerlink" title="locals()函数"></a>locals()函数</h3><p>返回一个字典，字典内容为当前可见的变量。</p><h2 id="函数返回值"><a href="#函数返回值" class="headerlink" title="函数返回值"></a>函数返回值</h2><p>函数被调用后会返回一个特定的值；函数调用后默认返回<code>None</code>。</p><h3 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> 返回值</span><br></pre></td></tr></table></figure><p>返回值可以是任何类型。<br>return执行后，函数终止。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">"hello world!"</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">"abc"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> fun()</span><br></pre></td></tr></table></figure></p><p>输出结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hello world!</span><br><span class="line">abc</span><br><span class="line"><span class="keyword">None</span></span><br></pre></td></tr></table></figure></p><h3 id="return和print的区别"><a href="#return和print的区别" class="headerlink" title="return和print的区别"></a>return和print的区别</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isNum</span><span class="params">(s)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> s.isdigit():</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> os.listdir(<span class="string">'/proc'</span>):</span><br><span class="line">    <span class="keyword">if</span> isNum(i):</span><br><span class="line">        <span class="keyword">print</span> i</span><br></pre></td></tr></table></figure><h3 id="多类型传值"><a href="#多类型传值" class="headerlink" title="多类型传值"></a>多类型传值</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun</span><span class="params">(x, y, z)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> x + y + z</span><br></pre></td></tr></table></figure><p>传入元组<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">t = (<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line">fun(*t)</span><br><span class="line">fun(<span class="number">2</span>,*t)</span><br></pre></td></tr></table></figure></p><p>传入字典<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dic = &#123;‘x’:<span class="number">1</span>,.’y’:<span class="number">3</span>,’z’:<span class="number">5</span>&#125;</span><br><span class="line">fun(**dic)</span><br></pre></td></tr></table></figure></p><h3 id="冗余参数"><a href="#冗余参数" class="headerlink" title="冗余参数"></a>冗余参数</h3><p>命名参数<br>多余参数存到元组<br>默认参数存到字典<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"></span><br><span class="line">t = (<span class="string">'c'</span>,<span class="string">'d'</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun</span><span class="params">(x,*args,**kwargs)</span>:</span></span><br><span class="line">    <span class="keyword">print</span> x</span><br><span class="line">    <span class="keyword">print</span> args</span><br><span class="line">    <span class="keyword">print</span> kwargs</span><br><span class="line">fun(<span class="number">1</span>,<span class="number">2</span>,<span class="string">'a'</span>,[<span class="number">1</span>,<span class="number">2</span>,],*t,a=<span class="number">3</span>,**&#123;<span class="string">'b'</span>:<span class="number">11</span>&#125;)</span><br></pre></td></tr></table></figure></p><p>输出结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br><span class="line">(<span class="number">2</span>, <span class="string">'a'</span>, [<span class="number">1</span>, <span class="number">2</span>], <span class="string">'c'</span>, <span class="string">'d'</span>)</span><br><span class="line">&#123;<span class="string">'a'</span>: <span class="number">3</span>, <span class="string">'b'</span>: <span class="number">11</span>&#125;</span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;函数变量&quot;&gt;&lt;a href=&quot;#函数变量&quot; class=&quot;headerlink&quot; title=&quot;函数变量&quot;&gt;&lt;/a&gt;函数变量&lt;/h2&gt;&lt;p&gt;函数变量分为局部变量和全局变量。任何变量都有特定作用域。&lt;br&gt;在函数中定义的变量一般只能在该函数内部使用，属于局部变量。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="系统管理" scheme="https://rosinelan.github.io/categories/system/"/>
-    
-      <category term="python实战" scheme="https://rosinelan.github.io/categories/system/python%E5%AE%9E%E6%88%98/"/>
-    
-    
-      <category term="变量" scheme="https://rosinelan.github.io/tags/%E5%8F%98%E9%87%8F/"/>
-    
-      <category term="返回值" scheme="https://rosinelan.github.io/tags/%E8%BF%94%E5%9B%9E%E5%80%BC/"/>
     
   </entry>
   
