@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://rosinelan.github.io/2019/01/07/Django-Uwsgi-Nginx-%E7%94%9F%E4%BA%A7%E9%83%A8%E7%BD%B2/</loc>
+    
+    <lastmod>2019-01-07T13:11:00.666Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://rosinelan.github.io/2019/01/05/django%E8%BF%9B%E9%98%B6%E4%B9%8B%E4%B8%AD%E9%97%B4%E4%BB%B6/</loc>
     
     <lastmod>2019-01-05T02:20:15.225Z</lastmod>
