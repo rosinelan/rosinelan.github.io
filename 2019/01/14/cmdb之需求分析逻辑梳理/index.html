@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>cmdb之需求分析逻辑梳理 | 持续不断</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="需求分析管理的机器数量达到一定的量级，使用 excel 管理非常的不方便，而且在进行发布/监控/堡垒机等管理的时候也会很麻烦。">
+<meta name="keywords" content="cmdb,需求分析,逻辑梳理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cmdb之需求分析逻辑梳理">
+<meta property="og:url" content="https://rosinelan.github.io/2019/01/14/cmdb之需求分析逻辑梳理/index.html">
+<meta property="og:site_name" content="持续不断">
+<meta property="og:description" content="需求分析管理的机器数量达到一定的量级，使用 excel 管理非常的不方便，而且在进行发布/监控/堡垒机等管理的时候也会很麻烦。">
+<meta property="og:updated_time" content="2019-01-14T11:45:31.038Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="cmdb之需求分析逻辑梳理">
+<meta name="twitter:description" content="需求分析管理的机器数量达到一定的量级，使用 excel 管理非常的不方便，而且在进行发布/监控/堡垒机等管理的时候也会很麻烦。">
+  
+    <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">持续不断</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">要松懈的时候再坚持一下</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-cmdb之需求分析逻辑梳理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/14/cmdb之需求分析逻辑梳理/" class="article-date">
+  <time datetime="2019-01-14T10:35:25.000Z" itemprop="datePublished">2019-01-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/system/">系统管理</a>►<a class="article-category-link" href="/categories/system/python实战/">python实战</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      cmdb之需求分析逻辑梳理
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h3 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h3><p>管理的机器数量达到一定的量级，使用 excel 管理非常的不方便，而且在进行发布/监控/堡垒机等管理的时候也会很麻烦。<br><a id="more"></a><br>此时就需要 CMDB 进行资产管理，同时其他的发布/监控/堡垒机可以通过调用 CMDB 对应的 API 进行响应的操作，而不需要每次手工输入 IP 地址等操作。  </p>
+<ul>
+<li>需求1 资产管理<br>资产管理也就是代替 excel 的功能，根据 excel 的内容，可以初步梳理出需要保存的信息，例如<br>硬件类型 环境 部署的应用 来源 ip地址(内网、外网) 主机名 内存 CPU 硬盘 内核 操作系统 ecs_name 标识_name  上线状态 区域/城市</li>
+</ul>
+<p>上述类型其实也就是我们数据库中需要保存的相应字段，通过 <code>models.py</code> 定义即可。<br>磁盘表示例<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Disk</span><span class="params">(models.Model)</span>:</span></span><br><span class="line"><span class="string">'''磁盘'''</span></span><br><span class="line">path = models.CharField(max_length=<span class="number">64</span>, blank=<span class="keyword">True</span>, null=<span class="keyword">True</span>, verbose_name=<span class="string">'挂载路径'</span>)</span><br><span class="line">size = models.CharField(max_length=<span class="number">64</span>, blank=<span class="keyword">True</span>, null=<span class="keyword">True</span>, verbose_name=<span class="string">'磁盘大小/G'</span>)</span><br><span class="line">remarks = models.CharField(max_length=<span class="number">64</span>, blank=<span class="keyword">True</span>, null=<span class="keyword">True</span>, verbose_name=<span class="string">'备注'</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line"><span class="keyword">return</span> self.zise</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">verbose_name_plural = <span class="string">'磁盘表'</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>需求2 其他系统交互<br>通常使用 jenkins 发布，使用 zabbix 监控， 使用 jumpserver 做堡垒机。  </li>
+</ul>
+<p>以 jenkins 发布为例<br>每次发布对应的主机 IP 地址不需要从 excel 获取，直接通过应用的类别，调用 CMDB 提供的 API 查询得到主机 ip 地址进行发布，其他类似，方便快捷。  </p>
+<h3 id="逻辑梳理"><a href="#逻辑梳理" class="headerlink" title="逻辑梳理"></a>逻辑梳理</h3><p>需要实现数据录入、数据展示、数据更新。  </p>
+<ol>
+<li>数据录入和更新<br>资产管理系统实现基础的增删改查功能，少量数据可以通过页面录入。<br>更多的数据通过 client 工具，使用定时任务的方式更新，定时检查所有服务器信息，若有新增和变更则录入，若无则不变更。<br>变更需要保留日志，可追溯查看变更过程。<br>客户端工具可以使用 saltstack 或者 ansible 实现，对于公有云可以通过调用提供的 API 查询数据。<br>所有数据的变更都通过后台管理系统统一接口连接数据库进行数据更新，不开多个口子，保证数据准确和一致。  </li>
+<li>数据展示<br>所有增删改查都可以通过页面进行操作，所有信息都可以通过页面进行查询得到。<br>数据变更记录可以追溯查看。<br>更新数据可以选择通过手动在页面更新，也可以选择定时任务自动更新。  </li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2019/01/14/cmdb之需求分析逻辑梳理/" data-id="cjqw9i05p000josq6koxjf0bf" class="article-share-link">Delen</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cmdb/">cmdb</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逻辑梳理/">逻辑梳理</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/需求分析/">需求分析</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/01/07/Django-Uwsgi-Nginx-生产部署/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ouder</strong>
+      <div class="article-nav-title">Django + Uwsgi + Nginx 生产部署</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#需求分析"><span class="toc-number">1.</span> <span class="toc-text">需求分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#逻辑梳理"><span class="toc-number">2.</span> <span class="toc-text">逻辑梳理</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2019 小灰灰&nbsp;|&nbsp;
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>
