@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>cmdb之增删改查续 | 持续不断</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前面完成了展示页面的功能，继续后面的功能">
+<meta name="keywords" content="cmdb,增删改查">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cmdb之增删改查续">
+<meta property="og:url" content="https://rosinelan.github.io/2019/01/17/cmdb之增删改查续/index.html">
+<meta property="og:site_name" content="持续不断">
+<meta property="og:description" content="前面完成了展示页面的功能，继续后面的功能">
+<meta property="og:updated_time" content="2019-01-17T02:52:41.722Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="cmdb之增删改查续">
+<meta name="twitter:description" content="前面完成了展示页面的功能，继续后面的功能">
+  
+    <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">持续不断</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">要松懈的时候再坚持一下</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-cmdb之增删改查续" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/17/cmdb之增删改查续/" class="article-date">
+  <time datetime="2019-01-17T02:35:54.000Z" itemprop="datePublished">2019-01-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/system/">系统管理</a>►<a class="article-category-link" href="/categories/system/python实战/">python实战</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      cmdb之增删改查续
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <p>前面完成了展示页面的功能，继续后面的功能<br><a id="more"></a></p>
+<ul>
+<li>整个项目的路由<br><code>urls.py</code><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url,include</span><br><span class="line"><span class="keyword">from</span> host <span class="keyword">import</span> views</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    url(<span class="string">r'list$'</span>, views.List.as_view()),</span><br><span class="line">    url(<span class="string">r'add$'</span>, views.Add.as_view()),</span><br><span class="line">    url(<span class="string">r'edit/(\d+)/'</span>, views.Update.as_view()),</span><br><span class="line">    url(<span class="string">r'del'</span>, views.Del.as_view()),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><code>edit</code>后面使用正则表达式，作用在后面的 <code>views.py</code> 可以看到  </p>
+<ul>
+<li><p>页面基于 form 类实现<br><code>/utils/for_class.py</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.forms <span class="keyword">import</span> fields, widgets, Form</span><br><span class="line"><span class="keyword">from</span> demo01 <span class="keyword">import</span> models</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HostForm</span><span class="params">(Form)</span>:</span></span><br><span class="line">    hostname = fields.CharField(</span><br><span class="line">        required=<span class="keyword">True</span>,</span><br><span class="line">        widget=widgets.TextInput(attrs=&#123;<span class="string">'class'</span>: <span class="string">'form-control'</span>&#125;)</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    ecsname = fields.CharField(</span><br><span class="line">        required=<span class="keyword">True</span>,</span><br><span class="line">        widget=widgets.TextInput(attrs=&#123;<span class="string">'class'</span>: <span class="string">'form-control'</span>&#125;)</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    cpu = fields.IntegerField(</span><br><span class="line">        required=<span class="keyword">True</span>,</span><br><span class="line">        widget=widgets.TextInput(attrs=&#123;<span class="string">'class'</span>: <span class="string">'form-control'</span>&#125;)</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    mem = fields.IntegerField(</span><br><span class="line">        required=<span class="keyword">True</span>,</span><br><span class="line">        widget=widgets.TextInput(attrs=&#123;<span class="string">'class'</span>: <span class="string">'form-control'</span>&#125;)</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    speed = fields.CharField(</span><br><span class="line">        required=<span class="keyword">True</span>,</span><br><span class="line">        widget=widgets.TextInput(attrs=&#123;<span class="string">'class'</span>: <span class="string">'form-control'</span>&#125;)</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    network = fields.CharField(</span><br><span class="line">        required=<span class="keyword">True</span>,</span><br><span class="line">        widget=widgets.TextInput(attrs=&#123;<span class="string">'class'</span>: <span class="string">'form-control'</span>&#125;)</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    source_id = fields.ChoiceField(</span><br><span class="line">        required=<span class="keyword">True</span>,</span><br><span class="line">        choices=[],</span><br><span class="line">        widget=widgets.Select(attrs=&#123;<span class="string">'class'</span>: <span class="string">'form-control'</span>&#125;)</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    region_id = fields.ChoiceField(</span><br><span class="line">        required=<span class="keyword">True</span>,</span><br><span class="line">        choices=[],</span><br><span class="line">        widget=widgets.Select(attrs=&#123;<span class="string">'class'</span>: <span class="string">'form-control'</span>&#125;)</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, *args, **kwargs)</span>:</span></span><br><span class="line">        super(HostForm, self).__init__(*args, **kwargs)</span><br><span class="line">        self.fields[<span class="string">'source_id'</span>].choices = models.Source.objects.values_list(<span class="string">'id'</span>, <span class="string">'name'</span>)</span><br><span class="line">        self.fields[<span class="string">'region_id'</span>].choices = models.Region.objects.values_list(<span class="string">'id'</span>, <span class="string">'name'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注意点1<br>表的一对多关系中，对应的数据不能直接在 form 类中写死，应该在 <strong>init</strong> 方法中实现，如上面的 source/region<br>form 类中写死，如果数据有更新，必须重启服务才能取到更新后的值<br><strong>init</strong> 方法中，每次实例化 form 类都会重新取值</p>
+</li>
+<li><p>注意点2<br>对于 source/region 一对多关系中，插入时需要注意值的类型<br>如上面的 source 字段，默认取到的为字符串，需要使用 <code>名称_id</code> 方式才能插入整数类型  </p>
+</li>
+</ul>
+<h3 id="增加"><a href="#增加" class="headerlink" title="增加"></a>增加</h3><p><code>/host/views.py</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Add</span><span class="params">(View)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">post</span><span class="params">(self, request, *args, **kwargs)</span>:</span></span><br><span class="line">        form = form_class.HostForm(data=request.POST)</span><br><span class="line">        <span class="keyword">if</span> form.is_valid():</span><br><span class="line">            models.Host.objects.create(**form.cleaned_data)</span><br><span class="line">            <span class="keyword">return</span> redirect(<span class="string">'/host/list'</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> render(request, <span class="string">'add.html'</span>, locals())</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self, request, *args, **kwargs)</span>:</span></span><br><span class="line">        form = form_class.HostForm()</span><br><span class="line">        <span class="keyword">return</span> render(request, <span class="string">'add.html'</span>, locals())</span><br></pre></td></tr></table></figure></p>
+<p><code>/templates/add.html</code><br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">novalidate</span>&gt;</span></span><br><span class="line">    &#123;% csrf_token %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"hostname"</span>&gt;</span>阿里云主机名：&#123;&#123; form.hostname &#125;&#125;&#123;&#123; form.errors.hostname.0 &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"ecsname"</span>&gt;</span>阿里云实例名：&#123;&#123; form.ecsname &#125;&#125;&#123;&#123; form.errors.ecsname.0 &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"cpu"</span>&gt;</span>CPU:：&#123;&#123; form.cpu &#125;&#125;&#123;&#123; form.errors.cpu.0 &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"mem"</span>&gt;</span>内存/G：&#123;&#123; form.mem &#125;&#125;&#123;&#123; form.errors.mem.0 &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"speed"</span>&gt;</span>带宽/M：&#123;&#123; form.speed &#125;&#125;&#123;&#123; form.errors.speed.0 &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"nework"</span>&gt;</span>IP：&#123;&#123; form.nework &#125;&#125;&#123;&#123; form.errors.nework.0 &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"source"</span>&gt;</span>来源类型：&#123;&#123; form.source_id &#125;&#125;&#123;&#123; form.errors.source_id.0 &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"region"</span>&gt;</span>所属区域：&#123;&#123; form.region_id &#125;&#125;&#123;&#123; form.errors.region_id.0 &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"提交"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><p><code>/host/views.py</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Del</span><span class="params">(View)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">post</span><span class="params">(self, request, *args, **kwargs)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self, request, *args, **kwargs)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> HttpResponse(<span class="string">'del'</span>)</span><br><span class="line">        get_id = int(request.Get.get(<span class="string">'id'</span>))</span><br><span class="line">        models.Host.objects.filter(id=get_id).delete()</span><br><span class="line">        <span class="keyword">return</span> redirect(<span class="string">'/host/list'</span>)</span><br></pre></td></tr></table></figure></p>
+<h3 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h3><p><code>/host/views.py</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Update</span><span class="params">(View)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">post</span><span class="params">(self, request, pk)</span>:</span></span><br><span class="line">        form = form_class.HostForm(data=request.POST)</span><br><span class="line">        <span class="keyword">if</span> form.is_valid():</span><br><span class="line">            models.Host.objects.filter(id=pk).update(**form.cleaned_data)</span><br><span class="line">            <span class="keyword">return</span> redirect(<span class="string">'/host/list'</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> render(request, <span class="string">'edit.html'</span>, locals())</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self, request, pk)</span>:</span></span><br><span class="line">        obj = models.Host.objects.filter(id=pk).first()</span><br><span class="line">        form = form_class.HostForm(</span><br><span class="line">            initial=&#123;</span><br><span class="line">                <span class="string">'hostname'</span>: obj.hostname,</span><br><span class="line">                <span class="string">'ecsname'</span>: obj.ecsname,</span><br><span class="line">                <span class="string">'cpu'</span>: obj.cpu,</span><br><span class="line">                <span class="string">'mem'</span>: obj.mem,</span><br><span class="line">                <span class="string">'speed'</span>: obj.speed,</span><br><span class="line">                <span class="string">'source_id'</span>: obj.source_id,</span><br><span class="line">                <span class="string">'region_id'</span>: obj.region_id,</span><br><span class="line">            &#125;</span><br><span class="line">        )</span><br><span class="line">        <span class="keyword">return</span> render(request, <span class="string">'edit.html'</span>, locals())</span><br></pre></td></tr></table></figure></p>
+<p><code>/templates/edit.html</code><br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">novalidate</span>&gt;</span></span><br><span class="line">    &#123;% csrf_token %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"hostname"</span>&gt;</span>阿里云主机名：&#123;&#123; form.hostname &#125;&#125;&#123;&#123; form.errors.hostname.0 &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"ecsname"</span>&gt;</span>阿里云实例名：&#123;&#123; form.ecsname &#125;&#125;&#123;&#123; form.errors.ecsname.0 &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"cpu"</span>&gt;</span>CPU:：&#123;&#123; form.cpu &#125;&#125;&#123;&#123; form.errors.cpu.0 &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"mem"</span>&gt;</span>内存/G：&#123;&#123; form.mem &#125;&#125;&#123;&#123; form.errors.mem.0 &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"speed"</span>&gt;</span>带宽/M：&#123;&#123; form.speed &#125;&#125;&#123;&#123; form.errors.speed.0 &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"nework"</span>&gt;</span>IP：&#123;&#123; form.nework &#125;&#125;&#123;&#123; form.errors.nework.0 &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"source"</span>&gt;</span>来源类型：&#123;&#123; form.source_id &#125;&#125;&#123;&#123; form.errors.source_id.0 &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"region"</span>&gt;</span>所属区域：&#123;&#123; form.region_id &#125;&#125;&#123;&#123; form.errors.region_id.0 &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"提交"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2019/01/17/cmdb之增删改查续/" data-id="cjr00t7db002y6wq6bpitpx4o" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cmdb/">cmdb</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/增删改查/">增删改查</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/01/16/cmdb之管理系统增删改查/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">cmdb之管理系统增删改查</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#增加"><span class="toc-number">1.</span> <span class="toc-text">增加</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除"><span class="toc-number">2.</span> <span class="toc-text">删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更新"><span class="toc-number">3.</span> <span class="toc-text">更新</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2019 小灰灰&nbsp;|&nbsp;
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>
