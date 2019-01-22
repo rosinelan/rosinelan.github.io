@@ -5,17 +5,17 @@
   
   <title>cmdb之唯一标识及importlib反射 | 持续不断</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="唯一标识问题使用 saltstack 得到的结果一般如下1234567891011121314151617[root@qqcloud ~]# salt * grains.get ip_interfacesvultr-singap:    ----------    eth0:        - 45.77.249.53        - fe80::5400:1ff:feda:5802    lo">
+  <meta name="description" content="唯一标识问题使用 saltstack 得到的结果一般如下">
 <meta name="keywords" content="cmdb,唯一标识,反射">
 <meta property="og:type" content="article">
 <meta property="og:title" content="cmdb之唯一标识及importlib反射">
 <meta property="og:url" content="https://rosinelan.github.io/2019/01/21/cmdb之唯一标识及importlib反射/index.html">
 <meta property="og:site_name" content="持续不断">
-<meta property="og:description" content="唯一标识问题使用 saltstack 得到的结果一般如下1234567891011121314151617[root@qqcloud ~]# salt * grains.get ip_interfacesvultr-singap:    ----------    eth0:        - 45.77.249.53        - fe80::5400:1ff:feda:5802    lo">
-<meta property="og:updated_time" content="2019-01-22T02:20:47.090Z">
+<meta property="og:description" content="唯一标识问题使用 saltstack 得到的结果一般如下">
+<meta property="og:updated_time" content="2019-01-22T02:23:16.897Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="cmdb之唯一标识及importlib反射">
-<meta name="twitter:description" content="唯一标识问题使用 saltstack 得到的结果一般如下1234567891011121314151617[root@qqcloud ~]# salt * grains.get ip_interfacesvultr-singap:    ----------    eth0:        - 45.77.249.53        - fe80::5400:1ff:feda:5802    lo">
+<meta name="twitter:description" content="唯一标识问题使用 saltstack 得到的结果一般如下">
   
     <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
   
@@ -42,7 +42,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -100,7 +100,7 @@
       
         <!-- Table of Contents -->
         
-        <h3 id="唯一标识问题"><a href="#唯一标识问题" class="headerlink" title="唯一标识问题"></a>唯一标识问题</h3><p>使用 saltstack 得到的结果一般如下<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[root@qqcloud ~]<span class="comment"># salt * grains.get ip_interfaces</span></span><br><span class="line">vultr-singap:</span><br><span class="line">    ----------</span><br><span class="line">    eth0:</span><br><span class="line">        - <span class="number">45.77</span><span class="number">.249</span><span class="number">.53</span></span><br><span class="line">        - fe80::<span class="number">5400</span>:<span class="number">1</span>ff:feda:<span class="number">5802</span></span><br><span class="line">    lo:</span><br><span class="line">        - <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">        - ::<span class="number">1</span></span><br><span class="line">vultr-newj:</span><br><span class="line">    ----------</span><br><span class="line">    eth0:</span><br><span class="line">        - <span class="number">209.222</span><span class="number">.21</span><span class="number">.90</span></span><br><span class="line">        - fe80::<span class="number">5400</span>:<span class="number">1</span>ff:feda:<span class="number">595</span>e</span><br><span class="line">    lo:</span><br><span class="line">        - <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">        - ::<span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+        <h3 id="唯一标识问题"><a href="#唯一标识问题" class="headerlink" title="唯一标识问题"></a>唯一标识问题</h3><p>使用 saltstack 得到的结果一般如下<br><a id="more"></a><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[root@qqcloud ~]<span class="comment"># salt * grains.get ip_interfaces</span></span><br><span class="line">vultr-singap:</span><br><span class="line">    ----------</span><br><span class="line">    eth0:</span><br><span class="line">        - <span class="number">45.77</span><span class="number">.249</span><span class="number">.53</span></span><br><span class="line">        - fe80::<span class="number">5400</span>:<span class="number">1</span>ff:feda:<span class="number">5802</span></span><br><span class="line">    lo:</span><br><span class="line">        - <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">        - ::<span class="number">1</span></span><br><span class="line">vultr-newj:</span><br><span class="line">    ----------</span><br><span class="line">    eth0:</span><br><span class="line">        - <span class="number">209.222</span><span class="number">.21</span><span class="number">.90</span></span><br><span class="line">        - fe80::<span class="number">5400</span>:<span class="number">1</span>ff:feda:<span class="number">595</span>e</span><br><span class="line">    lo:</span><br><span class="line">        - <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">        - ::<span class="number">1</span></span><br></pre></td></tr></table></figure></p>
 <p>调用 salt-api 得到结果格式则如下<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">'vultr-singap'</span>: &#123;<span class="string">'lo'</span>: [<span class="string">'127.0.0.1'</span>, <span class="string">'::1'</span>], <span class="string">'eth0'</span>: [<span class="string">'45.77.249.53'</span>, <span class="string">'fe80::5400:1ff:feda:5802'</span>]&#125;, <span class="string">'vultr-newj'</span>: &#123;<span class="string">'lo'</span>: [<span class="string">'127.0.0.1'</span>, <span class="string">'::1'</span>], <span class="string">'eth0'</span>: [<span class="string">'209.222.21.90'</span>, <span class="string">'fe80::5400:1ff:feda:595e'</span>]&#125;&#125;</span><br></pre></td></tr></table></figure></p>
 <p>字典的 key 为 minion id， value 为字典，得到结果如何和服务器的 IP 地址对应关系呢？<br>此时就使用 minion id 作为唯一标识，因为 saltstack 要求 minion id 不能重复。<br>建议 minion id 从开始就不要变，如果要变更，需要停止对应的 saltstack 服务，删除接受的 keys，然后重启服务并进行 keys 认证。  </p>
 <h3 id="python-2-和-3-面向对象的而区别"><a href="#python-2-和-3-面向对象的而区别" class="headerlink" title="python 2 和 3 面向对象的而区别"></a>python 2 和 3 面向对象的而区别</h3><p>pyton2 中存在经典类和新式类 2 种<br>python3 中只有新式类<br>python2 定义类的时候不写 object 为经典类，写 object 为新式类<br> <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">class Foo():    --&gt; 经典类</span><br><span class="line">class Foo(objecy):  --&gt; 新式类</span><br></pre></td></tr></table></figure></p>
@@ -119,7 +119,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2019/01/21/cmdb之唯一标识及importlib反射/" data-id="cjr720cf8000p0wq60j95u56z" class="article-share-link">Delen</a>
+      <a data-url="https://rosinelan.github.io/2019/01/21/cmdb之唯一标识及importlib反射/" data-id="cjr720cf8000p0wq60j95u56z" class="article-share-link">分享</a>
       
       
       
@@ -131,7 +131,7 @@
     
  <script src="/jquery/jquery.min.js"></script>
   <div id="random_posts">
-    <h2>Recommended Posts</h2>
+    <h2>推荐文章</h2>
     <div class="random_posts_ul">
       <script>
           var random_count =4
@@ -175,7 +175,7 @@
   
   
     <a href="/2019/01/21/cmdb之saltstack的使用及python调用salt-api/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Ouder</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">cmdb之saltstack的使用及python调用salt-api</div>
     </a>
   
@@ -205,7 +205,7 @@
     
       <div class="widget" id="toc-widget-fixed">
       
-        <strong class="toc-title">Content</strong>
+        <strong class="toc-title">文章目录</strong>
         <div class="toc-widget-list">
               <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#唯一标识问题"><span class="toc-number">1.</span> <span class="toc-text">唯一标识问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#python-2-和-3-面向对象的而区别"><span class="toc-number">2.</span> <span class="toc-text">python 2 和 3 面向对象的而区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#反射"><span class="toc-number">3.</span> <span class="toc-text">反射</span></a></li></ol>
           </div>
@@ -233,10 +233,10 @@
   <div class="outer">
     <div id="footer-left">
       &copy; 2014 - 2019 小灰灰&nbsp;|&nbsp;
-      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
     </div>
      <div id="footer-right">
-     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
+     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
     </div>
   </div>
 </footer>
