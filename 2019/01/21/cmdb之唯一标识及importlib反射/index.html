@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://rosinelan.github.io/2019/01/21/cmdb之唯一标识及importlib反射/index.html">
 <meta property="og:site_name" content="持续不断">
 <meta property="og:description" content="唯一标识问题使用 saltstack 得到的结果一般如下">
-<meta property="og:updated_time" content="2019-01-22T02:23:16.897Z">
+<meta property="og:updated_time" content="2019-01-22T08:56:05.028Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="cmdb之唯一标识及importlib反射">
 <meta name="twitter:description" content="唯一标识问题使用 saltstack 得到的结果一般如下">
@@ -113,13 +113,13 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span><span class="params">(object)</span>:</span></span><br><span class="line"><span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span><span class="params">()</span>:</span></span><br><span class="line"><span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">a = A()</span><br><span class="line">b = B()</span><br><span class="line">print(type(a))	<span class="comment">#--&gt; (class '__main__.A')</span></span><br><span class="line">print(type(b))	<span class="comment">#--&gt; (type 'instance')</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<h3 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h3><p>反射常用的有 <code>getattr</code> <code>hasattr</code> <code>setattr</code><br>下面为使用 getattr 示例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import importlib</span><br><span class="line"></span><br><span class="line">Host_func_dic = &#123;</span><br><span class="line">&apos;disk&apos;: &apos;func.hosts.disk.Disk&apos;,</span><br><span class="line">&apos;mem&apos;: &apos;func.hosts.mem.Mem&apos;,</span><br><span class="line">&apos;cpu&apos;: &apos;func.hosts.cpu.Cpu&apos;,</span><br><span class="line">&apos;os&apos;: &apos;func.hosts.os.Os&apos;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">host_li = [disk, cpu]</span><br><span class="line">for host in host_li:</span><br><span class="line">    path = Host_func_dic.get(&apos;disk&apos;)</span><br><span class="line">    module_path,class_name = path.rsplit(&apos;.&apos;, maxsplit=1)</span><br><span class="line">    module = importlib.import_module(module_path)</span><br><span class="line">    disk_class = getattr(module, class_name)</span><br><span class="line">    </span><br><span class="line">    JG = disk_class()</span><br><span class="line">    JG.run()</span><br></pre></td></tr></table></figure></p>
+<h3 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h3><p>反射常用的有 <code>getattr</code> <code>hasattr</code> <code>setattr</code><br>下面为使用 getattr 示例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import importlib</span><br><span class="line"></span><br><span class="line">Host_func_dic = &#123;</span><br><span class="line">&apos;disk&apos;: &apos;func.hosts.disk.Disk&apos;,</span><br><span class="line">&apos;mem&apos;: &apos;func.hosts.mem.Mem&apos;,</span><br><span class="line">&apos;cpu&apos;: &apos;func.hosts.cpu.Cpu&apos;,</span><br><span class="line">&apos;os&apos;: &apos;func.hosts.os.Os&apos;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">host_li = [&apos;disk&apos;, &apos;cpu&apos;]</span><br><span class="line">for host in host_li:</span><br><span class="line">    path = Host_func_dic.get(host)</span><br><span class="line">    module_path,class_name = path.rsplit(&apos;.&apos;, maxsplit=1)</span><br><span class="line">    module = importlib.import_module(module_path)</span><br><span class="line">    disk_class = getattr(module, class_name)</span><br><span class="line">    </span><br><span class="line">    JG = disk_class()</span><br><span class="line">    JG.run()</span><br></pre></td></tr></table></figure></p>
 <p>用于批量执行通用的类，客户端获取服务器信息时使用  </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2019/01/21/cmdb之唯一标识及importlib反射/" data-id="cjr720cf8000p0wq60j95u56z" class="article-share-link">分享</a>
+      <a data-url="https://rosinelan.github.io/2019/01/21/cmdb之唯一标识及importlib反射/" data-id="cjr8guvaw001g80q62ykrb7nx" class="article-share-link">分享</a>
       
       
       
@@ -172,6 +172,15 @@
 
     
 <nav id="article-nav">
+  
+    <a href="/2019/01/22/cmdb之客户端代码梳理/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          cmdb之客户端代码梳理
+        
+      </div>
+    </a>
   
   
     <a href="/2019/01/21/cmdb之saltstack的使用及python调用salt-api/" id="article-nav-older" class="article-nav-link-wrap">

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>cmdb之客户端代码梳理 | 持续不断</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前面完成了python 调用 salt-api 和批量执行通用类的抽象，下面继续客户端代码的整理">
+<meta name="keywords" content="cmdb,client,客户端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cmdb之客户端代码梳理">
+<meta property="og:url" content="https://rosinelan.github.io/2019/01/22/cmdb之客户端代码梳理/index.html">
+<meta property="og:site_name" content="持续不断">
+<meta property="og:description" content="前面完成了python 调用 salt-api 和批量执行通用类的抽象，下面继续客户端代码的整理">
+<meta property="og:image" content="http://cdn.rosinelan.com/blog/system/cmdb-client-demo01.png">
+<meta property="og:updated_time" content="2019-01-23T00:43:54.890Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="cmdb之客户端代码梳理">
+<meta name="twitter:description" content="前面完成了python 调用 salt-api 和批量执行通用类的抽象，下面继续客户端代码的整理">
+<meta name="twitter:image" content="http://cdn.rosinelan.com/blog/system/cmdb-client-demo01.png">
+  
+    <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">持续不断</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">要松懈的时候再坚持一下</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-cmdb之客户端代码梳理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/22/cmdb之客户端代码梳理/" class="article-date">
+  <time datetime="2019-01-22T08:46:09.000Z" itemprop="datePublished">2019-01-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/system/">系统管理</a>►<a class="article-category-link" href="/categories/system/python实战/">python实战</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      cmdb之客户端代码梳理
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <p>前面完成了python 调用 salt-api 和批量执行通用类的抽象，下面继续客户端代码的整理<br><a id="more"></a></p>
+<ul>
+<li>主要需要完成的内容<br>区分不同的 disk, cpu, mem 等参数，通过传递不同的参数给 salt-api 并获取数据  </li>
+</ul>
+<p>新建项目 cmdb_client_demo，新建应用 demo02，项目目录结构如下  </p>
+<div align="middle"><br><br><img src="http://cdn.rosinelan.com/blog/system/cmdb-client-demo01.png" alt="cmdb-client-demo1" title="cmdb-client-demo1"><br></div>  
+
+<ul>
+<li>程序结构说明<br>/bin/run.py 程序主入口<br>/conf/settings.py 配置文件，用于保存用户名、密码、url 等数据<br>/func/hosts/<em>.py 定义各个参数获取的方法<br>/func/task/</em>.py 调用 salt-api 执行命令</li>
+</ul>
+<p>代码示例<br><code>/bin/run.py</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> importlib</span><br><span class="line"><span class="keyword">import</span> os, sys</span><br><span class="line">BASEDIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))</span><br><span class="line">sys.path.append(BASEDIR)</span><br><span class="line"><span class="keyword">from</span> conf.settings <span class="keyword">import</span> HOST_FUNC_DIC</span><br><span class="line"><span class="keyword">from</span> conf.settings <span class="keyword">import</span> HOST_LI</span><br><span class="line"><span class="keyword">from</span> func.task.get_data <span class="keyword">import</span> send_main</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> host <span class="keyword">in</span> HOST_LI:</span><br><span class="line">    path = HOST_FUNC_DIC.get(host)</span><br><span class="line">    module_path, class_name = path.rsplit(<span class="string">'.'</span>, maxsplit=<span class="number">1</span>)</span><br><span class="line">    module = importlib.import_module(module_path)</span><br><span class="line">    disk_class = getattr(module, class_name)</span><br><span class="line"></span><br><span class="line">    JG = disk_class()</span><br><span class="line">    func = JG.run()</span><br><span class="line">    JG1 = send_main(func)</span><br></pre></td></tr></table></figure></p>
+<p><code>/conf/settings.py</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">HOST_FUNC_DIC = &#123;</span><br><span class="line">    <span class="string">'disk'</span>: <span class="string">'func.hosts.disk.Disk'</span>,</span><br><span class="line">    <span class="string">'mem'</span>: <span class="string">'func.hosts.mem.Mem'</span>,</span><br><span class="line">    <span class="string">'cpu'</span>: <span class="string">'func.hosts.cpu.Cpu'</span>,</span><br><span class="line">    <span class="string">'os'</span>: <span class="string">'func.hosts.os.Os'</span>,</span><br><span class="line">    <span class="string">'ip'</span>: <span class="string">'func.hosts.ip.Ip'</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">HOST_LI = [<span class="string">'mem'</span>]</span><br><span class="line"></span><br><span class="line">SALT_API_CON = <span class="string">"https://192.168.16.2:8001/"</span></span><br><span class="line">SALT_USERNAME = <span class="string">'saltapi'</span></span><br><span class="line">SALT_PASSWORD = <span class="string">'salt2019'</span></span><br></pre></td></tr></table></figure></p>
+<p><code>/func/hosts/main.py</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.method = <span class="string">''</span></span><br><span class="line">        self.tgt = <span class="string">''</span></span><br><span class="line">        self.arg = <span class="string">''</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">raise</span> NotImplementedError(<span class="string">'Not run'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>说明： main.py 定义基类，该类中定义 run 方法，其余的参数类均继承该类<br>若其余类未定义 run 方法，则会调用父类的 run 方法，从而给出提示信息<br><code>/func/hosts/mem.py</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> func.hosts.main <span class="keyword">import</span> Base</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Mem</span><span class="params">(Base)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.method = <span class="string">'cmd.run'</span></span><br><span class="line">        self.tgt = <span class="string">'*'</span></span><br><span class="line">        self.arg = <span class="string">'dmidecode -q -t 17 2 &gt;/dev/null'</span></span><br><span class="line">        <span class="keyword">return</span> &#123;<span class="string">'client'</span>: <span class="string">'local'</span>, <span class="string">'fun'</span>: self.method, <span class="string">'tgt'</span>: self.tgt, <span class="string">'arg'</span>: self.arg&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>/func/task/get_data.py</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">import</span> cookielib</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">import</span> http.cookiejar <span class="keyword">as</span> cookielib</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用urllib2请求https出错，做的设置</span></span><br><span class="line"><span class="keyword">import</span> ssl</span><br><span class="line">context = ssl._create_unverified_context()</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> func.task.salt_client <span class="keyword">import</span> SaltApi</span><br><span class="line"><span class="keyword">from</span> conf.settings <span class="keyword">import</span> SALT_API_CON</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用requests请求https出现警告，做的设置</span></span><br><span class="line"><span class="keyword">from</span> requests.packages.urllib3.exceptions <span class="keyword">import</span> InsecureRequestWarning</span><br><span class="line">requests.packages.urllib3.disable_warnings(InsecureRequestWarning)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">send_main</span><span class="params">(params)</span>:</span></span><br><span class="line">    salt = SaltApi(SALT_API_CON, params)</span><br><span class="line">    result1 = salt.salt_command()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    send_main(&#123;<span class="string">'client'</span>: <span class="string">'local'</span>, <span class="string">'fun'</span>: <span class="string">'*'</span>, <span class="string">'tgt'</span>: <span class="string">'test.ping'</span>&#125;)</span><br></pre></td></tr></table></figure></p>
+<p><code>/func/task/salt_client.py</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="comment"># from conf.settings import SALT_API_CON</span></span><br><span class="line"><span class="keyword">from</span> conf.settings <span class="keyword">import</span> SALT_USERNAME</span><br><span class="line"><span class="keyword">from</span> conf.settings <span class="keyword">import</span> SALT_PASSWORD</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SaltApi</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    定义salt api接口的类</span></span><br><span class="line"><span class="string">    初始化获得token</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, url, params)</span>:</span></span><br><span class="line">        self.url = url</span><br><span class="line">        self.username = SALT_USERNAME</span><br><span class="line">        self.password = SALT_PASSWORD</span><br><span class="line">        self.params = params</span><br><span class="line">        self.headers = &#123;</span><br><span class="line">            <span class="string">"User-Agent"</span>: <span class="string">"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"</span>,</span><br><span class="line">            <span class="string">"Content-type"</span>: <span class="string">"application/json"</span></span><br><span class="line">        &#125;</span><br><span class="line">        self.login_url = url + <span class="string">"login"</span></span><br><span class="line">        self.login_params = &#123;<span class="string">'username'</span>: self.username, <span class="string">'password'</span>: self.password, <span class="string">'eauth'</span>: <span class="string">'pam'</span>&#125;</span><br><span class="line">        <span class="comment"># self.token = self.get_data(self.login_url, self.login_params)['token']</span></span><br><span class="line">        self.token = self.get_data(self.login_url, self.login_params).get(<span class="string">'token'</span>)</span><br><span class="line">        self.headers[<span class="string">'X-Auth-Token'</span>] = self.token</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_data</span><span class="params">(self, url, params)</span>:</span></span><br><span class="line">        send_data = json.dumps(params)</span><br><span class="line">        request = requests.post(url, data=send_data, headers=self.headers, verify=<span class="keyword">False</span>)</span><br><span class="line">        response = request.json()</span><br><span class="line">        result = dict(response)</span><br><span class="line">        <span class="comment"># print result</span></span><br><span class="line">        <span class="keyword">return</span> result[<span class="string">'return'</span>][<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">salt_command</span><span class="params">(self, tgt, method, arg=None)</span>:</span></span><br><span class="line">        <span class="string">"""远程执行命令，相当于salt 'client1' cmd.run 'free -m'"""</span></span><br><span class="line">        <span class="keyword">if</span> arg:</span><br><span class="line">            params = &#123;<span class="string">'client'</span>: <span class="string">'local'</span>, <span class="string">'fun'</span>: method, <span class="string">'tgt'</span>: tgt, <span class="string">'arg'</span>: arg&#125;</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            params = &#123;<span class="string">'client'</span>: <span class="string">'local'</span>, <span class="string">'fun'</span>: method, <span class="string">'tgt'</span>: tgt&#125;</span><br><span class="line">        result = self.get_data(self.url, params)</span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2019/01/22/cmdb之客户端代码梳理/" data-id="cjr8guvai001280q6sol3v02g" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/client/">client</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cmdb/">cmdb</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/客户端/">客户端</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/01/21/cmdb之唯一标识及importlib反射/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">cmdb之唯一标识及importlib反射</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title recent-posts">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/01/22/cmdb之客户端代码梳理/">cmdb之客户端代码梳理</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/21/cmdb之唯一标识及importlib反射/">cmdb之唯一标识及importlib反射</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/21/cmdb之saltstack的使用及python调用salt-api/">cmdb之saltstack的使用及python调用salt-api</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/21/cmdb之流程小结和客户端需求梳理/">cmdb之流程小结和客户端需求梳理</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/17/cmdb之增删改查续/">cmdb之增删改查续</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2019 小灰灰&nbsp;|&nbsp;
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+     联系方式&nbsp;|&nbsp;mqwanghui327@hotmail.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>
