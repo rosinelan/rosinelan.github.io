@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>API 调用之阿里云详解 | 持续不断</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="使用方法通过调用 API，将主机相关信息解析，然后通过 json 格式发送至自己的 cmdb 保存">
+<meta name="keywords" content="API,调用,阿里云">
+<meta property="og:type" content="article">
+<meta property="og:title" content="API 调用之阿里云详解">
+<meta property="og:url" content="https://rosinelan.github.io/2019/01/24/API-调用之阿里云详解/index.html">
+<meta property="og:site_name" content="持续不断">
+<meta property="og:description" content="使用方法通过调用 API，将主机相关信息解析，然后通过 json 格式发送至自己的 cmdb 保存">
+<meta property="og:updated_time" content="2019-01-24T10:20:08.452Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="API 调用之阿里云详解">
+<meta name="twitter:description" content="使用方法通过调用 API，将主机相关信息解析，然后通过 json 格式发送至自己的 cmdb 保存">
+  
+    <link rel="alternate" href="/atom.xml" title="持续不断" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Søk"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">持续不断</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">要松懈的时候再坚持一下</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-API-调用之阿里云详解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/24/API-调用之阿里云详解/" class="article-date">
+  <time datetime="2019-01-24T08:33:05.000Z" itemprop="datePublished">2019-01-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/system/">系统管理</a>►<a class="article-category-link" href="/categories/system/python实战/">python实战</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      API 调用之阿里云详解
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><p>通过调用 API，将主机相关信息解析，然后通过 json 格式发送至自己的 cmdb 保存<br><a id="more"></a></p>
+<ul>
+<li>示例代码<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">om aliyunsdkcore.request <span class="keyword">import</span> CommonRequest</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line">client = AcsClient(<span class="string">'&lt;AccessKeyId&gt;'</span>, <span class="string">'&lt;AccessKeySecret&gt;'</span>, <span class="string">'cn-beijing'</span>)</span><br><span class="line"></span><br><span class="line">request = CommonRequest()</span><br><span class="line">request.set_accept_format(<span class="string">'json'</span>)</span><br><span class="line">request.set_domain(<span class="string">'ecs.aliyuncs.com'</span>)</span><br><span class="line">request.set_method(<span class="string">'POST'</span>)</span><br><span class="line">request.set_version(<span class="string">'2014-05-26'</span>)</span><br><span class="line">request.set_action_name(<span class="string">'DescribeInstances'</span>)</span><br><span class="line">request.add_query_param(<span class="string">'RegionId'</span>, <span class="string">'cn-beijing'</span>)</span><br><span class="line">response = client.do_action_with_exception(request)</span><br><span class="line">result = json.loads(response.decode(<span class="string">'utf-8'</span>))</span><br><span class="line"></span><br><span class="line">result_dic = &#123;&#125; <span class="comment">#自定义字典</span></span><br><span class="line">request_id = result.get(<span class="string">'RequestId'</span>)</span><br><span class="line">request_data = result.get(<span class="string">'InstanceStatuses'</span>).get(<span class="string">'InstanceStatus'</span>) <span class="comment">#构造字典</span></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> request_data:   <span class="comment">#循环在字典中添加主机信息</span></span><br><span class="line">    result_dic[item.get(<span class="string">'InstanceId'</span>)] = &#123;<span class="string">'InstanceId'</span>: item.get(<span class="string">'InstanceId'</span>)&#125;</span><br><span class="line">    result_dic[item.get(<span class="string">'InstanceId'</span>)][<span class="string">'mem'</span>] = item.get(<span class="string">'Memory'</span>)</span><br><span class="line"><span class="keyword">return</span> result_dic</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="磁盘信息"><a href="#磁盘信息" class="headerlink" title="磁盘信息"></a>磁盘信息</h3><p>阿里云 API 中磁盘信息通过单独的接口调用，在云主机中没有磁盘信息  </p>
+<ul>
+<li>示例代码<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">rom aliyunsdkcore.client <span class="keyword">import</span> AcsClient</span><br><span class="line"><span class="keyword">from</span> aliyunsdkcore.request <span class="keyword">import</span> CommonRequest</span><br><span class="line">client = AcsClient(<span class="string">'&lt;AccessKeyId&gt;'</span>, <span class="string">'&lt;AccessKeySecret&gt;'</span>, <span class="string">'cn-beijing'</span>)</span><br><span class="line"></span><br><span class="line">request = CommonRequest()</span><br><span class="line">request.set_accept_format(<span class="string">'json'</span>)</span><br><span class="line">request.set_domain(<span class="string">'ecs.aliyuncs.com'</span>)</span><br><span class="line">request.set_method(<span class="string">'POST'</span>)</span><br><span class="line">request.set_version(<span class="string">'2014-05-26'</span>)</span><br><span class="line">request.set_action_name(<span class="string">'DescribeDisks'</span>)</span><br><span class="line"></span><br><span class="line">request.add_query_param(<span class="string">'RegionId'</span>, <span class="string">'cn-beijing'</span>)</span><br><span class="line"></span><br><span class="line">response = client.do_action_with_exception(request)</span><br><span class="line"><span class="comment"># python2:  print(response)</span></span><br><span class="line">print(str(response, encoding = <span class="string">'utf-8'</span>))</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="webssh"><a href="#webssh" class="headerlink" title="webssh"></a>webssh</h3><p>该功能类似于通过管理控制台登录云主机  </p>
+<h4 id="使用方法-1"><a href="#使用方法-1" class="headerlink" title="使用方法"></a>使用方法</h4><p>在链接 <code>https://g.alicdn.com/aliyun/ecs-console-vnc/0.0.7/index.html?</code> 末尾加上 vncUrl=xxxx、 instanceId=xxx 和 isWindows=true、 isWindows=false 和 password=XXXXXX，参数之间使用 &amp; 连接。其中：</p>
+<ul>
+<li>参数 vncUrl：调用接口成功后会返回的 VncUrl 的值</li>
+<li>参数 instanceId：您的实例 ID</li>
+<li>参数 isWindows：该实例的操作系统是否是 Windows 系统。取值为 true 表示是 Windows 系统，取值为 false 表示不是 Windows 系统</li>
+<li>（可选）参数 password：该实例的远程连接密码，由 6 位数字或大小写字母组成。使用该参数时，在连接管理终端处您不需要再输入密码</li>
+</ul>
+<p>url示例<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://g.alicdn.com/aliyun/ecs-console-vnc/0.0.7/index.html?vncUrl=ws%3A%2F%xxx&amp;instanceId=i-wz9hhwq5a6tmxxxxxxx&amp;isWindows=true</span><br></pre></td></tr></table></figure></p>
+<h4 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> aliyunsdkcore.client <span class="keyword">import</span> AcsClient</span><br><span class="line"><span class="keyword">from</span> aliyunsdkcore.request <span class="keyword">import</span> CommonRequest</span><br><span class="line">client = AcsClient(<span class="string">'&lt;AccessKeyId&gt;'</span>, <span class="string">'&lt;AccessKeySecret&gt;'</span>, <span class="string">'cn-beijing'</span>)</span><br><span class="line"></span><br><span class="line">request = CommonRequest()</span><br><span class="line">request.set_accept_format(<span class="string">'json'</span>)</span><br><span class="line">request.set_domain(<span class="string">'ecs.aliyuncs.com'</span>)</span><br><span class="line">request.set_method(<span class="string">'POST'</span>)</span><br><span class="line">request.set_version(<span class="string">'2014-05-26'</span>)</span><br><span class="line">request.set_action_name(<span class="string">'DescribeInstanceVncUrl'</span>)</span><br><span class="line"></span><br><span class="line">request.add_query_param(<span class="string">'RegionId'</span>, <span class="string">'cn-beijing'</span>)</span><br><span class="line"></span><br><span class="line">response = client.do_action_with_exception(request)</span><br><span class="line"><span class="comment"># python2:  print(response)</span></span><br><span class="line">print(str(response, encoding = <span class="string">'utf-8'</span>))</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2019/01/24/API-调用之阿里云详解/" data-id="cjragvy5j0001mgq601yhg0nh" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/API/">API</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/调用/">调用</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/阿里云/">阿里云</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/01/24/API-调用之阿里云入门/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">API 调用之阿里云入门</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用方法"><span class="toc-number">1.</span> <span class="toc-text">使用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#磁盘信息"><span class="toc-number">2.</span> <span class="toc-text">磁盘信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#webssh"><span class="toc-number">3.</span> <span class="toc-text">webssh</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#使用方法-1"><span class="toc-number">3.1.</span> <span class="toc-text">使用方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码"><span class="toc-number">3.2.</span> <span class="toc-text">示例代码</span></a></li></ol></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2019 小灰灰&nbsp;|&nbsp;
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+     Contact&nbsp;|&nbsp;mqwanghui327@hotmail.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>

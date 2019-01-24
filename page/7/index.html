@@ -40,7 +40,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Søk"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rosinelan.github.io"></form>
@@ -71,6 +71,106 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-python网络编程之socket" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/01/python网络编程之socket/" class="article-date">
+  <time datetime="2018-06-01T12:28:37.000Z" itemprop="datePublished">2018-06-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/program/">编程</a>►<a class="article-category-link" href="/categories/program/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/01/python网络编程之socket/">python网络编程之socket</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>网络编程，肯定就会涉及到网络中进程的通信，那么网络中进程如何通信呢？  </p>
+<h3 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h3><h4 id="网络中的进程通信"><a href="#网络中的进程通信" class="headerlink" title="网络中的进程通信"></a>网络中的进程通信</h4><p>首先需要标识一个进程。本地可以通过进程PID来唯一标识一个进程，但在网络中不可行。TCP/IP协议中，在网络层用<code>IP地址</code>唯一标识网络中的主机，传输层中用<code>协议+端口</code>唯一标识主机中的应用程序(进程)，这样利用三元组(IP地址，协议，端口)就可以标识网络的进程，网络中的进程通信就可以利用这个标识与其它进程进行交互。<br>使用TCP/IP协议的应用程序通常采用引用编程接口:UNIX BSD的套接字(socket)来实现网络进程之间的通信。<br>
+        
+          <p class="article-more-link">
+            <a href="/2018/06/01/python网络编程之socket/#more">继续阅读全文 »</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/06/01/python网络编程之socket/" data-id="cjragvyid007jmgq693lzg1j6" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bind/">bind</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/socket/">socket</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tcp/">tcp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/udp/">udp</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
+    <article id="post-python单词查找练习题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/30/python单词查找练习题/" class="article-date">
+  <time datetime="2018-05-30T15:38:30.000Z" itemprop="datePublished">2018-05-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/program/">编程</a>►<a class="article-category-link" href="/categories/program/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/30/python单词查找练习题/">python单词查找练习题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h3><p>现有一个文件<code>dictionary.txt</code>，要求对数据进行处理，分别将英文单词和中文解释保存到mysql数据库，并且可通过输入关键字进行模糊匹配查询。<br><code>dictionary.txt</code>文件格式<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">abandon   v.抛弃，放弃</span><br><span class="line">abandonment   n.放弃</span><br><span class="line">abbreviation   n.缩写</span><br><span class="line">abeyance   n.缓办，中止</span><br><span class="line">abide   v.遵守</span><br><span class="line">ability   n.能力</span><br></pre></td></tr></table></figure></p>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3>
+        
+          <p class="article-more-link">
+            <a href="/2018/05/30/python单词查找练习题/#more">继续阅读全文 »</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://rosinelan.github.io/2018/05/30/python单词查找练习题/" data-id="cjragvyg10054mgq65sxehp6u" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/orm/">orm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/session/">session</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql/">sql</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
   
     <article id="post-python任务调度模块celery-二" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -108,7 +208,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/27/python任务调度模块celery-二/" data-id="cjr91aknc006yk8q60vubqnz3" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/05/27/python任务调度模块celery-二/" data-id="cjragvyf9004cmgq6nht9ete8" class="article-share-link">Share</a>
       
       
       
@@ -159,7 +259,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/27/python多线程练习题/" data-id="cjr91akq1008ok8q6n609wl5m" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/05/27/python多线程练习题/" data-id="cjragvyg40056mgq68obe6ae9" class="article-share-link">Share</a>
       
       
       
@@ -210,7 +310,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/25/python任务调度模块celery/" data-id="cjr91aknr007dk8q6n6gew6hz" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/05/25/python任务调度模块celery/" data-id="cjragvyez0047mgq6o8o8gbni" class="article-share-link">Share</a>
       
       
       
@@ -260,7 +360,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/25/python消息队列/" data-id="cjr91akr3009sk8q65m81jzm2" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/05/25/python消息队列/" data-id="cjragvyhj006lmgq69hcizcf9" class="article-share-link">Share</a>
       
       
       
@@ -309,7 +409,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/23/python多线程/" data-id="cjr91akpn008ak8q6yr91boml" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/05/23/python多线程/" data-id="cjragvyfw0051mgq6ktd999g5" class="article-share-link">Share</a>
       
       
       
@@ -358,7 +458,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/20/python多进程/" data-id="cjr91akpv008hk8q6ge2pocn3" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/05/20/python多进程/" data-id="cjragvygc005hmgq68d9gy9kg" class="article-share-link">Share</a>
       
       
       
@@ -407,7 +507,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/18/python访问memcached/" data-id="cjr91aksz00bqk8q6et3c6l3u" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/05/18/python访问memcached/" data-id="cjragvyih007pmgq6u515167q" class="article-share-link">Share</a>
       
       
       
@@ -458,7 +558,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/18/python访问redis-二/" data-id="cjr91aksf00b8k8q6gptunrid" class="article-share-link">Share</a>
+      <a data-url="https://rosinelan.github.io/2018/05/18/python访问redis-二/" data-id="cjragvyj7008kmgq6hz9qiuwy" class="article-share-link">Share</a>
       
       
       
@@ -472,110 +572,10 @@
 
 
   
-    <article id="post-python访问redis" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/05/17/python访问redis/" class="article-date">
-  <time datetime="2018-05-17T00:05:59.000Z" itemprop="datePublished">2018-05-17</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/program/">编程</a>►<a class="article-category-link" href="/categories/program/python/">python</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/17/python访问redis/">python访问redis</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>首先看个案例<br>无论是电商网站还是支付系统，都离不开数据的存储和增删改查，在这种情况下，每一次登录、访问等都会访问，这样会给数据库造成很大的压力，当数据库无法支撑过高的访问量，轻则影响用户体验，重则导致数据库宕机，网站无法访问。<br>如何解决数据库压力过大的问题呢？  </p>
-<ol>
-<li>优化应用程序，减少数据库的连接数，尽量使用数据库连接池。
-        
-          <p class="article-more-link">
-            <a href="/2018/05/17/python访问redis/#more">继续阅读全文 »</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/17/python访问redis/" data-id="cjr91aksa00b3k8q691wjy38n" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nosql/">nosql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
-    <article id="post-python中使用SQLAlchemy-二" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/05/14/python中使用SQLAlchemy-二/" class="article-date">
-  <time datetime="2018-05-14T07:30:26.000Z" itemprop="datePublished">2018-05-14</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/program/">编程</a>►<a class="article-category-link" href="/categories/program/python/">python</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/14/python中使用SQLAlchemy-二/">python中使用SQLAlchemy(二)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>关于<code>SQLAlchemy</code>使用建表、插入和查询内容，点击<a href="https://rosinelan.coding.me/2018/05/11/python%E4%B8%AD%E4%BD%BF%E7%94%A8SQLAlchemy/" target="_blank" rel="noopener">python中使用SQLAlchemy</a>查看。<br>继续以前面建立的<code>student</code>表作为示例进行后面的操作。<br>
-        
-          <p class="article-more-link">
-            <a href="/2018/05/14/python中使用SQLAlchemy-二/#more">继续阅读全文 »</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://rosinelan.github.io/2018/05/14/python中使用SQLAlchemy-二/" data-id="cjr91akn5006rk8q6maqwpmzx" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/count/">count</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/delete/">delete</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/groupby/">groupby</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/orderby/">orderby</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/update/">update</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分组/">分组</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/排序/">排序</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/统计/">统计</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/6/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/8/">Next&raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/6/">&laquo; Forrige</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/8/">Neste&raquo;</a>
   </nav>
 </section>
            
@@ -590,9 +590,17 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title recent-posts">Recent Posts</h3>
+    <h3 class="widget-title recent-posts">Siste innlegg</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/01/24/API-调用之阿里云详解/">API 调用之阿里云详解</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/24/API-调用之阿里云入门/">API 调用之阿里云入门</a>
+          </li>
         
           <li>
             <a href="/2019/01/23/cmdb之客户端代码及流程总结/">cmdb之客户端代码及流程总结</a>
@@ -604,14 +612,6 @@
         
           <li>
             <a href="/2019/01/21/cmdb之唯一标识及importlib反射/">cmdb之唯一标识及importlib反射</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/21/cmdb之saltstack的使用及python调用salt-api/">cmdb之saltstack的使用及python调用salt-api</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/21/cmdb之流程小结和客户端需求梳理/">cmdb之流程小结和客户端需求梳理</a>
           </li>
         
       </ul>
