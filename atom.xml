@@ -115,11 +115,11 @@
     
       <category term="cmdb" scheme="https://rosinelan.github.io/tags/cmdb/"/>
     
-      <category term="流程" scheme="https://rosinelan.github.io/tags/%E6%B5%81%E7%A8%8B/"/>
+      <category term="client" scheme="https://rosinelan.github.io/tags/client/"/>
     
       <category term="客户端" scheme="https://rosinelan.github.io/tags/%E5%AE%A2%E6%88%B7%E7%AB%AF/"/>
     
-      <category term="client" scheme="https://rosinelan.github.io/tags/client/"/>
+      <category term="流程" scheme="https://rosinelan.github.io/tags/%E6%B5%81%E7%A8%8B/"/>
     
   </entry>
   
@@ -145,9 +145,9 @@
     
       <category term="cmdb" scheme="https://rosinelan.github.io/tags/cmdb/"/>
     
-      <category term="客户端" scheme="https://rosinelan.github.io/tags/%E5%AE%A2%E6%88%B7%E7%AB%AF/"/>
-    
       <category term="client" scheme="https://rosinelan.github.io/tags/client/"/>
+    
+      <category term="客户端" scheme="https://rosinelan.github.io/tags/%E5%AE%A2%E6%88%B7%E7%AB%AF/"/>
     
   </entry>
   
@@ -229,9 +229,9 @@
     
       <category term="cmdb" scheme="https://rosinelan.github.io/tags/cmdb/"/>
     
-      <category term="流程" scheme="https://rosinelan.github.io/tags/%E6%B5%81%E7%A8%8B/"/>
-    
       <category term="客户端" scheme="https://rosinelan.github.io/tags/%E5%AE%A2%E6%88%B7%E7%AB%AF/"/>
+    
+      <category term="流程" scheme="https://rosinelan.github.io/tags/%E6%B5%81%E7%A8%8B/"/>
     
       <category term="需求" scheme="https://rosinelan.github.io/tags/%E9%9C%80%E6%B1%82/"/>
     
